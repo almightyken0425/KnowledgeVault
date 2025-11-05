@@ -43,27 +43,33 @@ _(本文件定義 App 的主要功能邏輯與規格)_
         
         1. **確定篩選條件:** 根據使用者在首頁選擇的時間粒度、具體時間區間 (基於使用者設定時區計算 UTC 範圍)，以及納入統計的帳戶列表 (由 `homescreen_spec.md` 中的「帳戶篩選器」決定)。
             
-        2. **遍歷交易紀錄:** 程式迭代處理**所有**使用者的 `Transactions` 列表/表格 (通常指本地快取/DB 中的數據)。每次迭代的交易紀錄可稱為 `tx`。
+        2. **遍歷記錄:** 程式迭代處理**所有**使用者的 `Transactions` 和 `Transfers` 列表/表格 (通常指本地快取/DB 中的數據)。
             
-        3. **條件篩選:** 對於每一筆交易 `tx`，執行以下檢查：
+        3. **條件篩選:** 對於每一筆記錄，執行以下檢查：
             
-            - **時間符合:** `tx.TransactionDate` (UTC ms) 是否落在選定的 UTC 時間範圍內？ (使用 `TransactionDate` 進行報表篩選)
+            - **時間符合:** `TransactionDate` (UTC ms) 是否落在選定的 UTC 時間範圍內？
                 
-            - **帳戶符合:** `tx.AccountId` 是否在選定的帳戶列表中？
+            - **帳戶符合:** `AccountId` (或 `AccountFromId`/`AccountToId`) 是否在選定的帳戶列表中？
                 
-            - **未刪除:** `tx.DeletedOn` 是否為 `null`？
+            - **未刪除:** `DeletedOn` 是否為 `null`？
                 
-        4. **納入計算的交易:** 只有**同時滿足**上述所有條件的交易，才進入下一步的匯率換算與加總。
+        4. **納入計算的記錄:** 只有**同時滿足**上述所有條件的記錄，才進入下一步的價值計算。
             
-        5. **匯率換算 (針對非基礎貨幣交易 -** _**[付費功能]**_**):**
+        5. **價值計算 (換算為基礎貨幣):**
             
-            - 取得交易貨幣ID (`fromCurrencyId`) 和基礎貨幣ID (`baseCurrencyId`)。
+            - **判斷記錄類型:** 檢查該筆記錄是 `Transaction` 還是 `Transfer`。
                 
-            - 在 `CurrencyRates` 中查找符合 `UserId`, `CurrencyFromId` = `fromCurrencyId`, `CurrencyToId` = `baseCurrencyId`, `DeletedOn` is `NULL` 的**本地**匯率記錄。
+            - **若是「轉帳 (Transfer)」:**
+                - **情境:** 處理帳戶間的資金移動。
+                - **計算邏輯:** 在計算「收支結餘」時，**應忽略 `Transfer` 記錄**。因為轉帳是內部資金流動，其對總資產的影響為零（或僅為手續費/匯差損失），而它的 `AmountFromCents` 和 `AmountToCents` 已經反映在各帳戶的餘額中。報表聚合的是**外部**的收支行為。
                 
-            - 按 `RateDate` **降冪排列 (DESC)**，選取**最新的一筆**匯率 (`LIMIT 1`)。
-                
-            - 使用此最新匯率 (`latestRate.RateCents`) 將 `tx.AmountCents` 換算成基礎貨幣的 Cents 值。(注意：此方法忽略交易日期，可能影響歷史報表準確性)
+            - **若是「收支 (Transaction)」:**
+                - **情境:** 處理對外的收入或支出。
+                - **計算邏輯 (針對非基礎貨幣交易 -** _**[付費功能]**_**):**
+                    - 取得交易帳戶的貨幣ID (`fromCurrencyId`) 和基礎貨幣ID (`baseCurrencyId`)。
+                    - 在 `CurrencyRates` 中查找符合 `UserId`, `CurrencyFromId` = `fromCurrencyId`, `CurrencyToId` = `baseCurrencyId`, `DeletedOn` is `NULL` 的匯率記錄。
+                    - 按 `RateDate` **降冪排列 (DESC)**，選取**最新的一筆**匯率 (`LIMIT 1`)。
+                    - 使用此最新匯率 (`latestRate.RateCents`) 將 `tx.AmountCents` 換算成基礎貨幣的 Cents 值。
                 
         6. **金額加總:** 將所有基礎貨幣交易的金額，以及經過換算的非基礎貨幣交易金額（均以基礎貨幣的 Cents 表示），根據其 `CategoryType` 分別加總。
             
@@ -123,6 +129,14 @@ _(本文件定義 App 的主要功能邏輯與規格)_
             
     6. 導航至首頁 (`5.2`)。
         
+#### 4.1. 多裝置同步策略 (Multi-Device Sync Strategy)
+
+-   **策略:** App **支援**使用者在多個裝置上同時登入（例如手機、平板），不採用強制單一裝置登出的機制，以提供無縫的跨裝置體驗。
+-   **理由:**
+    -   **使用者體驗:** 強制登出會在使用多裝置的現代情境下，造成嚴重的操作摩擦。
+    -   **離線情境:** 強制單一裝置登入無法解決「離線操作後，重新連網」所引發的資料狀態不一致問題。
+-   **技術實現:** 為了支援穩健的多裝置同步，核心資料表（如 `CurrencyRates`）採用「只增不改 (Append-Only)」的日誌模式。這從根本上避免了因 `UPDATE` 操作在不同裝置間可能引發的「競爭條件 (Race Condition)」，簡化了同步邏輯。
+
 
 ## 5. AI 分析整合 (Future Feature) - _[付費功能]_
 

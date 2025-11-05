@@ -42,14 +42,6 @@ _(本文件用來規劃 MVP 範圍內所有需要詳細定義規格的 App 畫�
     - 導航項目 (連結至後續子畫面)
     - 登出邏輯 (呼叫 `authService` 登出)
     - (付費功能) 顯示/連結至付費牆 (`5.13`)
-
-- **5.6. 設定 - 帳戶列表 (AccountListScreen)**
-- **5.8. 設定 - 類別列表 (CategoryListScreen)**
-    - UI: 依 `CategoryType` (收/支) 分頁顯示類別列表、新增按鈕 (FAB)。
-    - 互動: **支援拖拉排序**，更新 `SortOrder` 欄位。點擊項目導航至 `CategoryEditorScreen` (5.9)。
-    - 資料: 讀取 `Categories`。
-
-- **5.9. 設定 - 類別編輯器 (CategoryEditorScreen)**
 - **5.6. 設定 - 類別列表 (CategoryListScreen)**
     - UI: 依 `CategoryType` (收/支) 分頁顯示類別列表、新增按鈕 (FAB)。
     - 互動: **支援拖拉排序**，更新 `SortOrder` 欄位。點擊項目導航至 `CategoryEditorScreen` (5.7)。
@@ -79,26 +71,31 @@ _(本文件用來規劃 MVP 範圍內所有需要詳細定義規格的 App 畫�
     - 互動: 點選圖標後返回 `id`。
 
 - **5.11. 設定 - 匯率管理 (CurrencyRateScreen)** (付費功能)
-    - UI: 顯示已儲存的 `CurrencyRates` 列表、新增/編輯/刪除按鈕。
-    - 資料: 讀寫 `CurrencyRates`。
-    - 邏輯: 處理匯率 (1 From = ? To) 的輸入與儲存 (RateCents)。
+    - UI: 顯示各貨幣對的**最新有效匯率**列表，並包含說明文字。
+    - 資料: 讀取 `CurrencyRates`。
+    - 邏輯: 允許使用者點擊列表項目來**更新**現有貨幣對的匯率（實質為新增記錄），或手動新增一個新的貨幣對匯率。
 
-- **5.12. 設定 - 偏好設定 (PreferenceScreen)**
+- **5.12. 設定 - 匯率編輯器 (CurrencyRateEditorScreen)** (付費功能)
+    - UI: 貨幣對選擇器、匯率輸入框。
+    - 資料: 寫入 `CurrencyRates` (僅新增)。
+    - 邏輯: 處理匯率 (1 From = ? To) 的輸入與儲存。
+
+- **5.13. 設定 - 偏好設定 (PreferenceScreen)**
     - UI: 語系選擇器、主要貨幣選擇器、時區選擇器。
     - 資料: 讀寫 `Settings` (Key-Value)。
     - 邏輯: 變更後需觸發 App 重新載入設定 (e.g., i18n, 報表重算)。
 
-- **5.13. 搜尋畫面 (SearchScreen)**
+- **5.14. 搜尋畫面 (SearchScreen)**
     - UI: 搜尋輸入框、交易結果列表。
     - 資料: 查詢 `Transactions` 和 `Transfers` 的 `Note` 欄位。
     - 互動: 點擊結果導航至編輯畫面 (`5.3` / `5.4`)。
 
-- **5.14. 匯入畫面 (ImportScreen)**
+- **5.15. 匯入畫面 (ImportScreen)**
     - UI: 檔案選擇器 (CSV)、欄位映射介面、匯入預覽。
     - 邏輯: CSV 解析、資料驗證、寫入 `Transactions` 表。
     - 錯誤處理: 顯示匯入失敗的行數與原因。
 
-- **5.15. 付費牆畫面 (PaywallScreen)**
+- **5.16. 付費牆畫面 (PaywallScreen)**
     - UI: 顯示免費版限制、付費版功能列表 (多幣別、定期交易、無限帳戶/類別等)。
     - 互動: 顯示訂閱選項 (月/年)、購買按鈕、恢復購買按鈕。
     - 邏輯: 串接 RevenueCat (或 App Store/Google Play) 處理購買流程、驗證收據、更新 `Settings` 中的 `isPremiumUser` 狀態。
