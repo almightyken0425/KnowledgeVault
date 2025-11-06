@@ -53,24 +53,22 @@ _(本文件用來規劃 MVP 範圍內所有需要詳細定義規格的 App 畫�
     - 邏輯: 檢查免費版 10 個類別限制 (觸發 `5.13`)。
 
 - **5.8. 設定 - 帳戶列表 (AccountListScreen)**
-    - UI: 顯示所有帳戶列表。`IsPrimary` 的帳戶應被釘選在列表最頂部，並有特殊標記。
+    - UI: 顯示所有帳戶列表。列表應根據 SortOrder 排序並支援拖拉。
     - 互動:
-        - **支援拖拉排序:** 除了被釘選的主要帳戶外，其餘帳戶支援拖拉排序，更新其 `SortOrder` 欄位。
+        - **支援拖拉排序:** 支援拖拉排序，更新其 `SortOrder` 欄位。
         - 點擊項目導航至 `AccountEditorScreen` (5.9) 進行編輯。
         - 點擊「新增」按鈕導航至 `AccountEditorScreen` (5.9) 進行建立。
     - 資料: 讀取 `Accounts`。
 
 - **5.9. 設定 - 帳戶編輯器 (AccountEditorScreen)**
-    - UI: 名稱、圖標 (IconPicker)、幣別、初始餘額 (僅限新增)、標準帳戶類型映射、`IsPrimary` 切換。
+    - UI: 名稱、圖標 (IconPicker)、幣別、初始餘額 (僅限新增)、標準帳戶類型映射。
     - 資料: 讀寫 `Accounts`。
-    - 邏輯: 處理 `IsPrimary` 唯一性、檢查免費版 3 個帳戶限制 (觸發 `5.13`)、(付費功能) 建立外幣帳戶時觸發匯率輸入。
+    - 邏輯: 檢查免費版 3 個帳戶限制 (觸發 `5.13`)、(付費功能) 建立外幣帳戶時觸發匯率輸入。
 
 - **5.10. 設定 - 圖標選擇器 (IconPickerScreen)**
     - UI: 顯示 `IconDefinition.json` 中 `types` 相符的圖標網格 (e.g., 'expense', 'income', 'account', 'general')。
-    - 資料: 讀取 `IconDefinition.json`。
-    - 互動: 點選圖標後返回 `id`。
 
-- **5.11. 設定 - 匯率管理 (CurrencyRateScreen)** (付費功能)
+- **5.11. 設定 - 匯率管理 (CurrencyRateListScreen)** (付費功能)
     - UI: 顯示各貨幣對的**最新有效匯率**列表，並包含說明文字。
     - 資料: 讀取 `CurrencyRates`。
     - 邏輯: 允許使用者點擊列表項目來**更新**現有貨幣對的匯率（實質為新增記錄），或手動新增一個新的貨幣對匯率。

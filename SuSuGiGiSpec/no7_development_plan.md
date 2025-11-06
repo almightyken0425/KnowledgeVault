@@ -40,9 +40,9 @@ _(本文件定義 MVP 範圍內功能的建議開發階段與優先級)_
 
 - [ ] 建立 `DataContext` / `useData` Hook (用於獲取和緩存 Firestore 資料)。
     
-- [ ] 建立 `AccountManagement/` 畫面 (CRUD 介面，處理 `IsPrimary` 邏輯、免費版限制) (根據 `5.6` 規格)。
+- [ ] 建立 `AccountManagement/` 畫面 (CRUD 介面，處理拖拉排序邏輯、免費版限制) (根據 `5.8` 規格)。
     
-- [ ] 建立 `IconPickerScreen.tsx` (根據 `5.7` 規格)。
+- [ ] 建立 `IconPickerScreen.tsx` (根據 `5.10` 規格)。
     
 - [ ] 建立 `CategoryManagement/` 畫面 (CRUD 介面，實作 Icon 選擇器、`StandardCategoryId` 映射、免費版限制) (根據 `5.7` 規格)。
     
