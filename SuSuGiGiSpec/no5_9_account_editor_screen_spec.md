@@ -48,12 +48,21 @@ _(本文件定義新增/編輯「帳戶」畫面的 UI、流程與邏輯)_
     - **新增模式:**
         - **(付費牆檢查)** 檢查目前使用者帳戶數量是否已達免費版上限 (3個)。若已達上限，則導航至 `PaywallScreen` (5.15)。
         - **(付費牆檢查 - 多幣別)** 若使用者選擇了非基礎貨幣，檢查 `isPremiumUser` 狀態。若為免費版，導航至 `PaywallScreen`。
-        - 若檢查通過，呼叫 `firestoreService.addAccount()` 建立新記錄。
+        - **(匯率輸入流程 - 多幣別)** 若使用者為付費版且選擇了非基礎貨幣，在儲存前，必須：
+            1.  彈出一個對話框或介面，提示使用者輸入該貨幣對基礎貨幣的**初始匯率** (例如 "1 USD = ? TWD")。
+            2.  此匯率輸入為**必填項**。
+        - **儲存操作:**
+            1.  若涉及匯率輸入，將該匯率記錄與帳戶資料在一個批次 (batch) 操作中，分別呼叫 `firestoreService.addCurrencyRate()` 和 `firestoreService.addAccount()` 儲存。
+            2.  若不涉及，則直接呼叫 `firestoreService.addAccount()` 建立新記錄。
     - **編輯模式:**
         - 呼叫 `firestoreService.updateAccount()` 更新記錄。
     - **`IsPrimary` 唯一性處理:**
-        - 如果使用者將某個帳戶的 `IsPrimary` 設為 `true`，在儲存時，App 必須確保資料庫中原有的主要帳戶其 `IsPrimary` 被更新為 `false`。
-    - 儲存成功後，關閉畫面並導航返回 `AccountListScreen`。
+        - 當使用者將帳戶 B 設為新的主要帳戶 (`IsPrimary: true`) 時，在儲存階段必須執行以下連動更新：
+            1.  **新主要帳戶 (帳戶 B):** 更新其 `SortOrder` 為 `1`。
+            2.  **原主要帳戶 (帳戶 A):** 更新其 `IsPrimary` 為 `false`，並將其 `SortOrder` 更新為 `2`。
+            3.  **其他所有帳戶:** 所有原 `SortOrder` 大於等於 `2` 的帳戶，其 `SortOrder` 都應自動 `+1`，為舊的主要帳戶騰出位置。
+        - 這些更新應在一個批次 (batch) 操作中完成，以確保資料一致性。
+    - **儲存成功後:** 關閉畫面並導航返回 `AccountListScreen`。
 
 - **3.3. 刪除邏輯 (Delete Logic):**
     - 點擊「刪除」按鈕時，彈出確認對話框。
