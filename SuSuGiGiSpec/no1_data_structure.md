@@ -24,8 +24,6 @@ _(現況: 這些是 App 的核心動態資料，將儲存在 Firestore 中並與
         
     - `StandardAccountTypeId`: Number | Null - Foreign Key (StandardAccountTypes), Nullable
         
-    - `IsPrimary`: Boolean - Not Null, Default false (每個 UserId 應只有一個為 true。App 首次啟動為新用戶建立第一個帳戶時，應將其設為 true。當使用者將其他帳戶設為主要時，App 需確保舊的主要帳戶 IsPrimary 被設為 false)
-        
     - `SortOrder`: Number - Not Null, Default 0 (用於使用者自訂排序，數字越小越前面)
         
     - `CreatedOn`: Number (Unix Timestamp ms) - Not Null (資料建立的系統時間)

@@ -31,8 +31,6 @@ _(本文件定義新增/編輯「帳戶」畫面的 UI、流程與邏輯)_
     - **標準帳戶類型 (`StandardAccountTypeId`):**
         - **UI:** 一個選擇器，點擊後彈出 `StandardAccountType.json` 的列表。
         - **邏輯:** 允許使用者將帳戶歸類 (例如：現金、銀行、投資)。
-    - **設為主要帳戶 (`IsPrimary`):**
-        - **UI:** 一個開關 (Switch) 元件。
 
 - **2.3. 刪除按鈕區 (Delete Button Area):**
     - **UI:** 紅色的「刪除此帳戶」按鈕，僅在「編輯」模式下顯示。
@@ -56,12 +54,6 @@ _(本文件定義新增/編輯「帳戶」畫面的 UI、流程與邏輯)_
             2.  若不涉及，則直接呼叫 `firestoreService.addAccount()` 建立新記錄。
     - **編輯模式:**
         - 呼叫 `firestoreService.updateAccount()` 更新記錄。
-    - **`IsPrimary` 唯一性處理:**
-        - 當使用者將帳戶 B 設為新的主要帳戶 (`IsPrimary: true`) 時，在儲存階段必須執行以下連動更新：
-            1.  **新主要帳戶 (帳戶 B):** 更新其 `SortOrder` 為 `1`。
-            2.  **原主要帳戶 (帳戶 A):** 更新其 `IsPrimary` 為 `false`，並將其 `SortOrder` 更新為 `2`。
-            3.  **其他所有帳戶:** 所有原 `SortOrder` 大於等於 `2` 的帳戶，其 `SortOrder` 都應自動 `+1`，為舊的主要帳戶騰出位置。
-        - 這些更新應在一個批次 (batch) 操作中完成，以確保資料一致性。
     - **儲存成功後:** 關閉畫面並導航返回 `AccountListScreen`。
 
 - **3.3. 刪除邏輯 (Delete Logic):**
@@ -77,7 +69,6 @@ _(本文件定義新增/編輯「帳戶」畫面的 UI、流程與邏輯)_
     - `currencyId: number`
     - `initialBalanceCents: bigint`
     - `standardAccountTypeId: number | null`
-    - `isPrimary: boolean`
 
 ## 5. 導航 (Navigation)
 
