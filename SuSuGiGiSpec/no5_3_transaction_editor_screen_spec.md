@@ -45,7 +45,7 @@ _(本文件定義新增/編輯「收支」交易畫面的 UI、流程與邏輯)_
         - **帳戶 (Account):**
             - **元件:** `AccountSelector.tsx`。
             - **UI:** 同上，可以是滾輪選擇器或彈出 Modal。
-            - **邏輯:** 列表應優先顯示 `IsPrimary` 帳戶，其餘帳戶按 `SortOrder` 排序。選擇後返回 `AccountId`。此為**必填項**。
+            - **邏輯:** 帳戶按 `SortOrder` 排序。選擇後返回 `AccountId`。此為**必填項**。
         - **備註 (Note):**
             - **UI:** 一個簡單的文字輸入框。
             - **邏輯:** 允許使用者輸入文字，對應 `Transactions` 表的 `Note` 欄位。
