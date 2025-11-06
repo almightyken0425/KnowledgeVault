@@ -100,7 +100,11 @@ _(本文件用來規劃 MVP 範圍內所有需要詳細定義規格的 App 畫�
     - 互動: 顯示訂閱選項 (月/年)、購買按鈕、恢復購買按鈕。
     - 邏輯: 串接 RevenueCat (或 App Store/Google Play) 處理購買流程、驗證收據、更新 `Settings` 中的 `isPremiumUser` 狀態。
 
-## 2. 待討論
+## 2. 全域設計原則 (Global Design Principles)
+
+- **編輯器的呈現方式:** 所有用於「新增」或「編輯」的獨立畫面 (如 `CategoryEditorScreen`, `TransactionEditorScreen`, `AccountEditorScreen` 等)，都應統一採用 **Sheet 形式的 Modal** 進行呈現，而非全螢幕或 Segue (Push) 導航。
+
+## 3. 待討論
 
 - 畫面列表已完成 (共 15 項)。
 - 接下來我們可以開始逐一討論這些畫面的詳細規格，從 `5.6. 設定 - 帳戶列表 (AccountListScreen)` 開始。
