@@ -46,7 +46,9 @@ _(本文件定義 MVP 範圍內功能的建議開發階段與優先級)_
     
 - [ ] 建立 `CategoryManagement/` 畫面 (CRUD 介面，實作 Icon 選擇器、`StandardCategoryId` 映射、免費版限制) (根據 `5.7` 規格)。
     
-- [ ] 建立 `CurrencyRateScreen.tsx` (手動輸入匯率介面) (根據 `5.11` 規格)。
+- [ ] 建立 `CurrencyRateListScreen.tsx` (手動輸入匯率介面) (根據 `5.11` 規格)。
+    
+- [ ] 建立 `CurrencyRateEditorScreen.tsx` (根據 `5.12` 規格)。
     
 - [ ] 實作 `PreferenceScreen.tsx` (偏好設定 UI - 時區/基礎貨幣/語系) (根據 `5.13` 規格)。
     
