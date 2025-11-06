@@ -83,6 +83,12 @@ _(本文件定義新增/編輯「轉帳」畫面的 UI、流程與邏輯)_
 - **3.2. 儲存邏輯 (Save Logic):**
     - 點擊「儲存」按鈕時，組合表單所有狀態 (按鈕的可點擊狀態已完成驗證)。
     - **新增模式:**
+        - **(跨幣別匯率記錄):** 若偵測到為跨幣別轉帳 (轉出與轉入帳戶的幣別不同)，執行以下操作：
+            - 從 `AmountFromCents`, `AccountFromId` (取得幣別), `AmountToCents`, `AccountToId` (取得幣別) 中取得所需資訊。
+            - 計算出隱含匯率 (`RateCents`)。
+            - 在儲存轉帳的同一個批次 (batch) 操作中，呼叫 `firestoreService.addCurrencyRate()`，將此匯率存入 `CurrencyRates` 表，並將 `RateDate` 設為該筆轉帳的 `TransactionDate`。
+            - **(付費牆檢查):** 此操作為付費功能，執行前需檢查 `isPremiumUser` 狀態。若為免費版，應導航至 `PaywallScreen`。
+
         - **如果未設定重複規則:** 直接呼叫 `firestoreService.addTransfer()` 建立一筆新記錄。
         - **如果設定了重複規則 ([付費功能]):**
             - 呼叫 `firestoreService.addSchedule()` 建立一筆 `Schedules` 記錄 (包含 `Template...` 欄位)。
