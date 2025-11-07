@@ -57,8 +57,6 @@ _(本文件定義 MVP 範圍內功能的建議開發階段與優先級)_
 
 ## 4. Phase 3: 核心記帳流程 (Core Action)
 
-- [ ] 建立 `src/components/specific/Calculator/` 共用計算機。
-    
 - [ ] 建立 `src/screens/TransactionEditor/components/` (帳戶/類別選擇器, 金額輸入框)。
     
 - [ ] 建立 `TransactionEditorScreen.tsx` (收支表單 UI，串接 `firestoreService`) (根據 `5.3` 規格)。
@@ -68,7 +66,7 @@ _(本文件定義 MVP 範圍內功能的建議開發階段與優先級)_
 
 ## 5. Phase 4: 首頁儀表板 (Dashboard)
 
-- [ ] 建立 `HomeScreen.tsx` 基礎佈局 (控制列、內容區、FAB) (根據 `5.2` 規格)。
+- [ ] 建立 `HomeScreen.tsx` 基礎佈局 (控制列、內容區、Footer 記帳按鈕) (根據 `5.2` 規格)。
     
 - [ ] 實作狀態 (State) 管理 (時間區間、所選帳戶、視圖模式)。
     
