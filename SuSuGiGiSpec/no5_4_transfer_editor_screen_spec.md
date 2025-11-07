@@ -20,7 +20,7 @@ _(本文件定義新增/編輯「轉帳」畫面的 UI、流程與邏輯)_
         - **定期交易按鈕:** 一個循環圖示的按鈕。
         - **邏輯:**
             - **(付費牆檢查)** 點擊時，檢查使用者 `isPremiumUser` 狀態。
-            - **若為免費版使用者:** 導航至 `PaywallScreen` (`5.12`)。
+            - **若為免費版使用者:** 導航至 `PaywallScreen` (`5.16`)。
             - **若為付費版使用者:** 開啟 `ScheduleModal` 進行設定。
 
 - **2.2. 日期選擇區 (Date Area):**
@@ -87,7 +87,7 @@ _(本文件定義新增/編輯「轉帳」畫面的 UI、流程與邏輯)_
             - 從 `AmountFromCents`, `AccountFromId` (取得幣別), `AmountToCents`, `AccountToId` (取得幣別) 中取得所需資訊。
             - 計算出隱含匯率 (`RateCents`)。
             - 在儲存轉帳的同一個批次 (batch) 操作中，呼叫 `firestoreService.addCurrencyRate()`，將此匯率存入 `CurrencyRates` 表，並將 `RateDate` 設為該筆轉帳的 `TransactionDate`。
-            - **(付費牆檢查):** 此操作為付費功能，執行前需檢查 `isPremiumUser` 狀態。若為免費版，應導航至 `PaywallScreen`。
+            - **(付費牆檢查):** 此操作為付費功能，執行前需檢查 `isPremiumUser` 狀態。若為免費版，應導航至 `PaywallScreen` (`5.16`)。
 
         - **如果未設定重複規則:** 直接呼叫 `firestoreService.addTransfer()` 建立一筆新記錄。
         - **如果設定了重複規則 ([付費功能]):**

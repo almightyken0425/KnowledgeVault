@@ -42,7 +42,7 @@ _(本文件定義「匯率管理」畫面的 UI、流程與邏輯，此為付費
     - **更新匯率的行為:** 在 `CurrencyRateEditorScreen` 中儲存後，程式將遵循「只增不改」原則，在 `CurrencyRates` 表中**新增一筆記錄**，使其成為該貨幣對新的「最新匯率」。
 
 - **3.3. 付費牆檢查 (Paywall Check):**
-    - 由於此畫面為付費功能，在從 `SettingsScreen` 導航至此畫面之前，就應檢查 `isPremiumUser` 狀態。若為免費版使用者，則直接導向 `PaywallScreen` (5.15)。
+    - 由於此畫面為付費功能，在從 `SettingsScreen` 導航至此畫面之前，就應檢查 `isPremiumUser` 狀態。若為免費版使用者，則直接導向 `PaywallScreen` (`5.16`)。
 
 ## 4. 狀態管理 (State Management)
 
