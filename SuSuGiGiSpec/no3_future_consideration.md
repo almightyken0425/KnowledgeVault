@@ -2,14 +2,10 @@
 
 _(本文件記錄非 MVP 階段但已討論到的未來功能方向)_
 
-## 1. 國際化 (i18n)
+## 1. 多語系 (i18n) — MVP 持續項目
 
-- **資料結構:** `StandardCategory`, `StandardAccountType`, `IconDefinition` 等定義檔已預留 `translationKey` 欄位。
-    
-- **實作:** 需引入 i18n 函式庫 (如 `i18next`) 處理 App 介面文字翻譯。
-    
-- **格式化:** 需使用 `Intl` API (或 `react-native-localize`) 處理日期、數字、貨幣的本地化顯示格式 (基於使用者設定的 `timeZone` 和 `baseCurrencyId`)。
-    
+- **MVP 交付:** V1 必須完成 zh-TW / en 至少兩種語系，導入 `i18next` 與 `locales/` 架構，並確保主要畫面、錯誤訊息、設定頁面可依使用者偏好即時切換。
+- **延伸議題:** 持續擴充其他地區語系與 `Intl` / `react-native-localize` 規則（貨幣、數字、時間），以及翻譯流程自動化 / 品質檢查，作為 MVP 後的增量優化。
 
 ## 2. AI 分析整合
 
