@@ -32,10 +32,10 @@ _(本文件定義「匯率管理」畫面的 UI、流程與邏輯，此為付費
 ## 3. 核心邏輯
 
 - **3.1. 資料載入邏輯:**
-    - 畫面載入時，執行以下步驟來取得資料：
-        1.  從 `Accounts` 和 `Transfers` 中找出所有使用者曾用過的獨立貨幣對 (例如 `[USD, TWD]`, `[JPY, TWD]`)。
-        2.  對於每一個貨幣對 (`CurrencyFromId`, `CurrencyToId`)，在 `CurrencyRates` 表中查找 `RateDate` **最新**的一筆記錄。
-        3.  將這些最新的匯率記錄顯示在列表中。
+    - 畫面載入時，直接查詢 `CurrencyRates` 表來取得資料：
+        1.  將 `CurrencyRates` 表中的所有記錄按 (`CurrencyFromId`, `CurrencyToId`) 貨幣對進行分組。
+        2.  在每個分組中，找出 `RateDate` **最新**的一筆記錄。
+        3.  將這些找出的「最新有效匯率」記錄顯示在列表中。
 
 - **3.2. 互動邏輯:**
     - **點擊列表項目 (設定新匯率):** 點擊列表項目應被視為「更新匯率」。此操作會導航至 `CurrencyRateEditorScreen` (5.12) 的「更新」模式，並傳入該貨幣對的資訊。
