@@ -1,12 +1,12 @@
-# 1. 資料結構
+# 資料結構
 
 _(本文件定義 App 的核心資料模型與靜態定義)_
 
-## 1. 使用者自訂資料結構 (未來 DB Table)
+## 使用者自訂資料結構 (未來 DB Table)
 
 _(現況: 這些是 App 的核心動態資料，將儲存在 Firestore 中並與 UserId 關聯。)_
 
-### 1.1. 帳戶 (Accounts)
+### 帳戶 (Accounts)
 
 - **欄位:**
     
@@ -37,7 +37,7 @@ _(現況: 這些是 App 的核心動態資料，將儲存在 Firestore 中並與
     - `RemoteHashCode`: String | Null - (用於同步)
         
 
-### 1.2. 類別 (Categories)
+### 類別 (Categories)
 
 - **欄位:**
     
@@ -66,7 +66,7 @@ _(現況: 這些是 App 的核心動態資料，將儲存在 Firestore 中並與
     - `RemoteHashCode`: String | Null
         
 
-### 1.3. 交易紀錄 (Transactions)
+### 交易紀錄 (Transactions)
 
 - **欄位:**
     
@@ -97,7 +97,7 @@ _(現況: 這些是 App 的核心動態資料，將儲存在 Firestore 中並與
     - `RemoteHashCode`: String | Null
         
 
-### 1.4. 轉帳紀錄 (Transfers)
+### 轉帳紀錄 (Transfers)
 
 - **欄位:**
     
@@ -132,7 +132,7 @@ _(現況: 這些是 App 的核心動態資料，將儲存在 Firestore 中並與
     - `RemoteHashCode`: String | Null
         
 
-### 1.5. 貨幣匯率 (CurrencyRates)
+### 貨幣匯率 (CurrencyRates)
 
 - **欄位:**
     
@@ -157,7 +157,7 @@ _(現況: 這些是 App 的核心動態資料，將儲存在 Firestore 中並與
     - `RemoteHashCode`: String | Null
         
 
-### 1.6. 定期交易排程 (Schedules)
+### 定期交易排程 (Schedules)
 
 - **欄位:**
     
@@ -198,7 +198,7 @@ _(現況: 這些是 App 的核心動態資料，將儲存在 Firestore 中並與
     - `RemoteHashCode`: String | Null
         
 
-### 1.7. 使用者設定 (Settings)
+### 使用者設定 (Settings)
 
 - **說明:** 用於儲存使用者特定的偏好設定，採用 Key-Value 結構。
     
@@ -215,11 +215,11 @@ _(現況: 這些是 App 的核心動態資料，將儲存在 Firestore 中並與
     - `UpdatedAt`: Number (Unix Timestamp ms)
         
 
-## 2. App 標準定義資料 (Definitions)
+## App 標準定義資料 (Definitions)
 
 _(現況: 這些是 App 內建的靜態參考資料，將打包在 App 中或從遠端載入。)_
 
-### 2.1. 標準收支類別 (StandardCategory)
+### 標準收支類別 (StandardCategory)
 
 - **說明:** 統一管理標準的收支大類，使用者自訂類別需映射到此。
 - **檔案:** `assets/definitions/StandardCategory.json`
@@ -230,7 +230,7 @@ _(現況: 這些是 App 內建的靜態參考資料，將打包在 App 中或從
     - `defaultName`: `String`
     
 
-### 2.2. 標準帳戶類型 (StandardAccountType)
+### 標準帳戶類型 (StandardAccountType)
 
 - **說明:** 定義帳戶的金融本質分類 (支付、投資、貸款、其他)。
 - **檔案:** `assets/definitions/StandardAccountType.json`
@@ -240,7 +240,7 @@ _(現況: 這些是 App 內建的靜態參考資料，將打包在 App 中或從
     - `defaultName`: `String`
     
 
-### 2.3. 圖標定義 (IconDefinition)
+### 圖標定義 (IconDefinition)
 
 - **說明:** 定義 App 內預選的 Feather 圖標及其適用場景 (expense, income, account, general, ui)。使用者資料中只儲存 `id`。
 - **檔案:** `assets/definitions/IconDefinition.json`
@@ -251,7 +251,7 @@ _(現況: 這些是 App 內建的靜態參考資料，將打包在 App 中或從
     - `tags`: `Array<String> | Null` - Optional
     
 
-### 2.4. 貨幣 (Currencies)
+### 貨幣 (Currencies)
 
 - **說明:** 定義支援的貨幣及其基本資訊。
 - **檔案:** `assets/definitions/Currency.json`
@@ -264,7 +264,7 @@ _(現況: 這些是 App 內建的靜態參考資料，將打包在 App 中或從
     - `Symbol`: `String | Null`
     
 
-## 3. 時間格式標準
+## 時間格式標準
 
 - **儲存標準:**
     - 所有在資料結構中與時間相關的欄位 (如 `TransactionDate`, `CreatedOn`, `DeletedOn`, `RateDate`, `StartOn`, `EndOn`, `ScheduleInstanceDate`) **必須** 儲存為 **UTC Unix Timestamp (毫秒)** (`number` 型別)。
