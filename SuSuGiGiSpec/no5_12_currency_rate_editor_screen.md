@@ -1,20 +1,20 @@
-# 5.12. 匯率編輯器 (CurrencyRateEditorScreen)
+# 匯率編輯器 (CurrencyRateEditorScreen)
 
 _(本文件定義「匯率編輯器」畫面的 UI、流程與邏輯)_
 
-## 1. 畫面目標 (Screen Objective) 
+## 畫面目標 (Screen Objective) 
 
 - 提供一個介面，讓使用者可以**新增**或**更新**特定貨幣對的匯率。
 - 確保使用者輸入的資料是有效且完整的。
 
-## 2. UI 佈局與元件 (UI Layout & Components)
+## UI 佈局與元件 (UI Layout & Components)
 
-- **2.1. 頂部導航列 (Top Navigation Bar):**
+- **頂部導航列 (Top Navigation Bar):**
     - **左側:** 「取消」按鈕，點擊後返回 `CurrencyRateScreen`。
     - **中間:** 畫面標題，畫面標題一律顯示「設定匯率」或「新增匯率」。
     - **右側:** 「儲存」按鈕，點擊後儲存當前匯率。
 
-- **2.2. 貨幣對顯示區 (Currency Pair Display):**
+- **貨幣對顯示區 (Currency Pair Display):**
     - **UI:** 兩個並排的、不可編輯的區塊，用於顯示貨幣對。
     - **內容:**
         - **左側:** 來源貨幣 (From Currency)，例如 "USD"。
@@ -23,29 +23,29 @@ _(本文件定義「匯率編輯器」畫面的 UI、流程與邏輯)_
         - 若從列表點擊進入，此區域會顯示被點擊的貨幣對。
         - 若從「新增」按鈕進入，此區域可能需要讓使用者選擇貨幣。
 
-- **2.3. 匯率輸入區 (Rate Input Area):**
+- **匯率輸入區 (Rate Input Area):**
     - **UI:** 一個數字輸入框，允許使用者輸入匯率。
     - **標籤:** 「1 [來源貨幣] =」
     - **預設值:**
         - 若從列表點擊進入，可顯示該貨幣對的舊匯率作為參考。
         - 若從「新增」按鈕進入，此欄位應為空白。
 
-- **2.4. 日期選擇器 (Date Picker):**
+- **日期選擇器 (Date Picker):**
     - **UI:** 一個可以點擊的元件，用於選擇匯率的生效日期 (`RateDate`)。
     - **預設值:**
         - 預設為今天。
 
 
-## 3. 核心邏輯
+## 核心邏輯
 
-- **3.1. 模式判斷 (Mode Detection):**
+- **模式判斷 (Mode Detection):**
     - 畫面載入時，檢查傳入的參數。如果傳入了 `rateId` 或貨幣對資訊，畫面應載入該貨幣對並填充相關欄位，但儲存時仍為「新增」操作。
 
-- **3.2. 資料載入邏輯 (更新模式):**
+- **資料載入邏輯 (更新模式):**
     - **資料載入邏輯:**
     - 若傳入了 `rateId` 或貨幣對資訊，從 `CurrencyRates` 表中讀取對應的資料，並填充到 UI 元件中作為參考。
 
-- **3.3. 儲存邏輯:**
+- **儲存邏輯:**
     - 點擊「儲存」按鈕時，執行以下步驟：
         1.  **資料驗證:** 檢查匯率是否為有效數字且大於 0。
         2.  **儲存資料 (一律新增):**
@@ -54,16 +54,16 @@ _(本文件定義「匯率編輯器」畫面的 UI、流程與邏輯)_
 
 
 - **刪除策略:** 不提供刪除按鈕；如需覆寫請建立新匯率記錄以維持 append-only。
-## 4. 狀態管理 (State Management)
+## 狀態管理 (State Management)
 
 - 使用 `useState` 管理以下狀態：
     - `rate: number`：當前輸入的匯率。
     - `rateDate: Date`：選擇的匯率日期。
 
-## 5. 導航 (Navigation)
+## 導航 (Navigation)
 
 - **進入:**
-    - 從 `CurrencyRateListScreen` (5.11) 的「新增」按鈕點擊進入。
-    - 從 `CurrencyRateListScreen` (5.11) 的列表項目點擊進入。
+    - 從 `CurrencyRateListScreen` 的「新增」按鈕點擊進入。
+    - 從 `CurrencyRateListScreen` 的列表項目點擊進入。
 - **退出:**
     - 點擊「取消」或「儲存」按鈕後，返回 `CurrencyRateScreen`。
