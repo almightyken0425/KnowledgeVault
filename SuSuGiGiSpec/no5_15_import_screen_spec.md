@@ -4,8 +4,7 @@ _(本文件定義「資料遷移」畫面的 UI、流程與邏輯)_
 
 ## 畫面目標 (Screen Objective)
 
-_[付費功能]_
-
+* **_[付費功能]_**
 - 提供一個引導式介面，讓使用者可以從 CSV 檔案**完整遷移**其交易紀錄。
     
 - 支援 CSV 欄位與 App 欄位的映射。
@@ -120,10 +119,8 @@ _[付費功能]_
 ## 核心邏輯
 
 - **付費牆檢查 (Paywall Check):**
-  - **邏輯:** 由於此功能為付費版專屬，在 `SettingsScreen` 點擊導航時，就應檢查 `isPremiumUser` 狀態。
-  - **若為免費版:** 應直接導航至 `PaywallScreen`，根本不應進入此 `ImportScreen`。
-  - **(備援檢查):** 作為備援，此畫面在 `onLoad` 時應再次檢查 `isPremiumUser` 狀態，若為 `false`，應立即強制導航回 `SettingsScreen` 或 `PaywallScreen`。
-
+    - **邏輯:** 由於此功能為付費版專屬，在「設定主頁」點擊導航時，就應檢查「**本機狀態 (e.g., PremiumContext)**」中的 `isPremiumUser` 狀態。
+    - **若為免費版:** 應直接導航至「付費牆畫面」，不應進入此畫面。
 - **CSV 解析 (步驟 1 -> 2):**
     
     - 使用者上傳檔案後，在客戶端進行 CSV 解析，讀取所有標頭和資料。
@@ -134,25 +131,19 @@ _[付費功能]_
         
     - 建立這兩欄的不重複值列表 (e.g., `['我的信用卡', '公司卡']`)。
         
-    - 將這些值與 `DataContext` 中現有的 `Accounts` 和 `Categories` 名稱進行比對，自動標記出「新發現」的項目。
+    - 將這些值與「**本機資料庫 (Local DB)**」中現有的 `Accounts` 和 `Categories` 名稱進行比對，自動標記出「新發現」的項目。
         
 - **匯入執行 (步驟 4):**
     
     - 點擊「開始匯入」後，App 進入一個批次處理流程：
         
     - **1. 建立新項目:**
-        
-        - 根據「步驟 3」的設定，**優先**呼叫 `firestoreService.addAccount()` 和 `firestoreService.addCategory()`，建立所有使用者選擇「自動建立」的新帳戶與類別。
-            
+        - 根據「步驟 3」的設定，**優先**在「**本機資料庫 (Local DB)**」中批次建立所有新帳戶與類別（**必須**設定 `updatedOn` 時間戳記）。
     - **2. 匯入交易:**
-        
         - **建立配對地圖:** 在記憶體中建立一個配對地圖 (e.g., `{"CSV名稱 '我的信用卡'": "App ID 'uuid-xyz-123'"}` )。
-            
         - **遍歷 CSV:** 再次遍歷 CSV 檔案的每一行資料。
-            
         - **組合資料:** 根據配對地圖，將 CSV 資料行轉換為 `Transaction` 物件，確保 `AccountId` 和 `CategoryId` 都已填上正確的 App 內部 ID。
-            
-        - **寫入:** 呼叫 `firestoreService.addTransaction()` 批次寫入資料。
+        - **寫入:** 在「**本機資料庫 (Local DB)**」中批次寫入所有 `Transaction` 物件（**必須**設定 `updatedOn` 時間戳記）。
             
 - **匯入完成:**
     

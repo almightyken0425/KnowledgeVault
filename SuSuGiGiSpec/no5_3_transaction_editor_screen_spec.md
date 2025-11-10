@@ -20,7 +20,7 @@ _(本文件定義新增/編輯「收支」交易畫面的 UI、流程與邏輯)_
     - **右側:**
         - **定期交易按鈕:** 一個循環圖示的按鈕。
         - **邏輯:**
-            - **(付費牆檢查)** 點擊時，檢查使用者 `isPremiumUser` 狀態。
+            - **(付費牆檢查)** 點擊時，檢查「**本機狀態 (e.g., PremiumContext)**」中的 `isPremiumUser` 狀態。
             - **若為免費版使用者:** 導航至 `PaywallScreen`。
             - **若為付費版使用者:** 開啟 `ScheduleModal` 進行設定。
 
@@ -61,7 +61,7 @@ _(本文件定義新增/編輯「收支」交易畫面的 UI、流程與邏輯)_
 - **模式判斷與預設值 (Mode Detection & Defaults):**
     - 畫面載入時，檢查導航參數中是否傳入 `transactionId`。
     - **若有 `transactionId` (編輯模式):**
-        - 從 `DataContext` (本地資料快取) 中讀取該筆交易的完整資料，填入表單。
+        - 從「**本機資料庫 (Local DB)**」中讀取該筆交易的完整資料，填入表單。
         - 標題應顯示為「編輯支出」或「編輯收入」。
         - 顯示「刪除按鈕」。
     - **若無 `transactionId` (新增模式):**
@@ -74,27 +74,26 @@ _(本文件定義新增/編輯「收支」交易畫面的 UI、流程與邏輯)_
 - **儲存邏輯 (Save Logic):**
     - 點擊「儲存」按鈕時，組合表單所有狀態 (`CategoryId`, `AccountId`, `AmountCents` 等) 及導航傳入的 `type`。
     - **新增模式:**
-        - **如果未設定重複規則:** 直接呼叫 `firestoreService.addTransaction()` 建立一筆新記錄。
+        - **如果未設定重複規則:** 直接在「**本機資料庫 (Local DB)**」建立一筆新記錄（**必須**設定 `updatedOn` 時間戳記）。
         - **如果設定了重複規則 ([付費功能]):**
-            - 呼叫 `firestoreService.addSchedule()` 建立一筆 `Schedules` 記錄。
-            - **立即**為 `StartOn` 日期產生第一筆交易實例。
+            - 在「**本機資料庫 (Local DB)**」建立一筆 `Schedules` 記錄（**必須**設定 `updatedOn`），並**立即**為 `StartOn` 日期產生第一筆交易實例（同樣寫入本機）。
     - **編輯模式:**
         - **檢查是否為定期交易產生:** 檢查該筆交易的 `ScheduleId` 是否有值。
-        - **普通交易:** 直接呼叫 `firestoreService.updateTransaction()` 更新記錄。
+        - **普通交易:** 直接更新「**本機資料庫 (Local DB)**」中的該筆記錄（**必須**更新 `updatedOn` 時間戳記）。
         - **定期交易產生:**
             - 彈出對話框，提供選項：「僅此一筆」、「此筆及未來所有」。
             - **「僅此一筆」:** 直接修改當前這筆 `Transaction`。
-            - **「此筆及未來所有」:** 呼叫 `firestoreService.updateFutureSchedule()`，將原 `Schedule` 的 `EndOn` 設為此交易日期的前一個週期，並根據新內容創建一個新的 `Schedule`。
+            - **「此筆及未來所有」:** 在「**本機資料庫 (Local DB)**」中更新原 `Schedule` 的 `EndOn`（需更新 `updatedOn`），並建立一個新的 `Schedule` 記錄（也需設定 `updatedOn`）。
     - 儲存成功後，關閉畫面並導航返回前一頁 (通常是 `HomeScreen`)。
 
 - **刪除邏輯 (Delete Logic):**
     - 僅在「編輯」模式下可用。
     - **檢查是否為定期交易產生:** 檢查該筆交易的 `ScheduleId` 和 `ScheduleInstanceDate` 是否有值。
-    - **普通交易:** 直接呼叫 `firestoreService.deleteTransaction()` (軟刪除，設定 `DeletedOn`)。
+    - **普通交易:** 直接在「**本機資料庫 (Local DB)**」中軟刪除該筆 `Transaction`（**必須**設定 `deletedOn` 並更新 `updatedOn`，以觸發「批次同步規格」的同步）。
     - **定期交易產生:**
         - 彈出對話框，提供選項：「僅此一筆」、「此筆及未來所有」。
         - **「僅此一筆」:** 軟刪除當前這筆 `Transaction`。
-        - **「此筆及未來所有」:** 呼叫 `firestoreService.deleteFutureSchedule()`，將對應 `Schedule` 的 `EndOn` 設為此交易日期的前一個週期日期。
+        - **「此筆及未來所有」:** 在「**本機資料庫 (Local DB)**」中更新原 `Schedule` 的 `EndOn`（**必須**更新 `updatedOn` 以觸發同步）。
     - 刪除成功後，關閉畫面並導航返回。
 
 ## 狀態管理 (State Management)

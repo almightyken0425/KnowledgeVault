@@ -38,26 +38,26 @@ _(本文件定義新增/編輯「帳戶」畫面的 UI、流程與邏輯)_
 
 - **模式判斷 (Mode Detection):**
     - 畫面載入時，檢查導航參數中是否傳入 `accountId`。
-    - **若有 `accountId` (編輯模式):** 從 `DataContext` 讀取該帳戶的資料並填入表單。
+    - **若有 `accountId` (編輯模式):** 從「**本機資料庫 (Local DB)**」讀取該帳戶的資料並填入表單。
     - **若無 `accountId` (新增模式):** 準備一個空的表單。
 
 - **儲存邏輯 (Save Logic):**
     - **新增模式:**
-        - **(付費牆檢查)** 檢查目前使用者帳戶數量是否已達免費版上限 (3個)。若已達上限，則導航至付費牆畫面 (`PaywallScreen`)。
-        - **(付費牆檢查 - 多幣別)** 若使用者選擇了非基礎貨幣，檢查 `isPremiumUser` 狀態。若為免費版，導航至 付費牆畫面 (`PaywallScreen`)。
-        - **(匯率輸入流程 - 多幣別)** 若使用者為付費版且選擇了非基礎貨幣，在儲存前，必須：
+        - **(付費牆檢查)** 檢查「**本機狀態 (e.g., PremiumContext)**」中的 `isPremiumUser` 狀態以及「**本機資料庫**」中的帳戶數量 (3個)。若已達上限，則導航至付費牆畫面 (`PaywallScreen`)。
+        - **(付費牆檢查 - 多幣別)** 若使用者選擇了非基礎貨幣，檢查「**本機狀態 (e.g., PremiumContext)**」中的 `isPremiumUser` 狀態。若為免費版，導航至 付費牆畫面 (`PaywallScreen`)。
+        - **(匯率輸入流程 - 多幣別)** 若使用者為付費版 (從「**本機狀態**」檢查) 且選擇了非基礎貨幣，在儲存前，必須：
             1.  彈出一個對話框或介面，提示使用者輸入該貨幣對基礎貨幣的**初始匯率** (例如 "1 USD = ? TWD")。
             2.  此匯率輸入為**必填項**。
         - **儲存操作:**
-            - 若涉及匯率輸入，將該匯率記錄與帳戶資料在一個批次 (batch) 操作中，分別呼叫 `firestoreService.addCurrencyRate()` 和 `firestoreService.addAccount()` 儲存。
-            - 若不涉及，則直接呼叫 `firestoreService.addAccount()` 建立新記錄。
+            - 若涉及匯率輸入，將該匯率記錄與帳戶資料在一個批次 (batch) 操作中，分別在「**本機資料庫 (Local DB)**」中新增 `CurrencyRates` 和 `Account` 記錄（**兩者都必須**設定 `updatedOn` 時間戳記）。
+            - 若不涉及，則直接在「**本機資料庫 (Local DB)**」建立新記錄（**必須**設定 `updatedOn` 時間戳記）。
     - **編輯模式:**
-        - 呼叫 `firestoreService.updateAccount()` 更新記錄。
+        - 更新「**本機資料庫 (Local DB)**」中的該筆記錄（**必須**更新 `updatedOn` 時間戳記）。
     - **儲存成功後:** 關閉畫面並導航返回帳戶列表畫面 (`AccountListScreen`)。
 
 - **刪除邏輯 (Delete Logic):**
     - 點擊「刪除」按鈕時，彈出確認對話框。
-    - 使用者確認後，呼叫 `firestoreService.deleteAccount()` (軟刪除，設定 `DeletedOn`)。
+    - 使用者確認後，在「**本機資料庫 (Local DB)**」中軟刪除該筆 `Account`（**必須**設定 `deletedOn` 並更新 `updatedOn`，以觸發「批次同步規格」的同步）。
     - 刪除成功後，關閉畫面並導航返回帳戶列表畫面 (`AccountListScreen`)。
 
 ## 狀態管理 (State Management)

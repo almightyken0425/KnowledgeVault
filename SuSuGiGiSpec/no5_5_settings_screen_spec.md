@@ -64,8 +64,8 @@ _(本文件定義「設定」主畫面的 UI、流程與邏輯)_
 ## 核心邏輯
 
 - **付費功能處理 (Premium Feature Handling):**
-    - 畫面載入時，從 `DataContext` 或 `AuthContext` 讀取 `isPremiumUser` 狀態。
-    - **「匯率管理」項目:** 對於免費版使用者，雖然此項目可見，但在點擊導航至 `CurrencyRateScreen` 之前，應先檢查會員狀態，若為免費版則直接導向 `PaywallScreen`。
+    - 畫面載入時，從「**本機狀態 (e.g., PremiumContext)**」讀取 `isPremiumUser` 狀態。
+    - **「匯率管理」項目:** 對於免費版使用者，雖然此項目可見，但在點擊導航至 `CurrencyRateScreen` 之前，應先檢查「**本機狀態**」中的 `isPremiumUser`，若為免費版則直接導向「付費牆畫面 (`PaywallScreen`)」。
     - **「升級至 Premium」項目:** 根據 `isPremiumUser` 狀態動態顯示或隱藏。
 
 - **登出邏輯 (Logout Logic):**

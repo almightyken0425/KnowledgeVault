@@ -39,10 +39,9 @@ _(本文件定義「匯率管理」畫面的 UI、流程與邏輯，此為付費
 
 - **互動邏輯:**
     - **點擊列表項目 (設定新匯率):** 點擊列表項目應被視為「更新匯率」。此操作會導航至匯率編輯器畫面 (`CurrencyRateEditorScreen`)，並傳入該貨幣對資訊以「新增」一筆新的匯率記錄。
-    - **設定新匯率的行為:** 在匯率編輯器畫面 (`CurrencyRateEditorScreen`) 中儲存後，程式將遵循「只增不改」原則，在 `CurrencyRates` 表中**新增一筆記錄**，使其成為該貨幣對新的「最新匯率」。
 
 - **付費牆檢查 (Paywall Check):**
-    - 由於此畫面為付費功能，在從設定主頁 (`SettingsScreen`) 導航至此畫面之前，就應檢查 `isPremiumUser` 狀態。若為免費版使用者，則直接導向付費牆畫面 (`PaywallScreen`)。
+    - 由於此畫面為付費功能，在從設定主頁 (`SettingsScreen`) 導航至此畫面之前，就應檢查「**本機狀態 (e.g., PremiumContext)**」中的 `isPremiumUser` 狀態。若為免費版使用者，則直接導向付費牆畫面 (`PaywallScreen`)。
 
 ## 狀態管理 (State Management)
 

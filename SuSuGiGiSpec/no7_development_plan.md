@@ -1,12 +1,12 @@
 # 開發計劃 (順序)
 
-_(本文件定義 MVP 範圍內功能的建議開發階段與優先級)_
+_(本文件定義 MVP 範圍內的建議開發階段與優先級)_ _(已根據「本地優先 + 混合付費牆」新策略更新)_
 
 ## Phase 0: 基礎建設 (Setup)
 
 - [ ] 建立 Expo (React Native) 專案。
     
-- [ ] 實作 `src/types/index.ts` (根據資料結構定義文件)。
+- [ ] 實作 `src/types/index.ts` (根據 `no1_data_structure.md`，**必須**包含 `updatedOn` 欄位)。
     
 - [ ] 建立 `assets/definitions/` 並置入所有標準 JSON 檔案。
     
@@ -16,96 +16,91 @@ _(本文件定義 MVP 範圍內功能的建議開發階段與優先級)_
     
 - [ ] 建立 `src/locales/` 並設定 `i18n.ts` (MVP 階段)。
     
-- [ ] 引入狀態管理 (Zustand/Redux) 或決定使用 Context (MVP 階段)。
+- [ ] 設定 Firebase 專案 (僅用於 Auth)。
     
 
-## Phase 1: 認證與後端 (Auth & Backend)
+## Phase 1: 本機資料庫 (Local-First Architecture)
 
-- [ ] 設定 Firebase 專案 (Auth & Firestore)。
+- [ ] **[關鍵決策]** 選擇本機資料庫方案 (例如 `SQLite`, `WatermelonDB`, 或 `AsyncStorage` + 狀態管理)。
     
-- [ ] 實作 `src/services/firebase.ts`。
+- [ ] 實作本機資料庫的 `Schema` (對應 `no1_data_structure.md`)。
     
-- [ ] 實作 `AuthContext` / `useAuth` Hook。
+- [ ] 實作本機資料庫的 CRUD (Create, Read, Update, Delete) 服務 (例如 `localDbService.ts`)。
+    
+- [ ] 實作「首次啟動流程」：偵測新用戶，並在**本機資料庫**建立預設資料。
+    
+
+## Phase 2: 核心功能與 UI (Local CRUD)
+
+- [ ] 實作 `AuthContext` / `useAuth` Hook (用於登入/登出)。
     
 - [ ] 建立 `LoginScreen.tsx` (UI + Google 登入邏輯)。
     
-- [ ] 建立 App 導航 (`AppNavigator.tsx`)，根據登入狀態切換 `LoginScreen` 或 App 主體。
+- [ ] 建立 App 導航 (`AppNavigator.tsx`)，根據登入狀態切換 `LoginScreen` 或 `HomeScreen`。
     
-- [ ] 實作 `firestoreService.ts` (用於讀寫使用者資料)。
-    
-- [ ] 實作「首次登入建立預設資料」的邏輯。
-    
-
-## Phase 2: 核心資料管理 (Data Management)
-
-- [ ] 建立 `DataContext` / `useData` Hook (用於獲取和緩存 Firestore 資料)。
-    
-- [ ] 建立 `AccountManagement/` 畫面 (CRUD 介面，處理拖拉排序邏輯、免費版限制)。
+- [ ] 建立 `AccountManagement/` 畫面 (CRUD 介面，**完全對接本機資料庫**，處理 3 個帳戶限制)。
     
 - [ ] 建立 `IconPickerScreen.tsx`。
     
-- [ ] 建立 `CategoryManagement/` 畫面 (CRUD 介面，實作 Icon 選擇器、`StandardCategoryId` 映射、免費版限制)。
+- [ ] 建立 `CategoryManagement/` 畫面 (CRUD 介面，**完全對接本機資料庫**，處理 10 個類別限制)。
     
-- [ ] 建立 `CurrencyRateListScreen.tsx` (手動輸入匯率介面)。
+- [ ] 建立 `src/screens/TransactionEditor/` (收支/轉帳表單 UI，**完全對接本機資料庫**)。
     
-- [ ] 建立 `CurrencyRateEditorScreen.tsx`。
+- [ ] 建立 `HomeScreen.tsx` (儀表板 UI，**完全對接本機資料庫**)。
     
-- [ ] 實作 `PreferenceScreen.tsx` (偏好設定 UI - 時區/基礎貨幣/語系)。
+- [ ] 建立 `SearchScreen.tsx` (**對接本機資料庫**)。
     
-- [ ] 實作 `SettingsScreen.tsx` (主頁及登出按鈕)。
-    
-
-## Phase 3: 核心記帳流程 (Core Action)
-
-- [ ] 建立 `src/screens/TransactionEditor/components/` (帳戶/類別選擇器, 金額輸入框)。
-    
-- [ ] 建立 `TransactionEditorScreen.tsx` (收支表單 UI，串接 `firestoreService`)。
-    
-- [ ] 建立 `TransferEditorScreen.tsx` (同幣別 + 跨幣別轉帳 UI，串接 `firestoreService`)。
+- [ ] 建立 `SettingsScreen.tsx` 及 `PreferenceScreen.tsx` (UI，包含登出、語系切換等)。
     
 
-## Phase 4: 首頁儀表板 (Dashboard)
+## Phase 3: 付費牆與功能解鎖 (Monetization)
 
-- [ ] 建立 `HomeScreen.tsx` 基礎佈局 (控制列、內容區、Footer 記帳按鈕)。
-    
-- [ ] 實作狀態 (State) 管理 (時間區間、所選帳戶、視圖模式)。
-    
-- [ ] 實作資料查詢與計算邏輯 (從 `DataContext` 讀取、篩選、聚合)。
-    
-- [ ] 實作「摘要視圖」 (圓餅圖、總計、可滾動摘要列表)。
-    
-- [ ] 實作「列表視圖」 (按日期分組 **及** 按類別分組)。
-    
-- [ ] 串接所有互動功能 (視圖切換、時間滑動/點擊、帳戶篩選、點擊列表項目跳轉編輯)。
-    
-- [ ] 串接 FAB 到 `TransactionEditorScreen`。
-    
-
-## Phase 5: MVP 進階功能 (MVP Features)
-
-- [ ] 實作 **`定期交易 (Schedules)`** 建立介面 (Modal/Sheet) (付費功能)。
-    
-- [ ] 實作 App 啟動時的定期交易產生邏輯。
-        
-- [ ] 實作交易列表點擊後的「僅此一筆 / 未來所有」編輯/刪除邏輯。
-    
-- [ ] 實作 `SearchScreen.tsx` (搜尋 `Note` 欄位)。
-    
-- [ ] 實作 `ImportScreen.tsx` (CSV 匯入交易邏輯)。
-    
-- [ ] 實作**付費牆 (PaywallScreen)**。
+- [ ] 建立 `PaywallScreen.tsx` (UI 介面)。
     
 - [ ] 串接 **RevenueCat** (或類似服務) 處理 App Store / Google Play 訂閱。
     
-- [ ] 在所有付費功能點（建立第 4 個帳戶、第 11 個類別、開啟多幣別、定期交易等）加入付費牆檢查。
+- [ ] 實作 `PremiumContext` (或狀態) 來管理 `isPremiumUser` 狀態。
+    
+- [ ] 在所有「付費功能觸發點」加入付費牆檢查：
+    
+    - [ ] 建立第 4 個帳戶 / 第 11 個類別時。
+        
+    - [ ] 導航至「多幣別」相關功能 (`CurrencyRateScreen`)。
+        
+    - [ ] 導航至「定期交易」建立畫面。
+        
+    - [ ] 導航至「匯入資料」(`ImportScreen`)。
+        
+    - [ ] 點擊「立即同步」按鈕。
+        
+
+## Phase 4: 付費版功能 (Premium Features)
+
+- [ ] **[關鍵任務]** 建立「**批次同步引擎**」 (基於 `no8_sync_logic_spec.md`):
+    
+    - [ ] 實作「上傳」邏輯 (`Client-to-Server`)。
+        
+    - [ ] 實作「下載」邏輯 (`Server-to-Client`)。
+        
+    - [ ] 實作「Last Write Wins」衝突解決。
+        
+    - [ ] 實作「每日自動觸發」邏輯。
+        
+- [ ] 將「**立即同步 (Sync Now)**」按鈕（含冷卻機制）接入 `PreferenceScreen`。
+    
+- [ ] 實作「**多幣別**」功能 (跨幣別轉帳、`CurrencyRateScreen` CRUD)。
+    
+- [ ] 實作「**定期交易 (`Schedules`)**」功能 (建立介面、App 啟動時的本機檢查邏輯)。
+    
+- [ ] 實作 `ImportScreen.tsx` (CSV 匯入邏輯)。
     
 
-## Phase 6: 測試與打包 (Testing & Release)
+## Phase 5: 測試與打包 (Release)
 
-- [ ] 完整測試所有功能（特別是認證、同步、付費流程、資料準確性）。
+- [ ] 完整測試所有功能（特別是本機 CRUD、付費流程、同步引擎、資料還原）。
     
 - [ ] 準備 App Icon、啟動畫面。
     
 - [ ] 準備 App Store / Google Play 上架資料（含隱私權政策、訂閱項目設定）。
     
-- [ ] 打包並提交審核。
+- [S ] 打包並提交審核。

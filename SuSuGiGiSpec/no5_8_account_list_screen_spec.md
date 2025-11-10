@@ -32,7 +32,7 @@ _(本文件定義「帳戶管理」列表畫面的 UI、流程與邏輯)_
 ## 核心邏輯
 
 - **資料載入邏輯:**
-    - 畫面載入時，從 `DataContext` 讀取所有 `Accounts`。
+    - 畫面載入時，從「**本機資料庫 (Local DB)**」讀取所有 `Accounts` (其中 `DeletedOn` 為 `null`)。
     - 根據 `SortOrder` 欄位對帳戶進行初始排序。
     - 計算並顯示每個帳戶的當前餘額。
 
@@ -40,17 +40,17 @@ _(本文件定義「帳戶管理」列表畫面的 UI、流程與邏輯)_
     - **點擊列表項目:** 導航至帳戶編輯器畫面 (`AccountEditorScreen`) 的「編輯」模式，並傳入該帳戶的 `accountId`。
     - **拖拉排序:**
         - 使用者可以長按並拖拉列表中的任何帳戶來重新排序。
-        - 拖拉結束後，App 必須更新所有受影響帳戶的 `SortOrder` 欄位，並將變動儲存至 `firestoreService`。
+        - 拖拉結束後，App 必須更新所有受影響帳戶的 `SortOrder` 欄位，並將變動寫入「**本機資料庫 (Local DB)**」（**必須**同時更新所有受影響帳戶的 `updatedOn` 時間戳記，以觸發「批次同步規格」的同步）。
     - **點擊頂部「新增」按鈕:**
         - 導航至帳戶編輯器畫面 (`AccountEditorScreen`) 的「新增」模式。
 
 - **付費牆檢查:**
-    - 在點擊頂部「新增」按鈕並導航之前，應先檢查 `isPremiumUser` 狀態以及目前帳戶的總數。
+    - 在點擊頂部「新增」按鈕並導航之前，應先檢查「**本機狀態 (e.g., PremiumContext)**」中的 `isPremiumUser` 狀態以及目前帳戶的總數。
     - 如果使用者是免費版且帳戶數量已達上限 (3個)，則應直接導航至付費牆畫面 (`PaywallScreen`)，而非帳戶編輯器畫面 (`AccountEditorScreen`)。
 
 ## 狀態管理 (State Management)
 
-- 使用 `useState` 管理從 `DataContext` 讀取的帳戶列表：
+- 使用 `useState` 管理從「**本機資料庫**」讀取的帳戶列表：
     - `accounts: Account[]`
 
 ## 導航 (Navigation)

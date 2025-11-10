@@ -32,20 +32,20 @@ _(本文件定義新增/編輯「類別」畫面的 UI、流程與邏輯)_
 
 - **模式判斷 (Mode Detection):**
     - 畫面載入時，檢查導航參數中是否傳入 `categoryId`。
-    - **若有 `categoryId` (編輯模式):** 從 `DataContext` 讀取該類別的資料並填入表單。
+    - **若有 `categoryId` (編輯模式):** 從「**本機資料庫 (Local DB)**」讀取該類別的資料並填入表單。
     - **若無 `categoryId` (新增模式):** 表單為空白，`CategoryType` 預設為「支出」。
 
 - **儲存邏輯 (Save Logic):**
     - **新增模式:**
-        - **(付費牆檢查)** 檢查目前使用者自訂類別數量是否已達免費版上限 (10個，含預設)。若已達上限，則導航至 `PaywallScreen` 而非儲存。
-        - 若未達上限，則呼叫 `firestoreService.addCategory()` 建立新記錄。
+        - **(付費牆檢查)** 檢查「**本機狀態 (e.g., PremiumContext)**」中的 `isPremiumUser` 狀態以及「**本機資料庫**」中的類別數量 (10個，含預設)。若已達上限，則導航至 `PaywallScreen` 而非儲存。
+        - 若未達上限，則在「**本機資料庫 (Local DB)**」建立新記錄（**必須**設定 `updatedOn` 時間戳記）。
     - **編輯模式:**
-        - 呼叫 `firestoreService.updateCategory()` 更新記錄。
+        - 更新「**本機資料庫 (Local DB)**」中的該筆記錄（**必須**更新 `updatedOn` 時間戳記）。
     - 儲存成功後，關閉畫面並導航返回類別列表畫面 (`CategoryListScreen`)。
 
 - **刪除邏輯 (Delete Logic):**
     - 點擊「刪除」按鈕時，彈出確認對話框。
-    - 使用者確認後，呼叫 `firestoreService.deleteCategory()` (軟刪除，設定 `DeletedOn`)。
+    - 使用者確認後，在「**本機資料庫 (Local DB)**」中軟刪除該筆 `Category`（**必須**設定 `deletedOn` 並更新 `updatedOn`，以觸發「批次同步規格」的同步）。
     - 刪除成功後，關閉畫面並導航返回類別列表畫面 (`CategoryListScreen`)。
 
 ## 狀態管理 (State Management)

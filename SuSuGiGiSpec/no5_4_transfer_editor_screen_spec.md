@@ -17,7 +17,7 @@ _(本文件定義新增/編輯「轉帳」畫面的 UI、流程與邏輯)_
     - **右側:**
         - **定期交易按鈕:** 一個循環圖示的按鈕。
         - **邏輯:**
-            - **(付費牆檢查)** 點擊時，檢查使用者 `isPremiumUser` 狀態。
+            - **(付費牆檢查)** 點擊時，檢查「**本機狀態 (e.g., PremiumContext)**」中的 `isPremiumUser` 狀態。
             - **若為免費版使用者:** 導航至 `PaywallScreen`。
             - **若為付費版使用者:** 開啟 `ScheduleModal` 進行設定。
 
@@ -63,7 +63,7 @@ _(本文件定義新增/編輯「轉帳」畫面的 UI、流程與邏輯)_
 - **模式判斷與預設值 (Mode Detection & Defaults):**
     - 畫面載入時，檢查導航參數中是否傳入 `transferId`。
     - **若有 `transferId` (編輯模式):**
-        - 從 `DataContext` (本地資料快取) 中讀取該筆轉帳的完整資料，填入表單。
+        - 從「**本機資料庫 (Local DB)**」中讀取該筆轉帳的完整資料，填入表單。
         - 顯示「刪除按鈕」。
     - **若無 `transferId` (新增模式):**
         - **日期預設值:** 遵循 `TransactionEditorScreen` 的邏輯，檢查 `defaultDate` 參數，否則為今天。
@@ -78,25 +78,28 @@ _(本文件定義新增/編輯「轉帳」畫面的 UI、流程與邏輯)_
         - **跨幣別匯率記錄:** 若偵測到為跨幣別轉帳 (轉出與轉入帳戶的幣別不同)，執行以下操作：
             - 從 `AmountFromCents`, `AccountFromId` (取得幣別), `AmountToCents`, `AccountToId` (取得幣別) 中取得所需資訊。
             - 計算出隱含匯率 (`RateCents`)。
-            - 在儲存轉帳的同一個批次 (batch) 操作中，呼叫 `firestoreService.addCurrencyRate()`，將此匯率存入 `CurrencyRates` 表，並將 `RateDate` 設為該筆轉帳的 `TransactionDate`。
-            - 此操作為付費功能，執行前需檢查 `isPremiumUser` 狀態。若為免費版，應導航至付費牆畫面 (`PaywallScreen`)。
+            - 在儲存轉帳的同一個批次 (batch) 操作中，呼叫在「**本機資料庫 (Local DB)**」中新增一筆 `CurrencyRates` 記錄（**必須**設定 `updatedOn` 時間戳記）。，將此匯率存入 `CurrencyRates` 表，並將 `RateDate` 設為該筆轉帳的 `TransactionDate`。
+            - 此操作為付費功能，執行前需檢查「**本機狀態 (e.g., PremiumContext)**」中的 `isPremiumUser` 狀態。若為免費版，應導航至付費牆畫面 (`PaywallScreen`)。
 
-        - **如果未設定重複規則:** 直接呼叫 `firestoreService.addTransfer()` 建立一筆新記錄。
+        - **如果未設定重複規則:** 直接在「**本機資料庫 (Local DB)**」建立一筆新記錄（**必須**設定 `updatedOn` 時間戳記）。
         - **如果設定了重複規則 ([付費功能]):**
-            - 呼叫 `firestoreService.addSchedule()` 建立一筆 `Schedules` 記錄 (包含 `Template...` 欄位)。
-            - **立即**為 `StartOn` 日期產生第一筆轉帳實例。
+            - 在「**本機資料庫 (Local DB)**」建立一筆 `Schedules` 記錄（**必須**設定 `updatedOn`），並**立即**為 `StartOn` 日期產生第一筆轉帳實例（同樣寫入本機）。
     - **編輯模式:**
         - **檢查是否為定期交易產生:** 檢查該筆轉帳的 `ScheduleId` 是否有值。
-        - **普通轉帳:** 直接呼叫 `firestoreService.updateTransfer()` 更新記錄。
+        - **普通轉帳:** 直接更新「**本機資料庫 (Local DB)**」中的該筆記錄（**必須**更新 `updatedOn` 時間戳記）。
         - **定期轉帳產生:**
             - 彈出對話框，提供選項：「僅此一筆」、「此筆及未來所有」。
             - **「僅此一筆」:** 直接修改當前這筆 `Transfer`。
-            - **「此筆及未來所有」:** 呼叫 `firestoreService.updateFutureSchedule()`，將原 `Schedule` 的 `EndOn` 設為此交易日期的前一個週期，並根據新內容創建一個新的 `Schedule`。
+            - **「此筆及未來所有」:** 在「**本機資料庫 (Local DB)**」中更新原 `Schedule` 的 `EndOn`（需更新 `updatedOn`），並建立一個新的 `Schedule` 記錄（也需設定 `updatedOn`）。
     - 儲存成功後，關閉畫面並導航返回前一頁。
 
 - **刪除邏輯 (Delete Logic):**
     - 僅在「編輯」模式下可用。
-    - 邏輯與 `TransactionEditorScreen` 完全相同，只是操作的對象是 `Transfer` 和對應的 `Schedule`。
+    - **普通轉帳:** 直接在「**本機資料庫 (Local DB)**」中軟刪除該筆 `Transfer`（**必須**設定 `deletedOn` 並更新 `updatedOn`，以觸發「批次同步規格」的同步）。
+    - **定期轉帳產生:**
+        - 彈出對話框，提供選項：「僅此一筆」、「此筆及未來所有」。
+        - **「僅此一筆」:** 同上，軟刪除當前的 `Transfer` 記錄（更新 `deletedOn` 和 `updatedOn`）。
+        - **「此筆及未來所有」:** 在「**本機資料庫 (Local DB)**」中更新原 `Schedule` 的 `EndOn`（**必須**更新 `updatedOn` 以觸發同步）。
 
 ## 狀態管理 (State Management)
 
