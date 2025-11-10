@@ -214,6 +214,10 @@ _(現況: 這些是 App 的核心動態資料，將儲存在 Firestore 中並與
         
     - `UpdatedAt`: Number (Unix Timestamp ms)
         
+    - `LocalHashCode`: String | Null - (用於同步)
+        
+    - `RemoteHashCode`: String | Null - (用於同步)
+        
 
 ## App 標準定義資料 (Definitions)
 
