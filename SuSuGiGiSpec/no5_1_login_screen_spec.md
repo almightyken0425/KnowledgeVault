@@ -36,7 +36,7 @@ _(本文件定義登入畫面的 UI、流程與邏輯)_
         
 *   **認證成功:**
     
-    *   Firebase Auth 返回使用者憑證，`authService` 從中獲取 `UserId` (Email)。
+    *   Firebase Auth 返回使用者憑證，`authService` 從中獲取 `userId` (Email)。
         
     *   `authService` 觸發「首次登入流程」：
         

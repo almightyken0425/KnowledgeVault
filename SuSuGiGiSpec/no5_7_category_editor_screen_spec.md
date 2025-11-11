@@ -25,6 +25,12 @@ _(本文件定義新增/編輯「類別」畫面的 UI、流程與邏輯)_
         - **UI:** 一個選擇器，點擊後彈出 `StandardCategory.json` 中對應 `categoryType` 的標準類別列表。
         - **邏輯:** 使用者必須選擇一個標準類別進行映射。此為**必填項**。
 
+- **停用開關區 (Disable Switch Area):**
+    - **UI:** 一個開關 (Switch) 元件，標題為「停用此類別」。
+    - **邏輯:**
+        - 僅在「編輯」模式下顯示。
+        - 讀取 `disabledOn` 欄位狀態來決定開關的預設值（`null` 為 Off，有時間戳記為 On）。
+
 - **刪除按鈕區 (Delete Button Area):**
     - **UI:** 紅色的「刪除此類別」按鈕，僅在「編輯」模式下顯示。
 
@@ -40,6 +46,9 @@ _(本文件定義新增/編輯「類別」畫面的 UI、流程與邏輯)_
         - **(付費牆檢查)** 檢查「**本機狀態 (e.g., PremiumContext)**」中的 `isPremiumUser` 狀態以及「**本機資料庫**」中的類別數量 (10個，含預設)。若已達上限，則導航至 `PaywallScreen` 而非儲存。
         - 若未達上限，則在「**本機資料庫 (Local DB)**」建立新記錄（**必須**設定 `updatedOn` 時間戳記）。
     - **編輯模式:**
+        - 組合表單資料（包含 `name`, `icon`, `standardCategoryId` 以及 `disabledOn` 狀態）。
+        - 若「停用開關」被開啟，`disabledOn` 應設為當前時間戳記。
+        - 若「停用開關」被關閉，`disabledOn` 應設為 `null`。
         - 更新「**本機資料庫 (Local DB)**」中的該筆記錄（**必須**更新 `updatedOn` 時間戳記）。
     - 儲存成功後，關閉畫面並導航返回類別列表畫面 (`CategoryListScreen`)。
 
@@ -54,6 +63,7 @@ _(本文件定義新增/編輯「類別」畫面的 UI、流程與邏輯)_
     - `name: string`
     - `iconId: number`
     - `standardCategoryId: number | null`
+    - `isDisabled: boolean` (綁定到「停用開關」，預設為 `false`)
 
 ## 導航 (Navigation)
 

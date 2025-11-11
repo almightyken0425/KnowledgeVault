@@ -10,7 +10,7 @@ _(本文件定義「匯率編輯器」畫面的 UI、流程與邏輯)_
 ## UI 佈局與元件 (UI Layout & Components)
 
 - **頂部導航列 (Top Navigation Bar):**
-    - **左側:** 「取消」按鈕，點擊後返回 `CurrencyRateScreen`。
+    - **左側:** 「取消」按鈕，點擊後返回 `CurrencyRateListScreen`。
     - **中間:** 畫面標題，畫面標題一律顯示「設定匯率」或「新增匯率」。
     - **右側:** 「儲存」按鈕，點擊後儲存當前匯率。
 

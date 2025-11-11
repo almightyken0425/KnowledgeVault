@@ -31,6 +31,12 @@ _(本文件定義新增/編輯「帳戶」畫面的 UI、流程與邏輯)_
         - **UI:** 一個選擇器，點擊後彈出 `StandardAccountType.json` 的列表。
         - **邏輯:** 允許使用者將帳戶歸類 (例如：現金、銀行、投資)。
 
+- **停用開關區 (Disable Switch Area):**
+    - **UI:** 一個開關 (Switch) 元件，標題為「停用此帳戶」。
+    - **邏輯:**
+        - 僅在「編輯」模式下顯示。
+        - 讀取 `disabledOn` 欄位狀態來決定開關的預設值（`null` 為 Off，有時間戳記為 On）。
+
 - **刪除按鈕區 (Delete Button Area):**
     - **UI:** 紅色的「刪除此帳戶」按鈕，僅在「編輯」模式下顯示。
 
@@ -52,6 +58,9 @@ _(本文件定義新增/編輯「帳戶」畫面的 UI、流程與邏輯)_
             - 若涉及匯率輸入，將該匯率記錄與帳戶資料在一個批次 (batch) 操作中，分別在「**本機資料庫 (Local DB)**」中新增 `CurrencyRates` 和 `Account` 記錄（**兩者都必須**設定 `updatedOn` 時間戳記）。
             - 若不涉及，則直接在「**本機資料庫 (Local DB)**」建立新記錄（**必須**設定 `updatedOn` 時間戳記）。
     - **編輯模式:**
+        - 組合表單資料（包含 `name`, `icon` 以及 `disabledOn` 狀態）。
+        - 若「停用開關」被開啟，`disabledOn` 應設為當前時間戳記。
+        - 若「停用開關」被關閉，`disabledOn` 應設為 `null`。
         - 更新「**本機資料庫 (Local DB)**」中的該筆記錄（**必須**更新 `updatedOn` 時間戳記）。
     - **儲存成功後:** 關閉畫面並導航返回帳戶列表畫面 (`AccountListScreen`)。
 
@@ -68,6 +77,7 @@ _(本文件定義新增/編輯「帳戶」畫面的 UI、流程與邏輯)_
     - `currencyId: number`
     - `initialBalanceCents: bigint`
     - `standardAccountTypeId: number | null`
+    - `isDisabled: boolean` (綁定到「停用開關」，預設為 `false`)
 
 ## 導航 (Navigation)
 

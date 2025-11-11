@@ -31,10 +31,21 @@ _(本文件定義首頁的 UI 佈局、元件與互動邏輯 - 採用「可折�
 - **底部 Footer (固定):**
     - **位置:** 固定在螢幕底部。
     - **內容:** 包含三個核心操作按鈕，由左至右排列：
-        - **新增收入按鈕 (+):** 點擊導航至 `TransactionEditorScreen` (傳入 type=`income`)。
-        - **新增轉帳按鈕 (→):** 點擊導航至 `TransferEditorScreen`。
-        - **新增支出按鈕 (-):** 點擊導航至 `TransactionEditorScreen` (傳入 type=`expense`)。
-    
+        - **新增收入按鈕 (+):** 點擊後觸發「核心功能鎖」檢查。
+        - **新增轉帳按鈕 (→):** 點擊後觸發「核心功能鎖」檢查。
+        - **新增支出按鈕 (-):** 點擊後觸發「核心功能鎖」檢查。
+    - **核心功能鎖邏輯 (Footer 點擊時):**
+        - **1. 檢查 Premium:** 點擊任一新增按鈕時，App 必須立即檢查「**本機狀態 (e.g., PremiumContext)**」中的 `isPremiumUser`。
+        - **2. 付費版流程:** 若 `isPremiumUser` 為 `true`，立即導航至對應的編輯器畫面（`TransactionEditorScreen` 或 `TransferEditorScreen`）。
+        - **3. 免費版檢查:** 若 `isPremiumUser` 為 `false`，**不得立即導航**，改為執行「有效項目計數」查詢。
+        - **4. 計數查詢:** App 查詢「**本機資料庫 (Local DB)**」，計算：
+            - `active_account_count` = `Accounts` 表中 `deletedOn` 為 `null` 且 `disabledOn` 為 `null` 的紀錄總數。
+            - `active_category_count` = `Categories` 表中 `deletedOn` 為 `null` 且 `disabledOn` 為 `null` 的紀錄總數。
+        - **5. 判斷:**
+            - **若 `active_account_count <= 3` 且 `active_category_count <= 10` (符合免費版限制):** 允許導航至對應的編輯器畫面。
+            - **若 `active_account_count > 3` 或 `active_category_count > 10` (超出免費版限制):** **阻擋導航**。
+        - **6. 阻擋 UI:** 阻擋導航時，應彈出一個提示對話框，說明已超出免費版限制，並提供「前往設定」（停用項目）或「立即升級」（導航至 `PaywallScreen`）的選項。
+
 
 ## 主內容區元件詳述
 
@@ -116,7 +127,11 @@ _(此區域的元件會根據動畫互動進行高度調整)_
 - **報表設定 (Header 互動):**
     
     - 使用者點擊 Header 中的 `帳戶篩選器` 來彈出多選列表。
-    - **預設行為:** App 啟動時，帳戶篩選器**預設選取所有帳戶**。    
+    - **帳戶篩選器邏輯詳述:**
+        - **資料範圍:** 點擊 `帳戶篩選器` 彈出的多選列表，其資料來源應查詢「**本機資料庫 (Local DB)**」中的 `Accounts` 表。
+        - **篩選條件:** 此列表**必須**排除所有 `deletedOn` 或 `disabledOn` **非 `null`** 的帳戶，僅顯示使用者當前「有效」的帳戶。
+        - **限制:** 為了讓使用者能完整查看自己的資產，此篩選器**不受**免費版數量限制。即使使用者是免費版且擁有多個有效帳戶，此列表也應**全部顯示**，讓使用者可以自由勾選以篩選報表。
+    - **預設行為:** App 啟動時，帳戶篩選器**預設選取所有帳戶**。
         
     - 使用者點擊 Header 中的 `時間粒度篩選器` 來切換時間粒度 (e.g., "Monthly")。
     - **預設行為:** App 啟動時，時間粒度篩選器預設為「當日 (daily)」。
