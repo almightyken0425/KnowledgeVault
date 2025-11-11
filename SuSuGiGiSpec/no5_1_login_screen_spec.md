@@ -40,7 +40,7 @@ _(本文件定義登入畫面的 UI、流程與邏輯)_
         
     *   `authService` 觸發「首次登入流程」：
         
-        *   檢查 Firestore 該 `UserId` 是否有資料。
+        *   檢查 Firestore 該 `userId` 是否有資料。
             
         *   **新用戶:**
             

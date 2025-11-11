@@ -17,12 +17,12 @@ _(本文件定義新增/編輯「類別」畫面的 UI、流程與邏輯)_
     - **右側:** 「儲存」按鈕，僅在所有必填欄位都有效時才可點擊。
 
 - **核心欄位區 (Core Fields Area):**
-    - **類別名稱 (`Name`):**
+    - **類別名稱 (`name`):**
         - **UI:** 一個文字輸入框 (`TextInput`)。此為**必填項**。
-    - **圖示 (`Icon`):**
+    - **圖示 (`icon`):**
         - **UI:** 一個顯示當前所選圖示的區域，點擊後導航至圖標選擇器畫面 (`IconPickerScreen`)。此為**必填項**。
-    - **標準類別映射 (`StandardCategoryId`):**
-        - **UI:** 一個選擇器，點擊後彈出 `StandardCategory.json` 中對應 `CategoryType` 的標準類別列表。
+    - **標準類別映射 (`standardCategoryId`):**
+        - **UI:** 一個選擇器，點擊後彈出 `StandardCategory.json` 中對應 `categoryType` 的標準類別列表。
         - **邏輯:** 使用者必須選擇一個標準類別進行映射。此為**必填項**。
 
 - **刪除按鈕區 (Delete Button Area):**
@@ -33,7 +33,7 @@ _(本文件定義新增/編輯「類別」畫面的 UI、流程與邏輯)_
 - **模式判斷 (Mode Detection):**
     - 畫面載入時，檢查導航參數中是否傳入 `categoryId`。
     - **若有 `categoryId` (編輯模式):** 從「**本機資料庫 (Local DB)**」讀取該類別的資料並填入表單。
-    - **若無 `categoryId` (新增模式):** 表單為空白，`CategoryType` 預設為「支出」。
+    - **若無 `categoryId` (新增模式):** 表單為空白，`categoryType` 預設為「支出」。
 
 - **儲存邏輯 (Save Logic):**
     - **新增模式:**

@@ -49,7 +49,7 @@ _(本文件定義「匯率編輯器」畫面的 UI、流程與邏輯)_
         1.  **資料驗證:** 檢查匯率是否為有效數字且大於 0。
         2.  **儲存資料 (一律新增):**
             - 在「**本機資料庫 (Local DB)**」的 `CurrencyRates` 表中**新增一筆記錄**（**必須**設定 `updatedOn` 時間戳記，以觸發「批次同步規格」的同步）。
-        3.  **返回:** 儲存成功後，自動返回 `CurrencyRateScreen`，並觸發該畫面的資料重新整理。
+        3.  **返回:** 儲存成功後，自動返回 `CurrencyRateListScreen`，並觸發該畫面的資料重新整理。
 
 
 - **刪除策略:** 不提供刪除按鈕；如需覆寫請建立新匯率記錄以維持 append-only（只增不改）。（未來若要支援刪除，必須是軟刪除並設定 `updatedOn`）。
@@ -65,4 +65,4 @@ _(本文件定義「匯率編輯器」畫面的 UI、流程與邏輯)_
     - 從 `CurrencyRateListScreen` 的「新增」按鈕點擊進入。
     - 從 `CurrencyRateListScreen` 的列表項目點擊進入。
 - **退出:**
-    - 點擊「取消」或「儲存」按鈕後，返回 `CurrencyRateScreen`。
+    - 點擊「取消」或「儲存」按鈕後，返回 `CurrencyRateListScreen`。
