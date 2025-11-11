@@ -65,7 +65,7 @@ _(目標: 定義一個清晰、可擴展、反映共用元件的資料夾結構)
 │   │   │   │   ├── CategoryEditorScreen.tsx
 │   │   │   └── PreferenceScreen.tsx      # (偏好設定頁面 - 幣別/時區/語系)
 │   │   │   ├── CurrencyManagement/         # (付費功能)
-│   │   │   │   ├── CurrencyRateScreen.tsx
+│   │   │   │   ├── CurrencyRateListScreen.tsx
 │   │   │   │   └── CurrencyRateEditorScreen.tsx
 │   │   │   └── IconPickerScreen.tsx        # (共用的圖標選擇器頁面)
 │   │   ├── Search/

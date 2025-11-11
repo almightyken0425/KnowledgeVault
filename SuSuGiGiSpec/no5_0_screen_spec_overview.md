@@ -43,7 +43,7 @@ _(本文件用來規劃 MVP 範圍內所有需要詳細定義規格的 App 畫�
     - 登出邏輯 (呼叫 `authService` 登出)
     - (付費功能) 顯示/連結至付費牆
 - **設定 - 類別列表 (CategoryListScreen)**
-    - UI: 依 `CategoryType` (收/支) 分頁顯示類別列表、新增按鈕 (FAB)。
+    - UI: 依 `CategoryType` (收/支) 分頁顯示類別列表、新增按鈕。
     - 互動: **支援拖拉排序**，更新 `SortOrder` 欄位。點擊項目導航至 `CategoryEditorScreen`。
     - 資料: 讀取 `Categories`。
 

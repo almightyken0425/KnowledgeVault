@@ -107,7 +107,7 @@ _(現況: 這些是 App 的核心動態資料，將儲存在 Firestore 中並與
         
     - `amountToCents`: BigInt - Not Null (轉入帳戶的金額，以該帳戶幣別計)
         
-    - `impliedRateScaled`: Number | Null - Nullable (儲存換算後的隱含匯率 * 1,000,000，僅供參考)
+    - `impliedRateScaled`: BigInt - Not Null- Nullable (儲存匯率 * 1,000,000 後的整數)
         
     - `transactionDate`: Number (Unix Timestamp ms) - Not Null (轉帳發生日，用於報表篩選)
         
@@ -143,8 +143,6 @@ _(現況: 這些是 App 的核心動態資料，將儲存在 Firestore 中並與
     - `createdOn`: Number (Unix Timestamp ms) - Not Null
         
     - `updatedOn`: Number (Unix Timestamp ms) - Not Null (資料最後更新時間，同步依據)
-        
-    - `deletedOn`: Number | Null (Unix Timestamp ms) - Nullable, Index
         
 
 ### 定期交易排程 (Schedules)
