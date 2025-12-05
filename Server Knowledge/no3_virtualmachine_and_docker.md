@@ -1,0 +1,34 @@
+# VirtualMachine 與 Docker 的三種組合模式
+
+## 傳統虛擬機模式
+
+`硬體 → 虛擬化軟體 → VM → OS → Application`
+
+- **這是什麼:** 傳統虛擬機 VM 模式
+- **情境:** 這是最經典的雲端架構 IaaS。
+- **範例:** 你跟 AWS 租一台 EC2 VM,在上面安裝 Linux OS,然後直接在 Linux 上安裝並執行一個 MySQL 資料庫 Application。
+- **用途:** 適合絕大多數非容器化的傳統應用程式,例如資料庫、Windows 伺服器、或任何需要完整 OS 權限的軟體。
+
+---
+
+## 實體機容器模式
+
+`硬體 → OS → Docker 軟體 → [Container 1] [Container 2] ...`
+
+- **這是什麼:** 實體機容器 Bare Metal Container 模式
+- **情境:** 你不使用 VM,直接在裸的實體硬體 Bare Metal 上安裝 OS 和 Docker。
+- **優點:** 效能最好。因為它省去了虛擬化軟體 Hypervisor 和 VM 這兩層的效能損耗。
+- **用途:** 通常用在公司自家的資料中心 On-premise,或者對效能極度要求的場景,例如高頻交易、大型資料庫。在公有雲上比較少見,但 AWS 也有提供 Bare Metal 實例。
+
+---
+
+## VM 加容器模式
+
+`硬體 → 虛擬化軟體 → VM → OS → Docker 軟體 → [Container 1] [Container 2] ...`
+
+- **這是什麼:** VM 加容器模式
+- **情境:** 這是目前在公有雲 AWS, GCP, Azure 上最最最常見的模式。
+- **範例:** 你跟 AWS 租一台 EC2 VM,在上面安裝 Linux OS,然後在 Linux 上安裝 `Docker 軟體`,最後用 Docker 來執行你的所有 App Containers。
+- **用途:** 兼具 VM 的隔離性、安全性、彈性和 Docker 的環境標準化、快速部署。你用 VM EC2 來切割硬體資源,然後在 VM 裡面用 Docker 來管理你的所有應用程式。
+
+---

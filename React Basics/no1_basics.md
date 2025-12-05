@@ -1,7 +1,8 @@
 # App 生命週期
-## 開發階段：XCode vs AndroidStudio vs Expo
 
-「開發階段」是指從建立專案、撰寫程式碼、進行測試預覽，一直到準備打包上架的整個過程。在這個階段，開發者所使用的「工具鏈 (Toolchain)」組合，將直接決定專案的開發效率、團隊成員所需的技能、以及整體的開發成本。
+## 開發階段 - XCode vs AndroidStudio vs Expo
+
+「開發階段」是指從建立專案、撰寫程式碼、進行測試預覽，一直到準備打包上架的整個過程。在這個階段，開發者所使用的「工具鏈 Toolchain」組合，將直接決定專案的開發效率、團隊成員所需的技能、以及整體的開發成本。
 
 > [!SUMMARY] 核心差異概覽
 >
@@ -25,7 +26,7 @@
 > - Expo 最大的價值在於**抽象化**。它像一個專業的專案經理，將 `[[Xcode]]` 和 `[[Android Studio]]` 的所有複雜性（例如原生專案設定、編譯流程、憑證管理）都隱藏起來，為開發者提供了一套更簡單、更統一的指令介面 (`[[Expo CLI]]`)。
 > - `[[Node.js]]` 則是實現這層抽象化的**基礎平台**。因為所有 Expo 的開發工具 (`[[Metro]]`, `[[Expo CLI]]`, `EAS CLI`) 本身都是運行在 `[[Node.js]]` 環境中的 JavaScript 應用程式。這使得開發者可以從頭到尾都停留在一個熟悉的 JavaScript 生態系中，而不需要頻繁地在三個完全不同的開發環境（JS, Xcode, Android Studio）之間切換。
 
-## 運行階段：**Runtime: iOS vs Android vs ReactNative**
+## 運行階段 - Runtime - iOS vs Android vs ReactNative
 
 當 App 在使用者的手機上啟動並運行時，其內部的 `[[執行環境 (Runtime)]]` 決定了程式碼如何被執行、畫面如何被繪製。不同技術路徑的 App，其 Runtime 機制有著根本性的差異。
 
@@ -50,7 +51,6 @@
 > - React Native 的優勢在於將**同一套**業務邏輯放在 JavaScript 世界，透過 Bridge 與兩個不同平台（iOS 和 Android）的原生世界溝通，實現跨平台開發。
 
 ---
----
 
 # **Runtime & RuntimeEnviornment**
 
@@ -60,20 +60,20 @@
 
 ---
 
-## **Runtime 運行階段：一個時間概念**
+## **Runtime 運行階段 - 一個時間概念**
 
 **定義：Runtime (運行階段)，是指程式碼從「靜態的文字檔」，轉變為一個在作業系統中「正在運作的程序 (Process)」的整個生命週期。**
 
 ### 程式碼的生命週期：
 
-#### **狀態一：靜態的原始碼 (Source Code)**
+#### 靜態的原始碼 Source Code
 
 - **定義**：指儲存在硬碟上的 `.tsx`、`.swift` 或 `.kt` 等程式碼檔案。
     
 - **本質**：在此狀態下，程式碼是**靜態的純文字**。它本身沒有任何行為。
     
 
-#### **狀態二：運作中的程序 (Running Process)**
+#### 運作中的程序 Running Process
 
 - **定義**：當 App 啟動時，作業系統會在記憶體中建立一個正在運作的實體，即為一個「程序」。
     
@@ -99,7 +99,7 @@
 
 ---
 
-## **Runtime Environment (執行環境)：一個系統概念**
+## **Runtime Environment 執行環境 - 一個系統概念**
 
 **定義：Runtime Environment 是支撐程式碼得以經歷其「Runtime (運行階段)」所需的「完整支援系統」。**
 
@@ -111,7 +111,7 @@
 
 ---
 
-### **執行環境的兩個核心元件：引擎與 API**
+### 執行環境的兩個核心元件 - 引擎與 API
 
 #### **引擎 (Engine)：程式碼的執行核心**
 
@@ -160,12 +160,9 @@
 
 ---
 
----
----
+# 基礎概念 Fundamental Concepts
 
-# 基礎概念 (Fundamental Concepts)
-
-## Application, 伺服器 (Server) & 客戶端 (Client)
+## Application, 伺服器 Server & 客戶端 Client
 
 - **Application (應用程式)**：一個提供特定功能的獨立軟體。例如文書處理器、小算盤、手機 App 本身。
     
@@ -178,13 +175,13 @@
 
 
 
-### 核心互動：請求 (Request) 與 回應 (Response)
+### 核心互動：請求 Request 與 回應 Response
 
-1. **請求 (Request)**：客戶端 Application 發出請求，索取特定資源。
+- **請求 (Request)**：客戶端 Application 發出請求，索取特定資源。
     
-2. **處理 (Process)**：伺服器 Application 持續監聽，收到請求後進行處理。
+- **處理 (Process)**：伺服器 Application 持續監聽，收到請求後進行處理。
     
-3. **回應 (Response)**：伺服器 Application 將處理結果打包成回應，傳回給客戶端。
+- **回應 (Response)**：伺服器 Application 將處理結果打包成回應，傳回給客戶端。
     
 
 ### 關鍵特徵：透過網路溝通的獨立程式
@@ -216,15 +213,14 @@
 - **流程**：`Expo Go` 透過 Wi-Fi **請求**程式碼，`Metro` **回應**打包好的程式碼檔案。
 
 ---
----
 
-## 整合開發環境 (IDE) vs. 程式碼編輯器 (Code Editor)
+## 整合開發環境 IDE vs. 程式碼編輯器 Code Editor
 
 這兩者都是開發者用來寫程式的工具，但它們的設計理念和功能範疇有根本性的不同。
 
 
 
-### 整合開發環境 (IDE - Integrated Development Environment)
+### 整合開發環境 IDE - Integrated Development Environment
 
 - **定義**：一個功能全面、重量級的「All-in-One」開發軟體。
     
@@ -328,9 +324,8 @@
 > - 重要的是，這些擴充套件純粹是**輔助開發者的工具**，它們**不會**被打包進您最終的 App 成品中。
 
 ---
----
 
-## 開發環境的基石 (The Foundation)
+## 開發環境的基石 The Foundation
 
 ### Node.js：JavaScript 的心臟
 
@@ -340,9 +335,9 @@
     
 - **必要組成**：任何一個執行環境，都必須包含兩個核心元件：
     
-    1. **引擎 (Engine)**：負責讀取、理解、並執行程式碼的「大腦」。
+    - **引擎 (Engine)**：負責讀取、理解、並執行程式碼的「大腦」。
         
-    2. **一組可用的 API (Application Programming Interface)**：由環境提供的一系列預先寫好的工具或指令，讓程式碼能與外部世界（如作業系統、網路、硬體）互動的「手腳」。
+    - **一組可用的 API (Application Programming Interface)**：由環境提供的一系列預先寫好的工具或指令，讓程式碼能與外部世界（如作業系統、網路、硬體）互動的「手腳」。
         
 
 
@@ -355,7 +350,7 @@
 - 但**搭配的 API** 是可變的，這也導致了 JavaScript 有兩種截然不同的執行環境。
     
 
-##### 1. 瀏覽器執行環境 (Browser Runtime)
+##### 1. 瀏覽器執行環境 Browser Runtime
 
 - **引擎**：V8 (在 Chrome 中) 或其他。
     
@@ -368,7 +363,7 @@
 - **結果**：在這個環境下，JavaScript 是一個**前端**語言，專門用來打造互動式的網頁。
     
 
-##### 2. Node.js 執行環境 (Node.js Runtime)
+##### 2. Node.js 執行環境 Node.js Runtime
 
 - **引擎**：同樣是 **V8**。Node.js 的創作者將 V8 引擎從 Chrome 瀏覽器中獨立出來。
     
@@ -392,11 +387,11 @@
 > 
 > 這個組合創造了一個全新的、非瀏覽器的 JavaScript 執行場域。所有 React Native 的開發工具，都是在這個場域中運行的應用程式。
 
-### **第一部分目錄草案 (V3.1 - 核心要點擴展版)**
+### 第一部分目錄草案 V3.1 - 核心要點擴展版
 
-- **第一部分：核心名詞解析 (The What) - 認識我們的工具箱**
+- **第一部分 - 核心名詞解析 The What - 認識我們的工具箱**
     
-    - **1. 基礎概念 (Fundamental Concepts)**
+    - **基礎概念 Fundamental Concepts**
         
         - **伺服器 (Server) & 客戶端 (Client)**
             
@@ -412,7 +407,7 @@
                 
             - 程式碼編輯器：輕量級、專注編輯、透過擴充套件增強功能。(例如：VS Code)
                 
-    - **2. 開發環境的基石 (The Foundation)**
+    - **開發環境的基石 The Foundation**
         
         - **Node.js：JavaScript 的心臟**
             
@@ -466,7 +461,7 @@
                     
                 - 與 App 的關係：純粹的開發者工具，不會進入 App 成品。
                     
-    - **3. App 的構成零件 (The Building Blocks)**
+    - **App 的構成零件 The Building Blocks**
         
         - **專案套件/函式庫 (Packages/Libraries)**
             
@@ -486,7 +481,7 @@
                 
             - 核心內容：專案名稱、版本、依賴套件列表 (`dependencies`)。
                 
-    - **4. 核心框架與工具 (The Core Frameworks & Tools)**
+    - **核心框架與工具 The Core Frameworks & Tools**
         
         - **React Native**
             
@@ -516,9 +511,9 @@
                 
             - 核心功能：作為一個「容器」，下載並執行來自 Metro 的 JS `bundle`。
 
-### **第一部分：核心名詞解析 (The What) - 認識我們的工具箱 (Obsidian Source Mode)**
+### 第一部分 - 核心名詞解析 The What - 認識我們的工具箱 Obsidian Source Mode
 
-- **1. 基礎概念 (Fundamental Concepts)**
+- **基礎概念 Fundamental Concepts**
     
     - **伺服器 (Server) & 客戶端 (Client)**
         
@@ -544,7 +539,7 @@
             
         - 核心功能：將程式碼「翻譯」並「建置 (Build)」成可執行檔。
             
-- **2. 開發環境的基石 (The Foundation)**
+- **開發環境的基石 The Foundation**
     
     - **Node.js：JavaScript 的心臟**
         
@@ -616,7 +611,7 @@
 |**開發預覽工具**|iOS 模擬器|Android 模擬器|**[[Expo Go]]** (手機 App) / 模擬器|
 |**建置/上架工具**|**[[Xcode]]** (手動打包)|**[[Android Studio]]** (手動打包)|**EAS CLI** (雲端自動化服務)|
 
-- **3. App 的構成零件 (The Building Blocks)**
+- **App 的構成零件 The Building Blocks**
     
     - **專案套件/函式庫 (Packages/Libraries)**
         
@@ -636,7 +631,7 @@
             
         - 核心內容：專案名稱、版本、依賴套件列表 (`dependencies`)。
             
-- **4. 核心框架與工具 (The Core Frameworks & Tools)**
+- **核心框架與工具 The Core Frameworks & Tools**
     
     - **React Native**
         
