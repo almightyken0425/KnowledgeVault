@@ -48,7 +48,7 @@ gitGraph
 graph TD
     %% 定義樣式
     classDef branch fill:#E3F2FD,stroke:#1565C0,stroke-width:2px;
-    classDef action fill:#FFF3E0,stroke:#E65100,stroke-width:1px;
+    classDef action fill:#E0F7FA,stroke:#006064,stroke-width:1px;
     classDef server fill:#E8F5E9,stroke:#2E7D32,stroke-width:1px;
     classDef jenkins fill:#F3E5F5,stroke:#7B1FA2,stroke-width:2px;
     classDef deployAction fill:#FFEBEE,stroke:#C62828,stroke-width:1px;
