@@ -125,6 +125,13 @@ graph TD
     ProdDeploy -->|9. 上線| ProdPkgA & ProdPkgB
 
     Release -->|10. 上線完成後 Sync| Main
+
+    %% Subgraph Styles
+    style Git_Repo fill:#ECEFF1,stroke:#B0BEC5,stroke-width:1px
+    style CI_CD fill:#F5F5F5,stroke:#BDBDBD,stroke-width:1px
+    style DevEnv fill:#F1F8E9,stroke:#AED581,stroke-width:1px
+    style UATEnv fill:#FFF3E0,stroke:#FFB74D,stroke-width:1px
+    style ProdEnv fill:#E3F2FD,stroke:#64B5F6,stroke-width:1px
 ```
 
 ## 核心架構與定義
