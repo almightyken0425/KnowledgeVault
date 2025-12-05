@@ -41,6 +41,23 @@ gitGraph
 ```
 
 ### CI/CD 與環境部署流程
+
+以下圖表展示 Jenkins 自動化建置與部署流程:
+
+```mermaid
+graph TD
+    %% 定義樣式
+    classDef branch fill:#E8F5E9,stroke:#2E7D32,stroke-width:1px;
+    classDef action fill:#E8F5E9,stroke:#2E7D32,stroke-width:1px;
+    classDef server fill:#E8F5E9,stroke:#2E7D32,stroke-width:1px;
+    classDef jenkins fill:#E8F5E9,stroke:#2E7D32,stroke-width:1px;
+    classDef deployAction fill:#E8F5E9,stroke:#2E7D32,stroke-width:1px;
+
+    %% 節點定義
+    subgraph Git_Repo [GitLab Repository]
+        Main((Branch: main)):::branch
+        Release((Branch: release)):::branch
+        Develop((Branch: develop)):::branch
         Feature[Branch: feature/#Ticket]:::branch
 
         %% 強制排版順序: Main 在最左邊
