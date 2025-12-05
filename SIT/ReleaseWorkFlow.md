@@ -101,12 +101,12 @@ gitGraph
     
     checkout develop
     merge feature-123 tag: "Step 2: MR 合併"
-    commit id: "C5: 整合測試" tag: "Step 4: 部署 Dev"
     
     checkout main
     commit id: "C6: 緊急修復" tag: "Hotfix"
     
     checkout develop
+    commit id: "C5: 整合測試" tag: "Step 4: 部署 Dev"
     commit id: "C7: 其他功能"
     
     branch release
