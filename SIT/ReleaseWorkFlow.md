@@ -117,7 +117,7 @@ graph TD
 
     JobB -->|7. 打包與上傳| UATPkgA & UATPkgB
     
-    UATDeployA & UATDeployB -->|8. 測試通過| ProdDeploy[使用同一包檔案部署]:::action
+    JobB -->|8. UAT 通過後部署| ProdDeploy[使用同一包檔案部署]:::action
     
     ProdDeploy -->|9. 上線| ProdPkgA & ProdPkgB
 
