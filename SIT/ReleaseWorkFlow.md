@@ -65,10 +65,19 @@ graph TD
         JobB{Job B: UAT/Prod Build}:::jenkins
     end
 
-    subgraph Environments [Servers]
-        DevServer[Dev Server]:::server
-        UATServer[UAT Server]:::server
-        ProdServer[Production Server]:::server
+    subgraph Environments [Env & Services]
+        subgraph DevEnv [Dev Environment]
+            DevServiceA[Service A]:::server
+            DevServiceB[Service B]:::server
+        end
+        subgraph UATEnv [UAT Environment]
+            UATServiceA[Service A]:::server
+            UATServiceB[Service B]:::server
+        end
+        subgraph ProdEnv [Production Environment]
+            ProdServiceA[Service A]:::server
+            ProdServiceB[Service B]:::server
+        end
     end
 
     %% 流程線
@@ -76,17 +85,18 @@ graph TD
     Feature -->|2. 開發完成 MR| Develop
 
     Develop -.->|3. 自動觸發 Webhook| JobA
-    JobA -->|4. 部署| DevServer
+    JobA -->|4. 部署| DevServiceA & DevServiceB
 
     Develop -->|5. 挑選 Commit/Merge| Release
     Release -.->|6. RD 通知 IT 手動觸發| JobB
 
-    JobB -->|7. 打包與部署| UATServer
-    UATServer -->|8. 測試通過| ProdDeploy[使用同一包檔案部署]:::action
-    ProdDeploy -->|9. 上線| ProdServer
+    JobB -->|7. 打包與部署| UATServiceA & UATServiceB
+    
+    UATServiceA & UATServiceB -->|8. 測試通過| ProdDeploy[使用同一包檔案部署]:::action
+    
+    ProdDeploy -->|9. 上線| ProdServiceA & ProdServiceB
 
     Release -->|10. 上線完成後 Sync| Main
-
 ```
 
 ## 核心架構與定義
