@@ -100,22 +100,24 @@ gitGraph
     commit id: "C4: 功能完成"
     
     checkout develop
-    merge feature-123 tag: "Step 2: MR 合併"
+    merge feature-123 tag: "Step 2"
     
     checkout main
     commit id: "C6: 緊急修復" tag: "Hotfix"
     
     checkout develop
-    commit id: "C5: 整合測試" tag: "Step 4: 部署 Dev"
+    commit id: "C5: 整合測試" tag: "Step 4"
     commit id: "C7: 其他功能"
     
     branch release
-    commit id: "C5': 挑選 Commit" tag: "Step 5: Cherry-pick"
-    commit id: "C8: UAT 準備" tag: "Step 7: 部署 UAT"
-    commit id: "C9: UAT 驗證通過" tag: "Step 9: 部署 Prod"
+    commit id: "C5': Cherry-pick" tag: "Step 5"
+    commit id: "準備 UAT"
+    commit id: "C8: 部署 UAT" tag: "Step 7"
+    commit id: "執行驗證"
+    commit id: "C9: 準備上線" tag: "Step 9"
     
     checkout main
-    merge release tag: "Step 10: Sync 回 main"
+    merge release tag: "Step 10"
 ```
 
 ### CI/CD 與環境部署流程
