@@ -127,11 +127,23 @@ graph TD
     Release -->|10. 上線完成後 Sync| Main
 
     %% Subgraph Styles
-    style Git_Repo fill:#ECEFF1,stroke:#B0BEC5,stroke-width:1px
-    style CI_CD fill:#ECEFF1,stroke:#B0BEC5,stroke-width:1px
-    style DevEnv fill:#ECEFF1,stroke:#B0BEC5,stroke-width:1px
-    style UATEnv fill:#ECEFF1,stroke:#B0BEC5,stroke-width:1px
-    style ProdEnv fill:#ECEFF1,stroke:#B0BEC5,stroke-width:1px
+    %% Level 1: Lightest Blue
+    style Git_Repo fill:#E3F2FD,stroke:#1565C0,stroke-width:1px
+    style CI_CD fill:#E3F2FD,stroke:#1565C0,stroke-width:1px
+    style Environments fill:#E3F2FD,stroke:#1565C0,stroke-width:1px
+
+    %% Level 2: Medium Blue
+    style DevEnv fill:#BBDEFB,stroke:#1565C0,stroke-width:1px
+    style UATEnv fill:#BBDEFB,stroke:#1565C0,stroke-width:1px
+    style ProdEnv fill:#BBDEFB,stroke:#1565C0,stroke-width:1px
+
+    %% Level 3: Darkest Blue
+    style DevServiceA fill:#90CAF9,stroke:#1565C0,stroke-width:1px
+    style DevServiceB fill:#90CAF9,stroke:#1565C0,stroke-width:1px
+    style UATServiceA fill:#90CAF9,stroke:#1565C0,stroke-width:1px
+    style UATServiceB fill:#90CAF9,stroke:#1565C0,stroke-width:1px
+    style ProdServiceA fill:#90CAF9,stroke:#1565C0,stroke-width:1px
+    style ProdServiceB fill:#90CAF9,stroke:#1565C0,stroke-width:1px
 ```
 
 ## 核心架構與定義
