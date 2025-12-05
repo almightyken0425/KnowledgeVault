@@ -47,11 +47,11 @@ gitGraph
 ```mermaid
 graph TD
     %% 定義樣式
-    classDef branch fill:#FFFFFF,stroke:#FFC600,stroke-width:1px;
-    classDef action fill:#FFFFFF,stroke:#FFC600,stroke-width:1px;
-    classDef server fill:#FFFFFF,stroke:#FFC600,stroke-width:1px;
-    classDef jenkins fill:#FFFFFF,stroke:#FFC600,stroke-width:1px;
-    classDef deployAction fill:#FFFFFF,stroke:#FFC600,stroke-width:1px;
+    classDef branch fill:#FFFFFF,stroke:#FFC600,stroke-width:2px;
+    classDef action fill:#FFFFFF,stroke:#FFC600,stroke-width:2px;
+    classDef server fill:#FFFFFF,stroke:#FFC600,stroke-width:2px;
+    classDef jenkins fill:#FFFFFF,stroke:#FFC600,stroke-width:2px;
+    classDef deployAction fill:#FFFFFF,stroke:#FFC600,stroke-width:2px;
 
     %% 節點定義
     subgraph Git_Repo [GitLab Repository]
