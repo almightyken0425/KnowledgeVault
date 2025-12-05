@@ -51,6 +51,7 @@ graph TD
     classDef action fill:#bbf,stroke:#333,stroke-width:1px;
     classDef server fill:#dfd,stroke:#333,stroke-width:1px;
     classDef jenkins fill:#fa0,stroke:#333,stroke-width:2px,color:white;
+    classDef deployAction fill:#f96,stroke:#333,stroke-width:1px,color:white;
 
     %% 節點定義
     subgraph Git_Repo [GitLab Repository]
@@ -67,16 +68,40 @@ graph TD
 
     subgraph Environments [Env & Services]
         subgraph DevEnv [Dev Environment]
-            DevServiceA[Service A]:::server
-            DevServiceB[Service B]:::server
+            subgraph DevServiceA [Service A]
+                DevPkgA[程式碼包]:::action
+                DevDeployA((部署)):::deployAction
+                DevPkgA --> DevDeployA
+            end
+            subgraph DevServiceB [Service B]
+                DevPkgB[程式碼包]:::action
+                DevDeployB((部署)):::deployAction
+                DevPkgB --> DevDeployB
+            end
         end
         subgraph UATEnv [UAT Environment]
-            UATServiceA[Service A]:::server
-            UATServiceB[Service B]:::server
+            subgraph UATServiceA [Service A]
+                UATPkgA[程式碼包]:::action
+                UATDeployA((部署)):::deployAction
+                UATPkgA --> UATDeployA
+            end
+            subgraph UATServiceB [Service B]
+                UATPkgB[程式碼包]:::action
+                UATDeployB((部署)):::deployAction
+                UATPkgB --> UATDeployB
+            end
         end
         subgraph ProdEnv [Production Environment]
-            ProdServiceA[Service A]:::server
-            ProdServiceB[Service B]:::server
+            subgraph ProdServiceA [Service A]
+                ProdPkgA[程式碼包]:::action
+                ProdDeployA((部署)):::deployAction
+                ProdPkgA --> ProdDeployA
+            end
+            subgraph ProdServiceB [Service B]
+                ProdPkgB[程式碼包]:::action
+                ProdDeployB((部署)):::deployAction
+                ProdPkgB --> ProdDeployB
+            end
         end
     end
 
@@ -85,16 +110,16 @@ graph TD
     Feature -->|2. 開發完成 MR| Develop
 
     Develop -.->|3. 自動觸發 Webhook| JobA
-    JobA -->|4. 部署| DevServiceA & DevServiceB
+    JobA -->|4. 打包與上傳| DevPkgA & DevPkgB
 
     Develop -->|5. 挑選 Commit/Merge| Release
-    Release -.->|6. RD 通知 IT 手動觸發| JobB
+    Release -.->|6. RD 手動觸發| JobB
 
-    JobB -->|7. 打包與部署| UATServiceA & UATServiceB
+    JobB -->|7. 打包與上傳| UATPkgA & UATPkgB
     
-    UATServiceA & UATServiceB -->|8. 測試通過| ProdDeploy[使用同一包檔案部署]:::action
+    UATDeployA & UATDeployB -->|8. 測試通過| ProdDeploy[使用同一包檔案部署]:::action
     
-    ProdDeploy -->|9. 上線| ProdServiceA & ProdServiceB
+    ProdDeploy -->|9. 上線| ProdPkgA & ProdPkgB
 
     Release -->|10. 上線完成後 Sync| Main
 ```
