@@ -95,12 +95,12 @@ gitGraph
     branch develop
     commit id: "C2: develop 基線"
     
-    branch feature/#123
+    branch feature-123
     commit id: "C3: 新功能開發"
     commit id: "C4: 功能完成"
     
     checkout develop
-    merge feature/#123 tag: "Step 2: MR 合併"
+    merge feature-123 tag: "Step 2: MR 合併"
     commit id: "C5: 整合測試" tag: "Step 4: 部署 Dev"
     
     checkout main
@@ -110,7 +110,7 @@ gitGraph
     commit id: "C7: 其他功能"
     
     branch release
-    cherry-pick id: "C5': 挑選 Commit" tag: "Step 5: Cherry-pick"
+    commit id: "C5': 挑選 Commit" tag: "Step 5: Cherry-pick"
     commit id: "C8: UAT 準備" tag: "Step 7: 部署 UAT"
     commit id: "C9: UAT 驗證通過" tag: "Step 9: 部署 Prod"
     
