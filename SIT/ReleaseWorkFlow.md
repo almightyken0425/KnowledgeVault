@@ -83,7 +83,7 @@
 
 ## 流程圖 (Workflow Diagram)
 
-```
+```mermaid
 graph TD
     %% 定義樣式
     classDef branch fill:#f9f,stroke:#333,stroke-width:2px;
