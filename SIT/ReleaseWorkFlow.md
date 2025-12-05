@@ -47,11 +47,11 @@ gitGraph
 ```mermaid
 graph TD
     %% 定義樣式
-    classDef branch fill:#E8F5E9,stroke:#2E7D32,stroke-width:1px;
-    classDef action fill:#E8F5E9,stroke:#2E7D32,stroke-width:1px;
-    classDef server fill:#E8F5E9,stroke:#2E7D32,stroke-width:1px;
-    classDef jenkins fill:#E8F5E9,stroke:#2E7D32,stroke-width:1px;
-    classDef deployAction fill:#E8F5E9,stroke:#2E7D32,stroke-width:1px;
+    classDef branch fill:#E8F5E9,stroke:#2E7D32,stroke-width:0px;
+    classDef action fill:#E8F5E9,stroke:#2E7D32,stroke-width:0px;
+    classDef server fill:#E8F5E9,stroke:#2E7D32,stroke-width:0px;
+    classDef jenkins fill:#E8F5E9,stroke:#2E7D32,stroke-width:0px;
+    classDef deployAction fill:#E8F5E9,stroke:#2E7D32,stroke-width:0px;
 
     %% 節點定義
     subgraph Git_Repo [GitLab Repository]
@@ -128,22 +128,22 @@ graph TD
 
     %% Subgraph Styles
     %% Level 1: Lightest Blue
-    style Git_Repo fill:#E3F2FD,stroke:#1565C0,stroke-width:1px
-    style CI_CD fill:#E3F2FD,stroke:#1565C0,stroke-width:1px
-    style Environments fill:#E3F2FD,stroke:#1565C0,stroke-width:1px
+    style Git_Repo fill:#E3F2FD,stroke:#1565C0,stroke-width:0px
+    style CI_CD fill:#E3F2FD,stroke:#1565C0,stroke-width:0px
+    style Environments fill:#E3F2FD,stroke:#1565C0,stroke-width:0px
 
     %% Level 2: Medium Blue
-    style DevEnv fill:#BBDEFB,stroke:#1565C0,stroke-width:1px
-    style UATEnv fill:#BBDEFB,stroke:#1565C0,stroke-width:1px
-    style ProdEnv fill:#BBDEFB,stroke:#1565C0,stroke-width:1px
+    style DevEnv fill:#BBDEFB,stroke:#1565C0,stroke-width:0px
+    style UATEnv fill:#BBDEFB,stroke:#1565C0,stroke-width:0px
+    style ProdEnv fill:#BBDEFB,stroke:#1565C0,stroke-width:0px
 
     %% Level 3: Darkest Blue
-    style DevServiceA fill:#90CAF9,stroke:#1565C0,stroke-width:1px
-    style DevServiceB fill:#90CAF9,stroke:#1565C0,stroke-width:1px
-    style UATServiceA fill:#90CAF9,stroke:#1565C0,stroke-width:1px
-    style UATServiceB fill:#90CAF9,stroke:#1565C0,stroke-width:1px
-    style ProdServiceA fill:#90CAF9,stroke:#1565C0,stroke-width:1px
-    style ProdServiceB fill:#90CAF9,stroke:#1565C0,stroke-width:1px
+    style DevServiceA fill:#90CAF9,stroke:#1565C0,stroke-width:0px
+    style DevServiceB fill:#90CAF9,stroke:#1565C0,stroke-width:0px
+    style UATServiceA fill:#90CAF9,stroke:#1565C0,stroke-width:0px
+    style UATServiceB fill:#90CAF9,stroke:#1565C0,stroke-width:0px
+    style ProdServiceA fill:#90CAF9,stroke:#1565C0,stroke-width:0px
+    style ProdServiceB fill:#90CAF9,stroke:#1565C0,stroke-width:0px
 ```
 
 ## 核心架構與定義
