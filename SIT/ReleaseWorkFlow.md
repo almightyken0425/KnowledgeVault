@@ -84,7 +84,7 @@ graph TD
     JobA --->|4. 打包與部署| DevPkgA & DevPkgB
     
     Feature -->|5. Merge| Release
-    Release -.->|6. RD 手動觸發| JobB
+    Release -->|6. RD 手動觸發| JobB
     
     JobB -->|7. 產出連結| Artifact
     
@@ -93,7 +93,7 @@ graph TD
     
     DeployScript -->|10. 分發與部署 UAT| UATPkgA & UATPkgB
     
-    DeployScript -.->|11. 確認後部署 Prod| ProdPkgA & ProdPkgB
+    DeployScript -->|11. 確認後部署 Prod| ProdPkgA & ProdPkgB
 
     Release -->|12. 上線完成後 Sync| Main
 
