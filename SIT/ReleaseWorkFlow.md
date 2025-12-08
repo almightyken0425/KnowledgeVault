@@ -57,12 +57,10 @@ graph TD
 
     %% 節點定義
     subgraph Git_Repo [GitLab Repository]
-        Main((Branch: main)):::branch
-        Release((Branch: release)):::branch
-        Develop((Branch: develop)):::branch
-        Feature[Branch: feature/#Ticket]:::branch
-
-        Main ~~~ Release ~~~ Feature ~~~ Develop
+        Main((Branch: Main)):::branch
+        Release((Branch: Release)):::branch
+        Develop((Branch: Develop)):::branch
+        Feature[Branch: Feature/#Ticket]:::branch
     end
 
     subgraph CI_CD [Jenkins System]
@@ -115,6 +113,9 @@ graph TD
         end
     end
 
+    Main ~~~ Release ~~~ Feature ~~~ Develop
+    Develop ~~~ JobB
+
     %% 流程線
     Release -->|1. 切出分支| Feature
     Feature -->|2. 開發完成 MR| Develop
@@ -136,17 +137,7 @@ graph TD
 
     Release -->|12. 上線完成後 Sync| Main
 
-    %% 佈局調整用隱藏線 Layout Helpers
-    %% 強制將 Jenkins (CI_CD) 推到 Git (Git_Repo) 下方
-    Release ~~~ JobB
-    Develop ~~~ JobA
-    
-    %% 強制將 IT Operations (ManualUpload) 推到 Jenkins 下方
-    JobB ~~~ ManualUpload
-    Artifact ~~~ ManualUpload
-    
-    %% 強制 Environments 位於最下方
-    ManualUpload ~~~ DevPkgA
+
 
     %% Subgraph Styles
     %% Level 1: Lightest Blue
