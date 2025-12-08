@@ -56,24 +56,22 @@ graph TD
     classDef deployAction fill:#FFFFFF,stroke:#FFC600,stroke-width:2px;
 
     %% 節點定義
-    subgraph DevOps [DevOps System]
-        %% direction LR  <-- Removed to default to TB (Top-Bottom) for vertical stacking
-        subgraph Git_Repo [GitLab Repository]
-            Main((Branch: main)):::branch
-            Release((Branch: release)):::branch
-            Develop((Branch: develop)):::branch
-            Feature[Branch: feature/#Ticket]:::branch
-    
-            %% 強制排版順序: Main 在最左邊
-            Main ~~~ Release ~~~ Feature ~~~ Develop
-        end
-    
-        subgraph CI_CD [Jenkins System]
-            JobA{Job A: Dev Build}:::jenkins
-            JobB{Job B: UAT/Prod Build}:::jenkins
-            Artifact[成品連結 Download Link]:::action
-            JobB --> Artifact
-        end
+    %% direction LR  <-- Removed to default to TB (Top-Bottom) for vertical stacking
+    subgraph Git_Repo [GitLab Repository]
+        Main((Branch: main)):::branch
+        Release((Branch: release)):::branch
+        Develop((Branch: develop)):::branch
+        Feature[Branch: feature/#Ticket]:::branch
+
+        %% 強制排版順序: Main 在最左邊
+        Main ~~~ Release ~~~ Feature ~~~ Develop
+    end
+
+    subgraph CI_CD [Jenkins System]
+        JobA{Job A: Dev Build}:::jenkins
+        JobB{Job B: UAT/Prod Build}:::jenkins
+        Artifact[成品連結 Download Link]:::action
+        JobB --> Artifact
     end
 
     subgraph Operations [IT Operations]
