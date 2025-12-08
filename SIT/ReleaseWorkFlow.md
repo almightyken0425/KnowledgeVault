@@ -150,14 +150,15 @@ gitGraph
     commit id: "C7: 其他功能"
     
     checkout release
-    merge develop tag: "Step 5"
+    checkout release
+    merge feature-123 tag: "Step 5"
     commit id: "準備 UAT"
     commit id: "C8: 部署 UAT" tag: "Step 10"
     commit id: "執行驗證"
     commit id: "C9: 準備上線" tag: "Step 11"
     
     checkout main
-    merge release tag: "Step 13"
+    merge release tag: "Step 12"
 ```
 
 ## 核心架構與定義
