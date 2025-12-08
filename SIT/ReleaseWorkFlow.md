@@ -56,21 +56,24 @@ graph TD
     classDef deployAction fill:#FFFFFF,stroke:#FFC600,stroke-width:2px;
 
     %% 節點定義
-    subgraph Git_Repo [GitLab Repository]
-        Main((Branch: main)):::branch
-        Release((Branch: release)):::branch
-        Develop((Branch: develop)):::branch
-        Feature[Branch: feature/#Ticket]:::branch
-
-        %% 強制排版順序: Main 在最左邊
-        Main ~~~ Release ~~~ Feature ~~~ Develop
-    end
-
-    subgraph CI_CD [Jenkins System]
-        JobA{Job A: Dev Build}:::jenkins
-        JobB{Job B: UAT/Prod Build}:::jenkins
-        Artifact[成品連結 Download Link]:::action
-        JobB --> Artifact
+    subgraph DevOps [DevOps System]
+        direction LR
+        subgraph Git_Repo [GitLab Repository]
+            Main((Branch: main)):::branch
+            Release((Branch: release)):::branch
+            Develop((Branch: develop)):::branch
+            Feature[Branch: feature/#Ticket]:::branch
+    
+            %% 強制排版順序: Main 在最左邊
+            Main ~~~ Release ~~~ Feature ~~~ Develop
+        end
+    
+        subgraph CI_CD [Jenkins System]
+            JobA{Job A: Dev Build}:::jenkins
+            JobB{Job B: UAT/Prod Build}:::jenkins
+            Artifact[成品連結 Download Link]:::action
+            JobB --> Artifact
+        end
     end
 
     subgraph Operations [IT Operations]
@@ -141,8 +144,10 @@ graph TD
 
     %% Subgraph Styles
     %% Level 1: Lightest Blue
-    style Git_Repo fill:#E3F2FD,stroke:#1565C0,stroke-width:0px
-    style CI_CD fill:#E3F2FD,stroke:#1565C0,stroke-width:0px
+    style Git_Repo fill:#E3F2FD,stroke:#1565C0,stroke-width:2px
+    style CI_CD fill:#E3F2FD,stroke:#1565C0,stroke-width:2px
+    style DevOps fill:none,stroke:none,stroke-width:0px
+
     style Environments fill:#E3F2FD,stroke:#1565C0,stroke-width:0px
     style Operations fill:#FFF3E0,stroke:#E65100,stroke-width:0px
 
