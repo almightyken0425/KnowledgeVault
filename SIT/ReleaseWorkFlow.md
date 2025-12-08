@@ -128,19 +128,18 @@ graph TD
     JobA --->|4. 打包與部署| DevPkgA & DevPkgB
     
     Develop -->|5. 挑選 Commit/Merge| Release
-    Release -.->|6. RD 通知 IT| ITUser
+    Release -.->|6. RD 手動觸發| JobB
     
-    ITUser -->|7. 手動觸發建置| JobB
-    JobB -->|8. 產出連結| Artifact
+    JobB -->|7. 產出連結| Artifact
     
-    Artifact -.->|9. 下載並上傳至 Server| ITUser
-    ITUser -->|10. 執行腳本| DeployScript
+    Artifact -.->|8. 下載並上傳至 Server| ITUser
+    ITUser -->|9. 執行腳本| DeployScript
     
-    DeployScript -->|11. 分發與部署 UAT| UATPkgA & UATPkgB
+    DeployScript -->|10. 分發與部署 UAT| UATPkgA & UATPkgB
     
-    DeployScript -.->|12. 確認後部署 Prod| ProdPkgA & ProdPkgB
+    DeployScript -.->|11. 確認後部署 Prod| ProdPkgA & ProdPkgB
 
-    Release -->|13. 上線完成後 Sync| Main
+    Release -->|12. 上線完成後 Sync| Main
 
     %% 佈局調整用隱藏線 Layout Helpers
     %% 強制將 Operations 推到 DevOps 下方
@@ -228,9 +227,8 @@ graph TD
     - 選取 `develop` 分支中通過測試的 Commit。
     - 將這些 Commit 拉取,透過 Cherry-pick 或 Merge,至 `release` 分支。
 - **手動建置與部署:**
-    - RD 通知 IT 人員或相關負責人。
-    - **無**自動化通知機制。
-    - IT 人員手動觸發 **Jenkins Job B**。
+    - RD 確認 Release 分支內容無誤。
+    - **RD (研發人員)** 手動觸發 **Jenkins Job B**。
     - 指定 `release` 分支為來源。
     - Jenkins 執行打包作業,產出 **Artifact (程式碼包連結)**。
     - IT 人員下載 Artifact,上傳至 **UAT Server**。
