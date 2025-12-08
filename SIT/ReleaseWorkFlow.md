@@ -63,7 +63,7 @@ graph TD
         Feature[Branch: feature/#Ticket]:::branch
 
         %% 強制排版順序: Main 在最左邊
-        Main ~~~ Release ~~~ Develop ~~~ Feature
+        Main ~~~ Release ~~~ Feature ~~~ Develop
     end
 
     subgraph CI_CD [Jenkins System]
