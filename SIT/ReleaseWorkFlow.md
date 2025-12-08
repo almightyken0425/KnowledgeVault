@@ -71,7 +71,6 @@ graph TD
         JobA{Job A: Dev Build}:::jenkins
         JobB{Job B: UAT/Prod Build}:::jenkins
         Artifact[成品連結 Download Link]:::action
-        JobB --> Artifact
     end
 
     subgraph Operations [IT Operations]
