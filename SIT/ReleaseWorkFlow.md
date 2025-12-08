@@ -130,12 +130,12 @@ gitGraph
     commit id: "C0: 初始版本"
     commit id: "C1: 穩定版本"
     
-    branch develop
-    branch release
+    branch release order: 2
+    branch develop order: 4
     commit id: "C2: develop 基線"
     
     checkout release
-    branch feature-123
+    branch feature-123 order: 3
     commit id: "C3: 新功能開發" tag: "Step 1"
     commit id: "C4: 功能完成"
     
