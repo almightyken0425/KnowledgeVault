@@ -103,8 +103,8 @@ graph TD
     %% Level 1: Lightest Blue
     style Git_Repo fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,rx:10,ry:10
     style CI_CD fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,rx:10,ry:10
-    style Environments fill:#E3F2FD,stroke:#1565C0,stroke-width:0px,rx:10,ry:10
-    style Operations fill:#FFF3E0,stroke:#E65100,stroke-width:0px,rx:10,ry:10
+    style Environments fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,rx:10,ry:10
+    style Operations fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,rx:10,ry:10
 
     %% Level 2: Medium Blue
     style DevEnv fill:#BBDEFB,stroke:#1565C0,stroke-width:0px,rx:10,ry:10
