@@ -69,6 +69,13 @@ graph TD
     subgraph CI_CD [Jenkins System]
         JobA{Job A: Dev Build}:::jenkins
         JobB{Job B: UAT/Prod Build}:::jenkins
+        Artifact[成品連結 Download Link]:::action
+        JobB --> Artifact
+    end
+
+    subgraph Operations [IT Operations]
+        ITUser((IT 人員)):::jenkins
+        DeployScript[部署腳本 Script]:::action
     end
 
     subgraph Environments [Env & Services]
@@ -115,24 +122,29 @@ graph TD
     Feature -->|2. 開發完成 MR| Develop
 
     Develop -.->|3. 自動觸發 Webhook| JobA
-    JobA -->|4. 打包與上傳| DevPkgA & DevPkgB
-
+    JobA -->|4. 打包與部署| DevPkgA & DevPkgB
+    
     Develop -->|5. 挑選 Commit/Merge| Release
-    Release -.->|6. RD 手動觸發| JobB
-
-    JobB -->|7. 打包與上傳| UATPkgA & UATPkgB
+    Release -.->|6. RD 通知 IT| ITUser
     
-    JobB -->|8. UAT 通過後部署| ProdDeploy[使用同一包檔案部署]:::action
+    ITUser -->|7. 手動觸發建置| JobB
+    JobB -->|8. 產出連結| Artifact
     
-    ProdDeploy -->|9. 上線| ProdPkgA & ProdPkgB
+    Artifact -.->|9. 下載並上傳至 Server| ITUser
+    ITUser -->|10. 執行腳本| DeployScript
+    
+    DeployScript -->|11. 分發與部署 UAT| UATPkgA & UATPkgB
+    
+    DeployScript -.->|12. 確認後部署 Prod| ProdPkgA & ProdPkgB
 
-    Release -->|10. 上線完成後 Sync| Main
+    Release -->|13. 上線完成後 Sync| Main
 
     %% Subgraph Styles
     %% Level 1: Lightest Blue
     style Git_Repo fill:#E3F2FD,stroke:#1565C0,stroke-width:0px
     style CI_CD fill:#E3F2FD,stroke:#1565C0,stroke-width:0px
     style Environments fill:#E3F2FD,stroke:#1565C0,stroke-width:0px
+    style Operations fill:#FFF3E0,stroke:#E65100,stroke-width:0px
 
     %% Level 2: Medium Blue
     style DevEnv fill:#BBDEFB,stroke:#1565C0,stroke-width:0px
@@ -169,8 +181,9 @@ graph TD
 
 ## 自動化與工具
 
-- **Jenkins Job A:** 自動觸發,負責打包 Dev 環境。
-- **Jenkins Job B:** 手動觸發,負責打包 UAT 與 Production 環境。
+- **Jenkins Job A:** 自動觸發,負責打包並部署至 Dev 環境。
+- **Jenkins Job B:** 手動觸發,負責將程式碼打包成單一檔案,並產出下載連結。
+- **IT 操作:** IT 人員下載打包檔,上傳至伺服器,透過腳本進行分發與部署。
 
 ---
 
@@ -202,12 +215,16 @@ graph TD
     - RD 確認 Dev 環境功能正常。
     - 選取 `develop` 分支中通過測試的 Commit。
     - 將這些 Commit 拉取,透過 Cherry-pick 或 Merge,至 `release` 分支。
-- **手動建置:**
+- **手動建置與部署:**
     - RD 通知 IT 人員或相關負責人。
     - **無**自動化通知機制。
-    - 操作人員手動觸發 **Jenkins Job B**。
+    - IT 人員手動觸發 **Jenkins Job B**。
     - 指定 `release` 分支為來源。
-    - Jenkins 執行打包作業,將檔案部署至 **UAT Server**。
+    - Jenkins 執行打包作業,產出 **Artifact (程式碼包連結)**。
+    - IT 人員下載 Artifact,上傳至 **UAT Server**。
+    - IT 人員執行部署腳本 (Script)。
+    - 腳本將程式碼包分發至對應 Service 資料夾,依照程式碼 build server。
+    - 完成 **UAT 部署**。
 
 ### 階段 - 正式上線
 
@@ -215,9 +232,10 @@ graph TD
     - QA/PM 完成 UAT 環境測試。
     - 確認版本無誤,準備上線。
 - **正式部署:**
-    - 使用 **階段二** 中,由 `release` 分支產出的相同打包檔案。
+    - 使用 **階段二** 中,由同一份 Artifact。
+    - IT 人員將該 Artifact 上傳至 **Production Server**。
     - **注意:** 確保 UAT 與 Production 使用同一份 Build,避免重新編譯導致差異。
-    - 部署至 **Production Server**。
+    - IT 人員執行部署腳本,將程式碼分發並部署至 **Production Server**。
 
 ### 階段 - 同步歸檔
 
