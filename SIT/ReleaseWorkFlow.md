@@ -123,7 +123,7 @@ graph TD
     Develop -.->|3. 自動觸發 Webhook| JobA
     JobA --->|4. 打包與部署| DevPkgA & DevPkgB
     
-    Develop -->|5. 挑選 Commit/Merge| Release
+    Feature -->|5. Merge| Release
     Release -.->|6. RD 手動觸發| JobB
     
     JobB -->|7. 產出連結| Artifact
