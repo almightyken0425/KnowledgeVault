@@ -139,13 +139,6 @@ graph TD
 
     Release -->|12. 上線完成後 Sync| Main
 
-    %% 佈局調整用隱藏線 Layout Helpers
-    %% 強制將 Operations 推到 DevOps 下方
-    %% Feature ~~~ ITUser  <-- Removed, let natural flow handle vertical stack
-    JobB ~~~ ITUser
-    %% 強制 DevEnv 跟 UAT/Prod 同層
-    ITUser ~~~ DevPkgA
-
     %% Subgraph Styles
     %% Level 1: Lightest Blue
     style Git_Repo fill:#E3F2FD,stroke:#1565C0,stroke-width:2px
