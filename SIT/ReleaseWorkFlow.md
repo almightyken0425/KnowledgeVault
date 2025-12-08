@@ -101,23 +101,23 @@ graph TD
 
     %% Subgraph Styles
     %% Level 1: Lightest Blue
-    style Git_Repo fill:#E3F2FD,stroke:#1565C0,stroke-width:2px
-    style CI_CD fill:#E3F2FD,stroke:#1565C0,stroke-width:2px
-    style Environments fill:#E3F2FD,stroke:#1565C0,stroke-width:0px
-    style Operations fill:#FFF3E0,stroke:#E65100,stroke-width:0px
+    style Git_Repo fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,rx:10,ry:10
+    style CI_CD fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,rx:10,ry:10
+    style Environments fill:#E3F2FD,stroke:#1565C0,stroke-width:0px,rx:10,ry:10
+    style Operations fill:#FFF3E0,stroke:#E65100,stroke-width:0px,rx:10,ry:10
 
     %% Level 2: Medium Blue
-    style DevEnv fill:#BBDEFB,stroke:#1565C0,stroke-width:0px
-    style UATEnv fill:#BBDEFB,stroke:#1565C0,stroke-width:0px
-    style ProdEnv fill:#BBDEFB,stroke:#1565C0,stroke-width:0px
+    style DevEnv fill:#BBDEFB,stroke:#1565C0,stroke-width:0px,rx:10,ry:10
+    style UATEnv fill:#BBDEFB,stroke:#1565C0,stroke-width:0px,rx:10,ry:10
+    style ProdEnv fill:#BBDEFB,stroke:#1565C0,stroke-width:0px,rx:10,ry:10
 
     %% Level 3: Darkest Blue
-    style DevServiceA fill:#90CAF9,stroke:#1565C0,stroke-width:0px
-    style DevServiceB fill:#90CAF9,stroke:#1565C0,stroke-width:0px
-    style UATServiceA fill:#90CAF9,stroke:#1565C0,stroke-width:0px
-    style UATServiceB fill:#90CAF9,stroke:#1565C0,stroke-width:0px
-    style ProdServiceA fill:#90CAF9,stroke:#1565C0,stroke-width:0px
-    style ProdServiceB fill:#90CAF9,stroke:#1565C0,stroke-width:0px
+    style DevServiceA fill:#90CAF9,stroke:#1565C0,stroke-width:0px,rx:10,ry:10
+    style DevServiceB fill:#90CAF9,stroke:#1565C0,stroke-width:0px,rx:10,ry:10
+    style UATServiceA fill:#90CAF9,stroke:#1565C0,stroke-width:0px,rx:10,ry:10
+    style UATServiceB fill:#90CAF9,stroke:#1565C0,stroke-width:0px,rx:10,ry:10
+    style ProdServiceA fill:#90CAF9,stroke:#1565C0,stroke-width:0px,rx:10,ry:10
+    style ProdServiceB fill:#90CAF9,stroke:#1565C0,stroke-width:0px,rx:10,ry:10
 ```
 
 ### Git 分支與 Commit 時間序
