@@ -2,46 +2,6 @@
 
 ## 流程圖
 
-### Git 分支與 Commit 時間序
-
-以下圖表展示了從開發到上線的完整 Git 分支演進過程,包含 commit 時間序:
-
-```mermaid
-%%{init: {'theme':'base', 'gitGraph': {'showCommitLabel': true, 'mainBranchName': 'main'}}}%%
-gitGraph
-    commit id: "C0: 初始版本"
-    commit id: "C1: 穩定版本"
-    
-    branch develop
-    branch release
-    commit id: "C2: develop 基線"
-    
-    checkout release
-    branch feature-123
-    commit id: "C3: 新功能開發" tag: "Step 1"
-    commit id: "C4: 功能完成"
-    
-    checkout develop
-    merge feature-123 tag: "Step 2"
-    
-    checkout main
-    commit id: "C6: 緊急修復" tag: "Hotfix"
-    
-    checkout develop
-    commit id: "C5: 整合測試" tag: "Step 4"
-    commit id: "C7: 其他功能"
-    
-    checkout release
-    merge develop tag: "Step 5"
-    commit id: "準備 UAT"
-    commit id: "C8: 部署 UAT" tag: "Step 10"
-    commit id: "執行驗證"
-    commit id: "C9: 準備上線" tag: "Step 11"
-    
-    checkout main
-    merge release tag: "Step 13"
-```
-
 ### CI/CD 與環境部署流程
 
 以下圖表展示 Jenkins 自動化建置與部署流程:
@@ -158,6 +118,46 @@ graph TD
     style UATServiceB fill:#90CAF9,stroke:#1565C0,stroke-width:0px
     style ProdServiceA fill:#90CAF9,stroke:#1565C0,stroke-width:0px
     style ProdServiceB fill:#90CAF9,stroke:#1565C0,stroke-width:0px
+```
+
+### Git 分支與 Commit 時間序
+
+以下圖表展示了從開發到上線的完整 Git 分支演進過程,包含 commit 時間序:
+
+```mermaid
+%%{init: {'theme':'base', 'gitGraph': {'showCommitLabel': true, 'mainBranchName': 'main'}}}%%
+gitGraph
+    commit id: "C0: 初始版本"
+    commit id: "C1: 穩定版本"
+    
+    branch develop
+    branch release
+    commit id: "C2: develop 基線"
+    
+    checkout release
+    branch feature-123
+    commit id: "C3: 新功能開發" tag: "Step 1"
+    commit id: "C4: 功能完成"
+    
+    checkout develop
+    merge feature-123 tag: "Step 2"
+    
+    checkout main
+    commit id: "C6: 緊急修復" tag: "Hotfix"
+    
+    checkout develop
+    commit id: "C5: 整合測試" tag: "Step 4"
+    commit id: "C7: 其他功能"
+    
+    checkout release
+    merge develop tag: "Step 5"
+    commit id: "準備 UAT"
+    commit id: "C8: 部署 UAT" tag: "Step 10"
+    commit id: "執行驗證"
+    commit id: "C9: 準備上線" tag: "Step 11"
+    
+    checkout main
+    merge release tag: "Step 13"
 ```
 
 ## 核心架構與定義
