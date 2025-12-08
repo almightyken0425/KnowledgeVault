@@ -56,14 +56,12 @@ graph TD
     classDef deployAction fill:#FFFFFF,stroke:#FFC600,stroke-width:2px;
 
     %% 節點定義
-    %% direction LR  <-- Removed to default to TB (Top-Bottom) for vertical stacking
     subgraph Git_Repo [GitLab Repository]
         Main((Branch: main)):::branch
         Release((Branch: release)):::branch
         Develop((Branch: develop)):::branch
         Feature[Branch: feature/#Ticket]:::branch
 
-        %% 強制排版順序: Main 在最左邊
         Main ~~~ Release ~~~ Feature ~~~ Develop
     end
 
@@ -138,12 +136,22 @@ graph TD
 
     Release -->|12. 上線完成後 Sync| Main
 
+    %% 佈局調整用隱藏線 Layout Helpers
+    %% 強制將 Jenkins (CI_CD) 推到 Git (Git_Repo) 下方
+    Release ~~~ JobB
+    Develop ~~~ JobA
+    
+    %% 強制將 IT Operations (ITUser) 推到 Jenkins 下方
+    JobB ~~~ ITUser
+    Artifact ~~~ ITUser
+    
+    %% 強制 Environments 位於最下方
+    ITUser ~~~ DevPkgA
+
     %% Subgraph Styles
     %% Level 1: Lightest Blue
     style Git_Repo fill:#E3F2FD,stroke:#1565C0,stroke-width:2px
     style CI_CD fill:#E3F2FD,stroke:#1565C0,stroke-width:2px
-    style DevOps fill:none,stroke:none,stroke-width:0px
-
     style Environments fill:#E3F2FD,stroke:#1565C0,stroke-width:0px
     style Operations fill:#FFF3E0,stroke:#E65100,stroke-width:0px
 
