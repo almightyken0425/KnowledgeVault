@@ -32,7 +32,7 @@ gitGraph
     commit id: "C7: 其他功能"
     
     checkout release
-    commit id: "C5': Cherry-pick/Merge" tag: "Step 5"
+    merge develop tag: "Step 5"
     commit id: "準備 UAT"
     commit id: "C8: 部署 UAT" tag: "Step 10"
     commit id: "執行驗證"
