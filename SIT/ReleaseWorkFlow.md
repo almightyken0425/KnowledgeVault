@@ -13,8 +13,10 @@ gitGraph
     commit id: "C1: 穩定版本"
     
     branch develop
+    branch release
     commit id: "C2: develop 基線"
     
+    checkout release
     branch feature-123
     commit id: "C3: 新功能開發"
     commit id: "C4: 功能完成"
@@ -29,7 +31,7 @@ gitGraph
     commit id: "C5: 整合測試" tag: "Step 4"
     commit id: "C7: 其他功能"
     
-    branch release
+    checkout release
     commit id: "C5': Cherry-pick" tag: "Step 5"
     commit id: "準備 UAT"
     commit id: "C8: 部署 UAT" tag: "Step 7"
@@ -109,7 +111,7 @@ graph TD
     end
 
     %% 流程線
-    Develop -->|1. 切出分支| Feature
+    Release -->|1. 切出分支| Feature
     Feature -->|2. 開發完成 MR| Develop
 
     Develop -.->|3. 自動觸發 Webhook| JobA
@@ -161,7 +163,7 @@ graph TD
 - **develop:** 開發主軸,所有新功能的匯集地。
 - **release:** 預備發布區,用於 UAT 驗收與生產環境打包。
 - **main:** 穩定主軸,僅存放已上線的穩定版本。
-- **feature/#工單號:** 功能分支,源自 develop。
+- **feature/#工單號:** 功能分支,源自 release。
 
 ---
 
@@ -178,7 +180,7 @@ graph TD
 
 - **起點:**
     - RD 接到新工單。
-    - 從 `develop` 分支切出新分支,命名為 `feature/#工單號`。
+    - 從 `release` 分支切出新分支,命名為 `feature/#工單號`。
 - **開發過程:**
     - RD 在 `feature` 分支進行程式碼撰寫。
     - 針對專案資料夾下的特定 Service 進行修改。
