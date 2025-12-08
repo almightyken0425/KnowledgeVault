@@ -72,7 +72,7 @@ graph TD
     end
 
     subgraph Operations [IT Operations]
-        ITUser((IT 人員)):::jenkins
+        ManualUpload[下載並上傳至 Server]:::action
         DeployScript[部署腳本 Script]:::action
     end
 
@@ -127,8 +127,8 @@ graph TD
     
     JobB -->|7. 產出連結| Artifact
     
-    Artifact -.->|8. 下載並上傳至 Server| ITUser
-    ITUser -->|9. 執行腳本| DeployScript
+    Artifact -->|8. 取得檔案| ManualUpload
+    ManualUpload -->|9. 執行腳本| DeployScript
     
     DeployScript -->|10. 分發與部署 UAT| UATPkgA & UATPkgB
     
@@ -141,12 +141,12 @@ graph TD
     Release ~~~ JobB
     Develop ~~~ JobA
     
-    %% 強制將 IT Operations (ITUser) 推到 Jenkins 下方
-    JobB ~~~ ITUser
-    Artifact ~~~ ITUser
+    %% 強制將 IT Operations (ManualUpload) 推到 Jenkins 下方
+    JobB ~~~ ManualUpload
+    Artifact ~~~ ManualUpload
     
     %% 強制 Environments 位於最下方
-    ITUser ~~~ DevPkgA
+    ManualUpload ~~~ DevPkgA
 
     %% Subgraph Styles
     %% Level 1: Lightest Blue
