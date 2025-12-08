@@ -125,7 +125,7 @@ graph TD
     Feature -->|2. 開發完成 MR| Develop
 
     Develop -.->|3. 自動觸發 Webhook| JobA
-    JobA -->|4. 打包與部署| DevPkgA & DevPkgB
+    JobA --->|4. 打包與部署| DevPkgA & DevPkgB
     
     Develop -->|5. 挑選 Commit/Merge| Release
     Release -.->|6. RD 通知 IT| ITUser
@@ -141,6 +141,13 @@ graph TD
     DeployScript -.->|12. 確認後部署 Prod| ProdPkgA & ProdPkgB
 
     Release -->|13. 上線完成後 Sync| Main
+
+    %% 佈局調整用隱藏線 Layout Helpers
+    %% 強制將 Operations 推到 DevOps 下方
+    Feature ~~~ ITUser
+    JobB ~~~ ITUser
+    %% 強制 DevEnv 跟 UAT/Prod 同層 (因為 JobA 直連 Dev 可能會把 Dev 拉高)
+    ITUser ~~~ DevPkgA
 
     %% Subgraph Styles
     %% Level 1: Lightest Blue
