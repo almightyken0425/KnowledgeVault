@@ -57,7 +57,7 @@ graph TD
 
     %% 節點定義
     subgraph DevOps [DevOps System]
-        direction LR
+        %% direction LR  <-- Removed to default to TB (Top-Bottom) for vertical stacking
         subgraph Git_Repo [GitLab Repository]
             Main((Branch: main)):::branch
             Release((Branch: release)):::branch
@@ -143,9 +143,9 @@ graph TD
 
     %% 佈局調整用隱藏線 Layout Helpers
     %% 強制將 Operations 推到 DevOps 下方
-    Feature ~~~ ITUser
+    %% Feature ~~~ ITUser  <-- Removed, let natural flow handle vertical stack
     JobB ~~~ ITUser
-    %% 強制 DevEnv 跟 UAT/Prod 同層 (因為 JobA 直連 Dev 可能會把 Dev 拉高)
+    %% 強制 DevEnv 跟 UAT/Prod 同層
     ITUser ~~~ DevPkgA
 
     %% Subgraph Styles
