@@ -18,7 +18,7 @@ gitGraph
     
     checkout release
     branch feature-123
-    commit id: "C3: 新功能開發"
+    commit id: "C3: 新功能開發" tag: "Step 1"
     commit id: "C4: 功能完成"
     
     checkout develop
@@ -32,14 +32,14 @@ gitGraph
     commit id: "C7: 其他功能"
     
     checkout release
-    commit id: "C5': Cherry-pick" tag: "Step 5"
+    commit id: "C5': Cherry-pick/Merge" tag: "Step 5"
     commit id: "準備 UAT"
-    commit id: "C8: 部署 UAT" tag: "Step 7"
+    commit id: "C8: 部署 UAT" tag: "Step 10"
     commit id: "執行驗證"
-    commit id: "C9: 準備上線" tag: "Step 9"
+    commit id: "C9: 準備上線" tag: "Step 11"
     
     checkout main
-    merge release tag: "Step 10"
+    merge release tag: "Step 13"
 ```
 
 ### CI/CD 與環境部署流程
