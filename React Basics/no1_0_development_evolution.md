@@ -169,6 +169,7 @@ React Native 引入了網頁開發的熱更新體驗。
   - **Delta Bundle:** Metro 僅打包異動部分的程式碼 Delta。
   - **Push:** 透過 WebSocket 將 Delta 傳送給手機。
   - **HMR:** 手機端的 HMR Client 接收後，僅替換該模組，並保留 Component State。
+  - **Render:** React 元件重新計算 VDOM，透過 Bridge 發送指令給原生層，即時更新 UIKit / Android View。
 - **特點:** 畫面不需要重啟，狀態保留，開發體驗極快。
 
 #### 流程圖 Flowchart
@@ -177,7 +178,9 @@ React Native 引入了網頁開發的熱更新體驗。
 graph LR
     File[Modify File] -->|\Delta Change| Metro[Metro Bundler]
     Metro -->|WebSocket| App[Debug App]
-    App -->|HMR Update| Screen[Update View<br/>Keep State]
+    App -->|HMR Swap| JS[JS Engine]
+    JS -->|Bridge JSON| Native[Native UI]
+    Native -->|Update| Screen[Real Screen<br/>UIKit/Android]
 ```
 
 ### 打包建置 Build
