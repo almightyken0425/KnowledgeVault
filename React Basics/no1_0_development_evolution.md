@@ -34,12 +34,31 @@
 
 在這個階段，運行等同於完整編譯後的執行。
 
-- **情境:** 工程師在 Xcode 修改了一行 Swift 程式碼，按下了 Run。
+#### 核心角色 Roles
+
+- **開發者:** 觸發編譯與運行的發起者。
+- **IDE (Xcode/Android Studio):** 負責協調編譯器、連結器，並將 App 安裝至目標裝置。
+- **模擬器/實機 (Simulator/Device):** 接收並執行完整安裝包的目標環境。
+
+#### 機制 Mechanism - 完整重編譯 Full Recompilation
+
+- **情境:** 工程師修改了一行程式碼。
 - **流程:**
-  - **重新編譯:** 電腦必須重新編譯修改過的檔案，並連結所有資源。
-  - **重新安裝:** 將新的 App 安裝到模擬器或手機上。
-  - **重啟 App:** App 必須完整重啟，狀態歸零。
+  - **Compile:** 編譯器重新編譯修改的檔案。
+  - **Link:** 連結器重新連結所有模組。
+  - **Install:** IDE 解除安裝舊版 App，安裝新版 App。
+  - **Launch:** 作業系統重新啟動 App，所有記憶體狀態歸零。
 - **特點:** 回饋循環 Feedback Loop 較長，修改介面後無法即時看到結果。
+
+#### 流程圖 Flowchart
+
+```mermaid
+graph LR
+    Dev[Developer<br/>Modify Code] -->|Click Run| IDE
+    IDE -->|Compile & Link| App_Binary[App Binary]
+    App_Binary -->|Re-install| Device[Simulator/Device]
+    Device -->|Restart App| Launch[App Running<br/>State Reset]
+```
 
 ### 打包建置 Build
 
@@ -89,11 +108,31 @@ graph LR
 
 ### 正式運行 Production Runtime
 
-- **情境:** 使用者從 App Store 下載 App 並開啟。
-- **機制:**
-  - **iOS:** 作業系統直接執行二進位機器碼，直接呼叫 UIKit / SwiftUI 繪製畫面。
-  - **Android:** ART Android Runtime 虛擬機執行 Bytecode，呼叫 Android SDK 繪製畫面。
-- **優勢:** 沒有中間層，效能極致，完全取用系統能力。
+#### 核心角色 Roles
+
+- **作業系統 (OS Loader):** 負責載入 App 到記憶體。
+- **Runtime Library (UIKit/Android SDK):** 系統內建的動態連結函式庫，負責繪圖與硬體操作。
+- **CPU:** 直接執行 App 的機器碼指令。
+
+#### 機制 Mechanism - 直接執行 Direct Execution
+
+- **情境:** 使用者點擊 App Icon。
+- **流程:**
+  - **Load:** OS 將 App 的執行檔 Mach-O / ELF 載入記憶體。
+  - **Assets:** 載入必要的圖片與資源。
+  - **Execute:** CPU 開始執行 Entry Point 的指令。
+  - **System Call:** 程式碼直接呼叫系統 API 繪製畫面。
+
+#### 流程圖 Flowchart
+
+```mermaid
+graph TD
+    Icon[User Tap Icon] --> OS[OS Loader]
+    OS -->|Load Binary| Mem[Memory]
+    Mem -->|CPU Execute| Code[Native Code]
+    Code -->|Direct Call| SysAPI[System API<br/>UIKit/Android SDK]
+    SysAPI -->|Draw| Screen
+```
 
 ---
 
@@ -116,12 +155,30 @@ React Native 引入了網頁開發的模式來開發 App。
 
 React Native 引入了網頁開發的熱更新體驗。
 
-- **情境:** 工程師在 VS Code 修改了 JS 檔案，按下存檔。
-- **機制 Metro Bundler:**
-  - 電腦端啟動一個 **Metro Server**，負責即時打包 JS 程式碼。
-  - 手機端運行一個 **Debug App**，它連線到 Metro Server。
-  - 當檔案變更，Metro 只傳送異動的 JS 片段 HMR，手機端 **JS 引擎** 接收後即時更新邏輯。
-- **特點:** 畫面不需要重啟，狀態保留 Fast Refresh，開發體驗極快。
+#### 核心角色 Roles
+
+- **Metro Bundler:** 運作於電腦上的打包伺服器，負責即時將 JS 編譯成 Bundle。
+- **Debug App:** 運作於手機上的原生殼層，內含 JS 引擎與 WebSocket Client。
+- **HMR Client:** 負責接收異動程式碼並動態替換模組的腳本。
+
+#### 機制 Mechanism - 熱更新 Fast Refresh
+
+- **情境:** 工程師修改了 JS 檔案。
+- **流程:**
+  - **Watch:** Metro 監聽到檔案異動。
+  - **Delta Bundle:** Metro 僅打包異動部分的程式碼 Delta。
+  - **Push:** 透過 WebSocket 將 Delta 傳送給手機。
+  - **HMR:** 手機端的 HMR Client 接收後，僅替換該模組，並保留 Component State。
+- **特點:** 畫面不需要重啟，狀態保留，開發體驗極快。
+
+#### 流程圖 Flowchart
+
+```mermaid
+graph LR
+    File[Modify File] -->|\Delta Change| Metro[Metro Bundler]
+    Metro -->|WebSocket| App[Debug App]
+    App -->|HMR Update| Screen[Update View<br/>Keep State]
+```
 
 ### 打包建置 Build
 
@@ -165,12 +222,32 @@ graph TD
 
 ### 正式運行 Production Runtime
 
+#### 核心角色 Roles
+
+- **Native Thread (Main):** 負責 UI 渲染與使用者互動。
+- **JS Thread:** 負責執行業務邏輯、API 呼叫、狀態管理。
+- **Bridge / JSI:** 負責兩個 Thread 之間的序列化溝通。
+
+#### 機制 Mechanism - 雙軌非同步 Dual Thread Async
+
 - **情境:** 使用者開啟 App。
-- **機制 雙軌制:**
-  - **原生殼層啟動:** 初始化 App，啟動內建的 JS 引擎 Hermes / JSC。
-  - **載入 Bundle:** JS 引擎讀取內嵌的 `main.jsbundle`。
-  - **Bridge 溝通:** JS 程式碼透過 Bridge 發送指令 JSON，指揮原生層繪製 UI UIView / Android View。
-- **差異:** 相比開發 runtime，這裡沒有 Metro Server，沒有熱更新，執行的是優化過的離線 JS 檔。
+- **流程:**
+  - **Init:** Native Thread 啟動，初始化 Native Modules。
+  - **Load Bundle:** 啟動 JS Thread，載入並執行 `main.jsbundle`。
+  - **Render Command:** JS Thread 計算出佈局，透過 Bridge 傳送 JSON 指令給 Native Thread。
+  - **Draw:** Native Thread 收到指令，呼叫系統 API 繪製 UI。
+
+#### 流程圖 Flowchart
+
+```mermaid
+graph TD
+    subgraph App_Process [App Process]
+        NT[Native Thread] <-->|Bridge / JSI| JT[JS Thread]
+        JT -->|Load| Bundle[JS Bundle]
+    end
+    NT -->|Draw| Screen
+    User[User Input] -->|Touch Event| NT
+```
 
 ---
 
@@ -193,22 +270,31 @@ Expo 將開發體驗提升到了 **託管模式 Managed Workflow** 的層次。
 
 ### 開發運行 Development Runtime - Expo Go
 
-- **情境:** 開發者完全不需要安裝 Xcode / Android Studio。
-- **機制:**
-  - 手機安裝官方提供的 **Expo Go** App。這是一個萬能鑰匙，它已經預先安裝好了所有常用的 Native Modules。
-  - 電腦端只需啟動 JS Server Metro。
-  - Expo Go 掃描 QR Code 後，直接從電腦串流 JS Bundle 執行。
+#### 核心角色 Roles
+
+- **Expo Go App:** 官方預先編譯好的通用原生殼層，內含大量常見的 SDK 模組。
+- **Expo CLI / Metro:** 負責啟動開發伺服器與 Tunnel 服務。
+- **Manifest Service:** 負責告訴 Expo Go 要去哪裡下載 JS Bundle。
+
+#### 機制 Mechanism - 動態串流 Dynamic Streaming
+
+- **情境:** 開發者啟動專案 `npx expo start`。
+- **流程:**
+  - **Scan:** 手機開啟 Expo Go，掃描電腦上的 QR Code。
+  - **Connect:** Expo Go 取得 Manifest，得知電腦的 IP 位置 或是透過 Tunnel URL。
+  - **Stream:** 手機向電腦下載 JS Bundle 執行，而非重新安裝 App。
+  - **Update:** 修改程式碼時，一樣透過 HMR 進行熱更新。
 - **特點:** 就像寫網頁一樣，寫一行程式，手機立刻透過網路更新，完全跳過了原生編譯的痛苦。
 
-### 打包建置 Build - EAS Build
+#### 流程圖 Flowchart
 
-Expo 將最讓開發者頭痛的本機環境建置搬到了雲端。
+```mermaid
+graph LR
+    PC[Computer<br/>Metro Server] -->|JS Bundle| Network
+    Network -->|Download| ExpoGo[Expo Go App]
+    ExpoGo -->|Run| JS_Engine
+```
 
-- **流程 Cloud Build:**
-  - 開發者執行 `eas build`。
-  - 程式碼上傳到 Expo 的雲端伺服器 EAS。
-  - **EAS 伺服器 Linux / macOS:** 在雲端幫你執行完整的 `npm install` -> `Prebuild` 生成原生專案 -> `Xcode / Gradle Build`。
-  - 最後直接回傳打包好的 `.ipa` / `.apk` 下載連結。
 ### 打包建置 Build - EAS Build
 
 Expo 將最讓開發者頭痛的本機環境建置搬到了雲端，並引入了 **Prebuild** 預建置 的概念。
@@ -253,6 +339,34 @@ Expo 的最終產物也是標準的 IPA / APK，但其內涵與 Expo Go 不同�
   - 體積大幅縮小，啟動速度更快。
 - **OTA 機制:**
   - 內建 `expo-updates` 模組，讓 App 具備在啟動時檢查並下載最新 JS Bundle 的能力，實現空中更新。
+
+### 正式運行 Production Runtime - Standalone App
+
+#### 核心角色 Roles
+
+- **Slim Binary:** 精簡化的原生執行檔，僅包含必要的 Native Modules。
+- **expo-updates:** 負責檢查、下載、快取新的 JS Bundle 的管理模組。
+- **EAS Update Server:** 存放新的 JS Bundle 版本的雲端主機。
+
+#### 機制 Mechanism - 空中更新 Over-the-Air Update
+
+- **情境:** 開發者發布了緊急 JS 修正 Bug Fix。
+- **流程:**
+  - **Check:** App 啟動時 預設行為，立刻詢問 EAS Server 是否有新版本。
+  - **Download:** 若有新版，背景下載新的 JS Bundle 與資源。
+  - **Swap:** 下載完成後，下次啟動時直接替換使用新的 Bundle。
+  - **Launch:** 這個過程完全不需要經過 App Store / Google Play 的審核。
+
+#### 流程圖 Flowchart
+
+```mermaid
+graph TD
+    Launcher[App Launch] -->|Check Update| UpdateSDK[expo-updates]
+    UpdateSDK -->|Query| Cloud[EAS Update Server]
+    Cloud -->|New Bundle| UpdateSDK
+    UpdateSDK -->|Replace Cache| Storage
+    Storage -->|Load JS| App_Run
+```
 
 ---
 
