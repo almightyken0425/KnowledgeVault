@@ -14,11 +14,15 @@
 
 - **iOS 陣營:**
   - **語言:** Swift 或 Objective-C
+  - **核心環境:** 由 Xcode 處理
+  - **套件管理:** CocoaPods / Swift Package Manager
   - **IDE:** Xcode
   - **作業系統:** 必須是 macOS
   - **建置工具:** Xcode Build System
 - **Android 陣營:**
   - **語言:** Kotlin 或 Java
+  - **核心環境:** JDK Java Development Kit
+  - **套件管理:** Gradle
   - **IDE:** Android Studio
   - **作業系統:** Windows, macOS 或 Linux
   - **建置工具:** Gradle
