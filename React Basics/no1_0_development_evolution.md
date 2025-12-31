@@ -4,7 +4,7 @@
 
 ---
 
-## 第一階段 原生開發 Native Development
+## 原生開發 Native Development
 
 故事的起點，是兩個平行的宇宙。iOS 與 Android 各自擁有獨立的生態系，互不相通。
 
@@ -64,7 +64,7 @@
 
 ---
 
-## 第二階段 React Native 的誕生
+## React Native 開發
 
 為了打破兩個平行宇宙的高牆，React Native 出現了。它的願景是 **Learn Once, Write Anywhere**。
 
@@ -107,7 +107,7 @@ React Native 引入了網頁開發的模式來開發 App。
 
 ---
 
-## 第三階段 Expo 的整合
+## Expo 整合
 
 React Native 雖然解決了 **程式碼共用** 的問題，但沒有解決 **工具鏈複雜** 的問題。開發者仍然需要安裝 Xcode 和 Android Studio 來處理原生的編譯設定。Expo 則是為了徹底解決這個問題而生。
 
