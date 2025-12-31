@@ -37,8 +37,8 @@
 #### 核心角色 Roles
 
 - **開發者:** 觸發編譯與運行的發起者。
-- **IDE (Xcode/Android Studio):** 負責協調編譯器、連結器，並將 App 安裝至目標裝置。
-- **模擬器/實機 (Simulator/Device):** 接收並執行完整安裝包的目標環境。
+- **IDE Xcode/Android Studio:** 負責協調編譯器、連結器，並將 App 安裝至目標裝置。
+- **模擬器/實機 Simulator/Device:** 接收並執行完整安裝包的目標環境。
 
 #### 機制 Mechanism - 完整重編譯 Full Recompilation
 
@@ -90,7 +90,7 @@ graph LR
 
 #### 產物結構 Artifacts
 
-- **iOS - IPA (.ipa):**
+- **iOS - IPA .ipa:**
   - 本質是一個 zip 壓縮檔。
   - **Payload/**: 核心資料夾。
     - **MyApp.app**: 應用程式本體。
@@ -98,7 +98,7 @@ graph LR
       - **Assets.car:** 圖片與圖示資源。
       - **Info.plist:** App 的身分證與設定檔。
       - **_CodeSignature:** 數位簽章，確保 App 未被竄改。
-- **Android - APK (.apk):**
+- **Android - APK .apk:**
   - 本質也是一個 zip 壓縮檔。
   - **classes.dex:** 編譯後的 Bytecode，由 ART 虛擬機執行。
   - **AndroidManifest.xml:** App 的身分證與權限宣告。
@@ -110,8 +110,8 @@ graph LR
 
 #### 核心角色 Roles
 
-- **作業系統 (OS Loader):** 負責載入 App 到記憶體。
-- **Runtime Library (UIKit/Android SDK):** 系統內建的動態連結函式庫，負責繪圖與硬體操作。
+- **作業系統 OS Loader:** 負責載入 App 到記憶體。
+- **Runtime Library UIKit/Android SDK:** 系統內建的動態連結函式庫，負責繪圖與硬體操作。
 - **CPU:** 直接執行 App 的機器碼指令。
 
 #### 機制 Mechanism - 直接執行 Direct Execution
@@ -307,9 +307,9 @@ Expo 將最讓開發者頭痛的本機環境建置搬到了雲端，並引入了
 - **EAS CLI:**
   - **職責:** 指揮官。
   - **行為:** 讀取 `eas.json` 設定，將原始碼打包上傳至雲端，並監控建置進度。
-- **Prebuild (CNG):**
-  - **職責:** 建築師 (Continuous Native Generation)。
-  - **行為:** 在雲端，根據 `app.json` 的設定，暫時性地「生成」出 iOS (`ios/`) 與 Android (`android/`) 的原生專案資料夾。這意味著你永遠不需要將這些龐大的原生檔案加入 git 版控。
+- **Prebuild CNG:**
+  - **職責:** 建築師 Continuous Native Generation。
+  - **行為:** 在雲端，根據 `app.json` 的設定，暫時性地生成出 iOS `ios/` 與 Android `android/` 的原生專案資料夾。這意味著你永遠不需要將這些龐大的原生檔案加入 git 版控。
 - **EAS Build Worker:**
   - **職責:** 工人。
   - **行為:** 在雲端的 Mac / Linux 機器上，執行標準的 Xcode / Gradle 建置指令，產出最終安裝檔。
