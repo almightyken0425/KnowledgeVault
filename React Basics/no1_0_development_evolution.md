@@ -43,9 +43,49 @@
 
 ### 打包建置 Build
 
-- **iOS:** 使用 `Xcode Build System` 將 Swift / Objective-C 編譯成機器碼 Machine Code，打包為 `.ipa`。
-- **Android:** 使用 `Gradle` 與 JVM 將 Kotlin / Java 編譯成 Bytecode，打包為 `.apk` / `.aab`。
-- **痛點:** 必須在各自的 OS macOS / Windows 上，使用各自的工具鏈進行建置。
+在這個階段，原始碼會被轉換成一個可安裝的壓縮檔。
+
+#### 核心角色 Roles
+
+- **編譯器 Compiler:**
+  - **職責:** 翻譯官。
+  - **行為:** 將人類寫的高階語言 Swift / Kotlin 翻譯成機器能執行的低階語言 機器碼 / Bytecode。
+- **連結器 Linker:**
+  - **職責:** 組裝工。
+  - **行為:** 將編譯好的多個檔案，以及專案依賴的第三方函式庫，全部串接再一起，形成一個完整的執行檔。
+- **打包工具 Packager:**
+  - **職責:** 裝箱員。
+  - **行為:** 將執行檔、圖片、設定檔等所有資源，封裝成一個符合作業系統規範的安裝包 ipa / apk。
+
+#### 流程圖 Flowchart
+
+```mermaid
+graph LR
+    Source[Source Code<br/>Swift/Kotlin] --> Compiler
+    Compiler -->|Machine Code/Bytecode| Linker
+    Lib[Libraries] --> Linker
+    Linker -->|Executable| Packager
+    Res[Resources] --> Packager
+    Packager --> Artifact[Installer<br/>IPA/APK]
+```
+
+#### 產物結構 Artifacts
+
+- **iOS - IPA (.ipa):**
+  - 本質是一個 zip 壓縮檔。
+  - **Payload/**: 核心資料夾。
+    - **MyApp.app**: 應用程式本體。
+      - **Mach-O:** 編譯後的機器碼執行檔。
+      - **Assets.car:** 圖片與圖示資源。
+      - **Info.plist:** App 的身分證與設定檔。
+      - **_CodeSignature:** 數位簽章，確保 App 未被竄改。
+- **Android - APK (.apk):**
+  - 本質也是一個 zip 壓縮檔。
+  - **classes.dex:** 編譯後的 Bytecode，由 ART 虛擬機執行。
+  - **AndroidManifest.xml:** App 的身分證與權限宣告。
+  - **res/**: 圖片與排版資源。
+  - **lib/**: 針對不同 CPU 架構 arm64 / x86 的原生函式庫。
+  - **META-INF/:** 數位簽章資訊。
 
 ### 正式運行 Production Runtime
 
@@ -85,11 +125,43 @@ React Native 引入了網頁開發的熱更新體驗。
 
 ### 打包建置 Build
 
-React Native 的 Build 變成了混合式的過程。
+React Native 的 Build 變成了混合式的過程，產物結構也發生了變化。
 
-- **原生部分:** 依然需要 Xcode / Gradle 編譯原生的 Java / Swift 程式碼。包含了 RN 的核心與第三方 Native Modules。
-- **JS 部分:** 使用 Metro 將所有 JS 程式碼與資源，打包成一個單一的 `main.jsbundle` 檔案。
-- **結果:** 最終的 `.ipa` / `.apk` 內含了一個原生殼層 Shell + 一個 JS Bundle 檔案。
+#### 混合式結構 Hybrid Structure
+
+最終的安裝包 ipa / apk 不再只是純粹的原生程式，而是包裹了 JS 引擎與 JS 程式碼的容器。
+
+- **原生部分 Native Shell:**
+  - **行為:** 依然由 Xcode / Gradle 編譯。
+  - **內容:** 包含了 App 的啟動程式、React Native 的核心 C++ / Java / Obj-C 程式碼，以及少數的第三方原生套件。
+- **JS 部分 JavaScript Bundle:**
+  - **行為:** 由 Metro Bundler 打包。
+  - **內容:** 所有的業務邏輯 JS 程式碼、React 框架程式碼，被合併成單一檔案。
+
+#### 流程圖 Flowchart
+
+```mermaid
+graph TD
+    subgraph Native_Side [Native Side]
+        NS[Native Source<br/>Java/Obj-C] --> N_Comp[Compiler]
+    end
+    subgraph JS_Side [JS Side]
+        JS[JS Source<br/>TS/JS] --> Metro[Metro Bundler]
+        Metro -->|bundle| JS_Bundle[main.jsbundle]
+    end
+    N_Comp --> Hybrid_Packager[Hybrid Packager]
+    JS_Bundle --> Hybrid_Packager
+    Hybrid_Packager --> Hybrid_Artifact[Hybrid App<br/>Native Shell + JS Bundle]
+```
+
+#### 產物結構變化 Artifacts Change
+
+- **iOS IPA 內新增:**
+  - `main.jsbundle`: 這是 App 的靈魂，即編譯後的 JS 程式碼。
+  - `assets/`: JS 程式碼中引用的圖片等資源。
+- **Android APK 內新增:**
+  - `assets/index.android.bundle`: 同樣是 JS 程式碼。
+  - `files/` 或 `drawable/`: JS 依賴的靜態資源。
 
 ### 正式運行 Production Runtime
 
@@ -137,15 +209,50 @@ Expo 將最讓開發者頭痛的本機環境建置搬到了雲端。
   - 程式碼上傳到 Expo 的雲端伺服器 EAS。
   - **EAS 伺服器 Linux / macOS:** 在雲端幫你執行完整的 `npm install` -> `Prebuild` 生成原生專案 -> `Xcode / Gradle Build`。
   - 最後直接回傳打包好的 `.ipa` / `.apk` 下載連結。
-- **核心價值:** Windows 使用者也能開發 iOS App，完全不需要買 Mac。
+### 打包建置 Build - EAS Build
 
-### 正式運行 Production Runtime - Standalone App
+Expo 將最讓開發者頭痛的本機環境建置搬到了雲端，並引入了 **Prebuild** 預建置 的概念。
 
-- **情境:** 正式發布的 App。
-- **與 Expo Go 的差異:** 
-  - 這是一個 **Standalone 獨立** 的 App，不依賴 Expo Go。
-  - 它只包含你專案有用到的 Native Modules，因此體積更小。
-  - **Expo Updates OTA:** 甚至支援空中更新。如果只改了 JS 程式碼，可以透過 EAS Update 讓使用者的 App 在重啟時自動更新，無需經過 App Store 審核 符合規範下。
+#### 核心角色 Roles
+
+- **EAS CLI:**
+  - **職責:** 指揮官。
+  - **行為:** 讀取 `eas.json` 設定，將原始碼打包上傳至雲端，並監控建置進度。
+- **Prebuild (CNG):**
+  - **職責:** 建築師 (Continuous Native Generation)。
+  - **行為:** 在雲端，根據 `app.json` 的設定，暫時性地「生成」出 iOS (`ios/`) 與 Android (`android/`) 的原生專案資料夾。這意味著你永遠不需要將這些龐大的原生檔案加入 git 版控。
+- **EAS Build Worker:**
+  - **職責:** 工人。
+  - **行為:** 在雲端的 Mac / Linux 機器上，執行標準的 Xcode / Gradle 建置指令，產出最終安裝檔。
+
+#### 流程圖 Flowchart
+
+```mermaid
+graph TD
+    Client[Dev Computer<br/>Source Code] -->|EAS CLI| Cloud[Expo Cloud EAS]
+    
+    subgraph Cloud_Prebuild [Cloud: Prebuild CNG]
+        Config[app.json] --> CNG[CNG Engine]
+        CNG -->|Generate| Native_Proj[Native Project<br/>ios/ & android/]
+    end
+    
+    subgraph Cloud_Build [Cloud: Build]
+        Native_Proj --> Worker[EAS Worker]
+        Worker -->|Xcode/Gradle| Artifact[Standalone App]
+    end
+    
+    Cloud -->|Download Link| Client
+```
+
+#### 產物結構 Artifacts - Standalone App
+
+Expo 的最終產物也是標準的 IPA / APK，但其內涵與 Expo Go 不同。
+
+- **精簡化殼層 Slim Shell:**
+  - 不同於 Expo Go 包山包海，EAS Build 出來的 App **只包含**你專案真正有用到的 Native Modules。
+  - 體積大幅縮小，啟動速度更快。
+- **OTA 機制:**
+  - 內建 `expo-updates` 模組，讓 App 具備在啟動時檢查並下載最新 JS Bundle 的能力，實現空中更新。
 
 ---
 
