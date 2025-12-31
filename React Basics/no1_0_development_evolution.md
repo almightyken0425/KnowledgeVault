@@ -1,148 +1,154 @@
 # App 開發演進史
 
-本文將透過 **開發階段 Development** 與 **運行階段 Runtime** 兩個維度，講述 Mobile App 開發技術的演進故事。
+本文將透過 **開發階段 Development Stage**、**開發運行 Development Runtime**、**打包建置 Build** 與 **正式運行 Production Runtime** 四個維度，講述 Mobile App 開發技術的演進故事。
 
 ---
 
 ## 原生開發 Native Development
 
-故事的起點，是兩個平行的宇宙。iOS 與 Android 各自擁有獨立的生態系，互不相通。
+故事的起點，是 iOS 與 Android 兩大陣營分治的時代。
 
 ### 開發階段 Development Stage
 
 在這個階段，開發者必須為了兩個平台，組建兩支完全不同的軍隊。
 
 - **iOS 陣營:**
-    - **語言:** Swift 或 Objective-C
-    - **IDE:** Xcode
-    - **作業系統:** 必須是 macOS
-    - **建置工具:** Xcode Build System
-
+  - **語言:** Swift 或 Objective-C
+  - **IDE:** Xcode
+  - **作業系統:** 必須是 macOS
+  - **建置工具:** Xcode Build System
 - **Android 陣營:**
-    - **語言:** Kotlin 或 Java
-    - **IDE:** Android Studio
-    - **作業系統:** Windows, macOS 或 Linux
-    - **建置工具:** Gradle
+  - **語言:** Kotlin 或 Java
+  - **IDE:** Android Studio
+  - **作業系統:** Windows, macOS 或 Linux
+  - **建置工具:** Gradle
+- **特點:** 
+  - **高牆:** 兩邊的程式碼完全無法共用。
+  - **高成本:** 需要維護兩套程式碼、兩套工具鏈、兩個開發團隊。
 
-**特點:**
-- **高牆:** 兩邊的程式碼完全無法共用。
-- **高成本:** 需要維護兩套程式碼、兩套工具鏈、兩個開發團隊。
+### 開發運行 Development Runtime
 
-### 運行階段 Runtime Stage
+在這個階段，運行等同於完整編譯後的執行。
 
-當 App 被安裝到使用者的手機上執行時，它是如何運作的？
+- **情境:** 工程師在 Xcode 修改了一行 Swift 程式碼，按下了 Run。
+- **流程:**
+  - **重新編譯:** 電腦必須重新編譯修改過的檔案，並連結所有資源。
+  - **重新安裝:** 將新的 App 安裝到模擬器或手機上。
+  - **重啟 App:** App 必須完整重啟，狀態歸零。
+- **特點:** 回饋循環 Feedback Loop 較長，修改介面後無法即時看到結果。
 
-- **編譯 Compiler:**
-    - 在開發者的電腦上，原始碼 Swift/Kotlin 經過 **編譯器** 的翻譯，變成了機器看得懂的 **機器碼 Machine Code** 或 **Bytecode**。
-    - 這些機器碼被打包成安裝檔 .ipa 或 .apk。
+### 打包建置 Build
 
-- **執行 Execution:**
-    - 使用者開啟 App 時，作業系統直接載入並執行這些機器碼。
-    - **iOS:** 程式碼直接呼叫 **UIKit** 或 **SwiftUI** 來繪製畫面。
-    - **Android:** 程式碼直接呼叫 **Android SDK** 來繪製畫面。
+- **iOS:** 使用 `Xcode Build System` 將 Swift / Objective-C 編譯成機器碼 Machine Code，打包為 `.ipa`。
+- **Android:** 使用 `Gradle` 與 JVM 將 Kotlin / Java 編譯成 Bytecode，打包為 `.apk` / `.aab`。
+- **痛點:** 必須在各自的 OS macOS / Windows 上，使用各自的工具鏈進行建置。
 
-- **與硬體溝通:**
-    - 像是相機、GPS 等功能，程式碼都是直接透過作業系統提供的 **API** 進行呼叫，中間沒有任何阻礙。
+### 正式運行 Production Runtime
 
-**特點:**
-- **極致效能:** 因為是直接與系統溝通，沒有中間人，效能最好。
-- **完全存取:** 可以使用原廠提供的所有最新功能。
-
----
-
-## 關鍵名詞與轉折
-
-在進入下一階段前，我們必須先釐清幾個關鍵概念，這也是技術演進的核心解決對象。
-
-- **開發階段 Development:**
-    - 指的是 **Compile Time**，也就是工程師寫程式、除錯、打包的過程。
-    - 核心痛點:** 跨平台開發時，工具鏈太複雜且不統一。
-
-- **運行階段 Runtime:**
-    - 指的是 **Run Time**，也就是 App 在使用者手上執行的過程。
-    - 核心痛點:** 非原生語言 JavaScript 如何驅動原生的畫面？
+- **情境:** 使用者從 App Store 下載 App 並開啟。
+- **機制:**
+  - **iOS:** 作業系統直接執行二進位機器碼，直接呼叫 UIKit / SwiftUI 繪製畫面。
+  - **Android:** ART Android Runtime 虛擬機執行 Bytecode，呼叫 Android SDK 繪製畫面。
+- **優勢:** 沒有中間層，效能極致，完全取用系統能力。
 
 ---
 
 ## React Native 開發
 
-為了打破兩個平行宇宙的高牆，React Native 出現了。它的願景是 **Learn Once, Write Anywhere**。
+Facebook 提出了解決方案，試圖用 JavaScript 來操控原生世界。
 
 ### 開發階段 Development Stage
 
 React Native 引入了網頁開發的模式來開發 App。
 
 - **統一語言:** 使用 JavaScript 或 TypeScript 來撰寫商業邏輯與畫面邏輯。
-- **Metro Bundler:**
-    - 這是一個專為 React Native 設計的打包工具。
-    - 它的工作類似於網頁開發中的 Webpack。
-    - 它負責將所有的 JS 程式碼打包成一個單一的檔案，稱為 **JS Bundle**。
+- **核心工具鏈:** Node.js, Yarn / npm。
+- **編輯器:** VS Code。
+- **特點:** 
+  - **邏輯共用:** 絕大多數的商業邏輯可以在雙平台間共用。
+  - **學習曲線:** 開發者只需熟悉 JavaScript 生態系。
 
-**特點:**
-- **邏輯共用:** 絕大多數的商業邏輯可以在雙平台間共用。
-- **熱更新 Fast Refresh:** 修改 JS 程式碼後，不需要重新編譯整個 App，手機畫面可以即時更新。
+### 開發運行 Development Runtime
 
-### 運行階段 Runtime Stage
+React Native 引入了網頁開發的熱更新體驗。
 
-這是 React Native 最神奇的地方。一個不會寫原生語言的 JS 檔案，是如何控制手機的？
+- **情境:** 工程師在 VS Code 修改了 JS 檔案，按下存檔。
+- **機制 Metro Bundler:**
+  - 電腦端啟動一個 **Metro Server**，負責即時打包 JS 程式碼。
+  - 手機端運行一個 **Debug App**，它連線到 Metro Server。
+  - 當檔案變更，Metro 只傳送異動的 JS 片段 HMR，手機端 **JS 引擎** 接收後即時更新邏輯。
+- **特點:** 畫面不需要重啟，狀態保留 Fast Refresh，開發體驗極快。
 
-- **雙軌制:**
-    - React Native App 的內部其實同時運行著兩個世界:**
-        - **Native World:** 原生世界，負責 UI 繪製與硬體操作。
-        - **JS World:** JavaScript 世界，負責商業邏輯。
+### 打包建置 Build
 
-- **JS 引擎 JS Engine:**
-    - App 啟動時，會在其內部啟動一個 **JavaScript 引擎** 例如 Hermes。
-    - 這個引擎負責載入並執行 **JS Bundle**。
+React Native 的 Build 變成了混合式的過程。
 
-- **核心機制 The Bridge 橋樑:**
-    - 當 JS 程式碼寫著 `<View>` 時，它並不是真的在畫圖。
-    - 它透過 **Bridge** 發送一個 JSON 訊息給 Native World。
-    - **訊息內容:** 嘿，幫我畫一個長寬 100x100 的紅色方塊。
-    - **Native World 回應:** 收到，呼叫 iOS 的 `UIView` 或 Android 的 `android.view.View` 來繪製。
+- **原生部分:** 依然需要 Xcode / Gradle 編譯原生的 Java / Swift 程式碼。包含了 RN 的核心與第三方 Native Modules。
+- **JS 部分:** 使用 Metro 將所有 JS 程式碼與資源，打包成一個單一的 `main.jsbundle` 檔案。
+- **結果:** 最終的 `.ipa` / `.apk` 內含了一個原生殼層 Shell + 一個 JS Bundle 檔案。
 
-**特點:**
-- **原生渲染:** 雖然是用 JS 寫，但最終使用者看到的、摸到的，都是貨真價實的原生元件，而非網頁。
-- **非同步溝通:** JS 與 Native 之間的溝通是非同步的，這保證了介面的流暢度，但也帶來了架構上的複雜性。
+### 正式運行 Production Runtime
+
+- **情境:** 使用者開啟 App。
+- **機制 雙軌制:**
+  - **原生殼層啟動:** 初始化 App，啟動內建的 JS 引擎 Hermes / JSC。
+  - **載入 Bundle:** JS 引擎讀取內嵌的 `main.jsbundle`。
+  - **Bridge 溝通:** JS 程式碼透過 Bridge 發送指令 JSON，指揮原生層繪製 UI UIView / Android View。
+- **差異:** 相比開發 runtime，這裡沒有 Metro Server，沒有熱更新，執行的是優化過的離線 JS 檔。
 
 ---
 
-## Expo 整合
+## Expo 整合 當代主流
 
-React Native 雖然解決了 **程式碼共用** 的問題，但沒有解決 **工具鏈複雜** 的問題。開發者仍然需要安裝 Xcode 和 Android Studio 來處理原生的編譯設定。Expo 則是為了徹底解決這個問題而生。
+Expo 並非新技術，而是 React Native 的 **最佳實踐與託管平台**，它解決了 RN 建置過於複雜的問題。
 
 ### 開發階段 Development Stage
 
-Expo 將開發體驗提升到了 **Managed Workflow** 託管模式 的層次。
+Expo 將開發體驗提升到了 **託管模式 Managed Workflow** 的層次。
 
 - **工具鏈統一:**
-    - 開發者不再需要接觸 Xcode 或 Android Studio。
-    - 所有的開發操作都透過 **Expo CLI** 在終端機完成。
-    - 核心環境變成了 **Node.js**。
+  - 開發者不再需要接觸 Xcode 或 Android Studio。
+  - 所有的開發操作都透過 **Expo CLI** 在終端機完成。
+  - 核心環境變成了 **Node.js**。
+- **設定與配置:**
+  - 透過 `app.json` 或 `app.config.js` 統一管理雙平台的設定 權限、App Icon、Splash Screen。
+- **特點:**
+  - 只要會寫 JavaScript 就能開發 App，不需要懂 iOS / Android 的原生設定。
 
-- **Expo Go:**
-    - 這是一個已經預先安裝好所有常見 Native Module 的 App 殼層。
-    - 開發時，手機不需要重新編譯 App，只需要透過 Expo Go 載入電腦上的 JS Bundle 即可預覽。
+### 開發運行 Development Runtime - Expo Go
 
-**特點:**
-- **降低門檻:** 只要會寫 JavaScript 就能開發 App，不需要懂 iOS/Android 的原生設定。
-- **開發速度:** 省去了大量的原生編譯時間。
+- **情境:** 開發者完全不需要安裝 Xcode / Android Studio。
+- **機制:**
+  - 手機安裝官方提供的 **Expo Go** App。這是一個萬能鑰匙，它已經預先安裝好了所有常用的 Native Modules。
+  - 電腦端只需啟動 JS Server Metro。
+  - Expo Go 掃描 QR Code 後，直接從電腦串流 JS Bundle 執行。
+- **特點:** 就像寫網頁一樣，寫一行程式，手機立刻透過網路更新，完全跳過了原生編譯的痛苦。
 
-### 運行階段 Runtime Stage
+### 打包建置 Build - EAS Build
 
-在運行階段，Expo 其實就是一個 **高度優化且整合過後的 React Native 環境**。
+Expo 將最讓開發者頭痛的本機環境建置搬到了雲端。
 
-- **Expo SDK:**
-    - Expo 提供了一套統整過的 API，例如 `expo-camera`。
-    - 開發者呼叫 `expo-camera`，Expo SDK 自動在底層幫你處理 iOS 與 Android 的權限與呼叫差異。
-    - 這讓 **Bridge** 的兩端溝通變得更標準化、更穩定。
+- **流程 Cloud Build:**
+  - 開發者執行 `eas build`。
+  - 程式碼上傳到 Expo 的雲端伺服器 EAS。
+  - **EAS 伺服器 Linux / macOS:** 在雲端幫你執行完整的 `npm install` -> `Prebuild` 生成原生專案 -> `Xcode / Gradle Build`。
+  - 最後直接回傳打包好的 `.ipa` / `.apk` 下載連結。
+- **核心價值:** Windows 使用者也能開發 iOS App，完全不需要買 Mac。
 
-- **EAS Expo Application Services:**
-    - 這是 Expo 提供的雲端服務。
-    - 當 App 需要發布時，開發者不需要在這個地端電腦進行編譯。
-    - 而是將程式碼上傳到雲端，由 EAS 的伺服器代為執行 Xcode 與 Gradle 的編譯工作，最後回傳安裝檔。
+### 正式運行 Production Runtime - Standalone App
 
-**總結:**
-- **Native:** 一切親力親為，掌控度最高，成本最高。
-- **React Native:** 邏輯共用，透過 Bridge 溝通，兼顧效率與體驗。
-- **Expo:** 隱藏底層複雜度，提供類似網頁開發的極速體驗，是目前最推薦的開發方式。
+- **情境:** 正式發布的 App。
+- **與 Expo Go 的差異:** 
+  - 這是一個 **Standalone 獨立** 的 App，不依賴 Expo Go。
+  - 它只包含你專案有用到的 Native Modules，因此體積更小。
+  - **Expo Updates OTA:** 甚至支援空中更新。如果只改了 JS 程式碼，可以透過 EAS Update 讓使用者的 App 在重啟時自動更新，無需經過 App Store 審核 符合規範下。
+
+---
+
+## 總結比較表
+
+| 階段 | 開發階段 Dev Stage | 開發運行 Dev Runtime | 打包建置 Build | 正式運行 Prod Runtime |
+| :--- | :--- | :--- | :--- | :--- |
+| **Native** | **雙軌並行** 維護兩套 Code/IDE | **慢** 重編譯/重啟 | **本地** 依賴本機 OS 環境 | **原生核心** 機器碼直通 |
+| **React Native** | **統一語言** JS/TS, VS Code | **快** Fast Refresh | **混合** 原生編譯 + JS 打包 | **雙軌制** JS 引擎 + Bridge |
+| **Expo** | **託管模式** Expo CLI, Config | **極速** Expo Go 串流 | **雲端 EAS** 跨平台自動化 | **獨立 App** Standalone + OTA |
