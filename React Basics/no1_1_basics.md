@@ -4,47 +4,47 @@
 
 開發階段是指從建立專案、撰寫程式碼、進行測試預覽，一直到準備打包上架的整個過程。在這個階段，開發者所使用的工具鏈 Toolchain 組合，將直接決定專案的開發效率、團隊成員所需的技能、以及整體的開發成本。
 
-> [!SUMMARY] 核心差異概覽
+> [!NOTE] 核心差異概覽
 >
-> - **iOS / Android 原生開發**：需要為兩個平台，**分別**維護兩套獨立、複雜且重量級的**原生工具鏈**。開發者必須直接面對並操作 `[[Xcode]]` 和 `[[Android Studio]]` 這兩個龐大的 IDE。
-> - **Expo 開發 React Native**：將開發流程**統一**到一套以 `[[Node.js]]` 為核心的、輕量且高效的 **JavaScript 工具鏈**中。開發者絕大多數時間都在 `[[VS Code]]` 中工作，由 Expo 的工具來處理與原生平台的複雜互動。
+> - **iOS / Android 原生開發**：需要為兩個平台，**分別**維護兩套獨立、複雜且重量級的**原生工具鏈**。開發者必須直接面對並操作 `Xcode` 和 `Android Studio` 這兩個龐大的 IDE。
+> - **Expo 開發 React Native**：將開發流程**統一**到一套以 `Node.js` 為核心的、輕量且高效的 **JavaScript 工具鏈**中。開發者絕大多數時間都在 `VS Code` 中工作，由 Expo 的工具來處理與原生平台的複雜互動。
 
 |**層次 / 目的**|**原生 iOS 開發**|**原生 Android 開發**|**用 Expo 開發 React Native**|
 |---|---|---|---|
 |**作業系統需求**|**macOS** 硬性要求|macOS, Windows, Linux|macOS, Windows, Linux|
-|**核心執行環境**|由 Xcode 處理|**JDK** Java Development Kit|**[[Node.js]]**|
-|**整合開發環境 IDE**|**[[Xcode]]** 數十 GB|**[[Android Studio]]** 數十 GB|**[[VS Code]]** 輕量級|
+|**核心執行環境**|由 Xcode 處理|**JDK** Java Development Kit|**Node.js**|
+|**整合開發環境 IDE**|**Xcode** 數十 GB|**Android Studio** 數十 GB|**VS Code** 輕量級|
 |**主要程式語言**|Swift / Objective-C|Kotlin / Java|**JavaScript / TypeScript**|
-|**套件/依賴管理器**|**[[CocoaPods]]** / Swift PM|**Gradle**|**[[npm]]**|
-|**UI 框架**|UIKit / SwiftUI|Jetpack Compose / XML|**[[React Native]]**|
-|**核心開發工具**|Xcode Build System|Android Build System|**[[Expo SDK]] & [[Expo CLI]]**|
-|**打包/編譯工具**|**Xcode [[編譯器]]**|**Gradle**|**[[Metro]]** 用於 JS 打包|
-|**開發預覽工具**|iOS 模擬器|Android 模擬器|**[[Expo Go]]** 手機 App / 模擬器|
-|**建置/上架工具**|**[[Xcode]]** 手動打包|**[[Android Studio]]** 手動打包|**EAS CLI** 雲端自動化服務|
+|**套件/依賴管理器**|**CocoaPods** / Swift PM|**Gradle**|**npm**|
+|**UI 框架**|UIKit / SwiftUI|Jetpack Compose / XML|**React Native**|
+|**核心開發工具**|Xcode Build System|Android Build System|**Expo SDK & Expo CLI**|
+|**打包/編譯工具**|**Xcode 編譯器**|**Gradle**|**Metro** 用於 JS 打包|
+|**開發預覽工具**|iOS 模擬器|Android 模擬器|**Expo Go** 手機 App / 模擬器|
+|**建置/上架工具**|**Xcode** 手動打包|**Android Studio** 手動打包|**EAS CLI** 雲端自動化服務|
 
 > [!NOTE] 核心概念：抽象化 Abstraction 與 Node.js 的角色
-> - Expo 最大的價值在於**抽象化**。它像一個專業的專案經理，將 `[[Xcode]]` 和 `[[Android Studio]]` 的所有複雜性 例如原生專案設定、編譯流程、憑證管理 都隱藏起來，為開發者提供了一套更簡單、更統一的指令介面 `[[Expo CLI]]`。
-> - `[[Node.js]]` 則是實現這層抽象化的**基礎平台**。因為所有 Expo 的開發工具 `[[Metro]]`, `[[Expo CLI]]`, `EAS CLI` 本身都是運行在 `[[Node.js]]` 環境中的 JavaScript 應用程式。這使得開發者可以從頭到尾都停留在一個熟悉的 JavaScript 生態系中，而不需要頻繁地在三個完全不同的開發環境 JS, Xcode, Android Studio 之間切換。
+> - Expo 最大的價值在於**抽象化**。它像一個專業的專案經理，將 `Xcode` 和 `Android Studio` 的所有複雜性 例如原生專案設定、編譯流程、憑證管理 都隱藏起來，為開發者提供了一套更簡單、更統一的指令介面 `Expo CLI`。
+> - `Node.js` 則是實現這層抽象化的**基礎平台**。因為所有 Expo 的開發工具 `Metro`, `Expo CLI`, `EAS CLI` 本身都是運行在 `Node.js` 環境中的 JavaScript 應用程式。這使得開發者可以從頭到尾都停留在一個熟悉的 JavaScript 生態系中，而不需要頻繁地在三個完全不同的開發環境 JS, Xcode, Android Studio 之間切換。
 
 ## 運行階段 - Runtime - iOS vs Android vs ReactNative
 
-當 App 在使用者的手機上啟動並運行時，其內部的 `[[執行環境 Runtime]]` 決定了程式碼如何被執行、畫面如何被繪製。不同技術路徑的 App，其 Runtime 機制有著根本性的差異。
+當 App 在使用者的手機上啟動並運行時，其內部的 `執行環境 Runtime` 決定了程式碼如何被執行、畫面如何被繪製。不同技術路徑的 App，其 Runtime 機制有著根本性的差異。
 
-> [!SUMMARY] 核心差異概覽
+> [!NOTE] 核心差異概覽
 > - **iOS / Android 原生 App**：各自是一個**單一、直接**的執行體系。程式碼都是對應平台的母語，指令可以直接下達給作業系統。
 > - **React Native App**：是一個**雙軌、協同**的執行體系，由 **JavaScript 世界**和**原生世界**同時運作，並透過一座橋樑 Bridge 進行溝通。
 
 
 |**比較項目**|**iOS 原生 App**|**Android 原生 App**|**React Native App**|
 |---|---|---|---|
-|**啟動與執行**|**直接執行機器碼**： iOS 系統直接載入並執行由 `[[Xcode]]` 的 `[[編譯器]]` 從 Swift/Objective-C 預先編譯好的機器碼。|**在 ART 中執行 Bytecode**： Android 系統啟動 **ART Android Runtime** 這個虛擬機，來執行由 Kotlin/Java 預先編譯好的 Bytecode。|**間接啟動 JS 引擎**： 1. 系統先啟動 App 的原生外殼。 2. 外殼接著啟動內建的 **JavaScript 引擎** 通常是 Hermes。 3. JS 引擎再載入並執行 JavaScript `bundle` 檔案。|
+|**啟動與執行**|**直接執行機器碼**： iOS 系統直接載入並執行由 `Xcode` 的 `編譯器` 從 Swift/Objective-C 預先編譯好的機器碼。|**在 ART 中執行 Bytecode**： Android 系統啟動 **ART Android Runtime** 這個虛擬機，來執行由 Kotlin/Java 預先編譯好的 Bytecode。|**間接啟動 JS 引擎**： 1. 系統先啟動 App 的原生外殼。 2. 外殼接著啟動內建的 **JavaScript 引擎** 通常是 Hermes。 3. JS 引擎再載入並執行 JavaScript `bundle` 檔案。|
 |**UI 渲染**|**直接呼叫 UIKit/SwiftUI**： Swift 程式碼直接呼叫 iOS 的原生 UI 框架 UIKit 或 SwiftUI 來繪製 `UIView` 等元件。過程沒有中間人。|**直接呼叫 Android Views/Compose**： Kotlin 程式碼直接呼叫 Android 的原生 UI 框架 傳統的 Views 或現代的 Jetpack Compose 來繪製 `android.view.View` 等元件。|**透過「橋樑」溝通**： JS 中的 `<View>` 會被轉換成一個 JSON 訊息，透過 **Bridge** 從 **JavaScript 世界**傳到**原生世界**。原生端收到訊息後，在 iOS 上呼叫 UIKit 建立 `UIView`；在 Android 上呼叫 Android Views 建立 `android.view.View`。|
 |**業務邏輯**|**在原生層執行**： 所有計算都在編譯後的機器碼中運行，直接利用 CPU 效能，速度最快。|**在 ART 中執行**： 所有計算都在 ART 虛擬機中運行，經過高度優化，效能極佳。|**在 JavaScript 引擎中執行**： 所有計算都在 JS 引擎 Hermes 中完成。對於絕大多數業務邏輯，速度都非常快。|
 |**原生功能**|**直接呼叫原生框架**： 程式碼直接 `import` 並呼叫 Apple 提供的原生框架 例如 `AVFoundation` 存取相機。|**直接呼叫原生函式庫**： 程式碼直接 `import` 並呼叫 Google 提供的原生函式庫 例如 `android.hardware.camera2` 存取相機。|**透過橋樑請求**： JS 程式碼發送一個打開相機的請求**跨越 Bridge**。原生端的模組收到後，在 iOS 上呼叫 `AVFoundation`，在 Android 上呼叫 `android.hardware.camera2`。|
 
 > [!NOTE] React Native 的核心架構：Bridge (橋樑)
 > 
-> - React Native 的 `[[執行環境 Runtime]]` 核心就是這座 **Bridge**。它是一個訊息傳遞系統，負責在 App 內部的兩個獨立世界 JavaScript 和 原生 之間非同步地來回溝通。
+> - React Native 的 `執行環境 Runtime` 核心就是這座 **Bridge**。它是一個訊息傳遞系統，負責在 App 內部的兩個獨立世界 JavaScript 和 原生 之間非同步地來回溝通。
 >     
 > - 原生 App 的優勢在於**不存在**這個需要來回溝通的 Bridge，因此效能極致。
 >     
@@ -80,7 +80,7 @@
 
 在一個 App 的 Runtime 期間，會發生以下核心活動：
 
-- **指令被執行**：CPU 開始讀取或已被 `[[編譯器]]` 翻譯好的指令並執行計算。
+- **指令被執行**：CPU 開始讀取或已被 `編譯器` 翻譯好的指令並執行計算。
     
 - **記憶體被管理**：程序會向作業系統申請記憶體空間，用來儲存變數、物件及各種狀態。
     
@@ -111,7 +111,7 @@
 
 - 引擎是執行環境的大腦，其根本職責是**讀取、理解並執行**程式碼。
     
-- **對於編譯型語言 例如 Swift, Java**： 在程式進入**運行階段 Runtime** **之前**，`[[編譯器]]` 就已將原始碼完整地翻譯成低階**機器碼**。因此，在運行階段，其引擎可以被理解為就是**電腦的 CPU 本身**，直接執行這些預先翻譯好的指令。
+- **對於編譯型語言 例如 Swift, Java**： 在程式進入**運行階段 Runtime** **之前**，`編譯器` 就已將原始碼完整地翻譯成低階**機器碼**。因此，在運行階段，其引擎可以被理解為就是**電腦的 CPU 本身**，直接執行這些預先翻譯好的指令。
     
 - **對於直譯或即時編譯語言 例如 JavaScript**： 程式在進入**運行階段 Runtime** 時，仍是高階的程式碼。因此，它需要一個**軟體形式的引擎**來進行即時的翻譯。例如，**V8 引擎**會在運行階段讀取 JavaScript 程式碼，將其轉換成機器碼，再交給 CPU 執行。
 
@@ -148,7 +148,7 @@
     
     - **瀏覽器執行環境**：提供 **Web API** 如 `document.getElementById()`，賦予了 JavaScript **控制網頁元素**的能力。
         
-    - **`[[Node.js]]` 執行環境**：提供 **Node.js API** 如 `fs.readFile()`，賦予了 JavaScript **讀寫電腦檔案**的能力。
+    - **`Node.js` 執行環境**：提供 **Node.js API** 如 `fs.readFile()`，賦予了 JavaScript **讀寫電腦檔案**的能力。
         
 - 因此，**API 是一個執行環境能力邊界的最終定義者**。
 
@@ -200,9 +200,9 @@
 
 #### React Native 開發
 
-- **客戶端 Application**：手機上的 `[[Expo Go]]` App。
+- **客戶端 Application**：手機上的 `Expo Go` App。
     
-- **伺服器 Application**：電腦上運行的 `[[Metro]]`。
+- **伺服器 Application**：電腦上運行的 `Metro`。
     
 - **流程**：`Expo Go` 透過 Wi-Fi **請求**程式碼，`Metro` **回應**打包好的程式碼檔案。
 
@@ -228,9 +228,9 @@
         
 - **例子**：
     
-    - `[[Xcode]]`：專為 Apple 平台 iOS, macOS 開發。
+    - `Xcode`：專為 Apple 平台 iOS, macOS 開發。
         
-    - `[[Android Studio]]`：專為 Android 平台開發。
+    - `Android Studio`：專為 Android 平台開發。
 
 #### 編譯器 Compiler
 
@@ -273,7 +273,7 @@
         
 - **例子**：
     
-    - `[[VS Code]]` Visual Studio Code
+    - `VS Code` Visual Studio Code
 
  
 #### 通用程式碼編輯器 Universal Code Editor
@@ -288,7 +288,7 @@
         
     - **通用性**：天生設計為跨平台（可在 macOS, Windows, Linux 上運行），可用於開發幾乎任何語言的專案。
         
-    - **不含編譯器**：VS Code 本身無法將程式碼轉換成可執行的應用程式。它透過內建的終端機 (Terminal)，去呼叫並執行外部的工具（例如 `[[Node.js]]` 或 `[[Xcode]]` 的命令列工具）來完成編譯與建置的工作。
+    - **不含編譯器**：VS Code 本身無法將程式碼轉換成可執行的應用程式。它透過內建的終端機 (Terminal)，去呼叫並執行外部的工具（例如 `Node.js` 或 `Xcode` 的命令列工具）來完成編譯與建置的工作。
         
     - **高度可擴充**：這是 VS Code 最強大的特點。它本身很輕巧，但可以透過安裝「擴充套件」來無限擴展其功能。
         
@@ -311,7 +311,7 @@
 
 > [!NOTE] 核心關係：工作檯與工具配件
 > 
-> - `[[VS Code]]` 就像一個**萬用工作檯**，提供了最基礎的工作空間。
+> - `VS Code` 就像一個**萬用工作檯**，提供了最基礎的工作空間。
 >     
 > - **擴充套件** 則像是您為這個工作檯添購的各式專用工具配件 鑽頭、量尺、夾具，讓它能勝任更專業、更複雜的工作。
 >     
