@@ -117,17 +117,17 @@
 
 - 引擎是執行環境的「大腦」，其根本職責是**讀取、理解並執行**程式碼。
     
-- **對於編譯型語言 (例如 Swift, Java)**： 在程式進入**運行階段 (Runtime)** **之前**，`[[編譯器]]` 就已將原始碼完整地翻譯成低階**機器碼**。因此，在運行階段，其「引擎」可以被理解為就是**電腦的 CPU 本身**，直接執行這些預先翻譯好的指令。
+- **對於編譯型語言 例如 Swift, Java**： 在程式進入**運行階段 (Runtime)** **之前**，`[[編譯器]]` 就已將原始碼完整地翻譯成低階**機器碼**。因此，在運行階段，其「引擎」可以被理解為就是**電腦的 CPU 本身**，直接執行這些預先翻譯好的指令。
     
-- **對於直譯或即時編譯語言 (例如 JavaScript)**： 程式在進入**運行階段 (Runtime)** 時，仍是高階的程式碼。因此，它需要一個**軟體形式的引擎**來進行即時的翻譯。例如，**V8 引擎**會在運行階段讀取 JavaScript 程式碼，將其轉換成機器碼，再交給 CPU 執行。
+- **對於直譯或即時編譯語言 例如 JavaScript**： 程式在進入**運行階段 (Runtime)** 時，仍是高階的程式碼。因此，它需要一個**軟體形式的引擎**來進行即時的翻譯。例如，**V8 引擎**會在運行階段讀取 JavaScript 程式碼，將其轉換成機器碼，再交給 CPU 執行。
 
 ##### 編譯器 (Compiler)
 
 - **定義**：一個專門的「翻譯程式」。
     
-- **輸入**：開發者撰寫的高階程式語言（人類可讀的原始碼，例如 Swift, Java）。
+- **輸入**：開發者撰寫的高階程式語言，人類可讀的原始碼，例如 Swift, Java。
     
-- **輸出**：電腦中央處理器 (CPU) 能直接執行的低階機器碼（由 0 和 1 組成）。
+- **輸出**：電腦中央處理器 CPU 能直接執行的低階機器碼，由 0 和 1 組成。
     
 
 ###### 為什麼需要編譯器？
@@ -195,16 +195,16 @@
 
 ### 具體例子
 
-#### 例子一：網頁瀏覽
+#### 網頁瀏覽
 
-- **客戶端 Application**：瀏覽器 (Chrome, Safari)。
+- **客戶端 Application**：瀏覽器 Chrome, Safari。
     
 - **伺服器 Application**：Google 網站主機上運行的後端程式。
     
 - **流程**：瀏覽器**請求** `google.com` 的網頁，伺服器**回應**網頁內容。
     
 
-#### 例子二：React Native 開發
+#### React Native 開發
 
 - **客戶端 Application**：手機上的 `[[Expo Go]]` App。
     
@@ -226,15 +226,15 @@
     
 - **核心特徵**：
     
-    - **內建編譯器與建置系統 (Compiler & Build System)**：這是 IDE 最關鍵的特徵。它本身就包含了將程式碼轉換成可執行應用程式的所有必要工具。
+    - **內建編譯器與建置系統 Compiler & Build System**：這是 IDE 最關鍵的特徵。它本身就包含了將程式碼轉換成可執行應用程式的所有必要工具。
         
-    - **功能整合**：將程式碼編輯、偵錯 (Debugging)、模擬器、效能分析等所有開發階段的功能，全部整合在一個應用程式中。
+    - **功能整合**：將程式碼編輯、偵錯 Debugging、模擬器、效能分析等所有開發階段的功能，全部整合在一個應用程式中。
         
     - **平台專用性**：通常專為特定的平台或語言生態系設計。
         
 - **例子**：
     
-    - `[[Xcode]]`：專為 Apple 平台 (iOS, macOS) 開發。
+    - `[[Xcode]]`：專為 Apple 平台 iOS, macOS 開發。
         
     - `[[Android Studio]]`：專為 Android 平台開發。
 
@@ -242,9 +242,9 @@
 
 - **定義**：一個專門的「翻譯程式」。
     
-- **輸入**：開發者撰寫的高階程式語言（人類可讀的原始碼，例如 Swift, Java）。
+- **輸入**：開發者撰寫的高階程式語言，人類可讀的原始碼，例如 Swift, Java。
     
-- **輸出**：電腦中央處理器 (CPU) 能直接執行的低階機器碼（由 0 和 1 組成）。
+- **輸出**：電腦中央處理器 CPU 能直接執行的低階機器碼，由 0 和 1 組成。
     
 
 ##### 為什麼需要編譯器？
@@ -260,7 +260,7 @@
 > 
 > - **翻譯 (Translate)**：逐行讀取原始碼，分析語法、檢查錯誤，並產生等效的機器碼。
 >     
-> - **建置 (Build)**：將所有翻譯後的檔案，以及專案所需的其他資源，連結並打包成一個完整的可執行檔（例如 iOS 的 `.app` 或 Windows 的 `.exe`）。
+> - **建置 (Build)**：將所有翻譯後的檔案，以及專案所需的其他資源，連結並打包成一個完整的可執行檔，例如 iOS 的 `.app` 或 Windows 的 `.exe`。
 >     
 
 ### 程式碼編輯器 (Code Editor)
@@ -515,51 +515,51 @@
 
 - **基礎概念 Fundamental Concepts**
     
-    - **伺服器 (Server) & 客戶端 (Client)**
+    - **伺服器 Server & 客戶端 Client**
         
-        - 核心：請求 (Request) 與回應 (Response) 的模型。
+        - 核心：請求 Request 與回應 Response 的模型。
             
         - 關鍵行為：透過網路進行跨程式溝通。
             
         - 例子：瀏覽器 vs. 網站伺服器；Expo Go vs. Metro 伺服器。
             
-    - **整合開發環境 (IDE) vs. 程式碼編輯器 (Code Editor)**
+    - **整合開發環境 IDE vs. 程式碼編輯器 Code Editor**
         
-        - IDE：重量級、功能全面、內建[[編譯器]] (Compiler)。(例如：Xcode)
+        - IDE：重量級、功能全面、內建[[編譯器]] Compiler。(例如：Xcode)
             
         - 程式碼編輯器：輕量級、專注編輯、透過擴充套件增強功能。(例如：VS Code)
             
-    - **編譯器 (Compiler)**
+    - **編譯器 Compiler**
         
         - 定義：一個專門的「翻譯程式」。
             
-        - 輸入：人類可讀的原始碼 (例如 Swift, Java)。
+        - 輸入：人類可讀的原始碼，例如 Swift, Java。
             
         - 輸出：CPU 能直接執行的低階機器碼。
             
-        - 核心功能：將程式碼「翻譯」並「建置 (Build)」成可執行檔。
+        - 核心功能：將程式碼「翻譯」並「建置 Build」成可執行檔。
             
 - **開發環境的基石 The Foundation**
     
     - **Node.js：JavaScript 的心臟**
         
-        - 核心角色：提供 JavaScript 的伺服器端[[執行環境 (Runtime)]]。
+        - 核心角色：提供 JavaScript 的伺服器端[[執行環境 Runtime]]。
             
-        - 為何必要：所有開發工具 (CLI, Metro) 都基於它運行。
+        - 為何必要：所有開發工具 CLI, Metro 都基於它運行。
             
-    - **npm (Node Package Manager)**
+    - **npm Node Package Manager**
         
-        - 雙重角色：線上的套件倉庫 (Registry) + 本地的命令列工具 (CLI Tool)。
+        - 雙重角色：線上的套件倉庫 Registry + 本地的命令列工具 CLI Tool。
             
         - 主要職責：管理專案的依賴 (`dependencies`)。
             
-    - **npx (Node Package eXecute)**
+    - **npx Node Package eXecute**
         
         - 核心行為：**執行**套件而非安裝。
             
-        - 主要用途：執行一次性的命令，如建立專案 (`create-expo-app`)。
+        - 主要用途：執行一次性的命令，如建立專案 create-expo-app。
             
-    - **原生整合開發環境 (Native IDEs)**
+    - **原生整合開發環境 Native IDEs**
         
         - **Xcode**
             
@@ -579,41 +579,41 @@
                 
             - 主要職責：管理 Xcode 專案中的原生函式庫依賴。
                 
-    - **通用程式碼編輯器 (Universal Code Editor)**
+    - **通用程式碼編輯器 Universal Code Editor**
         
-        - **VS Code (Visual Studio Code)**
+        - **VS Code Visual Studio Code**
             
             - 核心定位：開發者日常撰寫程式碼的主要工作區。
                 
             - 關鍵特點：輕量、快速、高度可擴充。
                 
-        - **VS Code 擴充套件 (Extensions)**
+        - **VS Code 擴充套件 Extensions**
             
             - 核心目的：賦予 VS Code 理解特定語言和框架的能力。
                 
             - 與 App 的關係：純粹的開發者工具，不會進入 App 成品。
                 
-    - #### **工具鏈總覽：不同開發路徑的比較 (開發階段)**
+    - #### **工具鏈總覽：不同開發路徑的比較 開發階段**
         
         > [!SUMMARY] 這張表格總結了在「開發階段」要打造一個 App，不同技術路徑所需的工具集。
         
 
 |**層次 / 目的**|**原生 iOS 開發**|**原生 Android 開發**|**用 Expo 開發 React Native**|
 |---|---|---|---|
-|**作業系統需求**|**macOS** (硬性要求)|macOS, Windows, Linux|macOS, Windows, Linux|
-|**核心執行環境**|(由 Xcode 處理)|**JDK** (Java Development Kit)|**[[Node.js]]**|
-|**整合開發環境 (IDE)**|**[[Xcode]]** (數十 GB)|**[[Android Studio]]** (數十 GB)|**[[VS Code]]** (輕量級)|
+|**作業系統需求**|**macOS** 硬性要求|macOS, Windows, Linux|macOS, Windows, Linux|
+|**核心執行環境**|由 Xcode 處理|**JDK** Java Development Kit|**[[Node.js]]**|
+|**整合開發環境 IDE**|**[[Xcode]]** 數十 GB|**[[Android Studio]]** 數十 GB|**[[VS Code]]** 輕量級|
 |**主要程式語言**|Swift / Objective-C|Kotlin / Java|**JavaScript / TypeScript**|
 |**套件/依賴管理器**|**[[CocoaPods]]** / Swift PM|**Gradle**|**[[npm]]**|
 |**UI 框架**|UIKit / SwiftUI|Jetpack Compose / XML|**[[React Native]]**|
 |**核心開發工具**|Xcode Build System|Android Build System|**[[Expo SDK]] & [[Expo CLI]]**|
-|**打包/編譯工具**|**Xcode [[編譯器]]**|**Gradle**|**[[Metro]]** (用於 JS 打包)|
-|**開發預覽工具**|iOS 模擬器|Android 模擬器|**[[Expo Go]]** (手機 App) / 模擬器|
-|**建置/上架工具**|**[[Xcode]]** (手動打包)|**[[Android Studio]]** (手動打包)|**EAS CLI** (雲端自動化服務)|
+|**打包/編譯工具**|**Xcode [[編譯器]]**|**Gradle**|**[[Metro]]** 用於 JS 打包|
+|**開發預覽工具**|iOS 模擬器|Android 模擬器|**[[Expo Go]]** 手機 App / 模擬器|
+|**建置/上架工具**|**[[Xcode]]** 手動打包|**[[Android Studio]]** 手動打包|**EAS CLI** 雲端自動化服務|
 
 - **App 的構成零件 The Building Blocks**
     
-    - **專案套件/函式庫 (Packages/Libraries)**
+    - **專案套件/函式庫 Packages/Libraries**
         
         - 核心價值：可重複使用的程式碼模組，加速開發。
             
@@ -639,20 +639,18 @@
             
         - 承諾：一套程式碼，編譯成跨平台的原生 App。
             
-        - #### **運作模式比較 (運行階段)**
+        - #### **運作模式比較 運行階段**
             
             > [!SUMMARY] 這張表格解釋了當 App 在使用者手機上實際「運行 (Runtime)」時，不同技術的內部運作機制有何根本差異。
             
-```
-* **Expo**
-    * 角色定位：建立在 React Native 之上的「整合式開發平台」。
-    * 核心價值：抽象化並簡化原生開發的複雜性。
-* **Metro**
-    * **打包工具 (Bundler)**
-        * 職責：解析依賴、轉換語法 (JSX)、合併成單一 JS `bundle` 檔案。
-    * **開發伺服器 (Development Server)**
-        * 職責：監聽程式碼變更、提供 `bundle` 給客戶端、實現即時刷新 (Fast Refresh)。
-* **Expo Go**
-    * 定義：一個預先編譯好的原生 App (客戶端)。
-    * 核心功能：作為一個「容器」，下載並執行來自 Metro 的 JS `bundle`。
-```
+- **Expo**
+    - 角色定位：建立在 React Native 之上的「整合式開發平台」。
+    - 核心價值：抽象化並簡化原生開發的複雜性。
+- **Metro**
+    - **打包工具 Bundler**
+        - 職責：解析依賴、轉換語法 JSX、合併成單一 JS `bundle` 檔案。
+    - **開發伺服器 Development Server**
+        - 職責：監聽程式碼變更、提供 `bundle` 給客戶端、實現即時刷新 Fast Refresh。
+- **Expo Go**
+    - 定義：一個預先編譯好的原生 App 客戶端。
+    - 核心功能：作為一個「容器」，下載並執行來自 Metro 的 JS `bundle`。
