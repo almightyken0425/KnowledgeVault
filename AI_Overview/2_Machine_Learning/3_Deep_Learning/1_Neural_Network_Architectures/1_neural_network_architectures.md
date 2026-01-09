@@ -1,4 +1,4 @@
-# 神經網路內部運算：開發者視角
+# Neural Network Architectures
 
 核心概念是將神經網路視為一個巨大的 **狀態機 State Machine**：
 
@@ -127,41 +127,14 @@
     ```
 - **視覺化:**
     ```
-- **視覺化:**
-    ```
     [
       ┌─────────┐   ┌─────────┐   ┌─────────┐
       │ Layer 1 │ , │ Layer 2 │ , │ Layer 3 │
       └─────────┘   └─────────┘   └─────────┘
     ]
     ```
-    ```
 
-## 核心函數庫 Core Functions
 
----
-
-這是神經網路運作的基礎工具函式，訓練與推論都會共用這些邏輯。
-
-### 矩陣運算 Matrix Operation
-
-單層神經網路只做一次內積，多層神經網路則是做矩陣乘法。
-
-- **函數簽名:** `processLayer(inputs, layerWeights, layerBiases)`
-- **邏輯:**
-    - 輸入是一個向量 $x$，例如 100 個特徵。
-    - 這一層有 $N$ 個神經元，例如 50 個。
-    - 每個神經元都跟輸入向量做一次 `dotProduct`。
-    - **結果:** 產生一個長度為 50 的新向量 New Features。
-
-### 激活函數 Activation Function
-
-負責引入非線性邏輯的開關。
-
-- **函數簽名:** `relu(value)`
-- **邏輯:**
-    - `if (value > 0) return value`
-    - `else return 0`
 
 ## 核心操作 Core Operations
 
@@ -175,10 +148,12 @@
 - **輸入與輸出:**
     - **Input:** 原始數據 $x$
     - **Process:** 數據依序通過 Neural Network Model 中的每一個 Layer。
-        - 對每一層執行 `processLayer(currentData, layer.weights, layer.biases)` 進行矩陣運算。
-        - 將運算結果通過 `activation(result)` 激活函數，例如 ReLU。
-        - 這一層的輸出成為下一層的輸入，形成接力傳遞。
-        - 訓練模式下會緩存每一層的輸出，供後續反向傳播使用。
+        - **矩陣運算:** 執行 `processLayer(inputs, layerWeights, layerBiases)`。
+            - 每個神經元與輸入向量做 `dotProduct`，產生新特徵向量。
+        - **激活函數:** 執行 `activation(result)` (如 ReLU)。
+            - 引入非線性邏輯：`if (val > 0) return val else return 0`。
+        - **接力傳遞:** 這一層的輸出成為下一層的輸入。
+        - **狀態緩存:** (訓練模式) 緩存輸出供反向傳播使用。
     - **Output:** 最終預測 Final Prediction
 - **視覺化:**
     ```
