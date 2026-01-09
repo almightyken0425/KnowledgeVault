@@ -14,18 +14,60 @@
 ---
 
 在深度學習 Deep Learning 中，我們不再只有一組權重，而是有多組權重組成 **層 Layers**。
+以下將神經網路的實體結構由小到大，從概念到程式碼邏輯逐一解析。
 
-- **層 Layer**
-    - **概念:** 這是一個容器，包含了一組神經元。
-    - **結構:** 每一層都有自己的 `weights` 權重矩陣 和 `biases` 偏差陣列。
-    - **深度 Depth:** 指的是這個 `Layers` 陣列的長度。長度越長，網路越深。
-- **權重 Weights - 矩陣視角**
-    - **型態:** `Array<Array<Float>>` 二維陣列/矩陣
-    - **意義:** 第 $i$ 層的權重決定了如何將上一層的資訊轉換到下一層。
-- **輸入/輸出流 Data Flow**
+### 神經元節點 Neuron Node
+
+- **概念:** 神經元並非獨立物件，它是針對上一層所有輸入的一組評分標準。
+- **型態:** `Array<Float>` 一維陣列/向量
+- **語意:** 陣列長度等於上一層傳來的特徵數量。
+- **程式碼表示:**
+    ```javascript
+    const node1Weights = [w11, w12, w13]; // 長度 = 上一層特徵數
+    const node2Weights = [w21, w22, w23];
+    ```
+
+### 權重矩陣 Weights Matrix
+
+- **概念:** 當多個神經元並聯運算時，它們組成一個二維陣列。
+- **型態:** `Array<Array<Float>>` 二維陣列/矩陣
+- **意義:** 第 $i$ 層的權重決定了如何將上一層的資訊轉換到下一層。
+- **維度解讀:** 假設形狀為 N 乘 M。
+    - **N 代表橫列 Rows:** 代表這一層有 N 個神經元 Nodes。
+    - **M 代表直行 Columns:** 代表上一層傳來了 M 個特徵 Inputs。
+    - **直觀理解:** 矩陣的每一列 Row 就是一個神經元，它包含了一組針對所有輸入的評分標準。
+- **程式碼表示:**
+    ```javascript
+    const weightsMatrix = [
+        node1Weights, // 橫列 Row 0
+        node2Weights  // 橫列 Row 1
+    ];
+    ```
+
+### 層 Layer
+
+- **概念:** 這是一個容器，包含了一組神經元。
+- **結構:** 每一層都有自己的 `weights` 權重矩陣 和 `biases` 偏差陣列。
+- **深度 Depth:** 指的是這個 `Layers` 陣列的長度。長度越長，網路越深。
+- **程式碼表示:**
+    ```javascript
+    const layer1 = {
+        weights: weightsMatrix,
+        biases: [b1, b2] // 每個神經元分配一個偏差
+    };
+    ```
+
+### 神經網路 Neural Network Model
+
+- **概念:** 數據依照陣列索引順序傳遞，形成多層接力的計算流程。
+- **資料流 Data Flow:**
     - **Input Layer:** 原始資料，如圖片像素。
     - **Hidden Layers:** 中間層，負責提取特徵，如線條 -> 形狀 -> 物體。
     - **Output Layer:** 最終結果，如機率值。
+- **程式碼表示:**
+    ```javascript
+    const neuralNetwork = [layer1, layer2, layer3];
+    ```
 
 ## 核心函數庫 Core Functions
 
@@ -53,30 +95,36 @@
     - `if (value > 0) return value`
     - `else return 0`
 
-## 運作流程：訓練模式 Training Mode
+## 核心操作 Core Operations
 
 ---
 
-這是學習的過程，目的是找出最佳的 $w$ 和 $b$。
+神經網路的所有行為都由以下四個基本操作組成。這些操作是獨立且可複用的邏輯單元。
 
-### 步驟一：前向傳播 Forward Propagation
+### 前向傳播 Forward Propagation
 
+- **目的:** 將輸入數據透過網路層層轉換，產出預測結果。
 - **接力賽機制:**
     - $Layer_1$ 的輸出 $\rightarrow$ 變成 $Layer_2$ 的輸入。
     - $Layer_2$ 的輸出 $\rightarrow$ 變成 $Layer_3$ 的輸入。
-    - ... 直到最後一層。
-- **Output:** Final Prediction
+    - 重複此過程直到最後一層。
+- **輸入與輸出:**
+    - **Input:** 原始數據 $x$
+    - **Output:** 最終預測 Final Prediction
 
-### 步驟二：計算損失 Calculate Loss
+### 計算損失 Calculate Loss
 
-- 確認預測結果與正確答案差多少。
-- **Input:** Prediction, True Label
-- **Output:** Error Loss
+- **目的:** 量化預測結果與正確答案的差距。
+- **邏輯:** 使用損失函數評估誤差大小。
+- **輸入與輸出:**
+    - **Input:** Prediction, True Label
+    - **Output:** Error Loss 誤差數值
 
-### 步驟三：計算梯度 Backpropagation
+### 反向傳播 Backpropagation
 
 這是訓練中最複雜但也最核心的演算法，本質是微積分中的 **連鎖律 Chain Rule** 的程式實作。
 
+- **目的:** 計算每一層權重對最終誤差的貢獻程度。
 - **反向迴圈 Backward Loop:**
     - 程式從最後一層 Last Layer 開始，使用 `for` 迴圈倒著走到第一層。
     - **邏輯:** 要修正第 $i$ 層的錯誤，必須先知道第 $i+1$ 層回傳了多少誤差。
@@ -90,36 +138,53 @@
 - **關鍵運算 3：計算權重梯度 Compute Gradients**
     - **目的:** 算出這一層的 $w$ 具體該加多少或減多少。
     - **程式邏輯:** `WeightGradient = Input_Transposed * Delta`。這裡的 Input 是指前向傳播時，上一層傳給我的值。
-- **Output:** `Gradients` 包含每一層的 `weight_grad` 和 `bias_grad`。
+- **輸入與輸出:**
+    - **Input:** Loss 誤差值, Cached Layer Outputs 前向傳播時的緩存
+    - **Output:** `Gradients` 包含每一層的 `weight_grad` 和 `bias_grad`
 
-### 步驟四：更新權重 Update
+### 更新權重 Update Weights
 
-- 修改每一層的內部 State。
+- **目的:** 根據梯度調整權重和偏差，使模型逐步改進。
+- **邏輯:** 將權重往梯度的反方向移動一小步。
+- **程式公式:** `w = w - learning_rate * gradient`
+- **輸入與輸出:**
+    - **Input:** Gradients 梯度, Learning Rate 學習率
+    - **Output:** 更新後的模型權重
 
-## 運作流程：推論模式 Inference Mode
+## 運作模式 Operation Modes
 
 ---
 
-這是模型上線使用的過程，例如：使用者在 App 中上傳一張圖片，AI 回傳結果。結構比訓練簡單非常多。
+神經網路有兩種主要運作模式，它們使用不同的核心操作組合來達成不同的目的。
 
-### 關鍵特徵
+### 訓練模式 Training Mode
 
-- **結構簡化:** 只執行前向傳播。
-- **資源需求:** 因為不需要計算梯度 Gradient 也不需要儲存中間產物，記憶體消耗極低。
-- **輸入差異:** 只有 $x$ 使用者輸入，沒有 Label 因為我們不知道答案。
+- **目的:** 調整權重參數，使模型學會如何預測。
+- **執行流程:**
+    - 前向傳播 Forward Propagation
+    - 計算損失 Calculate Loss
+    - 反向傳播 Backpropagation
+    - 更新權重 Update Weights
+- **必要輸入:**
+    - **數據 Data:** 訓練樣本，例如圖片。
+    - **標籤 Label:** 正確答案，例如「這是貓」。
+- **資源需求:**
+    - **記憶體:** 高。需要緩存每一層的輸出供反向傳播使用。
+    - **運算量:** 高。需要執行完整的四個步驟。
+- **迴圈執行:** 通常重複執行數千到數萬次，每次都更新權重。
 
-### 執行步驟
+### 推論模式 Inference Mode
 
-- **步驟一：載入模型 Load State**
-    - 讀取整個 `Layers` 結構，包含多層的 $w$ 和 $b$。
-- **步驟二：多層前向傳播 Multi-Layer Forward**
-    - `CurrentData = UserInput`
-    - `For each Layer in Model:`
-        - `CurrentData = processLayer(CurrentData, Layer)`
-        - `CurrentData = Activation(CurrentData)`
-    - 將計算結果不斷傳遞給下一層
-- **步驟三：輸出結果 Output**
-    - 迴圈結束後的 `CurrentData` 就是最終預測。
+- **目的:** 使用已訓練好的模型進行預測。
+- **執行流程:**
+    - 前向傳播 Forward Propagation
+- **必要輸入:**
+    - **數據 Data:** 使用者輸入，例如一張新照片。
+    - **無需標籤:** 因為我們不知道答案，這正是要預測的目標。
+- **資源需求:**
+    - **記憶體:** 低。不需要緩存中間值。
+    - **運算量:** 低。只執行一次前向傳播。
+- **單次執行:** 每次推論只執行一次，立即返回結果。
 
 ## 虛擬程式碼實作 Pseudo-code
 
