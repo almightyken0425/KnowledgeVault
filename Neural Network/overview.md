@@ -16,6 +16,30 @@
 在深度學習 Deep Learning 中，我們不再只有一組權重，而是有多組權重組成 **層 Layers**。
 以下將神經網路的實體結構由小到大，從概念到程式碼邏輯逐一解析。
 
+### 輸入數據 Input Data
+
+- **概念:** 輸入是神經網路的起點，是待處理的原始資訊。
+- **型態:** `Array<Float>` 一維陣列/向量，或 `Array<Array<Float>>` 矩陣 Batch 批次處理時。
+- **語意:** 陣列長度代表特徵數量，例如一張 28x28 的灰階圖片會被展平成 784 個數值。
+- **程式碼表示:**
+    ```javascript
+    const singleInput = [x1, x2, x3, ..., xM]; // 單筆資料，M 個特徵
+    const batchInputs = [
+        [x1_sample1, x2_sample1, ...],
+        [x1_sample2, x2_sample2, ...],
+    ]; // 批次處理，多筆資料同時運算
+    ```
+- **視覺化:**
+    ```
+    單筆輸入向量：
+    [ x1, x2, x3, ..., xM ]
+    
+    批次輸入矩陣：
+    [ [ x1, x2, x3 ]  <- Sample 1
+      [ x1, x2, x3 ]  <- Sample 2
+      [ x1, x2, x3 ] ]<- Sample 3
+    ```
+
 ### 神經元節點 Neuron Node
 
 - **概念:** 神經元並非獨立物件，它是針對上一層所有輸入的一組評分標準。
@@ -25,6 +49,14 @@
     ```javascript
     const node1Weights = [w11, w12, w13]; // 長度 = 上一層特徵數
     const node2Weights = [w21, w22, w23];
+    ```
+- **視覺化:**
+    ```
+    神經元 1 的權重向量：
+    [ w11, w12, w13 ]
+      │    │    └─ 對特徵 3 的權重
+      │    └──── 對特徵 2 的權重  
+      └─────── 對特徵 1 的權重
     ```
 
 ### 權重矩陣 Weights Matrix
@@ -43,6 +75,15 @@
         node2Weights  // 橫列 Row 1
     ];
     ```
+- **視覺化:**
+    ```
+    權重矩陣 [2x3] ：2 個神經元，每個接收 3 個輸入
+    
+         Input 1  Input 2  Input 3
+           ↓       ↓       ↓
+    N1 [ [ w11,    w12,    w13 ]  <- Neuron 1
+    N2   [ w21,    w22,    w23 ] ]<- Neuron 2
+    ```
 
 ### 層 Layer
 
@@ -56,6 +97,16 @@
         biases: [b1, b2] // 每個神經元分配一個偏差
     };
     ```
+- **視覺化:**
+    ```
+    Layer 物件結構：
+    ┌──────────────────┐
+    │ Layer 1            │
+    ├──────────────────┤
+    │ weights: [2x3]    │
+    │ biases:  [b1, b2] │
+    └──────────────────┘
+    ```
 
 ### 神經網路 Neural Network Model
 
@@ -67,6 +118,18 @@
 - **程式碼表示:**
     ```javascript
     const neuralNetwork = [layer1, layer2, layer3];
+    ```
+- **視覺化:**
+    ```mermaid
+    graph LR
+        Input["輸入層<br/>Input Layer<br/>[x1, x2, x3]"] --> L1["隱藏層 1<br/>Hidden Layer 1<br/>3 Neurons"]
+        L1 --> L2["隱藏層 2<br/>Hidden Layer 2<br/>2 Neurons"]
+        L2 --> Output["輸出層<br/>Output Layer<br/>[y1]"]
+        
+        style Input fill:#e1f5ff
+        style L1 fill:#fff4e1
+        style L2 fill:#fff4e1
+        style Output fill:#e1ffe1
     ```
 
 ## 核心函數庫 Core Functions
@@ -104,52 +167,50 @@
 ### 前向傳播 Forward Propagation
 
 - **目的:** 將輸入數據透過網路層層轉換，產出預測結果。
-- **接力賽機制:**
-    - $Layer_1$ 的輸出 $\rightarrow$ 變成 $Layer_2$ 的輸入。
-    - $Layer_2$ 的輸出 $\rightarrow$ 變成 $Layer_3$ 的輸入。
-    - 重複此過程直到最後一層。
 - **輸入與輸出:**
     - **Input:** 原始數據 $x$
+    - **Process:** 數據依序通過 Neural Network Model 中的每一個 Layer。
+        - 對每一層執行 `processLayer(currentData, layer.weights, layer.biases)` 進行矩陣運算。
+        - 將運算結果通過 `activation(result)` 激活函數，例如 ReLU。
+        - 這一層的輸出成為下一層的輸入，形成接力傳遞。
+        - 訓練模式下會緩存每一層的輸出，供後續反向傳播使用。
     - **Output:** 最終預測 Final Prediction
 
 ### 計算損失 Calculate Loss
 
 - **目的:** 量化預測結果與正確答案的差距。
-- **邏輯:** 使用損失函數評估誤差大小。
 - **輸入與輸出:**
-    - **Input:** Prediction, True Label
-    - **Output:** Error Loss 誤差數值
+    - **Input:** Prediction 預測結果來自前向傳播, True Label 正確答案
+    - **Process:** 使用損失函數計算預測值與真實值的誤差。
+        - 常見損失函數：Mean Squared Error 均方誤差, Cross-Entropy 交叉熵。
+        - 函數會輸出一個數值，數值越大代表預測越不準確。
+    - **Output:** Loss 誤差數值，用於指導後續的權重調整
 
 ### 反向傳播 Backpropagation
 
 這是訓練中最複雜但也最核心的演算法，本質是微積分中的 **連鎖律 Chain Rule** 的程式實作。
 
 - **目的:** 計算每一層權重對最終誤差的貢獻程度。
-- **反向迴圈 Backward Loop:**
-    - 程式從最後一層 Last Layer 開始，使用 `for` 迴圈倒著走到第一層。
-    - **邏輯:** 要修正第 $i$ 層的錯誤，必須先知道第 $i+1$ 層回傳了多少誤差。
-- **關鍵運算 1：誤差回傳 Error Propagation**
-    - **目的:** 計算這一層的輸出對最終誤差貢獻了多少。
-    - **程式邏輯:** `CurrentLayerError = NextLayerError * Weights_Transposed`。
-    - **轉置矩陣 Transpose:** 這裡必須將權重矩陣轉置，$3 \times 2$ 變 $2 \times 3$，才能將誤差從寬度維度推回到高度維度。
-- **關鍵運算 2：激活函數導數 Activation Derivative**
-    - **目的:** 還原開關的影響。如果前向傳播時 ReLU 輸出為 0 開關關閉，則該神經元不應傳遞任何梯度。
-    - **程式邏輯:** `if (Output <= 0) Gradient = 0` else `Gradient = CurrentLayerError`。
-- **關鍵運算 3：計算權重梯度 Compute Gradients**
-    - **目的:** 算出這一層的 $w$ 具體該加多少或減多少。
-    - **程式邏輯:** `WeightGradient = Input_Transposed * Delta`。這裡的 Input 是指前向傳播時，上一層傳給我的值。
 - **輸入與輸出:**
-    - **Input:** Loss 誤差值, Cached Layer Outputs 前向傳播時的緩存
-    - **Output:** `Gradients` 包含每一層的 `weight_grad` 和 `bias_grad`
+    - **Input:** Loss 誤差值, Cached Layer Outputs 前向傳播時緩存的每一層輸出
+    - **Process:** 從最後一層開始，反向遍歷 Neural Network Model 的每一個 Layer。
+        - 對每一層執行三個關鍵運算：
+        - **誤差回傳:** `CurrentLayerError = NextLayerError * Weights_Transposed`。透過轉置矩陣將誤差從下一層傳回本層。
+        - **激活函數導數:** 若前向傳播時 ReLU 輸出為 0，該神經元梯度為 0，否則保留誤差值。
+        - **計算權重梯度:** `WeightGradient = Input_Transposed * Delta`。利用前向傳播時緩存的輸入值計算每個權重的調整方向。
+        - 逐層往前傳遞誤差，直到回到第一層。
+    - **Output:** Gradients 梯度集合，包含每一層的 `weight_grad` 和 `bias_grad`
 
 ### 更新權重 Update Weights
 
 - **目的:** 根據梯度調整權重和偏差，使模型逐步改進。
-- **邏輯:** 將權重往梯度的反方向移動一小步。
-- **程式公式:** `w = w - learning_rate * gradient`
 - **輸入與輸出:**
-    - **Input:** Gradients 梯度, Learning Rate 學習率
-    - **Output:** 更新後的模型權重
+    - **Input:** Gradients 梯度來自反向傳播, Learning Rate 學習率超參數
+    - **Process:** 遍歷 Neural Network Model 中的每一個 Layer，更新其權重與偏差。
+        - 對每一層的每個權重執行：`w = w - learning_rate * gradient`。
+        - 將權重往梯度的反方向移動一小步。
+        - Learning Rate 控制步伐大小：太大可能錯過最優解，太小則訓練緩慢。
+    - **Output:** 更新後的 Neural Network Model，其內部所有 Layer 的權重與偏差已調整
 
 ## 運作模式 Operation Modes
 
@@ -185,85 +246,3 @@
     - **記憶體:** 低。不需要緩存中間值。
     - **運算量:** 低。只執行一次前向傳播。
 - **單次執行:** 每次推論只執行一次，立即返回結果。
-
-## 虛擬程式碼實作 Pseudo-code
-
----
-
-以下代碼展示了 **深度神經網路 Deep Neural Network** 的推論引擎實作。
-
-```
-// --- 多層模型結構 (Deep Model Artifact) ---
-// 這裡展示一個 3 層的神經網路
-const SAVED_MODEL = {
-    layers: [
-        // 第一層 (Hidden Layer 1): 把 100 個特徵變成 50 個特徵
-        { weights: [[...], ...], bias: [...] },
-
-        // 第二層 (Hidden Layer 2): 把 50 個特徵變成 10 個特徵
-        { weights: [[...], ...], bias: [...] },
-
-        // 第三層 (Output Layer): 把 10 個特徵變成 1 個結果 (例如：是貓的機率)
-        { weights: [[...], ...], bias: [...] }
-    ]
-};
-
-// --- 深度推論引擎 ---
-class DeepInferenceEngine {
-    constructor(modelData) {
-        this.layers = modelData.layers;
-    }
-
-    // 單一神經元的運算
-    dotProduct(inputs, neuronWeights) {
-        let sum = 0;
-        for (let i = 0; i < inputs.length; i++) {
-            sum += inputs[i] * neuronWeights[i];
-        }
-        return sum;
-    }
-
-    activation(z) {
-        return Math.max(0, z); // ReLU
-    }
-
-    // --- 處理單一層 (Process Single Layer) ---
-    // 這就是「矩陣運算」的邏輯版
-    runLayer(inputs, layerConfig) {
-        let layerOutputs = [];
-
-        // 這一層有幾個神經元，就跑幾次
-        // 例如 Layer 1 有 50 個神經元，這裡會產生 50 個新數值
-        for (let neuronWeights of layerConfig.weights) {
-            let z = this.dotProduct(inputs, neuronWeights);
-            z += layerConfig.bias; // 簡化寫法，假設 bias 對應單一神經元
-            layerOutputs.push(this.activation(z));
-        }
-
-        return layerOutputs;
-    }
-
-    // --- 推論主程式 (The Loop) ---
-    predict(userInput) {
-        // 1. 初始化：目前的數據就是使用者的原始輸入
-        let currentData = userInput;
-
-        // 2. 接力賽迴圈：一層一層往下傳
-        for (let i = 0; i < this.layers.length; i++) {
-            // 將上一層的 currentData 丟進去算，得到新的 currentData
-            currentData = this.runLayer(currentData, this.layers[i]);
-        }
-
-        // 3. 迴圈結束，最後手上的 currentData 就是最終答案
-        return currentData;
-    }
-}
-
-// --- 使用範例 ---
-const aiEngine = new DeepInferenceEngine(SAVED_MODEL);
-const userPhotoFeatures = [0.5, -0.2, ...]; // 原始 100 維特徵
-
-// 數據流動：100維 -> 50維 -> 10維 -> 1維
-const result = aiEngine.predict(userPhotoFeatures);
-
-```
