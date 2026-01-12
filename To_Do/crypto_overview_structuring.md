@@ -1,177 +1,183 @@
 # Crypto_Overview 詳細架構規劃書
 
-本文件為 `Crypto_Overview` 的執行藍圖。我們將加密貨幣知識體系分為四大層次 (Fundamentals, Blockchain Core, Smart Contracts, Applications)，並詳細規劃了每個檔案應包含的子章節內容。
+本文件為 `Crypto_Overview` 的執行藍圖。
+我們參考了 **3Blue1Brown** 在 "But how does bitcoin actually work?" 影片中的優異架構，將知識體系重縮如下：
+**Ledger (帳本) → Signatures (簽章) → Decentralization (去中心化) → PoW (共識) → Blockchain (不可篡改)**
+
+這是一條從「為什麼需要它」到「它是如何運作」的完美邏輯鏈。
+
+## 資料夾結構 ASCII 圖
+
+```text
+KnowledgeVault/
+└── Crypto_Overview/
+    ├── 1_Fundamentals/ (信任的基石)
+    │   ├── 1_ledger_is_currency.md   (帳本即貨幣)
+    │   ├── 2_digital_signatures.md   (身份與授權)
+    │   └── 3_hash_functions.md       (數位指紋)
+    │
+    ├── 2_Blockchain_Core/ (運作的引擎)
+    │   ├── 1_decentralization_pow.md (去中心化的代價)
+    │   ├── 2_blockchain_structure.md (信任鏈條)
+    │   ├── 3_forks_soft_hard.md      (軟分叉與硬分叉)
+    │   └── 4_proof_of_stake.md       (權益證明)
+    │
+    ├── 3_Smart_Contracts_&_VM/ (可程式化的進化)
+    │   ├── 1_Ethereum_EVM/
+    │   │   ├── 1_smart_contract_concept.md
+    │   │   └── 2_token_standards.md
+    │   └── 2_Layer_2_Scaling/
+    │       ├── 1_scaling_trilemma.md
+    │       ├── 2_rollups_concept.md
+    │       └── 3_blockchain_layers.md
+    │
+    └── 4_Applications_Web3/ (價值網路的應用)
+        ├── 1_DeFi_Protocols/
+        │   ├── 1_dex_amm.md
+        │   ├── 2_lending_mechanisms.md
+        │   └── 3_stablecoins.md
+        └── 2_Web3_Frontiers/
+            ├── 1_nft_and_metaverse.md
+            └── 2_dao_governance.md
+```
 
 ---
 
 ## 1. 1_Fundamentals (基礎設施)
-> **核心概念:** 密碼學與分散式系統的基石。在理解「幣」之前，必須先理解「安全」。
+> **核心概念:** 參考 3B1B 邏輯，從「帳本」出發，解釋為什麼我們需要密碼學。
 
-### `1_cryptography_basics.md`
-**目標:** 解釋數學如何取代信用。
-- **## 雜湊函數 Hash Functions**
-    - **原理:** 單向性 (One-way)、抗碰撞性 (Collision Resistance)。
-    - **SHA-256:** 比特幣的指紋產生器。
-    - **應用:** 將任意長度的資料壓縮成固定長度的字串 (Digest)。
-- **## 非對稱加密 Asymmetric Encryption**
-    - **公鑰與私鑰:** 公鑰是信箱地址 (Public)，私鑰是信箱鑰匙 (Secret)。
-    - **橢圓曲線密碼學 (ECC):** 為什麼比特幣使用 secp256k1 而不是 RSA。
+### `1_ledger_is_currency.md`
+**目標:** 建立 "The history of transactions IS the currency" 的核心觀念。
+- **## 帳本哲學 The Ledger Philosophy**
+    - **問題:** 如果大家都有一本帳本，誰的是真的？
+    - **概念:** 錢不是物理實體，只是帳本上的一行紀錄。沒有「硬幣」，只有「交易紀錄」。
+
+### `2_digital_signatures.md`
+**目標:** 解決「身份認證」問題 (Identity)。
+- **## 公私鑰加密 Public/Private Keys**
+    - **直觀理解:** 公鑰是「存錢筒的孔」，私鑰是「打開存錢筒的鑰匙」。
 - **## 數位簽章 Digital Signatures**
-    - **簽署 (Signing):** 用私鑰證明「這是我發出的」。
-    - **驗證 (Verification):** 所有人可以用公鑰確認「這真的是他發出的」。
+    - **不可否認性 (Non-repudiation):** 證明「這筆交易真的是我發起的」且「內容未被竄改」。
+    - **數學原理:** 橢圓曲線 (ECC) 的簡單概念。
 
-### `2_distributed_ledger.md`
-**目標:** 解釋去中心化的帳本如何達成共識。
-- **## 拜占庭將軍問題 The Byzantine Generals Problem**
-    - **情境:** 在有叛徒的情況下，分散的節點如何達成一致？
-    - **解決方案:** 分散式帳本技術 (DLT) 的核心挑戰。
-- **## 去中心化網路 P2P Network**
-    - **無中心伺服器:** 每個節點都是平等的，既是客戶端也是伺服器。
-    - **廣播機制:** 交易如何在網路中傳播 (Gossip Protocol)。
-- **## 雙花攻擊 Double Spending**
-    - **數位資產的特性:** 複製檔案太容易 (Ctrl+C, Ctrl+V)。
-    - **解決方案:** 帳本的時間戳記與不可篡改性。
+### `3_hash_functions.md`
+**目標:** 解決「資料完整性」問題 (Integrity)。
+- **## 數位指紋 Digital Fingerprint**
+    - **SHA-256:** 輸入任何東西，都會輸出一個獨一無二的 256 位元字串。
+    - **特性:** 不可逆、抗碰撞。這也是區塊鏈 id (TxID, BlockHash) 的來源。
 
 ---
 
 ## 2. 2_Blockchain_Core (核心技術)
-> **核心概念:** 以比特幣為例，解析區塊鏈運作的機械原理。
+> **核心概念:** 解決「去中心化後的信任」問題。
 
-### 2_Blockchain_Core / 1_Bitcoin_Network (區塊鏈 1.0)
-
-#### `1_bitcoin_whitepaper.md`
-**目標:** 回歸中本聰的初衷。
-- **## 點對點電子現金 P2P Electronic Cash**
-    - **願景:** 不需要銀行的價值傳輸系統。
-- **## 區塊鏈結構 The Blockchain Structure**
-    - **Block Header:** 包含前一個區塊的 Hash (形成鏈)。
-    - **Merkle Tree:** 快速驗證區塊內是否包含某筆交易。
-- **## UTXO 模型 vs 帳戶模型**
-    - **UTXO (Unspent Transaction Output):** 鈔票找零的概念 (比特幣)。
-    - **Account Model:** 銀行帳戶餘額的概念 (以太坊)。
-
-#### `2_mining_and_halving.md`
-**目標:** 理解比特幣的經濟與安全模型。
+### `1_decentralization_pow.md`
+**目標:** 解決「雙花」與「共識」問題 (Consensus)。
+- **## 雙花問題 Double Spending**
+    - **挑戰:** 沒有銀行 (中心管理者)，我怎麼知道這筆錢沒被花過兩次？
 - **## 工作量證明 Proof of Work (PoW)**
-    - **挖礦 Mining:** 透過消耗電力尋找 Nonce 值，以換取記帳權。
-    - **難度調整:** 每 2016 個區塊調整一次，確保平均 10 分鐘出塊。
-- **## 減半機制 The Halving**
-    - **供給曲線:** 每 21 萬個區塊產量減半。
-    - **數位黃金:** 總量上限 2100 萬顆的稀缺性邏輯。
+    - **3B1B 核心解釋:** 用「計算力」來投票。為什麼要解「毫無意義的數學謎題」？因為這是證明你投入了真實資源 (能源/時間) 的唯一方法。
+    - **Nonce 與 Difficulty:** 挖礦的數學本質。
 
-### 2_Blockchain_Core / 2_Consensus_Mechanisms (共識演算法)
+### `2_blockchain_structure.md`
+**目標:** 解決「竄改歷史」問題 (Immutability)。
+- **## 區塊鏈條 Chain of Blocks**
+    - **機制:** 每個區塊都包含前一個區塊的 Hash。
+    - **效應:** 改了第 1 塊的任何一個字，第 100 塊的 Hash 就會變，整個鏈都會斷掉。
+- **## 最長鏈原則 Longest Chain Rule**
+    - **真理:** 當出現分叉時，永遠相信最長 (累積工作量最大) 的那一條。
 
-#### `1_pow_vs_pos.md`
-**目標:** 比較兩大主流共識機制。
-- **## Proof of Work (PoW)**
-    - **本質:** 物理世界的能源錨定 (Energy-backed)。
-    - **優缺:** 極度安全與去中心化，但能源消耗巨大。
-- **## Proof of Stake (PoS)**
-    - **本質:** 虛擬世界的資本錨定 (Capital-backed)。
-    - **機制:** 驗證者 (Validator)、質押 (Staking)、罰沒 (Slashing)。
-    - **優缺:** 環保、效能高，但有富者恆富的中心化疑慮。
+### `3_forks_soft_hard.md`
+**目標:** 區塊鏈如何升級？什麼是「分叉」？
+- **## 軟分叉 (Soft Fork):** 
+    - **向下相容:** 舊的節點還能用，只是不能用新功能 (如 SegWit)。
+    - **不分裂:** 網路還是一條鏈。
+- **## 硬分叉 (Hard Fork):**
+    - **不相容:** 舊的節點必須強制更新，否則就被踢出網路。
+    - **分裂:** 社群意見不合時會導致分裂 (如 BTC vs BCH, ETH vs ETC)。
 
-#### `2_dpos_and_others.md`
-**目標:** 介紹追求效能的變體。
-- **## DPoS (Delegated Proof of Stake)**
-    - **代議民主:** 持幣者投票選出超級節點 (Super Representatives)。
-    - **案例:** EOS, Tron, BSC。
-- **## PoH (Proof of History)**
-    - **Solana:** 用時間戳記來加速共識達成。
+### `4_proof_of_stake.md`
+**目標:** 以太坊的進化 (The Merge)。
+- **## 能源的迷思:** 
+    - PoW 吃電，PoS (權益證明) 幾乎不耗電。
+- **## 質押 (Staking) 取代 算力:**
+    - 不用買顯卡，改用「抵押錢」來保證我不作惡。
+    - **罰沒 (Slashing):** 作惡就沒收你的押金。
 
 ---
 
 ## 3. 3_Smart_Contracts_&_VM (智慧與擴容)
-> **核心概念:** 區塊鏈 2.0，從記帳計算機進化為「世界電腦」。
+> **核心概念:** 以太坊將區塊鏈從「計算機」升級為「智慧型手機」。
 
 ### 3_Smart_Contracts_&_VM / 1_Ethereum_EVM
 
 #### `1_smart_contract_concept.md`
-**目標:** 雖然我們在寫 Code，但我們其實在寫法律。
-- **## 世界電腦 The World Computer**
-    - **圖靈完備 (Turing Complete):** 理論上可以執行任何計算邏輯。
-    - **程式碼即法律 (Code is Law):** 不可篡改、自動執行的合約。
-- **## EVM (Ethereum Virtual Machine)**
-    - **堆疊式架構 (Stack-based):** 智能合約的運行環境。
-    - **Bytecode:** Solidity 編譯後的機器碼。
-- **## Gas Fee 機制**
-    - **停機問題 (Halting Problem):** 防止無窮迴圈癱瘓網路。
-    - **競價市場:** 區塊空間是有限資源。
+**目標:** 程式碼即法律 (Code is Law)。
+- **## EVM 與 圖靈完備**
+    - **差異:** 比特幣只能做加減法，以太坊可以寫迴圈 (Loop)。
+- **## Gas Fee**
+    - **經濟學:** 防止程式跑無窮迴圈的煞車機制。
 
 #### `2_token_standards.md`
-**目標:** 定義數位資產的介面標準。
-- **## ERC-20 (Fungible Token)**
-    - **同質化代幣:** 每一顆代幣都一樣 (如 USDT, UNI)。
-    - **核心介面:** `transfer`, `approve`, `transferFrom` (授權轉帳模式)。
-- **## ERC-721 (Non-Fungible Token)**
-    - **非同質化代幣:** 每一顆都有唯一 ID (NFT)。
-    - **應用:** 數位藝術品、遊戲裝備、身份憑證。
+**目標:** 資產通證化。
+- **## ERC-20 vs ERC-721**
+    - **貨幣 (Fungible):** 每一塊錢都一樣。
+    - **收藏品 (Non-Fungible):** 每一張畫都獨一無二。
 
 ### 3_Smart_Contracts_&_VM / 2_Layer_2_Scaling
+> **核心概念:** 從單一網路擴展到多層網路架構。
 
 #### `1_scaling_trilemma.md`
 **目標:** 為什麼區塊鏈這麼慢？
-- **## 不可能三角 The Blockchain Trilemma**
-    - **三選二:** 無法同時達成 去中心化、安全性、可擴展性。
-- **## 擴容路徑**
-    - **Layer 1:** Sharding (分片)。
-    - **Layer 2:** Rollups (捲積)，Off-chain execution, On-chain data。
+- **## 不可能三角**
+    - 安全、去中心化、效能，只能選二。
 
 #### `2_rollups_concept.md`
-**目標:** 以太坊擴容的終極方案。
-- **## Optimistic Rollups (樂觀捲積)**
-    - **機制:** 預設大家都是好人。
-    - **詐欺證明 (Fraud Proof):** 有人舉報才驗證，退款期長 (7天)。
-- **## ZK-Rollups (零知識捲積)**
-    - **機制:** 用數學證明自己沒說謊。
-    - **有效性證明 (Validity Proof):** 即時驗證，技術難度極高。
+**目標:** Layer 2 擴容。
+- **## Rollups 原理**
+    - 把 100 筆交易打包成 1 筆上鏈。
+    - **Optimistic vs ZK:** 驗證方式的差異 (事後抓更 vs 當下檢查)。
+
+#### `3_blockchain_layers.md`
+**目標:** "不同的網路" 是什麼意思？
+- **## Layer 1 (L1):** 結算層 (Bitcoin, Ethereum, Solana)。負責最終安全性。
+- **## Layer 2 (L2):** 執行層 (Optimism, Arbitrum)。負責速度與低費率。
+- **## 測試網 (Testnet):** RD 的遊樂場 (Sepolia)。假的幣，真的邏輯。
+- **## EVM vs Non-EVM:** 就像 Android vs iOS。
 
 ---
 
 ## 4. 4_Applications_Web3 (應用層)
-> **核心概念:** 金融、藝術與組織的去中心化重構。
+> **核心概念:** 金融與社會的重構。
 
 ### 4_Applications_Web3 / 1_DeFi_Protocols
 
 #### `1_dex_amm.md`
-**目標:** 沒人上班的銀行與證交所。
-- **## 訂單簿 (Order Book) vs 自動做市商 (AMM)**
-    - **XY=K 模型:** Uniswap V2 的恆定乘積公式。
-    - **流動性池 (Liquidity Pool):** 人人都可以當莊家賺手續費。
-- **## 無常損失 Impermanent Loss**
-    - **風險:** 當幣價劇烈波動時，當流動性提供者 (LP) 反而虧錢的數學原理。
+**目標:** 人人都能當莊家的交易所。
+- **## 自動做市商 AMM**
+    - **XY=K 公式:** 無需掛單簿的交易數學。
+    - **流動性提供者 (LP):** 賺取手續費與承擔無常損失。
 
 #### `2_lending_mechanisms.md`
-**目標:** 去中心化借貸的運作原理。
-- **## 超額抵押 Over-collateralization**
-    - **信任問題:** 匿名網路上沒有信用分數，只能由資產擔保。
-    - **案例:** 抵押 150 元的 ETH，借出 100 元的 USDC。
-- **## 清算機制 Liquidation**
-    - **維持率:** 當抵押品價值下跌，任何人都能執行清算並獲利。
+**目標:** 全球化的當鋪。
+- **## 超額抵押**
+    - 既然沒有信用分數，那就用資產說話。
 - **## 閃電貸 Flash Loans**
-    - **區塊鏈特技:** 在同一個區塊內完成借款與還款，無須抵押，僅需支付手續費 (常見於套利、駭客攻擊)。
+    - 區塊鏈特有的金融工具 (借款還款在同一筆交易完成)。
 
 #### `3_stablecoins.md`
-**目標:** 避險資產的分類。
-- **## 法幣抵押 Fiat-backed**
-    - **USDT/USDC:** 中心化機構託管美金，1:1 發行。風險在於銀行。
-- **## 加密貨幣抵押 Crypto-backed**
-    - **DAI:** 抵押 ETH 生成。透過超額抵押維持穩定。
-- **## 算法穩定幣 Algorithmic**
-    - **UST:** 試圖透過套利機制維持錨定，但有死亡螺旋 (Death Spiral) 風險。
+**目標:** 連結現實價值的橋樑 (USDT, DAI)。
+- **## 法幣抵押 Fiat-backed:** 銀行裡有真的美金 (USDT/USDC)。
+- **## 加密與算法 Crypto-backed:** 用程式碼維持 1 美元 (DAI, UST)。
 
 ### 4_Applications_Web3 / 2_Web3_Frontiers
 
 #### `1_nft_and_metaverse.md`
-**目標:** 數位所有權的延伸。
-- **## PFP 與 數位藝術**
-    - BAYC, Punk 的社群價值與 Veblen Goods 效應。
-- **## GameFi & Metaverse**
-    - Play-to-Earn 機制與虛擬地產。
+**目標:** 數位資產所有權。
+- **## 數位稀缺性**
+    - 為什麼一張 JPG 可以賣這麼貴？ (社群、賦能、炫耀財)。
 
 #### `2_dao_governance.md`
-**目標:** 新型態的人類協作組織。
-- **## 鏈上治理 On-chain Governance**
-    - 代幣加權投票 vs 二次房投票 (Quadratic Voting)。
-- **## 治理攻擊**
-    - 閃電貸借票攻擊提案。
+**目標:** 沒有老闆的公司。
+- **## 鏈上治理**
+    - 用代幣投票決定協議的未來。
