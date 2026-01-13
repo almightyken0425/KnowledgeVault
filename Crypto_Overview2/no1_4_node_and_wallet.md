@@ -33,11 +33,34 @@
     - **原始帳本 Raw Ledger:** 完整保存從創世區塊至今的所有區塊資料如 blk.dat。
     - **索引資料庫 Index Database:**
         - **目的:** 解決原始區塊鏈資料難以檢索的問題。
-        - **技術:** 額外維護的高效能 Key Value 資料庫如 LevelDB。
         - **結構:**
-            - **Key:** TxID 即交易雜湊。
-            - **Value:** Block Height 加 Position Offset 即區塊高度與檔案位置偏移量。
-        - **功能:** 當查詢某筆 TxID 時，節點透過此索引瞬間定位到該交易位於哪個區塊的哪個位置。
+            - **Key - 交易識別碼 TxID:**
+                - **定義:** 交易資料的雙重雜湊 `DoubleSHA256 RawTx`。
+                - **性質:** 簽名當下即由錢包自主產生 Independence，不需等待挖礦。
+                - **Demo Code:**
+                    ```python
+                    def calculate_txid(signed_hex):
+                        # 還原: 將 API 傳入的 Hex String 解析為物件
+                        tx = deserialize(from_hex(signed_hex))
+
+                        # 序列化: 將所有欄位依序拼成一串二進位資料
+                        raw_tx = (
+                            serialize(tx.version) +
+                            serialize(tx.inputs) +
+                            serialize(tx.outputs) +
+                            serialize(tx.locktime)
+                        )
+                        # 雙重雜湊: 對這串資料進行兩次 SHA256 運算
+                        return SHA256(SHA256(raw_tx))
+                    ```
+            - **Value - 位置指標 Location:**
+                - 包含 `Block Height` 即第幾塊 與 `Position Offset` 即第幾 byte。
+        - **功能:** 
+            - 支援錢包瞬間查詢餘額 即 UTXO Lookup。
+            - 支援防範雙重花費 即 Double Spend Check。
+        - **建置時機 Timing:**
+            - **生成:** 簽名時即由內容確定，即各方皆可獨立計算。
+            - **索引:** 節點驗證區塊後更新 LevelDB。
 
 ---
 
