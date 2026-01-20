@@ -161,6 +161,7 @@ def generate_scheduled_transactions(cursor) -> list:
     回傳: [(datetime_str, category_name, account_name, amount_decimal, currency_code, note), ...]
     """
     # 查詢所有有效的 Schedule 及其模板 Transaction
+    # [Fix] 加入 t.DeletedOn 以檢查 Template Transaction 是否被刪除
     query = '''
         SELECT 
             s.StartOn,
@@ -173,7 +174,8 @@ def generate_scheduled_transactions(cursor) -> list:
             cur.AlphabeticCode as CurrencyCode,
             t.Note,
             s.Id as ScheduleId,
-            s.DeletedOn as ScheduleDeletedOn
+            s.DeletedOn as ScheduleDeletedOn,
+            t.DeletedOn as TemplateDeletedOn
         FROM "Schedule" s
         JOIN "Transaction" t ON s.EntityId = t.Id
         JOIN "Category" c ON t.CategoryId = c.Id
@@ -189,12 +191,13 @@ def generate_scheduled_transactions(cursor) -> list:
     scheduled_txs = []
     
     for schedule in schedules:
-        start_ticks, end_ticks, schedule_type, cat_name, cat_type, acc_name, amount_cents, currency, note, schedule_id, deleted_ticks = schedule
+        start_ticks, end_ticks, schedule_type, cat_name, cat_type, acc_name, amount_cents, currency, note, schedule_id, deleted_ticks, template_deleted_ticks = schedule
         
         # 轉換時間
         start_dt = ticks_to_datetime(start_ticks)
         end_dt = ticks_to_datetime(end_ticks)
         deleted_dt = ticks_to_datetime(deleted_ticks)
+        template_deleted_dt = ticks_to_datetime(template_deleted_ticks)
         
         if not end_dt:
              # 如果沒有結束日期，預設產生到今天
@@ -205,16 +208,39 @@ def generate_scheduled_transactions(cursor) -> list:
         if deleted_dt:
             if end_dt > deleted_dt:
                 end_dt = deleted_dt
+        
+        # [Fix] 如果 Template Transaction 被「真正刪除」，才視為終止日期
+        # 關鍵判斷: 若 Template.DeletedOn == Schedule.StartOn，這是 Monefy 的「模板失活」機制
+        # 目的是防止模板交易作為獨立交易顯示，但 Schedule 本身仍應持續產生交易
+        # 僅當 Template.DeletedOn > Schedule.StartOn 時，才視為真正的刪除/終止
+        if template_deleted_dt and start_dt:
+            # 只有當模板在 Schedule 開始後被刪除，才將其作為終止日期
+            if template_deleted_dt > start_dt:
+                if end_dt > template_deleted_dt:
+                    end_dt = template_deleted_dt
 
         if not start_dt:
             continue
+        
+        # 計算有效的刪除截止日期 (取 Schedule 和 Template 刪除日期中較早者)
+        # 同樣套用「模板失活」判斷邏輯
+        effective_deleted_dt = None
+        # 只有當 Template 在 Schedule 開始後被刪除，才計入有效刪除日期
+        template_truly_deleted = template_deleted_dt and start_dt and template_deleted_dt > start_dt
+        
+        if deleted_dt and template_truly_deleted:
+            effective_deleted_dt = min(deleted_dt, template_deleted_dt)
+        elif deleted_dt:
+            effective_deleted_dt = deleted_dt
+        elif template_truly_deleted:
+            effective_deleted_dt = template_deleted_dt
         
         # ScheduleType=3 表示月度循環
         if schedule_type == 3:
             current_dt = start_dt
             while current_dt <= end_dt:
-                # [Double Check] 確保不會產生 exactly 在 deleted_dt 之後的
-                if deleted_dt and current_dt > deleted_dt:
+                # [Double Check] 確保不會產生 exactly 在刪除日期之後的
+                if effective_deleted_dt and current_dt > effective_deleted_dt:
                     break
                     
                 datetime_str = current_dt.strftime('%Y-%m-%d %H:%M:%S')
@@ -224,8 +250,10 @@ def generate_scheduled_transactions(cursor) -> list:
                 if cat_type == 1:
                     amount = -amount
                 
+                
+                
                 final_note = note or ''
-                final_note += " [Virtual]" # Tag virtual transactions for debugging
+                # final_note += " [Virtual]" # Removed as per user request (moved to column)
                 
                 scheduled_txs.append({
                     'datetime_obj': current_dt,
@@ -235,6 +263,7 @@ def generate_scheduled_transactions(cursor) -> list:
                     'amount': amount,
                     'currency': currency or '',
                     'note': final_note,
+                    'schedule_id': schedule_id,
                     'is_virtual': True 
                 })
                 
@@ -251,6 +280,8 @@ def export_transactions(cursor, output_path: Path) -> int:
     欄位: transaction_datetime, category, account, amount, currency, note
     """
     # 1. 獲取真實交易記錄
+    # [Fix] 過濾由已刪除 Template 的 Schedule 產生的交易
+    # Monefy App 當 Schedule 的 Template Transaction 被刪除時，不會顯示由該 Schedule 產生的交易
     query = '''
         SELECT 
             t.CreatedOn,
@@ -260,18 +291,32 @@ def export_transactions(cursor, output_path: Path) -> int:
             t.AmountCents,
             cur.AlphabeticCode as CurrencyCode,
             t.Note,
-            t.CategoryId
+            t.CategoryId,
+            t.ScheduleId
         FROM "Transaction" t
         JOIN "Category" c ON t.CategoryId = c.Id
         JOIN "Account" a ON t.AccountId = a.Id
         JOIN "Currency" cur ON a.CurrencyId = cur.Id
+        LEFT JOIN "Schedule" s ON t.ScheduleId = s.Id
+        LEFT JOIN "Transaction" template ON s.EntityId = template.Id
         WHERE t.DeletedOn IS NULL
           AND a.DeletedOn IS NULL
+          AND (
+              t.ScheduleId IS NULL 
+              OR template.DeletedOn IS NULL
+              OR (
+                  -- [Fix] Allow if template is only "deactivated" (DeletedOn == StartOn)
+                  -- But filter if it's truly deleted (DeletedOn > StartOn)
+                  template.DeletedOn <= s.StartOn
+              )
+          )
         ORDER BY t.CreatedOn
     '''
     
     cursor.execute(query)
     rows = cursor.fetchall()
+    # [Fix] 立即保存 col_map，避免後續查詢覆蓋 cursor.description
+    col_map = {description[0]: i for i, description in enumerate(cursor.description)}
     
     # [Fix] Pre-fetch Category Deleted Status and Deleted Transaction Fingerprints
     # We need to know if a category is deleted to filter its transactions
@@ -296,20 +341,27 @@ def export_transactions(cursor, output_path: Path) -> int:
                 t.CreatedOn,
                 a.Name as AccountName,
                 t.AmountCents,
-                cur.AlphabeticCode as CurrencyCode
+                cur.AlphabeticCode as CurrencyCode,
+                c.CategoryType
             FROM "Transaction" t
             JOIN "Account" a ON t.AccountId = a.Id
             JOIN "Currency" cur ON a.CurrencyId = cur.Id
+            JOIN "Category" c ON t.CategoryId = c.Id
             WHERE t.DeletedOn IS NOT NULL
         '''
         cursor.execute(query_deleted)
         deleted_rows = cursor.fetchall()
         for row in deleted_rows:
-            d_created, d_acct, d_amt_cents, d_curr = row
+            d_created, d_acct, d_amt_cents, d_curr, d_cat_type = row
             d_dt = ticks_to_datetime(d_created)
             if d_dt:
                 d_date_str = d_dt.strftime('%Y-%m-%d')
                 d_amt = cents_to_decimal(d_amt_cents, d_curr, is_schedule=False)
+                
+                # [Fix] Apply sign based on CategoryType to match Virtual Transaction logic
+                if d_cat_type == 1:
+                    d_amt = -d_amt
+                    
                 d_amt_str = f"{d_amt:.2f}"
                 deleted_fingerprints.add((d_date_str, d_acct, d_amt_str))
         print(f"Loaded {len(deleted_fingerprints)} deleted transaction fingerprints (Suppression List)")
@@ -325,8 +377,7 @@ def export_transactions(cursor, output_path: Path) -> int:
         
     all_transactions = []
     
-    # Get column map for processing
-    col_map = {description[0]: i for i, description in enumerate(cursor.description)}
+    # col_map 已在 fetchall 後保存，此處不需重複定義
 
     # 處理真實交易
     for row in rows:
@@ -338,6 +389,7 @@ def export_transactions(cursor, output_path: Path) -> int:
         currency_code = row[col_map['CurrencyCode']]
         note = row[col_map['Note']]
         category_id = row[col_map['CategoryId']]
+        schedule_id = row[col_map['ScheduleId']]
         
         dt = ticks_to_datetime(created_on)
         if dt is None:
@@ -360,27 +412,31 @@ def export_transactions(cursor, output_path: Path) -> int:
             'amount': amount,
             'currency': currency_code or '',
             'note': note or '',
+            'schedule_id': schedule_id,
             'is_virtual': False
         })
         
     # 2. 獲取循環交易記錄
     virtual_txs = generate_scheduled_transactions(cursor)
     
-    # 3. 合併並去重 (簡單去重: 如果同一天、同金額、同備註已有真實交易，則不加入虛擬交易)
-    # 這裡採取寬鬆策略：如果 Schedule 產生的交易在 DB 中已經有"實體化"的記錄 (通常有 ScheduleId)，則不應該重複添加
-    # 但先前分析發現只有 9 筆 Transaction 有 ScheduleId。
-    # 為了避免重複，我們可以嘗試檢查：如果同一天 (YYYY-MM-DD)、同金額、同 Account 已經存在，就跳過虛擬的
+    # 3. 合併並去重
     
-    # 建立真實交易的指紋集合 set((date_str, account, amount_str))
+    # [Fix] 建立基於 ScheduleId 的去重指涉
+    # Set of (ScheduleId, DateStr)
+    existing_schedule_executions = set()
+    
+    # 建立真實交易的指紋集合 (保留舊邏輯作為 fallback)
     existing_fingerprints = set()
+    
     for tx in all_transactions:
-        # 使用 date 而非 datetime 比較，因為手動確認的時間可能會有秒差? 
-        # Monefy 自動產生的 Schedule 交易時間通常是 08:00:00 (從數據看) 或者與 StartOn 相同的時間
-        # 這裡用 YYYY-MM-DD + Account + Amount 作為指紋
         date_str = tx['datetime_obj'].strftime('%Y-%m-%d')
         amount_str = f"{tx['amount']:.2f}"
         fingerprint = (date_str, tx['account'], amount_str)
         existing_fingerprints.add(fingerprint)
+        
+        # 如果真實交易有 ScheduleId, 記錄下來以防止虛擬交易重複產生
+        if 'schedule_id' in tx and tx['schedule_id']:
+            existing_schedule_executions.add((tx['schedule_id'], date_str))
         
     # 加入虛擬交易 (如果不存在)
     added_virtual_count = 0
@@ -390,15 +446,22 @@ def export_transactions(cursor, output_path: Path) -> int:
         amount_str = f"{v_tx['amount']:.2f}"
         fingerprint = (date_str, v_tx['account'], amount_str)
         
-        # [Fix] Check Suppression List
+        # [Fix] Check Suppression List (Deleted transactions)
         if fingerprint in deleted_fingerprints:
             suppressed_count += 1
             continue
+            
+        # [Fix] 優先檢查 ScheduleId 是否已執行
+        if 'schedule_id' in v_tx and v_tx['schedule_id']:
+            if (v_tx['schedule_id'], date_str) in existing_schedule_executions:
+                # Real transaction exists for this schedule on this date
+                continue
 
+        # Fallback check
         if fingerprint not in existing_fingerprints:
             all_transactions.append(v_tx)
             added_virtual_count += 1
-            # 加回指紋防止 Schedule 自身重複 (雖然 generate 邏輯應該不會)
+            # 加回指紋防止 Schedule 自身重複
             existing_fingerprints.add(fingerprint)
             
     # 4. 重新排序
@@ -409,7 +472,7 @@ def export_transactions(cursor, output_path: Path) -> int:
         writer = csv.writer(f)
         writer.writerow([
             'transaction_datetime', 'category', 'account', 
-            'amount', 'currency', 'note'
+            'amount', 'currency', 'note', 'is_virtual'
         ])
         
         for tx in all_transactions:
@@ -419,7 +482,8 @@ def export_transactions(cursor, output_path: Path) -> int:
                 tx['account'],
                 f"{tx['amount']:.2f}",
                 tx['currency'],
-                tx['note']
+                tx['note'],
+                tx['is_virtual']
             ])
             
     print(f"   (包含 {added_virtual_count} 筆由 Schedule 產生的虛擬交易, 抑制了 {suppressed_count} 筆已刪除交易)")
