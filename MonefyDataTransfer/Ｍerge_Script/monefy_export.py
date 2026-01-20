@@ -172,37 +172,39 @@ def generate_scheduled_transactions(cursor) -> list:
             t.AmountCents,
             cur.AlphabeticCode as CurrencyCode,
             t.Note,
-            s.Id as ScheduleId
+            s.Id as ScheduleId,
+            s.DeletedOn as ScheduleDeletedOn
         FROM "Schedule" s
         JOIN "Transaction" t ON s.EntityId = t.Id
         JOIN "Category" c ON t.CategoryId = c.Id
         JOIN "Account" a ON t.AccountId = a.Id
         JOIN "Currency" cur ON a.CurrencyId = cur.Id
-        WHERE s.DeletedOn IS NULL
-          AND c.DeletedOn IS NULL
+        WHERE c.DeletedOn IS NULL
           AND a.DeletedOn IS NULL
     '''
     
     cursor.execute(query)
     schedules = cursor.fetchall()
-
+    
     scheduled_txs = []
     
     for schedule in schedules:
-        start_ticks, end_ticks, schedule_type, cat_name, cat_type, acc_name, amount_cents, currency, note, schedule_id = schedule
+        start_ticks, end_ticks, schedule_type, cat_name, cat_type, acc_name, amount_cents, currency, note, schedule_id, deleted_ticks = schedule
         
         # 轉換時間
         start_dt = ticks_to_datetime(start_ticks)
-        # 如果沒有 EndOn，則產生直到今天的記錄 (或是未來某個時間點，這裡設為今天)
-        # 用戶提到 "到 2025年12月"，所以我們應該允許產生未來的資料
-        # 但通常記帳軟體顯示未來交易只會顯示到即將到期的
-        # 不過這裡是匯出資料，如果是用作還原，應該盡量還原 Schedule 的意圖
-        # 這裡設定一個合理的上限，例如 2030 年，或者如果沒有 EndOn 就產生到現在 + 1年?
-        # 根據用戶描述 "2022年4月到2025年12月"，這表示 EndTicks 應該是有值的
-        end_dt = ticks_to_datetime(end_ticks) 
+        end_dt = ticks_to_datetime(end_ticks)
+        deleted_dt = ticks_to_datetime(deleted_ticks)
+        
         if not end_dt:
-             # 如果沒有結束日期，預設產生到今天，避免無限迴圈
+             # 如果沒有結束日期，預設產生到今天
              end_dt = datetime.now()
+             
+        # [Fix] 如果 Schedule 被刪除，截止日期取 EndOn 與 DeletedOn 較早者
+        # 使用者要求: "deleteOn 的時間後到 endOn 時間中間的紀錄不應該被產生"
+        if deleted_dt:
+            if end_dt > deleted_dt:
+                end_dt = deleted_dt
 
         if not start_dt:
             continue
@@ -211,6 +213,10 @@ def generate_scheduled_transactions(cursor) -> list:
         if schedule_type == 3:
             current_dt = start_dt
             while current_dt <= end_dt:
+                # [Double Check] 確保不會產生 exactly 在 deleted_dt 之後的
+                if deleted_dt and current_dt > deleted_dt:
+                    break
+                    
                 datetime_str = current_dt.strftime('%Y-%m-%d %H:%M:%S')
                 
                 # 轉換金額 (Schedule 使用標準位數)
@@ -218,9 +224,8 @@ def generate_scheduled_transactions(cursor) -> list:
                 if cat_type == 1:
                     amount = -amount
                 
-                # 備註加上標記 (可選)
                 final_note = note or ''
-                # final_note += f" [Schedule: {schedule_id[:8]}]"
+                final_note += " [Virtual]" # Tag virtual transactions for debugging
                 
                 scheduled_txs.append({
                     'datetime_obj': current_dt,
@@ -230,7 +235,7 @@ def generate_scheduled_transactions(cursor) -> list:
                     'amount': amount,
                     'currency': currency or '',
                     'note': final_note,
-                    'is_virtual': True # 標記為虛擬交易
+                    'is_virtual': True 
                 })
                 
                 # 下個月
@@ -254,7 +259,8 @@ def export_transactions(cursor, output_path: Path) -> int:
             a.Name as AccountName,
             t.AmountCents,
             cur.AlphabeticCode as CurrencyCode,
-            t.Note
+            t.Note,
+            t.CategoryId
         FROM "Transaction" t
         JOIN "Category" c ON t.CategoryId = c.Id
         JOIN "Account" a ON t.AccountId = a.Id
@@ -267,33 +273,82 @@ def export_transactions(cursor, output_path: Path) -> int:
     cursor.execute(query)
     rows = cursor.fetchall()
     
-    # [Fix] Pre-fetch Category Deleted Status
+    # [Fix] Pre-fetch Category Deleted Status and Deleted Transaction Fingerprints
     # We need to know if a category is deleted to filter its transactions
-    cursor.execute("PRAGMA table_info('Category')")
-    cat_cols = [r[1] for r in cursor.fetchall()]
-    cat_id_col = 'Id' if 'Id' in cat_cols else '_id'
-    
-    cursor.execute(f"SELECT {cat_id_col}, DeletedOn FROM 'Category'")
-    # Map CategoryId -> IsDeleted (True/False)
-    categories_deleted_status = {str(r[0]): (r[1] is not None) for r in cursor.fetchall()}
-    print(f"Loaded {len(categories_deleted_status)} categories (Deleted: {sum(categories_deleted_status.values())})")
-    
+    # We also need to know if a transaction was explicitly deleted so we don't resurrect it via Schedule
+    categories_deleted_status = {}
+    try:
+        cursor.execute("PRAGMA table_info('Category')")
+        cat_cols = [r[1] for r in cursor.fetchall()]
+        cat_id_col = 'Id' if 'Id' in cat_cols else '_id'
+        cursor.execute(f"SELECT {cat_id_col}, DeletedOn FROM 'Category'")
+        categories_deleted_status = {str(r[0]): (r[1] is not None) for r in cursor.fetchall()}
+        print(f"Loaded {len(categories_deleted_status)} categories (Deleted: {sum(categories_deleted_status.values())})")
+    except Exception as e:
+        print(f"Warning: Failed to load category deleted status: {e}")
+
+    # Build Fingerprints of DELETED transactions
+    # Rule: If a transaction matches (Date, Account, Amount) and is Deleted, we must NOT generate a virtual schedule for it.
+    deleted_fingerprints = set()
+    try:
+        query_deleted = '''
+            SELECT 
+                t.CreatedOn,
+                a.Name as AccountName,
+                t.AmountCents,
+                cur.AlphabeticCode as CurrencyCode
+            FROM "Transaction" t
+            JOIN "Account" a ON t.AccountId = a.Id
+            JOIN "Currency" cur ON a.CurrencyId = cur.Id
+            WHERE t.DeletedOn IS NOT NULL
+        '''
+        cursor.execute(query_deleted)
+        deleted_rows = cursor.fetchall()
+        for row in deleted_rows:
+            d_created, d_acct, d_amt_cents, d_curr = row
+            d_dt = ticks_to_datetime(d_created)
+            if d_dt:
+                d_date_str = d_dt.strftime('%Y-%m-%d')
+                d_amt = cents_to_decimal(d_amt_cents, d_curr, is_schedule=False)
+                d_amt_str = f"{d_amt:.2f}"
+                deleted_fingerprints.add((d_date_str, d_acct, d_amt_str))
+        print(f"Loaded {len(deleted_fingerprints)} deleted transaction fingerprints (Suppression List)")
+    except Exception as e:
+         print(f"Warning: Failed to load deleted transaction fingerprints: {e}")
+
+        # [Fix] Filter out transactions belonging to deleted categories
+        # Monefy App hides transactions if their category is deleted, even if the transaction itself is active.
+        # Ensure we check carefully
+        # Access by index since col_map is not yet defined ? No, we need col_map
+        # Wait, col_map is defined above in the writer loop, but here we are in the data collection loop (rows)
+        # rows comes from cursor.fetchall(), so we should use cursor.description
+        
     all_transactions = []
     
+    # Get column map for processing
+    col_map = {description[0]: i for i, description in enumerate(cursor.description)}
+
     # 處理真實交易
     for row in rows:
-        created_on, category_name, category_type, account_name, amount_cents, currency_code, note = row
+        created_on = row[col_map['CreatedOn']]
+        category_name = row[col_map['CategoryName']]
+        category_type = row[col_map['CategoryType']]
+        account_name = row[col_map['AccountName']]
+        amount_cents = row[col_map['AmountCents']]
+        currency_code = row[col_map['CurrencyCode']]
+        note = row[col_map['Note']]
+        category_id = row[col_map['CategoryId']]
         
         dt = ticks_to_datetime(created_on)
         if dt is None:
             continue
             
         # [Fix] Filter out transactions belonging to deleted categories
-        # Monefy App hides transactions if their category is deleted, even if the transaction itself is active.
-        if categories_deleted_status.get(str(row[col_map['categoryId']])):
+        if categories_deleted_status and categories_deleted_status.get(str(category_id)):
             continue
 
         amount = cents_to_decimal(amount_cents, currency_code, is_schedule=False)
+
         if category_type == 1:
             amount = -amount
             
@@ -329,11 +384,17 @@ def export_transactions(cursor, output_path: Path) -> int:
         
     # 加入虛擬交易 (如果不存在)
     added_virtual_count = 0
+    suppressed_count = 0
     for v_tx in virtual_txs:
         date_str = v_tx['datetime_obj'].strftime('%Y-%m-%d')
         amount_str = f"{v_tx['amount']:.2f}"
         fingerprint = (date_str, v_tx['account'], amount_str)
         
+        # [Fix] Check Suppression List
+        if fingerprint in deleted_fingerprints:
+            suppressed_count += 1
+            continue
+
         if fingerprint not in existing_fingerprints:
             all_transactions.append(v_tx)
             added_virtual_count += 1
@@ -361,7 +422,7 @@ def export_transactions(cursor, output_path: Path) -> int:
                 tx['note']
             ])
             
-    print(f"   (包含 {added_virtual_count} 筆由 Schedule 產生的虛擬交易)")
+    print(f"   (包含 {added_virtual_count} 筆由 Schedule 產生的虛擬交易, 抑制了 {suppressed_count} 筆已刪除交易)")
     return len(all_transactions)
 
 
