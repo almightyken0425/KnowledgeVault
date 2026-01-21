@@ -35,8 +35,8 @@ def main():
     df['amount'] = pd.to_numeric(df['amount'], errors='coerce').fillna(0)
 
     # 群組加總
-    # 按照 account 和 category 分群，計算 amount 總和
-    pivot_df = df.groupby(['account', 'category'])['amount'].sum().reset_index()
+    # 按照 account, category, record_type 分群，計算 amount 總和
+    pivot_df = df.groupby(['account', 'category', 'record_type'])['amount'].sum().reset_index()
 
     # 排序: 先排 Account (A-Z)，再排 Amount (大 -> 小)
     pivot_df = pivot_df.sort_values(by=['account', 'amount'], ascending=[True, False])
@@ -44,8 +44,8 @@ def main():
     # 格式化 amount (可選，保持小數點後2位)
     pivot_df['amount'] = pivot_df['amount'].round(2)
 
-    # 為了輸出的美觀，把欄位名改回大寫 (Account, Category, Amount)
-    pivot_df.columns = ['Account', 'Category', 'Amount']
+    # 為了輸出的美觀，把欄位名改回大寫 (Account, Category, RecordType, Amount)
+    pivot_df.columns = ['Account', 'Category', 'RecordType', 'Amount']
 
     # 輸出
     print(f"正在寫入: {OUTPUT_FILE}")
