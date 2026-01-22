@@ -16483,8 +16483,12 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2026-01-19 00:00:00,汽啪,Two,-170.00,TWD,,False,False
 2026-01-19 00:00:00,增肥,Two,-75.00,TWD,豆花,False,False
 2026-01-19 00:00:00,五金,Two,-881.00,TWD,瓦斯費,False,False
+2026-01-20 00:00:00,增肥,One,-70.00,TWD,飲料,False,False
 2026-01-20 00:00:00,汽啪,One,-170.00,TWD,,False,False
 2026-01-20 00:00:00,五金,Two,-338.00,TWD,透氣膠帶,False,False
 2026-01-20 00:00:00,增肥,Two,-361.00,TWD,麥噹噹,False,False
+2026-01-21 00:00:00,增肥,One,-150.00,TWD,雞肉飯,False,False
 2026-01-21 00:00:00,增肥,Two,-135.00,TWD,路易莎,False,False
+2026-01-21 00:00:00,增肥,Two,-564.00,TWD,老先覺,False,False
 2026-01-21 00:00:00,增肥,Two,-154.00,TWD,711,False,False
+2026-01-21 00:00:00,汽啪,Two,-170.00,TWD,,False,False

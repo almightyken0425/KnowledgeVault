@@ -42,7 +42,7 @@ One,睡覺,transaction,-412000.0
 One,五金,transaction,-418877.46
 One,該死,transaction,-454235.71
 One,轉出至 借錢,transfer,-923508.0
-One,增肥,transaction,-1093351.8
+One,增肥,transaction,-1093571.8
 One,轉出至 婚禮,transfer,-1121206.0
 One,轉出至 Two,transfer,-1228411.36
 One,轉出至 美幣,transfer,-1304363.0
@@ -68,13 +68,13 @@ Two,熊仔,transaction,-18720.0
 Two,轉出至 印鈔,transfer,-24014.0
 Two,轉出至 One,transfer,-35000.0
 Two,溜扣,transaction,-42439.0
-Two,汽啪,transaction,-50142.0
 Two,汽暖,transaction,-50217.0
+Two,汽啪,transaction,-50312.0
 Two,汽車,transaction,-80312.0
 Two,五金,transaction,-280528.0
 Two,該死,transaction,-282899.03
 Two,睡覺,transaction,-514722.0
-Two,增肥,transaction,-757223.33
+Two,增肥,transaction,-757787.33
 借錢,轉入自 One,transfer,923508.0
 借錢,帳單,transaction,-125504.0
 借錢,轉出至 One,transfer,-1391000.0
