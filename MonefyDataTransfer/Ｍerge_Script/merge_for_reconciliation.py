@@ -19,9 +19,15 @@ from pathlib import Path
 SCRIPT_DIR = Path(__file__).parent
 TRANSACTIONS_PATH = SCRIPT_DIR / "../Export_Data/transactions.csv"
 TRANSFERS_PATH = SCRIPT_DIR / "../Export_Data/transfers.csv"
-RAW_CSV_PATH = SCRIPT_DIR / "../Original_DB_Data/monefy-2026-01-21_12-26-22.csv"
 OUTPUT_PATH = SCRIPT_DIR / "../Export_Data/reconciliation.csv"
 COMPARISON_OUTPUT_PATH = SCRIPT_DIR / "../Export_Data/monefy_raw_comparison.csv"
+
+DATA_DIR = SCRIPT_DIR / "../Original_DB_Data"
+files = list(DATA_DIR.glob("*.csv"))
+if not files:
+    print(f"Error: No .csv file found in {DATA_DIR}")
+    exit(1)
+RAW_CSV_PATH = max(files, key=lambda f: f.stat().st_mtime)
 
 def normalize_date(date_str):
     """

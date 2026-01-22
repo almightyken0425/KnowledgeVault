@@ -24,8 +24,23 @@ import calendar
 
 # 設定路徑
 SCRIPT_DIR = Path(__file__).parent
-DEFAULT_DB_PATH = SCRIPT_DIR / "../Original_DB_Data/monefy_database-2026-01-21_12-18-13.db"
-RAW_CSV_PATH = SCRIPT_DIR / "../Original_DB_Data/monefy-2026-01-21_12-26-22.csv"
+DATA_DIR = SCRIPT_DIR / "../Original_DB_Data"
+
+def get_latest_file(directory: Path, pattern: str) -> Path | None:
+    files = list(directory.glob(pattern))
+    if not files:
+        return None
+    return max(files, key=lambda f: f.stat().st_mtime)
+
+DEFAULT_DB_PATH = get_latest_file(DATA_DIR, "*.db")
+RAW_CSV_PATH = get_latest_file(DATA_DIR, "*.csv")
+
+if DEFAULT_DB_PATH is None:
+    print(f"Error: No .db file found in {DATA_DIR}")
+    sys.exit(1)
+if RAW_CSV_PATH is None:
+    print(f"Error: No .csv file found in {DATA_DIR}")
+    sys.exit(1)
 
 
 def ticks_to_datetime(ticks: int) -> datetime | None:
