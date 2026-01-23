@@ -6973,7 +6973,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2021-01-13 00:00:00,豆漿,One,-72.00,TWD,豆漿,False,False
 2021-01-13 00:00:00,帳單,One,-600.00,TWD,電匯手續費,False,False
 2021-01-13 00:00:00,增肥,One,-40.00,TWD,50嵐,False,False
-2021-01-13 00:00:00,帳單,美幣,-20.00,TWD,轉帳手續費,False,False
+2021-01-13 00:00:00,帳單,美幣,-20.00,USD,轉帳手續費,False,False
 2021-01-14 00:00:00,增肥,One,-150.00,TWD,公司訂便當,False,False
 2021-01-14 00:00:00,增肥,One,-70.00,TWD,Come buy,False,False
 2021-01-14 00:00:00,增肥,One,-70.00,TWD,臭豆腐,False,False
@@ -7062,7 +7062,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2021-01-29 00:00:00,屋伯,One,-190.00,TWD,,False,False
 2021-01-29 00:00:00,增肥,One,-15.00,TWD,711,False,False
 2021-01-29 00:00:00,一起,One,-45.00,TWD,,False,False
-2021-01-29 00:00:00,補給,美幣,2000.00,TWD,尾牙獎,False,False
+2021-01-29 00:00:00,補給,美幣,2000.00,USD,尾牙獎,False,False
 2021-01-30 00:00:00,增肥,One,-113.00,TWD,再來咖啡,False,False
 2021-01-30 00:00:00,豆漿,One,-158.00,TWD,牛奶,False,False
 2021-01-30 00:00:00,豆漿,One,-125.00,TWD,麵包,False,False
@@ -8541,7 +8541,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2021-12-31 00:00:00,補給,Two,11000.00,TWD,From Kryptonite 20210111,False,False
 2021-12-31 00:00:00,帳單,虛幣,-965.00,TWD,年度結算 - 利息,False,False
 2021-12-31 00:00:00,賭博,虛幣,43254.20,TWD,年度結算 - 獲利,False,False
-2021-12-31 00:00:00,賭博,美股,481.46,TWD,年度結算 - 獲利,False,False
+2021-12-31 00:00:00,賭博,美股,481.46,USD,年度結算 - 獲利,False,False
 2022-01-01 00:00:00,一起,One,-15.00,TWD,,False,False
 2022-01-01 00:00:00,增肥,One,-60.00,TWD,50嵐,False,False
 2022-01-01 00:00:00,增肥,One,-38.00,TWD,全聯,False,False
@@ -8551,7 +8551,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2022-01-01 00:00:00,賭博,虛幣,-10001.00,TWD,年度調帳,False,False
 2022-01-01 00:00:00,帳單,借錢,-2177.00,TWD,年度調帳,False,False
 2022-01-01 00:00:00,帳單,One,-2230.00,TWD,年度調帳,False,False
-2022-01-01 00:00:00,賭博,美股,-1659.62,TWD,年度調帳,False,False
+2022-01-01 00:00:00,賭博,美股,-1659.62,USD,年度調帳,False,False
 2022-01-02 00:00:00,增肥,One,-110.00,TWD,天仁,False,False
 2022-01-02 00:00:00,機暖,One,-222.00,TWD,,False,False
 2022-01-02 00:00:00,增肥,One,-390.00,TWD,串串香,False,False
@@ -8733,7 +8733,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2022-02-01 00:00:00,賭博,虛幣,-10001.00,TWD,年度調帳,False,False
 2022-02-01 00:00:00,帳單,借錢,-2177.00,TWD,年度調帳,False,False
 2022-02-01 00:00:00,帳單,One,-2230.00,TWD,年度調帳,False,False
-2022-02-01 00:00:00,賭博,美股,-1659.62,TWD,年度調帳,False,False
+2022-02-01 00:00:00,賭博,美股,-1659.62,USD,年度調帳,False,False
 2022-02-02 00:00:00,孝親,One,-5000.00,TWD,,False,False
 2022-02-02 00:00:00,增肥,One,-205.00,TWD,雞排,False,False
 2022-02-02 00:00:00,一起,One,-30.00,TWD,,False,False
@@ -8920,7 +8920,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2022-03-01 00:00:00,賭博,虛幣,-10001.00,TWD,年度調帳,False,False
 2022-03-01 00:00:00,帳單,借錢,-2177.00,TWD,年度調帳,False,False
 2022-03-01 00:00:00,帳單,One,-2230.00,TWD,年度調帳,False,False
-2022-03-01 00:00:00,賭博,美股,-1659.62,TWD,年度調帳,False,False
+2022-03-01 00:00:00,賭博,美股,-1659.62,USD,年度調帳,False,False
 2022-03-02 00:00:00,增肥,One,-45.00,TWD,711,False,False
 2022-03-02 00:00:00,增肥,One,-130.00,TWD,中餐,False,False
 2022-03-02 00:00:00,增肥,One,-28.00,TWD,711,False,False
@@ -9119,7 +9119,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2022-04-01 00:00:00,賭博,虛幣,-10001.00,TWD,年度調帳,False,False
 2022-04-01 00:00:00,帳單,借錢,-2177.00,TWD,年度調帳,False,False
 2022-04-01 00:00:00,帳單,One,-2230.00,TWD,年度調帳,False,False
-2022-04-01 00:00:00,賭博,美股,-1659.62,TWD,年度調帳,False,False
+2022-04-01 00:00:00,賭博,美股,-1659.62,USD,年度調帳,False,False
 2022-04-02 00:00:00,增肥,One,-135.00,TWD,麥味登,False,False
 2022-04-02 00:00:00,一起,One,-30.00,TWD,,False,False
 2022-04-02 00:00:00,孝親,One,-5000.00,TWD,,False,False
@@ -9302,7 +9302,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2022-05-01 00:00:00,賭博,虛幣,-10001.00,TWD,年度調帳,False,False
 2022-05-01 00:00:00,帳單,借錢,-2177.00,TWD,年度調帳,False,False
 2022-05-01 00:00:00,帳單,One,-2230.00,TWD,年度調帳,False,False
-2022-05-01 00:00:00,賭博,美股,-1659.62,TWD,年度調帳,False,False
+2022-05-01 00:00:00,賭博,美股,-1659.62,USD,年度調帳,False,False
 2022-05-02 00:00:00,增肥,One,-135.00,TWD,麥登登,False,False
 2022-05-02 00:00:00,增肥,Two,-65.00,TWD,50嵐,False,False
 2022-05-02 00:00:00,增肥,Two,-165.00,TWD,鍋博士,False,False
@@ -9461,7 +9461,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2022-06-01 00:00:00,賭博,虛幣,-10001.00,TWD,年度調帳,False,False
 2022-06-01 00:00:00,帳單,借錢,-2177.00,TWD,年度調帳,False,False
 2022-06-01 00:00:00,帳單,One,-2230.00,TWD,年度調帳,False,False
-2022-06-01 00:00:00,賭博,美股,-1659.62,TWD,年度調帳,False,False
+2022-06-01 00:00:00,賭博,美股,-1659.62,USD,年度調帳,False,False
 2022-06-02 00:00:00,增肥,One,-150.00,TWD,麥登登,False,False
 2022-06-02 00:00:00,增肥,Two,-130.00,TWD,麻古,False,False
 2022-06-02 00:00:00,增肥,Two,-175.00,TWD,鹹酥雞,False,False
@@ -9653,7 +9653,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2022-07-01 00:00:00,賭博,虛幣,-10001.00,TWD,年度調帳,False,False
 2022-07-01 00:00:00,帳單,借錢,-2177.00,TWD,年度調帳,False,False
 2022-07-01 00:00:00,帳單,One,-2230.00,TWD,年度調帳,False,False
-2022-07-01 00:00:00,賭博,美股,-1659.62,TWD,年度調帳,False,False
+2022-07-01 00:00:00,賭博,美股,-1659.62,USD,年度調帳,False,False
 2022-07-02 00:00:00,一起,One,-30.00,TWD,,False,False
 2022-07-02 00:00:00,增肥,One,-60.00,TWD,鶴茶樓,False,False
 2022-07-02 00:00:00,遮羞,One,-2900.00,TWD, Uniqlo,False,False
@@ -9817,7 +9817,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2022-08-01 00:00:00,賭博,虛幣,-10001.00,TWD,年度調帳,False,False
 2022-08-01 00:00:00,帳單,借錢,-2177.00,TWD,年度調帳,False,False
 2022-08-01 00:00:00,帳單,One,-2230.00,TWD,年度調帳,False,False
-2022-08-01 00:00:00,賭博,美股,-1659.62,TWD,年度調帳,False,False
+2022-08-01 00:00:00,賭博,美股,-1659.62,USD,年度調帳,False,False
 2022-08-02 00:00:00,孝親,One,-5000.00,TWD,,False,False
 2022-08-02 00:00:00,五金,One,-199.00,TWD,雨傘,False,False
 2022-08-02 00:00:00,屋伯,One,-195.00,TWD,,False,False
@@ -9963,7 +9963,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2022-09-01 00:00:00,賭博,虛幣,-10001.00,TWD,年度調帳,False,False
 2022-09-01 00:00:00,帳單,借錢,-2177.00,TWD,年度調帳,False,False
 2022-09-01 00:00:00,帳單,One,-2230.00,TWD,年度調帳,False,False
-2022-09-01 00:00:00,賭博,美股,-1659.62,TWD,年度調帳,False,False
+2022-09-01 00:00:00,賭博,美股,-1659.62,USD,年度調帳,False,False
 2022-09-02 00:00:00,五金,One,-199.00,TWD,雨傘,False,False
 2022-09-02 00:00:00,一起,One,-30.00,TWD,,False,False
 2022-09-02 00:00:00,增肥,One,-90.00,TWD,中餐,False,False
@@ -10113,7 +10113,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2022-10-01 00:00:00,賭博,虛幣,-10001.00,TWD,年度調帳,False,False
 2022-10-01 00:00:00,帳單,借錢,-2177.00,TWD,年度調帳,False,False
 2022-10-01 00:00:00,帳單,One,-2230.00,TWD,年度調帳,False,False
-2022-10-01 00:00:00,賭博,美股,-1659.62,TWD,年度調帳,False,False
+2022-10-01 00:00:00,賭博,美股,-1659.62,USD,年度調帳,False,False
 2022-10-02 00:00:00,一起,One,-20.00,TWD,,False,False
 2022-10-02 00:00:00,增肥,One,-170.00,TWD,麥登登,False,False
 2022-10-02 00:00:00,增肥,One,-400.00,TWD,全聯,False,False
@@ -10279,7 +10279,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2022-11-01 00:00:00,賭博,虛幣,-10001.00,TWD,年度調帳,False,False
 2022-11-01 00:00:00,帳單,借錢,-2177.00,TWD,年度調帳,False,False
 2022-11-01 00:00:00,帳單,One,-2230.00,TWD,年度調帳,False,False
-2022-11-01 00:00:00,賭博,美股,-1659.62,TWD,年度調帳,False,False
+2022-11-01 00:00:00,賭博,美股,-1659.62,USD,年度調帳,False,False
 2022-11-02 00:00:00,增肥,One,-160.00,TWD,中餐,False,False
 2022-11-02 00:00:00,增肥,One,-75.00,TWD,果果迪,False,False
 2022-11-02 00:00:00,熊仔,One,-5000.00,TWD,,False,False
@@ -10464,7 +10464,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2022-12-01 00:00:00,賭博,虛幣,-10001.00,TWD,年度調帳,False,False
 2022-12-01 00:00:00,帳單,借錢,-2177.00,TWD,年度調帳,False,False
 2022-12-01 00:00:00,帳單,One,-2230.00,TWD,年度調帳,False,False
-2022-12-01 00:00:00,賭博,美股,-1659.62,TWD,年度調帳,False,False
+2022-12-01 00:00:00,賭博,美股,-1659.62,USD,年度調帳,False,False
 2022-12-02 00:00:00,該死,One,-100.00,TWD,跑跑卡丁車,False,False
 2022-12-02 00:00:00,一起,One,-30.00,TWD,,False,False
 2022-12-02 00:00:00,增肥,One,-215.00,TWD,麥噹噹,False,False
@@ -10630,7 +10630,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2022-12-31 00:00:00,補給,Two,4129.00,TWD,From Kryptonite 20230205,False,False
 2023-01-01 00:00:00,增肥,Two,-640.00,TWD,麵屋武藏,False,False
 2023-01-01 00:00:00,增肥,Two,-70.00,TWD,鶴茶樓,False,False
-2023-01-01 00:00:00,賭博,美股,2076.00,TWD,年度調帳,False,False
+2023-01-01 00:00:00,賭博,美股,2076.00,USD,年度調帳,False,False
 2023-01-01 00:00:00,帳單,借錢,-2963.00,TWD,年度調帳,False,False
 2023-01-01 00:00:00,補給,One,1457.00,TWD,年度調帳,False,False
 2023-01-02 00:00:00,增肥,One,-103.00,TWD,711,False,False
@@ -10810,7 +10810,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2023-02-01 00:00:00,增肥,Two,-530.00,TWD,滇味廚房,False,False
 2023-02-01 00:00:00,補給,Two,530.00,TWD,From Kryptonite,False,False
 2023-02-01 00:00:00,增肥,Two,-70.00,TWD,上宇林,False,False
-2023-02-01 00:00:00,賭博,美股,2076.00,TWD,年度調帳,False,False
+2023-02-01 00:00:00,賭博,美股,2076.00,USD,年度調帳,False,False
 2023-02-01 00:00:00,帳單,借錢,-2963.00,TWD,年度調帳,False,False
 2023-02-01 00:00:00,補給,One,1457.00,TWD,年度調帳,False,False
 2023-02-02 00:00:00,增肥,One,-130.00,TWD,麥登登,False,False
@@ -10965,7 +10965,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2023-03-01 00:00:00,孝親,One,-5000.00,TWD,,False,False
 2023-03-01 00:00:00,增肥,Two,-70.00,TWD,鶴茶樓,False,False
 2023-03-01 00:00:00,增肥,Two,-190.00,TWD,小林,False,False
-2023-03-01 00:00:00,賭博,美股,2076.00,TWD,年度調帳,False,False
+2023-03-01 00:00:00,賭博,美股,2076.00,USD,年度調帳,False,False
 2023-03-01 00:00:00,帳單,借錢,-2963.00,TWD,年度調帳,False,False
 2023-03-01 00:00:00,補給,One,1457.00,TWD,年度調帳,False,False
 2023-03-02 00:00:00,增肥,Two,-80.00,TWD,臭豆腐,False,False
@@ -10992,7 +10992,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2023-03-06 00:00:00,增肥,Two,-339.00,TWD,IKEA,False,False
 2023-03-07 00:00:00,增肥,One,-40.00,TWD,711,False,False
 2023-03-07 00:00:00,增肥,One,-210.00,TWD,麥噹噹,False,False
-2023-03-07 00:00:00,該死,印鈔,-650000.00,TWD,船票,False,False
+2023-03-07 00:00:00,該死,印鈔,-650000.00,IDR,船票,False,False
 2023-03-08 00:00:00,增肥,One,-30.00,TWD,中餐,False,False
 2023-03-08 00:00:00,增肥,One,-25.00,TWD,711,False,False
 2023-03-08 00:00:00,該死,Two,-963.00,TWD,ATV,False,False
@@ -11056,7 +11056,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2023-03-21 00:00:00,增肥,One,-32.00,TWD,711,False,False
 2023-03-21 00:00:00,講話,One,-525.00,TWD,,False,False
 2023-03-21 00:00:00,增肥,One,-75.00,TWD,飲料,False,False
-2023-03-21 00:00:00,該死,印鈔,-519500.00,TWD,e-VOA,False,False
+2023-03-21 00:00:00,該死,印鈔,-519500.00,IDR,e-VOA,False,False
 2023-03-23 00:00:00,熊仔,One,-1100.00,TWD,Youtube訂閱數,False,False
 2023-03-23 00:00:00,增肥,One,-61.00,TWD,約翰紅茶,False,False
 2023-03-23 00:00:00,增肥,One,-75.00,TWD,龍角,False,False
@@ -11088,74 +11088,74 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2023-03-28 00:00:00,增肥,One,-259.00,TWD,Burger King,False,False
 2023-03-28 00:00:00,屋伯,Two,-155.00,TWD,機捷,False,False
 2023-03-28 00:00:00,五金,Two,-59.00,TWD,口罩,False,False
-2023-03-28 00:00:00,增肥,印鈔,-88000.00,TWD,星巴克,False,False
-2023-03-28 00:00:00,講話,印鈔,-500000.00,TWD,網路,False,False
-2023-03-28 00:00:00,增肥,印鈔,-1090210.00,TWD,PICA,False,False
-2023-03-28 00:00:00,增肥,印鈔,-175494.00,TWD,Titik 烤雞,False,False
-2023-03-28 00:00:00,汽啪,印鈔,-20000.00,TWD,過路費停車費,False,False
-2023-03-28 00:00:00,霧狀,印鈔,-180000.00,TWD,電子菸,False,False
-2023-03-28 00:00:00,頭暈,印鈔,-257392.00,TWD,COCA,False,False
-2023-03-29 00:00:00,該死,印鈔,-1081500.00,TWD,ATV,False,False
-2023-03-29 00:00:00,增肥,印鈔,-100000.00,TWD,Cretya Entrance Fee,False,False
-2023-03-29 00:00:00,增肥,印鈔,-899566.00,TWD,Cretya,False,False
-2023-03-29 00:00:00,屋伯,印鈔,-310000.00,TWD,Over area fee,False,False
-2023-03-30 00:00:00,增肥,印鈔,-1097250.00,TWD,Hideout,False,False
-2023-03-30 00:00:00,該死,印鈔,-2656500.00,TWD,攝影師,False,False
-2023-03-30 00:00:00,屋伯,印鈔,-400000.00,TWD,Hideout到港口,False,False
-2023-03-30 00:00:00,增肥,印鈔,-10000.00,TWD,寶礦力,False,False
-2023-03-30 00:00:00,屋伯,印鈔,-350000.00,TWD,包車,False,False
-2023-03-30 00:00:00,屋伯,印鈔,-200000.00,TWD,租機車,False,False
-2023-03-30 00:00:00,增肥,印鈔,-806245.00,TWD,CACTUS ,False,False
+2023-03-28 00:00:00,增肥,印鈔,-88000.00,IDR,星巴克,False,False
+2023-03-28 00:00:00,講話,印鈔,-500000.00,IDR,網路,False,False
+2023-03-28 00:00:00,增肥,印鈔,-1090210.00,IDR,PICA,False,False
+2023-03-28 00:00:00,增肥,印鈔,-175494.00,IDR,Titik 烤雞,False,False
+2023-03-28 00:00:00,汽啪,印鈔,-20000.00,IDR,過路費停車費,False,False
+2023-03-28 00:00:00,霧狀,印鈔,-180000.00,IDR,電子菸,False,False
+2023-03-28 00:00:00,頭暈,印鈔,-257392.00,IDR,COCA,False,False
+2023-03-29 00:00:00,該死,印鈔,-1081500.00,IDR,ATV,False,False
+2023-03-29 00:00:00,增肥,印鈔,-100000.00,IDR,Cretya Entrance Fee,False,False
+2023-03-29 00:00:00,增肥,印鈔,-899566.00,IDR,Cretya,False,False
+2023-03-29 00:00:00,屋伯,印鈔,-310000.00,IDR,Over area fee,False,False
+2023-03-30 00:00:00,增肥,印鈔,-1097250.00,IDR,Hideout,False,False
+2023-03-30 00:00:00,該死,印鈔,-2656500.00,IDR,攝影師,False,False
+2023-03-30 00:00:00,屋伯,印鈔,-400000.00,IDR,Hideout到港口,False,False
+2023-03-30 00:00:00,增肥,印鈔,-10000.00,IDR,寶礦力,False,False
+2023-03-30 00:00:00,屋伯,印鈔,-350000.00,IDR,包車,False,False
+2023-03-30 00:00:00,屋伯,印鈔,-200000.00,IDR,租機車,False,False
+2023-03-30 00:00:00,增肥,印鈔,-806245.00,IDR,CACTUS ,False,False
 2023-03-30 00:00:00,賭博,台股,185.00,TWD,,False,False
 2023-03-31 00:00:00,薪資,One,73713.00,TWD,,False,False
 2023-03-31 00:00:00,補給,One,19363.00,TWD,From Kryptonite 20230426,False,False
 2023-03-31 00:00:00,該死,Two,-6614.00,TWD,水肺,False,False
 2023-03-31 00:00:00,補給,Two,1900.00,TWD,From Myra 20230421,False,False
 2023-03-31 00:00:00,補給,Two,27637.00,TWD,From Kryptonite 20230426,False,False
-2023-03-31 00:00:00,汽暖,印鈔,-17000.00,TWD,,False,False
-2023-03-31 00:00:00,增肥,印鈔,-15000.00,TWD,可樂,False,False
-2023-03-31 00:00:00,增肥,印鈔,-10000.00,TWD,寶礦力,False,False
-2023-03-31 00:00:00,增肥,印鈔,-12000.00,TWD,手搖杯,False,False
-2023-03-31 00:00:00,增肥,印鈔,-310000.00,TWD,Amok sunset,False,False
-2023-03-31 00:00:00,增肥,印鈔,-47500.00,TWD,泡麵&shit,False,False
-2023-03-31 00:00:00,增肥,印鈔,-60000.00,TWD,冰淇淋,False,False
+2023-03-31 00:00:00,汽暖,印鈔,-17000.00,IDR,,False,False
+2023-03-31 00:00:00,增肥,印鈔,-15000.00,IDR,可樂,False,False
+2023-03-31 00:00:00,增肥,印鈔,-10000.00,IDR,寶礦力,False,False
+2023-03-31 00:00:00,增肥,印鈔,-12000.00,IDR,手搖杯,False,False
+2023-03-31 00:00:00,增肥,印鈔,-310000.00,IDR,Amok sunset,False,False
+2023-03-31 00:00:00,增肥,印鈔,-47500.00,IDR,泡麵&shit,False,False
+2023-03-31 00:00:00,增肥,印鈔,-60000.00,IDR,冰淇淋,False,False
 2023-04-01 00:00:00,孝親,One,-5000.00,TWD,20230429,False,False
 2023-04-01 00:00:00,增肥,Two,-1900.33,TWD,MASON,False,False
-2023-04-01 00:00:00,屋伯,印鈔,-250000.00,TWD,Permata Hill 到港口,False,False
-2023-04-01 00:00:00,寶包,印鈔,-7000.00,TWD,衛生棉,False,False
-2023-04-01 00:00:00,屋伯,印鈔,-100000.00,TWD,給Handy小費,False,False
-2023-04-01 00:00:00,增肥,印鈔,-719950.00,TWD,Sundays,False,False
-2023-04-01 00:00:00,汽啪,印鈔,-5000.00,TWD,港口停車,False,False
-2023-04-01 00:00:00,增肥,印鈔,-199650.00,TWD,Sundays,False,False
-2023-04-01 00:00:00,五金,印鈔,-17000.00,TWD,轉接頭,False,False
-2023-04-01 00:00:00,該死,印鈔,-80000.00,TWD,租機車,False,False
-2023-04-01 00:00:00,該死,印鈔,-1722240.00,TWD,Shore Amora,False,False
-2023-04-01 00:00:00,增肥,印鈔,-400000.00,TWD,Sundays,False,False
-2023-04-01 00:00:00,賭博,美股,2076.00,TWD,年度調帳,False,False
+2023-04-01 00:00:00,屋伯,印鈔,-250000.00,IDR,Permata Hill 到港口,False,False
+2023-04-01 00:00:00,寶包,印鈔,-7000.00,IDR,衛生棉,False,False
+2023-04-01 00:00:00,屋伯,印鈔,-100000.00,IDR,給Handy小費,False,False
+2023-04-01 00:00:00,增肥,印鈔,-719950.00,IDR,Sundays,False,False
+2023-04-01 00:00:00,汽啪,印鈔,-5000.00,IDR,港口停車,False,False
+2023-04-01 00:00:00,增肥,印鈔,-199650.00,IDR,Sundays,False,False
+2023-04-01 00:00:00,五金,印鈔,-17000.00,IDR,轉接頭,False,False
+2023-04-01 00:00:00,該死,印鈔,-80000.00,IDR,租機車,False,False
+2023-04-01 00:00:00,該死,印鈔,-1722240.00,IDR,Shore Amora,False,False
+2023-04-01 00:00:00,增肥,印鈔,-400000.00,IDR,Sundays,False,False
+2023-04-01 00:00:00,賭博,美股,2076.00,USD,年度調帳,False,False
 2023-04-01 00:00:00,帳單,借錢,-2963.00,TWD,年度調帳,False,False
 2023-04-01 00:00:00,補給,One,1457.00,TWD,年度調帳,False,False
-2023-04-02 00:00:00,增肥,印鈔,-63000.00,TWD,路邊吃飯,False,False
-2023-04-02 00:00:00,增肥,印鈔,-93500.00,TWD,點心,False,False
-2023-04-02 00:00:00,該死,印鈔,-690000.00,TWD,按摩,False,False
-2023-04-02 00:00:00,增肥,印鈔,-626400.00,TWD,ALMA TAPAS,False,False
-2023-04-02 00:00:00,增肥,印鈔,-900000.00,TWD,La Brisa,False,False
-2023-04-02 00:00:00,五金,印鈔,-14500.00,TWD,Tampon,False,False
-2023-04-02 00:00:00,該死,印鈔,-250000.00,TWD,金剛公仔,False,False
-2023-04-02 00:00:00,霧狀,印鈔,-100000.00,TWD,,False,False
-2023-04-02 00:00:00,增肥,印鈔,-31000.00,TWD,711,False,False
+2023-04-02 00:00:00,增肥,印鈔,-63000.00,IDR,路邊吃飯,False,False
+2023-04-02 00:00:00,增肥,印鈔,-93500.00,IDR,點心,False,False
+2023-04-02 00:00:00,該死,印鈔,-690000.00,IDR,按摩,False,False
+2023-04-02 00:00:00,增肥,印鈔,-626400.00,IDR,ALMA TAPAS,False,False
+2023-04-02 00:00:00,增肥,印鈔,-900000.00,IDR,La Brisa,False,False
+2023-04-02 00:00:00,五金,印鈔,-14500.00,IDR,Tampon,False,False
+2023-04-02 00:00:00,該死,印鈔,-250000.00,IDR,金剛公仔,False,False
+2023-04-02 00:00:00,霧狀,印鈔,-100000.00,IDR,,False,False
+2023-04-02 00:00:00,增肥,印鈔,-31000.00,IDR,711,False,False
 2023-04-03 00:00:00,寶包,One,-3739.00,TWD,機場免稅商店,False,False
 2023-04-03 00:00:00,一起,One,-130.00,TWD,機捷,False,False
 2023-04-03 00:00:00,一起,One,-20.00,TWD,,False,False
 2023-04-03 00:00:00,增肥,Two,-215.00,TWD,上宇林,False,False
-2023-04-03 00:00:00,增肥,印鈔,-136000.00,TWD,Monsieur Spoon Pererenan,False,False
-2023-04-03 00:00:00,該死,印鈔,-350000.00,TWD,衝浪課,False,False
-2023-04-03 00:00:00,機啪,印鈔,-2000.00,TWD,,False,False
-2023-04-03 00:00:00,該死,印鈔,-664000.00,TWD,按摩 & 洗衣,False,False
-2023-04-03 00:00:00,屋伯,印鈔,-50000.00,TWD,司機小費,False,False
-2023-04-03 00:00:00,五金,印鈔,-20000.00,TWD,衛生紙,False,False
-2023-04-03 00:00:00,增肥,印鈔,-50000.00,TWD,可樂,False,False
-2023-04-03 00:00:00,增肥,印鈔,-391000.00,TWD,咖啡&shit by cash,False,False
-2023-04-03 00:00:00,增肥,印鈔,-16999.00,TWD,咖啡&shit by card,False,False
+2023-04-03 00:00:00,增肥,印鈔,-136000.00,IDR,Monsieur Spoon Pererenan,False,False
+2023-04-03 00:00:00,該死,印鈔,-350000.00,IDR,衝浪課,False,False
+2023-04-03 00:00:00,機啪,印鈔,-2000.00,IDR,,False,False
+2023-04-03 00:00:00,該死,印鈔,-664000.00,IDR,按摩 & 洗衣,False,False
+2023-04-03 00:00:00,屋伯,印鈔,-50000.00,IDR,司機小費,False,False
+2023-04-03 00:00:00,五金,印鈔,-20000.00,IDR,衛生紙,False,False
+2023-04-03 00:00:00,增肥,印鈔,-50000.00,IDR,可樂,False,False
+2023-04-03 00:00:00,增肥,印鈔,-391000.00,IDR,咖啡&shit by cash,False,False
+2023-04-03 00:00:00,增肥,印鈔,-16999.00,IDR,咖啡&shit by card,False,False
 2023-04-04 00:00:00,帳單,One,-15.00,TWD,跨行轉帳手續費,False,False
 2023-04-04 00:00:00,增肥,Two,-65.00,TWD,龜記,False,False
 2023-04-04 00:00:00,增肥,Two,-230.00,TWD,早餐,False,False
@@ -11285,7 +11285,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2023-05-01 00:00:00,孝親,One,-5000.00,TWD,20230429,False,False
 2023-05-01 00:00:00,增肥,Two,-210.00,TWD,麥登登,False,False
 2023-05-01 00:00:00,增肥,Two,-206.00,TWD,水果攤,False,False
-2023-05-01 00:00:00,賭博,美股,2076.00,TWD,年度調帳,False,False
+2023-05-01 00:00:00,賭博,美股,2076.00,USD,年度調帳,False,False
 2023-05-01 00:00:00,帳單,借錢,-2963.00,TWD,年度調帳,False,False
 2023-05-01 00:00:00,補給,One,1457.00,TWD,年度調帳,False,False
 2023-05-02 00:00:00,機維,One,-200.00,TWD,電瓶灌電,False,False
@@ -11457,7 +11457,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2023-06-01 00:00:00,該死,One,-100.00,TWD,跑跑卡丁車,False,False
 2023-06-01 00:00:00,該死,One,-150.00,TWD,Poly Bridge,False,False
 2023-06-01 00:00:00,增肥,Two,-335.00,TWD,黃記,False,False
-2023-06-01 00:00:00,賭博,美股,2076.00,TWD,年度調帳,False,False
+2023-06-01 00:00:00,賭博,美股,2076.00,USD,年度調帳,False,False
 2023-06-01 00:00:00,帳單,借錢,-2963.00,TWD,年度調帳,False,False
 2023-06-01 00:00:00,補給,One,1457.00,TWD,年度調帳,False,False
 2023-06-02 00:00:00,機啪,One,-57.00,TWD,,False,False
@@ -11592,7 +11592,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2023-07-01 00:00:00,五金,One,-205.00,TWD,勝立百貨,False,False
 2023-07-01 00:00:00,增肥,One,-160.00,TWD,鹹水雞,False,False
 2023-07-01 00:00:00,增肥,One,-75.00,TWD,龜記,False,False
-2023-07-01 00:00:00,賭博,美股,2076.00,TWD,年度調帳,False,False
+2023-07-01 00:00:00,賭博,美股,2076.00,USD,年度調帳,False,False
 2023-07-01 00:00:00,帳單,借錢,-2963.00,TWD,年度調帳,False,False
 2023-07-01 00:00:00,補給,One,1457.00,TWD,年度調帳,False,False
 2023-07-02 00:00:00,增肥,One,-100.00,TWD,跑跑卡丁車,False,False
@@ -11731,7 +11731,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2023-08-01 00:00:00,寶包,One,-648.00,TWD,康是美,False,False
 2023-08-01 00:00:00,苦口,One,-599.00,TWD,B群,False,False
 2023-08-01 00:00:00,增肥,Two,-305.00,TWD,黃記魯肉飯,False,False
-2023-08-01 00:00:00,賭博,美股,2076.00,TWD,年度調帳,False,False
+2023-08-01 00:00:00,賭博,美股,2076.00,USD,年度調帳,False,False
 2023-08-01 00:00:00,帳單,借錢,-2963.00,TWD,年度調帳,False,False
 2023-08-01 00:00:00,補給,One,1457.00,TWD,年度調帳,False,False
 2023-08-02 00:00:00,增肥,One,-350.00,TWD,Campus,False,False
@@ -11906,7 +11906,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2023-09-01 00:00:00,增肥,One,-255.00,TWD,Hamburger ,False,False
 2023-09-01 00:00:00,增肥,One,-200.00,TWD,麥噹噹,False,False
 2023-09-01 00:00:00,該死,One,-100.00,TWD,跑跑卡丁車,False,False
-2023-09-01 00:00:00,賭博,美股,2076.00,TWD,年度調帳,False,False
+2023-09-01 00:00:00,賭博,美股,2076.00,USD,年度調帳,False,False
 2023-09-01 00:00:00,帳單,借錢,-2963.00,TWD,年度調帳,False,False
 2023-09-01 00:00:00,補給,One,1457.00,TWD,年度調帳,False,False
 2023-09-02 00:00:00,增肥,One,-1960.00,TWD,Greedy,False,False
@@ -12042,7 +12042,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2023-10-01 00:00:00,增肥,One,-113.00,TWD,早餐,False,False
 2023-10-01 00:00:00,增肥,Two,-60.00,TWD,一沐日,False,False
 2023-10-01 00:00:00,增肥,Two,-260.00,TWD,食來運轉,False,False
-2023-10-01 00:00:00,賭博,美股,2076.00,TWD,年度調帳,False,False
+2023-10-01 00:00:00,賭博,美股,2076.00,USD,年度調帳,False,False
 2023-10-01 00:00:00,帳單,借錢,-2963.00,TWD,年度調帳,False,False
 2023-10-01 00:00:00,補給,One,1457.00,TWD,年度調帳,False,False
 2023-10-02 00:00:00,五金,One,-35.00,TWD,711,False,False
@@ -12212,8 +12212,8 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2023-10-31 00:00:00,補給,Two,7500.00,TWD,From Kryptonite 20231205,False,False
 2023-11-01 00:00:00,增肥,Two,-55.00,TWD,一沐日,False,False
 2023-11-01 00:00:00,增肥,Two,-250.00,TWD,鹹水雞,False,False
-2023-11-01 00:00:00,補給,日円,0.01,TWD,,False,False
-2023-11-01 00:00:00,賭博,美股,2076.00,TWD,年度調帳,False,False
+2023-11-01 00:00:00,補給,日円,0.01,JPY,,False,False
+2023-11-01 00:00:00,賭博,美股,2076.00,USD,年度調帳,False,False
 2023-11-01 00:00:00,帳單,借錢,-2963.00,TWD,年度調帳,False,False
 2023-11-01 00:00:00,補給,One,1457.00,TWD,年度調帳,False,False
 2023-11-02 00:00:00,增肥,One,-38.00,TWD,711,False,False
@@ -12229,7 +12229,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2023-11-03 00:00:00,一起,One,-5.00,TWD,,False,False
 2023-11-03 00:00:00,一起,One,-5.00,TWD,,False,False
 2023-11-03 00:00:00,增肥,One,-65.00,TWD,龜記,False,False
-2023-11-03 00:00:00,薪資,鎂薪,2856.00,TWD,,False,False
+2023-11-03 00:00:00,薪資,鎂薪,2856.00,USD,,False,False
 2023-11-04 00:00:00,五金,One,-2580.00,TWD,行動電源 Docker,False,False
 2023-11-04 00:00:00,機暖,One,-217.00,TWD,,False,False
 2023-11-04 00:00:00,講話,One,-2288.00,TWD,日本esim,False,False
@@ -12242,29 +12242,29 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2023-11-05 00:00:00,霧狀,One,-907.00,TWD,,False,False
 2023-11-05 00:00:00,增肥,One,-492.00,TWD,炸牛排飯,False,False
 2023-11-05 00:00:00,增肥,One,-560.00,TWD,牙膏牙刷,False,False
-2023-11-05 00:00:00,一起,日円,-1700.00,TWD,特急車車,False,False
-2023-11-05 00:00:00,一起,日円,-190.00,TWD,捷運,False,False
+2023-11-05 00:00:00,一起,日円,-1700.00,JPY,特急車車,False,False
+2023-11-05 00:00:00,一起,日円,-190.00,JPY,捷運,False,False
 2023-11-06 00:00:00,增肥,One,-59.00,TWD,711,False,False
 2023-11-06 00:00:00,增肥,One,-390.00,TWD,Yes!Burger!,False,False
-2023-11-06 00:00:00,增肥,日円,-700.00,TWD,擔擔麵,False,False
-2023-11-06 00:00:00,薪資,日円,57000.00,TWD,餐費補助,False,False
+2023-11-06 00:00:00,增肥,日円,-700.00,JPY,擔擔麵,False,False
+2023-11-06 00:00:00,薪資,日円,57000.00,JPY,餐費補助,False,False
 2023-11-07 00:00:00,增肥,One,-30.00,TWD,711,False,False
 2023-11-07 00:00:00,增肥,One,-111.00,TWD,星巴克,False,False
-2023-11-07 00:00:00,增肥,日円,-850.00,TWD,中餐,False,False
-2023-11-07 00:00:00,增肥,日円,-1650.00,TWD,拉麵,False,False
+2023-11-07 00:00:00,增肥,日円,-850.00,JPY,中餐,False,False
+2023-11-07 00:00:00,增肥,日円,-1650.00,JPY,拉麵,False,False
 2023-11-08 00:00:00,增肥,One,-173.00,TWD,711,False,False
 2023-11-08 00:00:00,增肥,One,-53.00,TWD,711,False,False
 2023-11-08 00:00:00,有益,One,-646.00,TWD,ChatGPT,False,False
 2023-11-08 00:00:00,增肥,One,-130.00,TWD,星巴克,False,False
 2023-11-08 00:00:00,霧狀,One,-128.00,TWD,,False,False
 2023-11-08 00:00:00,增肥,One,-67.00,TWD,711,False,False
-2023-11-08 00:00:00,增肥,日円,-1848.00,TWD,漢堡,False,False
+2023-11-08 00:00:00,增肥,日円,-1848.00,JPY,漢堡,False,False
 2023-11-09 00:00:00,霧狀,One,-128.00,TWD,,False,False
 2023-11-09 00:00:00,增肥,One,-112.00,TWD,星巴克,False,False
 2023-11-09 00:00:00,增肥,One,-41.00,TWD,,False,False
-2023-11-09 00:00:00,增肥,日円,-550.00,TWD,星巴克,False,False
-2023-11-09 00:00:00,增肥,日円,-850.00,TWD,中餐,False,False
-2023-11-09 00:00:00,增肥,日円,-1750.00,TWD,拉麵,False,False
+2023-11-09 00:00:00,增肥,日円,-550.00,JPY,星巴克,False,False
+2023-11-09 00:00:00,增肥,日円,-850.00,JPY,中餐,False,False
+2023-11-09 00:00:00,增肥,日円,-1750.00,JPY,拉麵,False,False
 2023-11-10 00:00:00,五金,One,-148.00,TWD,雨傘,False,False
 2023-11-10 00:00:00,增肥,One,-35.00,TWD,711,False,False
 2023-11-11 00:00:00,該死,One,-538.00,TWD,紀念品,False,False
@@ -12273,44 +12273,44 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2023-11-11 00:00:00,增肥,One,-512.00,TWD,起司蛋糕,False,False
 2023-11-11 00:00:00,增肥,One,-59.00,TWD,711,False,False
 2023-11-11 00:00:00,保險,One,-2608.00,TWD,,False,False
-2023-11-11 00:00:00,一起,日円,-190.00,TWD,,False,False
-2023-11-11 00:00:00,該死,日円,-580.00,TWD,手裡劍,False,False
-2023-11-11 00:00:00,該死,日円,-600.00,TWD,大阪城天守閣門票,False,False
-2023-11-11 00:00:00,該死,日円,-540.00,TWD,街頭藝人,False,False
-2023-11-11 00:00:00,增肥,日円,-800.00,TWD,章魚燒,False,False
-2023-11-11 00:00:00,一起,日円,-140.00,TWD,,False,False
-2023-11-11 00:00:00,一起,日円,-190.00,TWD,,False,False
+2023-11-11 00:00:00,一起,日円,-190.00,JPY,,False,False
+2023-11-11 00:00:00,該死,日円,-580.00,JPY,手裡劍,False,False
+2023-11-11 00:00:00,該死,日円,-600.00,JPY,大阪城天守閣門票,False,False
+2023-11-11 00:00:00,該死,日円,-540.00,JPY,街頭藝人,False,False
+2023-11-11 00:00:00,增肥,日円,-800.00,JPY,章魚燒,False,False
+2023-11-11 00:00:00,一起,日円,-140.00,JPY,,False,False
+2023-11-11 00:00:00,一起,日円,-190.00,JPY,,False,False
 2023-11-12 00:00:00,增肥,One,-355.00,TWD,晚餐,False,False
 2023-11-12 00:00:00,增肥,One,-155.00,TWD,711,False,False
-2023-11-12 00:00:00,五金,日円,-1000.00,TWD,洗衣服,False,False
+2023-11-12 00:00:00,五金,日円,-1000.00,JPY,洗衣服,False,False
 2023-11-13 00:00:00,增肥,One,-120.00,TWD,星巴克,False,False
 2023-11-13 00:00:00,增肥,One,-332.00,TWD,豬排,False,False
 2023-11-13 00:00:00,五金,One,-84.00,TWD,牙籤,False,False
 2023-11-13 00:00:00,增肥,One,-51.00,TWD,711,False,False
-2023-11-13 00:00:00,薪資,日円,1890.00,TWD,車資補助,False,False
+2023-11-13 00:00:00,薪資,日円,1890.00,JPY,車資補助,False,False
 2023-11-13 00:00:00,五金,One,-90.00,TWD,iCloud,False,False
 2023-11-14 00:00:00,增肥,One,-32.00,TWD,,False,False
 2023-11-14 00:00:00,增肥,One,-59.00,TWD,711,False,False
 2023-11-14 00:00:00,該死,One,-470.00,TWD,跑跑卡丁車,False,False
-2023-11-14 00:00:00,增肥,日円,-564.00,TWD,星巴克,False,False
-2023-11-14 00:00:00,增肥,日円,-800.00,TWD,拉麵,False,False
-2023-11-14 00:00:00,增肥,日円,-950.00,TWD,中餐,False,False
+2023-11-14 00:00:00,增肥,日円,-564.00,JPY,星巴克,False,False
+2023-11-14 00:00:00,增肥,日円,-800.00,JPY,拉麵,False,False
+2023-11-14 00:00:00,增肥,日円,-950.00,JPY,中餐,False,False
 2023-11-15 00:00:00,霧狀,One,-127.00,TWD,,False,False
 2023-11-15 00:00:00,增肥,One,-102.00,TWD,星巴克,False,False
 2023-11-15 00:00:00,增肥,One,-1478.00,TWD,晚餐,False,False
-2023-11-15 00:00:00,增肥,日円,-800.00,TWD,中餐,False,False
-2023-11-15 00:00:00,補給,日円,5250.00,TWD,晚餐收錢,False,False
+2023-11-15 00:00:00,增肥,日円,-800.00,JPY,中餐,False,False
+2023-11-15 00:00:00,補給,日円,5250.00,JPY,晚餐收錢,False,False
 2023-11-15 00:00:00,五金,One,-4325.00,TWD,Macbook pro,False,False
 2023-11-16 00:00:00,增肥,One,-102.00,TWD,星巴克,False,False
-2023-11-16 00:00:00,增肥,日円,-238.00,TWD,711,False,False
-2023-11-16 00:00:00,增肥,日円,-950.00,TWD,拉麵,False,False
-2023-11-16 00:00:00,增肥,日円,-2070.00,TWD,Yes Burger,False,False
+2023-11-16 00:00:00,增肥,日円,-238.00,JPY,711,False,False
+2023-11-16 00:00:00,增肥,日円,-950.00,JPY,拉麵,False,False
+2023-11-16 00:00:00,增肥,日円,-2070.00,JPY,Yes Burger,False,False
 2023-11-17 00:00:00,一起,One,-299.00,TWD,有馬溫泉車票,False,False
-2023-11-17 00:00:00,增肥,日円,-260.00,TWD,711,False,False
-2023-11-17 00:00:00,增肥,日円,-950.00,TWD,中餐,False,False
-2023-11-17 00:00:00,增肥,日円,-520.00,TWD,星巴克,False,False
-2023-11-17 00:00:00,增肥,日円,-1950.00,TWD,晚餐,False,False
-2023-11-17 00:00:00,霧狀,日円,-660.00,TWD,,False,False
+2023-11-17 00:00:00,增肥,日円,-260.00,JPY,711,False,False
+2023-11-17 00:00:00,增肥,日円,-950.00,JPY,中餐,False,False
+2023-11-17 00:00:00,增肥,日円,-520.00,JPY,星巴克,False,False
+2023-11-17 00:00:00,增肥,日円,-1950.00,JPY,晚餐,False,False
+2023-11-17 00:00:00,霧狀,日円,-660.00,JPY,,False,False
 2023-11-18 00:00:00,一起,One,-55.00,TWD,,False,False
 2023-11-18 00:00:00,一起,One,-46.00,TWD,,False,False
 2023-11-18 00:00:00,一起,One,-49.00,TWD,,False,False
@@ -12320,23 +12320,23 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2023-11-18 00:00:00,增肥,One,-240.00,TWD,珍奶,False,False
 2023-11-18 00:00:00,一起,One,-107.00,TWD,,False,False
 2023-11-18 00:00:00,苦口,One,-1128.00,TWD,B群,False,False
-2023-11-18 00:00:00,增肥,日円,-336.00,TWD,711,False,False
-2023-11-18 00:00:00,熊仔,日円,-4018.00,TWD,堂吉訶德,False,False
-2023-11-18 00:00:00,增肥,日円,-570.00,TWD,珍奶,False,False
-2023-11-18 00:00:00,遮羞,日円,-3377.00,TWD,帽子手套,False,False
-2023-11-18 00:00:00,該死,日円,-1700.00,TWD,扭蛋,False,False
-2023-11-18 00:00:00,五金,日円,-2700.00,TWD,Lush,False,False
-2023-11-18 00:00:00,該死,日円,-600.00,TWD,扭蛋,False,False
-2023-11-18 00:00:00,該死,日円,-600.00,TWD,扭蛋,False,False
-2023-11-18 00:00:00,該死,日円,-900.00,TWD,扭蛋,False,False
-2023-11-18 00:00:00,該死,日円,-800.00,TWD,扭蛋,False,False
-2023-11-18 00:00:00,該死,日円,-400.00,TWD,扭蛋,False,False
-2023-11-18 00:00:00,該死,日円,-800.00,TWD,扭蛋,False,False
-2023-11-18 00:00:00,該死,日円,-1000.00,TWD,扭蛋,False,False
-2023-11-18 00:00:00,該死,日円,-600.00,TWD,扭蛋,False,False
-2023-11-18 00:00:00,該死,日円,-400.00,TWD,街頭藝人,False,False
-2023-11-18 00:00:00,該死,日円,-2100.00,TWD,扭蛋,False,False
-2023-11-18 00:00:00,寶包,日円,-1078.00,TWD,阿姨的藥,False,False
+2023-11-18 00:00:00,增肥,日円,-336.00,JPY,711,False,False
+2023-11-18 00:00:00,熊仔,日円,-4018.00,JPY,堂吉訶德,False,False
+2023-11-18 00:00:00,增肥,日円,-570.00,JPY,珍奶,False,False
+2023-11-18 00:00:00,遮羞,日円,-3377.00,JPY,帽子手套,False,False
+2023-11-18 00:00:00,該死,日円,-1700.00,JPY,扭蛋,False,False
+2023-11-18 00:00:00,五金,日円,-2700.00,JPY,Lush,False,False
+2023-11-18 00:00:00,該死,日円,-600.00,JPY,扭蛋,False,False
+2023-11-18 00:00:00,該死,日円,-600.00,JPY,扭蛋,False,False
+2023-11-18 00:00:00,該死,日円,-900.00,JPY,扭蛋,False,False
+2023-11-18 00:00:00,該死,日円,-800.00,JPY,扭蛋,False,False
+2023-11-18 00:00:00,該死,日円,-400.00,JPY,扭蛋,False,False
+2023-11-18 00:00:00,該死,日円,-800.00,JPY,扭蛋,False,False
+2023-11-18 00:00:00,該死,日円,-1000.00,JPY,扭蛋,False,False
+2023-11-18 00:00:00,該死,日円,-600.00,JPY,扭蛋,False,False
+2023-11-18 00:00:00,該死,日円,-400.00,JPY,街頭藝人,False,False
+2023-11-18 00:00:00,該死,日円,-2100.00,JPY,扭蛋,False,False
+2023-11-18 00:00:00,寶包,日円,-1078.00,JPY,阿姨的藥,False,False
 2023-11-19 00:00:00,一起,One,-59.00,TWD,,False,False
 2023-11-19 00:00:00,增肥,One,-73.00,TWD,711,False,False
 2023-11-19 00:00:00,該死,One,-363.00,TWD,溫泉,False,False
@@ -12346,31 +12346,31 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2023-11-19 00:00:00,增肥,One,-345.00,TWD,白葡萄蛋糕,False,False
 2023-11-19 00:00:00,一起,One,-59.00,TWD,,False,False
 2023-11-19 00:00:00,一起,One,-65.00,TWD,,False,False
-2023-11-19 00:00:00,增肥,日円,-350.00,TWD,甘酒,False,False
-2023-11-19 00:00:00,增肥,日円,-350.00,TWD,甘酒,False,False
-2023-11-19 00:00:00,一起,日円,-190.00,TWD,,False,False
-2023-11-19 00:00:00,五金,日円,-1000.00,TWD,洗衣服,False,False
-2023-11-19 00:00:00,增肥,日円,-880.00,TWD,咖喱,False,False
-2023-11-19 00:00:00,增肥,日円,-1180.00,TWD,豬排洞,False,False
+2023-11-19 00:00:00,增肥,日円,-350.00,JPY,甘酒,False,False
+2023-11-19 00:00:00,增肥,日円,-350.00,JPY,甘酒,False,False
+2023-11-19 00:00:00,一起,日円,-190.00,JPY,,False,False
+2023-11-19 00:00:00,五金,日円,-1000.00,JPY,洗衣服,False,False
+2023-11-19 00:00:00,增肥,日円,-880.00,JPY,咖喱,False,False
+2023-11-19 00:00:00,增肥,日円,-1180.00,JPY,豬排洞,False,False
 2023-11-20 00:00:00,霧狀,One,-114.00,TWD,,False,False
 2023-11-20 00:00:00,增肥,One,-101.00,TWD,星巴克,False,False
 2023-11-20 00:00:00,增肥,One,-51.00,TWD,711,False,False
 2023-11-20 00:00:00,睡覺,One,-78000.00,TWD,房租,False,False
-2023-11-20 00:00:00,增肥,日円,-950.00,TWD,咖喱,False,False
-2023-11-20 00:00:00,增肥,日円,-4050.00,TWD,,False,False
+2023-11-20 00:00:00,增肥,日円,-950.00,JPY,咖喱,False,False
+2023-11-20 00:00:00,增肥,日円,-4050.00,JPY,,False,False
 2023-11-21 00:00:00,增肥,One,-63.00,TWD,711,False,False
 2023-11-21 00:00:00,增肥,One,-110.00,TWD,星巴克,False,False
 2023-11-21 00:00:00,增肥,One,-59.00,TWD,711,False,False
-2023-11-21 00:00:00,增肥,日円,-950.00,TWD,拉麵,False,False
-2023-11-21 00:00:00,增肥,日円,-2640.00,TWD,豬排,False,False
+2023-11-21 00:00:00,增肥,日円,-950.00,JPY,拉麵,False,False
+2023-11-21 00:00:00,增肥,日円,-2640.00,JPY,豬排,False,False
 2023-11-22 00:00:00,增肥,One,-44.00,TWD,711,False,False
 2023-11-22 00:00:00,霧狀,One,-102.00,TWD,,False,False
 2023-11-22 00:00:00,增肥,One,-102.00,TWD,星巴克,False,False
 2023-11-22 00:00:00,苦口,One,-252.00,TWD,感冒藥,False,False
 2023-11-22 00:00:00,寶包,One,-5855.00,TWD,阿姨的藥,False,False
 2023-11-22 00:00:00,增肥,One,-2317.00,TWD,晚餐,False,False
-2023-11-22 00:00:00,補給,日円,8100.00,TWD,餐前代墊,False,False
-2023-11-22 00:00:00,增肥,日円,-1100.00,TWD,中餐,False,False
+2023-11-22 00:00:00,補給,日円,8100.00,JPY,餐前代墊,False,False
+2023-11-22 00:00:00,增肥,日円,-1100.00,JPY,中餐,False,False
 2023-11-23 00:00:00,增肥,One,-27.00,TWD,711,False,False
 2023-11-23 00:00:00,增肥,One,-256.00,TWD,王將的餃子,False,False
 2023-11-23 00:00:00,熊仔,One,-393.00,TWD,Uber Eats,False,False
@@ -12379,7 +12379,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2023-11-23 00:00:00,帳單,One,-470.00,TWD,,False,False
 2023-11-24 00:00:00,增肥,One,-29.00,TWD,711,False,False
 2023-11-24 00:00:00,增肥,One,-125.00,TWD,餃子,False,False
-2023-11-24 00:00:00,增肥,日円,-750.00,TWD,擔擔麵,False,False
+2023-11-24 00:00:00,增肥,日円,-750.00,JPY,擔擔麵,False,False
 2023-11-25 00:00:00,增肥,One,-424.00,TWD,漢堡包,False,False
 2023-11-25 00:00:00,增肥,One,-120.00,TWD,珍奶,False,False
 2023-11-25 00:00:00,熊仔,One,-3206.00,TWD,Shiro香水,False,False
@@ -12387,8 +12387,8 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2023-11-25 00:00:00,五金,One,-3814.00,TWD,無印行李箱,False,False
 2023-11-25 00:00:00,增肥,One,-353.00,TWD,Shake Shack,False,False
 2023-11-25 00:00:00,增肥,One,-113.00,TWD,711,False,False
-2023-11-25 00:00:00,一起,日円,-190.00,TWD,,False,False
-2023-11-25 00:00:00,一起,日円,-190.00,TWD,,False,False
+2023-11-25 00:00:00,一起,日円,-190.00,JPY,,False,False
+2023-11-25 00:00:00,一起,日円,-190.00,JPY,,False,False
 2023-11-26 00:00:00,增肥,One,-779.00,TWD,燒肉,False,False
 2023-11-26 00:00:00,增肥,One,-154.00,TWD,貢茶,False,False
 2023-11-26 00:00:00,遮羞,One,-9277.00,TWD,Motherhouse,False,False
@@ -12400,47 +12400,47 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2023-11-26 00:00:00,一起,One,-49.00,TWD,,False,False
 2023-11-26 00:00:00,增肥,One,-188.00,TWD,王將餃子,False,False
 2023-11-26 00:00:00,一起,One,-68.00,TWD,,False,False
-2023-11-26 00:00:00,一起,日円,-190.00,TWD,,False,False
-2023-11-26 00:00:00,一起,日円,-190.00,TWD,,False,False
-2023-11-26 00:00:00,一起,日円,-190.00,TWD,,False,False
-2023-11-26 00:00:00,增肥,日円,-1380.00,TWD,甜點,False,False
-2023-11-26 00:00:00,一起,日円,-190.00,TWD,,False,False
-2023-11-26 00:00:00,五金,日円,-1000.00,TWD,洗衣服,False,False
+2023-11-26 00:00:00,一起,日円,-190.00,JPY,,False,False
+2023-11-26 00:00:00,一起,日円,-190.00,JPY,,False,False
+2023-11-26 00:00:00,一起,日円,-190.00,JPY,,False,False
+2023-11-26 00:00:00,增肥,日円,-1380.00,JPY,甜點,False,False
+2023-11-26 00:00:00,一起,日円,-190.00,JPY,,False,False
+2023-11-26 00:00:00,五金,日円,-1000.00,JPY,洗衣服,False,False
 2023-11-27 00:00:00,增肥,One,-31.00,TWD,711,False,False
 2023-11-27 00:00:00,增肥,One,-447.00,TWD,Yes Burger,False,False
-2023-11-27 00:00:00,增肥,日円,-850.00,TWD,中餐,False,False
-2023-11-27 00:00:00,增肥,日円,-520.00,TWD,星巴克,False,False
+2023-11-27 00:00:00,增肥,日円,-850.00,JPY,中餐,False,False
+2023-11-27 00:00:00,增肥,日円,-520.00,JPY,星巴克,False,False
 2023-11-28 00:00:00,增肥,One,-50.00,TWD,711,False,False
 2023-11-28 00:00:00,增肥,One,-110.00,TWD,星巴克,False,False
 2023-11-28 00:00:00,增肥,One,-1140.00,TWD,拉麵,False,False
-2023-11-28 00:00:00,增肥,日円,-900.00,TWD,中餐,False,False
-2023-11-28 00:00:00,五金,日円,-1500.00,TWD,Wendy 交換禮物,False,False
+2023-11-28 00:00:00,增肥,日円,-900.00,JPY,中餐,False,False
+2023-11-28 00:00:00,五金,日円,-1500.00,JPY,Wendy 交換禮物,False,False
 2023-11-29 00:00:00,霧狀,One,-113.00,TWD,,False,False
 2023-11-29 00:00:00,增肥,One,-54.00,TWD,711,False,False
 2023-11-29 00:00:00,寶包,One,-1285.00,TWD,藥妝類,False,False
-2023-11-29 00:00:00,增肥,日円,-1050.00,TWD,中餐,False,False
-2023-11-29 00:00:00,增肥,日円,-580.00,TWD,星巴克,False,False
-2023-11-29 00:00:00,增肥,日円,-1750.00,TWD,拉麵,False,False
+2023-11-29 00:00:00,增肥,日円,-1050.00,JPY,中餐,False,False
+2023-11-29 00:00:00,增肥,日円,-580.00,JPY,星巴克,False,False
+2023-11-29 00:00:00,增肥,日円,-1750.00,JPY,拉麵,False,False
 2023-11-30 00:00:00,霧狀,One,-115.00,TWD,,False,False
 2023-11-30 00:00:00,補給,One,11367.00,TWD,From Kryptonite 20240205,False,False
 2023-11-30 00:00:00,增肥,One,-51.00,TWD,711,False,False
-2023-11-30 00:00:00,增肥,日円,-1100.00,TWD,中餐,False,False
-2023-11-30 00:00:00,增肥,日円,-167.00,TWD,711,False,False
-2023-11-30 00:00:00,增肥,日円,-5500.00,TWD,燒肉,False,False
-2023-11-30 00:00:00,增肥,日円,-580.00,TWD,星巴克,False,False
-2023-11-30 00:00:00,帳單,日円,-891.00,TWD,,False,False
+2023-11-30 00:00:00,增肥,日円,-1100.00,JPY,中餐,False,False
+2023-11-30 00:00:00,增肥,日円,-167.00,JPY,711,False,False
+2023-11-30 00:00:00,增肥,日円,-5500.00,JPY,燒肉,False,False
+2023-11-30 00:00:00,增肥,日円,-580.00,JPY,星巴克,False,False
+2023-11-30 00:00:00,帳單,日円,-891.00,JPY,,False,False
 2023-11-30 00:00:00,賭博,台股,185.00,TWD,,False,False
 2023-12-01 00:00:00,增肥,One,-51.00,TWD,711,False,False
 2023-12-01 00:00:00,增肥,One,-121.00,TWD,珍奶,False,False
 2023-12-01 00:00:00,寶包,One,-1060.00,TWD,合力他命,False,False
 2023-12-01 00:00:00,寶包,One,-678.00,TWD,防曬乳 防曬粉餅,False,False
 2023-12-01 00:00:00,該死,One,-351.00,TWD,手裡劍,False,False
-2023-12-01 00:00:00,增肥,日円,-800.00,TWD,中餐,False,False
-2023-12-01 00:00:00,增肥,日円,-580.00,TWD,星巴克,False,False
-2023-12-01 00:00:00,增肥,日円,-1300.00,TWD,拉麵,False,False
-2023-12-01 00:00:00,一起,日円,-190.00,TWD,,False,False
-2023-12-01 00:00:00,一起,日円,-190.00,TWD,,False,False
-2023-12-01 00:00:00,賭博,美股,2086.00,TWD,年度調帳,False,False
+2023-12-01 00:00:00,增肥,日円,-800.00,JPY,中餐,False,False
+2023-12-01 00:00:00,增肥,日円,-580.00,JPY,星巴克,False,False
+2023-12-01 00:00:00,增肥,日円,-1300.00,JPY,拉麵,False,False
+2023-12-01 00:00:00,一起,日円,-190.00,JPY,,False,False
+2023-12-01 00:00:00,一起,日円,-190.00,JPY,,False,False
+2023-12-01 00:00:00,賭博,美股,2086.00,USD,年度調帳,False,False
 2023-12-01 00:00:00,帳單,借錢,-2965.00,TWD,年度調帳,False,False
 2023-12-01 00:00:00,補給,One,1457.00,TWD,年度調帳,False,False
 2023-12-02 00:00:00,霧狀,One,-4000.00,TWD,,False,False
@@ -12449,7 +12449,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2023-12-02 00:00:00,遮羞,One,-350.00,TWD,剪頭髮,False,False
 2023-12-02 00:00:00,增肥,Two,-140.00,TWD,上雨林,False,False
 2023-12-02 00:00:00,增肥,Two,-1890.00,TWD,長孫,False,False
-2023-12-02 00:00:00,增肥,日円,-350.00,TWD,711,False,False
+2023-12-02 00:00:00,增肥,日円,-350.00,JPY,711,False,False
 2023-12-03 00:00:00,一起,One,-30.00,TWD,,False,False
 2023-12-03 00:00:00,一起,One,-5.00,TWD,,False,False
 2023-12-03 00:00:00,一起,One,-30.00,TWD,,False,False
@@ -12462,7 +12462,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2023-12-04 00:00:00,增肥,Two,-28.00,TWD,711,False,False
 2023-12-04 00:00:00,增肥,Two,-104.00,TWD,711,False,False
 2023-12-04 00:00:00,屋伯,Two,-211.00,TWD,,False,False
-2023-12-04 00:00:00,薪資,鎂薪,2900.00,TWD,,False,False
+2023-12-04 00:00:00,薪資,鎂薪,2900.00,USD,,False,False
 2023-12-05 00:00:00,增肥,One,-154.00,TWD,麥登登,False,False
 2023-12-05 00:00:00,補給,One,500.00,TWD,From Kryptonite,False,False
 2023-12-05 00:00:00,補給,One,75.00,TWD,From Kryptonite,False,False
@@ -12614,8 +12614,8 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-01-05 00:00:00,補給,One,3000.00,TWD,From Dad,False,False
 2024-01-05 00:00:00,增肥,One,-108.00,TWD,甲尚堡,False,False
 2024-01-05 00:00:00,增肥,One,-160.00,TWD,咖啡廳,False,False
-2024-01-05 00:00:00,薪資,鎂薪,2900.00,TWD,,False,False
-2024-01-05 00:00:00,有益,鎂薪,-1000.00,TWD,BC.Game,False,False
+2024-01-05 00:00:00,薪資,鎂薪,2900.00,USD,,False,False
+2024-01-05 00:00:00,有益,鎂薪,-1000.00,USD,BC.Game,False,False
 2024-01-06 00:00:00,屋伯,One,-285.00,TWD,,False,False
 2024-01-06 00:00:00,屋伯,One,-189.00,TWD,,False,False
 2024-01-06 00:00:00,一起,One,-15.00,TWD,,False,False
@@ -12638,7 +12638,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-01-10 00:00:00,增肥,One,-204.00,TWD,麥噹噹,False,False
 2024-01-10 00:00:00,增肥,One,-160.00,TWD,咖啡,False,False
 2024-01-10 00:00:00,五金,One,-138.00,TWD,除鏽膏,False,False
-2024-01-10 00:00:00,補給,鎂薪,1000.00,TWD,,False,False
+2024-01-10 00:00:00,補給,鎂薪,1000.00,USD,,False,False
 2024-01-11 00:00:00,有益,One,-620.00,TWD,ChatGPT,False,False
 2024-01-11 00:00:00,五金,One,-559.00,TWD,冷泡茶壺,False,False
 2024-01-11 00:00:00,增肥,One,-135.00,TWD,星巴克,False,False
@@ -12736,8 +12736,8 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-01-31 00:00:00,補給,Two,100.00,TWD,From Kryptonite,False,False
 2024-01-31 00:00:00,增肥,Two,-120.00,TWD,711,False,False
 2024-01-31 00:00:00,補給,Two,5000.00,TWD,From Kryptonite 20240217,False,False
-2024-01-31 00:00:00,賭博,美股,802.00,TWD,年度調帳,False,False
-2024-01-31 00:00:00,帳單,美幣,-16.00,TWD,年度調帳,False,False
+2024-01-31 00:00:00,賭博,美股,802.00,USD,年度調帳,False,False
+2024-01-31 00:00:00,帳單,美幣,-16.00,USD,年度調帳,False,False
 2024-02-01 00:00:00,增肥,One,-119.00,TWD,麥登登,False,False
 2024-02-01 00:00:00,一起,One,-30.00,TWD,,False,False
 2024-02-01 00:00:00,一起,One,-30.00,TWD,,False,False
@@ -12751,7 +12751,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-02-04 00:00:00,一起,One,-30.00,TWD,,False,False
 2024-02-04 00:00:00,一起,One,-30.00,TWD,,False,False
 2024-02-05 00:00:00,增肥,One,-149.00,TWD,麥登登,False,False
-2024-02-05 00:00:00,薪資,鎂薪,3000.00,TWD,,False,False
+2024-02-05 00:00:00,薪資,鎂薪,3000.00,USD,,False,False
 2024-02-06 00:00:00,增肥,One,-170.00,TWD,晚餐,False,False
 2024-02-06 00:00:00,增肥,One,-28.00,TWD,711,False,False
 2024-02-06 00:00:00,增肥,One,-80.00,TWD,711,False,False
@@ -12853,8 +12853,8 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-02-29 00:00:00,增肥,Two,-99.00,TWD,迷客夏,False,False
 2024-02-29 00:00:00,補給,Two,4000.00,TWD,From Kryptonite 20240309,False,False
 2024-02-29 00:00:00,賭博,台股,185.00,TWD,,False,False
-2024-02-29 00:00:00,賭博,美股,802.00,TWD,年度調帳,False,False
-2024-02-29 00:00:00,帳單,美幣,-16.00,TWD,年度調帳,False,False
+2024-02-29 00:00:00,賭博,美股,802.00,USD,年度調帳,False,False
+2024-02-29 00:00:00,帳單,美幣,-16.00,USD,年度調帳,False,False
 2024-03-01 00:00:00,增肥,One,-202.00,TWD,麥噹噹,False,False
 2024-03-01 00:00:00,該死,One,-100.00,TWD,跑跑卡丁車,False,False
 2024-03-01 00:00:00,增肥,One,-136.00,TWD,麥噹噹,False,False
@@ -12872,7 +12872,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-03-05 00:00:00,講話,One,-2718.00,TWD,,False,False
 2024-03-05 00:00:00,機啪,One,-38.00,TWD,,False,False
 2024-03-05 00:00:00,增肥,One,-45.00,TWD,711,False,False
-2024-03-05 00:00:00,薪資,鎂薪,2950.00,TWD,,False,False
+2024-03-05 00:00:00,薪資,鎂薪,2950.00,USD,,False,False
 2024-03-06 00:00:00,增肥,One,-135.00,TWD,星巴克,False,False
 2024-03-06 00:00:00,增肥,One,-100.00,TWD,星巴克,False,False
 2024-03-06 00:00:00,五金,One,-408.00,TWD,除鏽刷,False,False
@@ -12978,8 +12978,8 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-03-31 00:00:00,增肥,Two,-250.00,TWD,黃記,False,False
 2024-03-31 00:00:00,增肥,Two,-673.00,TWD,全聯,False,False
 2024-03-31 00:00:00,補給,Two,5000.00,TWD,From Kryptonite 20240429,False,False
-2024-03-31 00:00:00,賭博,美股,802.00,TWD,年度調帳,False,False
-2024-03-31 00:00:00,帳單,美幣,-16.00,TWD,年度調帳,False,False
+2024-03-31 00:00:00,賭博,美股,802.00,USD,年度調帳,False,False
+2024-03-31 00:00:00,帳單,美幣,-16.00,USD,年度調帳,False,False
 2024-04-01 00:00:00,增肥,One,-90.00,TWD,麥登登,False,False
 2024-04-01 00:00:00,增肥,One,-195.00,TWD,711,False,False
 2024-04-01 00:00:00,有益,One,-6000.00,TWD,健身費,False,False
@@ -12995,7 +12995,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-04-04 00:00:00,熊仔,One,-1980.00,TWD,Lululemon,False,False
 2024-04-04 00:00:00,增肥,Two,-520.00,TWD,十一街,False,False
 2024-04-04 00:00:00,增肥,Two,-60.00,TWD,得正,False,False
-2024-04-04 00:00:00,薪資,鎂薪,2900.00,TWD,,False,False
+2024-04-04 00:00:00,薪資,鎂薪,2900.00,USD,,False,False
 2024-04-05 00:00:00,寶包,One,-149.00,TWD,隱形眼鏡保養液,False,False
 2024-04-05 00:00:00,寶包,One,-3840.00,TWD,剪頭髮,False,False
 2024-04-05 00:00:00,遮羞,One,-500.00,TWD,剪頭髮,False,False
@@ -13104,8 +13104,8 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-04-30 00:00:00,補給,One,2000.00,TWD,From Kryptonite 20240517,False,False
 2024-04-30 00:00:00,補給,Two,6000.00,TWD,From Kryptonite 20240517,False,False
 2024-04-30 00:00:00,賭博,台股,185.00,TWD,,False,False
-2024-04-30 00:00:00,賭博,美股,802.00,TWD,年度調帳,False,False
-2024-04-30 00:00:00,帳單,美幣,-16.00,TWD,年度調帳,False,False
+2024-04-30 00:00:00,賭博,美股,802.00,USD,年度調帳,False,False
+2024-04-30 00:00:00,帳單,美幣,-16.00,USD,年度調帳,False,False
 2024-05-01 00:00:00,屋伯,Two,-185.00,TWD,,False,False
 2024-05-01 00:00:00,增肥,Two,-182.00,TWD,711,False,False
 2024-05-01 00:00:00,增肥,Two,-573.00,TWD,麥噹噹,False,False
@@ -13130,7 +13130,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-05-03 00:00:00,增肥,One,-360.00,TWD,Homeys Cafe,False,False
 2024-05-03 00:00:00,五金,Two,-296.00,TWD,勝立百貨,False,False
 2024-05-03 00:00:00,五金,Two,-429.00,TWD,全聯,False,False
-2024-05-03 00:00:00,薪資,鎂薪,2935.00,TWD,,False,False
+2024-05-03 00:00:00,薪資,鎂薪,2935.00,USD,,False,False
 2024-05-03 00:00:00,金莎,婚禮,-15000.00,TWD,火柴婚紗側錄,False,False
 2024-05-04 00:00:00,增肥,One,-30.00,TWD,,False,False
 2024-05-04 00:00:00,寶包,One,-3780.00,TWD,昇,False,False
@@ -13255,8 +13255,8 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-05-31 00:00:00,該死,Two,-12717.00,TWD,首爾住宿,False,False
 2024-05-31 00:00:00,補給,Two,12717.00,TWD,From Kryptonite,False,False
 2024-05-31 00:00:00,補給,Two,11000.00,TWD,From Kryptonite 20240620,False,False
-2024-05-31 00:00:00,賭博,美股,802.00,TWD,年度調帳,False,False
-2024-05-31 00:00:00,帳單,美幣,-16.00,TWD,年度調帳,False,False
+2024-05-31 00:00:00,賭博,美股,802.00,USD,年度調帳,False,False
+2024-05-31 00:00:00,帳單,美幣,-16.00,USD,年度調帳,False,False
 2024-06-01 00:00:00,一起,One,-30.00,TWD,,False,False
 2024-06-01 00:00:00,增肥,One,-75.00,TWD,50嵐,False,False
 2024-06-01 00:00:00,一起,One,-30.00,TWD,,False,False
@@ -13279,7 +13279,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-06-04 00:00:00,增肥,Two,-400.00,TWD,燒肉,False,False
 2024-06-05 00:00:00,增肥,One,-185.00,TWD,麥噹噹,False,False
 2024-06-05 00:00:00,增肥,One,-153.00,TWD,711,False,False
-2024-06-05 00:00:00,薪資,鎂薪,3066.00,TWD,,False,False
+2024-06-05 00:00:00,薪資,鎂薪,3066.00,USD,,False,False
 2024-06-06 00:00:00,增肥,One,-214.00,TWD,麥噹噹,False,False
 2024-06-06 00:00:00,增肥,One,-70.00,TWD,711,False,False
 2024-06-06 00:00:00,有益,One,-4500.00,TWD,健身費,False,False
@@ -13347,12 +13347,12 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-06-13 00:00:00,增肥,Two,-1559.00,TWD,Bar Cham,False,False
 2024-06-13 00:00:00,屋伯,Two,-241.00,TWD,,False,False
 2024-06-13 00:00:00,增肥,Two,-931.00,TWD,London Bagel Museum ,False,False
-2024-06-13 00:00:00,一起,韓元,-3000.00,TWD,,False,False
-2024-06-13 00:00:00,一起,韓元,-2800.00,TWD,,False,False
-2024-06-13 00:00:00,五金,韓元,-115000.00,TWD,棉被,False,False
-2024-06-13 00:00:00,一起,韓元,-2800.00,TWD,,False,False
-2024-06-13 00:00:00,一起,韓元,-2800.00,TWD,,False,False
-2024-06-13 00:00:00,一起,韓元,-3000.00,TWD,,False,False
+2024-06-13 00:00:00,一起,韓元,-3000.00,KRW,,False,False
+2024-06-13 00:00:00,一起,韓元,-2800.00,KRW,,False,False
+2024-06-13 00:00:00,五金,韓元,-115000.00,KRW,棉被,False,False
+2024-06-13 00:00:00,一起,韓元,-2800.00,KRW,,False,False
+2024-06-13 00:00:00,一起,韓元,-2800.00,KRW,,False,False
+2024-06-13 00:00:00,一起,韓元,-3000.00,KRW,,False,False
 2024-06-13 00:00:00,五金,One,-90.00,TWD,iCloud,False,False
 2024-06-14 00:00:00,五金,One,-10190.00,TWD,iPad,False,False
 2024-06-14 00:00:00,熊仔,One,-13642.00,TWD,醫美,False,False
@@ -13366,10 +13366,10 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-06-14 00:00:00,增肥,Two,-986.00,TWD,燒肉,False,False
 2024-06-14 00:00:00,增肥,Two,-105.00,TWD,711,False,False
 2024-06-14 00:00:00,增肥,Two,-126.00,TWD,711,False,False
-2024-06-14 00:00:00,五金,韓元,-16000.00,TWD,寄物,False,False
-2024-06-14 00:00:00,屋伯,韓元,-10000.00,TWD,,False,False
-2024-06-14 00:00:00,一起,韓元,-5900.00,TWD,,False,False
-2024-06-14 00:00:00,五金,韓元,-3000.00,TWD,轉接頭,False,False
+2024-06-14 00:00:00,五金,韓元,-16000.00,KRW,寄物,False,False
+2024-06-14 00:00:00,屋伯,韓元,-10000.00,KRW,,False,False
+2024-06-14 00:00:00,一起,韓元,-5900.00,KRW,,False,False
+2024-06-14 00:00:00,五金,韓元,-3000.00,KRW,轉接頭,False,False
 2024-06-15 00:00:00,一起,One,-150.00,TWD,,False,False
 2024-06-15 00:00:00,屋伯,One,-190.00,TWD,,False,False
 2024-06-15 00:00:00,屋伯,Two,-778.00,TWD,,False,False
@@ -13380,8 +13380,8 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-06-15 00:00:00,增肥,Two,-51.00,TWD,711,False,False
 2024-06-15 00:00:00,增肥,Two,-366.00,TWD,麥噹噹,False,False
 2024-06-15 00:00:00,增肥,Two,-520.00,TWD,拉麵,False,False
-2024-06-15 00:00:00,補給,美幣,34.00,TWD,From Kryptonite,False,False
-2024-06-15 00:00:00,帳單,韓元,-9000.00,TWD,調帳,False,False
+2024-06-15 00:00:00,補給,美幣,34.00,USD,From Kryptonite,False,False
+2024-06-15 00:00:00,帳單,韓元,-9000.00,KRW,調帳,False,False
 2024-06-15 00:00:00,五金,One,-4325.00,TWD,Macbook pro,False,False
 2024-06-16 00:00:00,增肥,Two,-120.00,TWD,炒飯,False,False
 2024-06-16 00:00:00,增肥,Two,-246.00,TWD,全聯,False,False
@@ -13431,8 +13431,8 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-06-30 00:00:00,補給,Two,14735.00,TWD,From Kryptonite 20240719,False,False
 2024-06-30 00:00:00,增肥,Two,-378.00,TWD,麥噹噹,False,False
 2024-06-30 00:00:00,賭博,台股,185.00,TWD,,False,False
-2024-06-30 00:00:00,賭博,美股,802.00,TWD,年度調帳,False,False
-2024-06-30 00:00:00,帳單,美幣,-16.00,TWD,年度調帳,False,False
+2024-06-30 00:00:00,賭博,美股,802.00,USD,年度調帳,False,False
+2024-06-30 00:00:00,帳單,美幣,-16.00,USD,年度調帳,False,False
 2024-07-01 00:00:00,增肥,One,-145.00,TWD,麥登登,False,False
 2024-07-01 00:00:00,五金,One,-300.00,TWD,MultCloud,False,False
 2024-07-01 00:00:00,一起,One,-20.00,TWD,,False,False
@@ -13454,7 +13454,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-07-04 00:00:00,增肥,One,-95.00,TWD,全聯,False,False
 2024-07-04 00:00:00,增肥,Two,-380.00,TWD,雞腿飯,False,False
 2024-07-04 00:00:00,增肥,Two,-60.00,TWD,711,False,False
-2024-07-04 00:00:00,薪資,鎂薪,2900.00,TWD,,False,False
+2024-07-04 00:00:00,薪資,鎂薪,2900.00,USD,,False,False
 2024-07-05 00:00:00,增肥,One,-97.00,TWD,八方雲集,False,False
 2024-07-05 00:00:00,增肥,One,-100.00,TWD,路易莎,False,False
 2024-07-05 00:00:00,增肥,One,-2431.00,TWD,La Mesa,False,False
@@ -13551,7 +13551,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-07-24 00:00:00,增肥,Two,-59.00,TWD,711,False,False
 2024-07-24 00:00:00,增肥,Two,-175.00,TWD,麥登登,False,False
 2024-07-24 00:00:00,增肥,Two,-221.00,TWD,711,False,False
-2024-07-24 00:00:00,薪資,鎂薪,1450.00,TWD,,False,False
+2024-07-24 00:00:00,薪資,鎂薪,1450.00,USD,,False,False
 2024-07-25 00:00:00,寶包,One,-45.00,TWD,711,False,False
 2024-07-25 00:00:00,增肥,Two,-220.00,TWD,山東小館,False,False
 2024-07-25 00:00:00,增肥,Two,-340.00,TWD,晚餐,False,False
@@ -13582,8 +13582,8 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-07-31 00:00:00,增肥,One,-174.00,TWD,711,False,False
 2024-07-31 00:00:00,補給,One,2000.00,TWD,From Kryptonite 20240807,False,False
 2024-07-31 00:00:00,補給,Two,5000.00,TWD,From Kryptonite 20240807,False,False
-2024-07-31 00:00:00,賭博,美股,802.00,TWD,年度調帳,False,False
-2024-07-31 00:00:00,帳單,美幣,-16.00,TWD,年度調帳,False,False
+2024-07-31 00:00:00,賭博,美股,802.00,USD,年度調帳,False,False
+2024-07-31 00:00:00,帳單,美幣,-16.00,USD,年度調帳,False,False
 2024-08-01 00:00:00,增肥,One,-360.00,TWD,起司蛋糕,False,False
 2024-08-01 00:00:00,增肥,One,-211.00,TWD,麥噹噹,False,False
 2024-08-01 00:00:00,五金,One,-300.00,TWD,iCloud,False,False
@@ -13604,7 +13604,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-08-04 00:00:00,增肥,Two,-69.00,TWD,711,False,False
 2024-08-05 00:00:00,增肥,Two,-188.00,TWD,麥噹噹,False,False
 2024-08-05 00:00:00,增肥,Two,-888.00,TWD,氣泡水,False,False
-2024-08-05 00:00:00,薪資,鎂薪,2900.00,TWD,,False,False
+2024-08-05 00:00:00,薪資,鎂薪,2900.00,USD,,False,False
 2024-08-06 00:00:00,增肥,One,-78.00,TWD,711,False,False
 2024-08-06 00:00:00,增肥,One,-110.00,TWD,炒飯,False,False
 2024-08-06 00:00:00,增肥,One,-963.00,TWD,雞湯大叔,False,False
@@ -13746,8 +13746,8 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-08-31 00:00:00,汽啪,Two,-95.00,TWD,,False,False
 2024-08-31 00:00:00,借過,Two,-400.00,TWD,,False,False
 2024-08-31 00:00:00,補給,Two,8000.00,TWD,From Kryptonite 20240912,False,False
-2024-08-31 00:00:00,賭博,美股,802.00,TWD,年度調帳,False,False
-2024-08-31 00:00:00,帳單,美幣,-16.00,TWD,年度調帳,False,False
+2024-08-31 00:00:00,賭博,美股,802.00,USD,年度調帳,False,False
+2024-08-31 00:00:00,帳單,美幣,-16.00,USD,年度調帳,False,False
 2024-09-01 00:00:00,五金,One,-300.00,TWD,iCloud,False,False
 2024-09-02 00:00:00,增肥,One,-150.00,TWD,麥登登,False,False
 2024-09-02 00:00:00,寶包,One,-59.00,TWD,711,False,False
@@ -13765,7 +13765,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-09-05 00:00:00,增肥,One,-150.00,TWD,麥登登,False,False
 2024-09-05 00:00:00,機啪,One,-19.00,TWD,,False,False
 2024-09-05 00:00:00,五金,One,-15.00,TWD,行動電源,False,False
-2024-09-05 00:00:00,薪資,鎂薪,3000.00,TWD,,False,False
+2024-09-05 00:00:00,薪資,鎂薪,3000.00,USD,,False,False
 2024-09-06 00:00:00,增肥,One,-150.00,TWD,麥登登,False,False
 2024-09-06 00:00:00,汽暖,One,-948.00,TWD,,False,False
 2024-09-06 00:00:00,增肥,One,-122.00,TWD,麥噹噹,False,False
@@ -13866,7 +13866,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-09-23 00:00:00,增肥,One,-150.00,TWD,麥登登,False,False
 2024-09-23 00:00:00,增肥,Two,-59.00,TWD,711,False,False
 2024-09-23 00:00:00,屋伯,Two,-170.00,TWD,,False,False
-2024-09-23 00:00:00,寶包,日円,-6145.00,TWD,寶包員工旅遊,False,False
+2024-09-23 00:00:00,寶包,日円,-6145.00,JPY,寶包員工旅遊,False,False
 2024-09-23 00:00:00,金莎,婚禮,-3700.00,TWD,六禮訂金,False,False
 2024-09-23 00:00:00,金莎,婚禮,-1600.00,TWD,禮車訂金,False,False
 2024-09-23 00:00:00,溜扣,婚禮,-1366.00,TWD,美國簽證,False,False
@@ -13961,8 +13961,8 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-09-30 00:00:00,溜扣,婚禮,-2819.00,TWD,秘魯 eSim,False,False
 2024-09-30 00:00:00,溜扣,婚禮,-1855.00,TWD,第二段 美國 eSim,False,False
 2024-09-30 00:00:00,賭博,台股,185.00,TWD,,False,False
-2024-09-30 00:00:00,賭博,美股,802.00,TWD,年度調帳,False,False
-2024-09-30 00:00:00,帳單,美幣,-16.00,TWD,年度調帳,False,False
+2024-09-30 00:00:00,賭博,美股,802.00,USD,年度調帳,False,False
+2024-09-30 00:00:00,帳單,美幣,-16.00,USD,年度調帳,False,False
 2024-10-01 00:00:00,增肥,One,-258.00,TWD,早餐,False,False
 2024-10-01 00:00:00,機啪,One,-19.00,TWD,,False,False
 2024-10-01 00:00:00,機暖,One,-260.00,TWD,,False,False
@@ -13980,7 +13980,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-10-01 00:00:00,五金,One,-305.00,TWD,iCloud,False,False
 2024-10-02 00:00:00,一起,One,-162.00,TWD,Tap 交通卡,False,False
 2024-10-02 00:00:00,遮羞,One,-5197.00,TWD,雷朋,False,False
-2024-10-02 00:00:00,溜扣,美幣,-10.00,TWD,旅館小費,False,False
+2024-10-02 00:00:00,溜扣,美幣,-10.00,USD,旅館小費,False,False
 2024-10-02 00:00:00,溜扣,婚禮,-893.00,TWD,計程車到曼哈頓海灘,False,False
 2024-10-02 00:00:00,溜扣,婚禮,-864.00,TWD,Verve Coffee Roasters,False,False
 2024-10-02 00:00:00,溜扣,婚禮,-949.00,TWD,計程車回飯店,False,False
@@ -14004,11 +14004,11 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-10-03 00:00:00,溜扣,婚禮,-597.00,TWD,漢堡,False,False
 2024-10-03 00:00:00,溜扣,婚禮,-2216.00,TWD,迪迪可可湖行程,False,False
 2024-10-03 00:00:00,溜扣,婚禮,-24742.00,TWD,秘魯 Hilton Garden 飯店,False,False
-2024-10-04 00:00:00,溜扣,魯幣,-25.00,TWD,計程車到飯店,False,False
-2024-10-04 00:00:00,溜扣,魯幣,-20.00,TWD,綁頭髮的,False,False
-2024-10-04 00:00:00,溜扣,魯幣,-10.40,TWD,計程車,False,False
-2024-10-04 00:00:00,溜扣,魯幣,-131.00,TWD,星巴克,False,False
-2024-10-04 00:00:00,溜扣,魯幣,-18.30,TWD,計程車,False,False
+2024-10-04 00:00:00,溜扣,魯幣,-25.00,PEN,計程車到飯店,False,False
+2024-10-04 00:00:00,溜扣,魯幣,-20.00,PEN,綁頭髮的,False,False
+2024-10-04 00:00:00,溜扣,魯幣,-10.40,PEN,計程車,False,False
+2024-10-04 00:00:00,溜扣,魯幣,-131.00,PEN,星巴克,False,False
+2024-10-04 00:00:00,溜扣,魯幣,-18.30,PEN,計程車,False,False
 2024-10-04 00:00:00,溜扣,婚禮,-1266.00,TWD,咖啡廳,False,False
 2024-10-04 00:00:00,溜扣,婚禮,-799.00,TWD,計程車到機場,False,False
 2024-10-04 00:00:00,溜扣,婚禮,-1060.00,TWD,Puncho,False,False
@@ -14018,37 +14018,37 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-10-04 00:00:00,溜扣,婚禮,-2289.00,TWD,洗衣服,False,False
 2024-10-04 00:00:00,溜扣,婚禮,-12151.00,TWD,Cusco飯店,False,False
 2024-10-04 00:00:00,補給,婚禮,12151.00,TWD,From Kryptonite Cusco飯店,False,False
-2024-10-05 00:00:00,薪資,鎂薪,2900.00,TWD,,False,False
-2024-10-05 00:00:00,溜扣,魯幣,-18.50,TWD,計程車,False,False
+2024-10-05 00:00:00,薪資,鎂薪,2900.00,USD,,False,False
+2024-10-05 00:00:00,溜扣,魯幣,-18.50,PEN,計程車,False,False
 2024-10-05 00:00:00,溜扣,婚禮,-16428.00,TWD,馬丘比丘火車票改票,False,False
 2024-10-05 00:00:00,溜扣,婚禮,-1944.00,TWD,鞋子,False,False
 2024-10-05 00:00:00,溜扣,婚禮,-789.00,TWD,襪子,False,False
-2024-10-06 00:00:00,溜扣,魯幣,-60.00,TWD,彩虹山門票,False,False
-2024-10-06 00:00:00,溜扣,魯幣,-12.00,TWD,廁所,False,False
-2024-10-06 00:00:00,溜扣,魯幣,-3.00,TWD,水,False,False
-2024-10-06 00:00:00,溜扣,魯幣,-20.00,TWD,計程車,False,False
+2024-10-06 00:00:00,溜扣,魯幣,-60.00,PEN,彩虹山門票,False,False
+2024-10-06 00:00:00,溜扣,魯幣,-12.00,PEN,廁所,False,False
+2024-10-06 00:00:00,溜扣,魯幣,-3.00,PEN,水,False,False
+2024-10-06 00:00:00,溜扣,魯幣,-20.00,PEN,計程車,False,False
 2024-10-06 00:00:00,溜扣,婚禮,-185.00,TWD,肯德基,False,False
 2024-10-06 00:00:00,溜扣,婚禮,-115.00,TWD,咖啡,False,False
 2024-10-06 00:00:00,溜扣,婚禮,-290.00,TWD,麥噹噹,False,False
 2024-10-06 00:00:00,溜扣,婚禮,-13338.00,TWD,Puno to Lim 機票,False,False
 2024-10-06 00:00:00,增肥,One,-120.00,TWD,Uber Eats 訂閱,False,False
 2024-10-07 00:00:00,寶包,One,-1651.00,TWD,紀念品,False,False
-2024-10-07 00:00:00,溜扣,魯幣,-20.00,TWD,計程車,False,False
-2024-10-07 00:00:00,溜扣,魯幣,-30.00,TWD,計程車,False,False
+2024-10-07 00:00:00,溜扣,魯幣,-20.00,PEN,計程車,False,False
+2024-10-07 00:00:00,溜扣,魯幣,-30.00,PEN,計程車,False,False
 2024-10-07 00:00:00,溜扣,婚禮,-265.00,TWD,紀念品,False,False
 2024-10-07 00:00:00,溜扣,婚禮,-13922.00,TWD,Puno to Lim 機票,False,False
 2024-10-07 00:00:00,溜扣,婚禮,-194.00,TWD,咖啡,False,False
 2024-10-07 00:00:00,補給,婚禮,194.00,TWD,From Kryptonite,False,False
 2024-10-07 00:00:00,溜扣,婚禮,-1489.00,TWD,晚餐,False,False
 2024-10-07 00:00:00,溜扣,婚禮,-1177.00,TWD,洗衣服,False,False
-2024-10-08 00:00:00,溜扣,魯幣,-20.00,TWD,計程車,False,False
-2024-10-08 00:00:00,溜扣,魯幣,-12.00,TWD,計程車,False,False
-2024-10-08 00:00:00,溜扣,魯幣,-30.00,TWD,水上計程車,False,False
-2024-10-08 00:00:00,溜扣,魯幣,-5.00,TWD,麵包,False,False
-2024-10-08 00:00:00,溜扣,魯幣,-10.00,TWD,可樂,False,False
-2024-10-08 00:00:00,溜扣,魯幣,-33.00,TWD,零食,False,False
-2024-10-09 00:00:00,溜扣,魯幣,-160.00,TWD,計程車到機場,False,False
-2024-10-09 00:00:00,溜扣,魯幣,-10.00,TWD,甜甜圈,False,False
+2024-10-08 00:00:00,溜扣,魯幣,-20.00,PEN,計程車,False,False
+2024-10-08 00:00:00,溜扣,魯幣,-12.00,PEN,計程車,False,False
+2024-10-08 00:00:00,溜扣,魯幣,-30.00,PEN,水上計程車,False,False
+2024-10-08 00:00:00,溜扣,魯幣,-5.00,PEN,麵包,False,False
+2024-10-08 00:00:00,溜扣,魯幣,-10.00,PEN,可樂,False,False
+2024-10-08 00:00:00,溜扣,魯幣,-33.00,PEN,零食,False,False
+2024-10-09 00:00:00,溜扣,魯幣,-160.00,PEN,計程車到機場,False,False
+2024-10-09 00:00:00,溜扣,魯幣,-10.00,PEN,甜甜圈,False,False
 2024-10-09 00:00:00,溜扣,婚禮,-305.00,TWD,秘魯 Hilton Garden 飯店 小垃圾,False,False
 2024-10-09 00:00:00,溜扣,婚禮,-171.00,TWD,,False,False
 2024-10-09 00:00:00,補給,婚禮,171.00,TWD,From Kryptonite,False,False
@@ -14058,9 +14058,9 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-10-09 00:00:00,溜扣,婚禮,-1262.00,TWD,Mamma Lola,False,False
 2024-10-09 00:00:00,溜扣,婚禮,-1357.00,TWD,酒吧,False,False
 2024-10-10 00:00:00,豆漿,One,-104.00,TWD,磁鐵,False,False
-2024-10-10 00:00:00,豆漿,魯幣,-5.00,TWD,磁鐵,False,False
-2024-10-10 00:00:00,溜扣,魯幣,-8.00,TWD,小費,False,False
-2024-10-10 00:00:00,溜扣,魯幣,-24.00,TWD,計程車,False,False
+2024-10-10 00:00:00,豆漿,魯幣,-5.00,PEN,磁鐵,False,False
+2024-10-10 00:00:00,溜扣,魯幣,-8.00,PEN,小費,False,False
+2024-10-10 00:00:00,溜扣,魯幣,-24.00,PEN,計程車,False,False
 2024-10-10 00:00:00,溜扣,婚禮,-918.00,TWD,Madam Tusan,False,False
 2024-10-10 00:00:00,溜扣,婚禮,-1632.00,TWD,Carnaval,False,False
 2024-10-10 00:00:00,溜扣,婚禮,-1099.00,TWD,秘魯花神,False,False
@@ -14072,7 +14072,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-10-10 00:00:00,溜扣,婚禮,-5962.00,TWD,綠洲 day tour,False,False
 2024-10-10 00:00:00,溜扣,婚禮,-250.00,TWD,計程車,False,False
 2024-10-10 00:00:00,溜扣,婚禮,-304.00,TWD,T shirt,False,False
-2024-10-11 00:00:00,溜扣,魯幣,-15.00,TWD,面罩,False,False
+2024-10-11 00:00:00,溜扣,魯幣,-15.00,PEN,面罩,False,False
 2024-10-11 00:00:00,溜扣,婚禮,-97.00,TWD,咖啡,False,False
 2024-10-11 00:00:00,溜扣,婚禮,-635.00,TWD,中餐,False,False
 2024-10-11 00:00:00,溜扣,婚禮,-528.00,TWD,晚餐,False,False
@@ -14084,8 +14084,8 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-10-11 00:00:00,補給,婚禮,90.00,TWD,From Kryptonite Uber,False,False
 2024-10-11 00:00:00,保險,One,-2833.00,TWD,,False,False
 2024-10-12 00:00:00,熊仔,One,-509.00,TWD,項鍊手鍊,False,False
-2024-10-12 00:00:00,溜扣,魯幣,-5.00,TWD,飯店小費,False,False
-2024-10-12 00:00:00,溜扣,魯幣,-402.20,TWD,不見了,False,False
+2024-10-12 00:00:00,溜扣,魯幣,-5.00,PEN,飯店小費,False,False
+2024-10-12 00:00:00,溜扣,魯幣,-402.20,PEN,不見了,False,False
 2024-10-12 00:00:00,溜扣,婚禮,-722.00,TWD,Chili’s ,False,False
 2024-10-12 00:00:00,溜扣,婚禮,-234.00,TWD,咖啡,False,False
 2024-10-12 00:00:00,溜扣,婚禮,-167.00,TWD,冰淇淋,False,False
@@ -14099,21 +14099,21 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-10-12 00:00:00,溜扣,婚禮,-367.00,TWD,LA LUCHA,False,False
 2024-10-13 00:00:00,遮羞,One,-5291.00,TWD,TheNorthFace,False,False
 2024-10-13 00:00:00,遮羞,One,-2901.00,TWD,Adidas,False,False
-2024-10-13 00:00:00,溜扣,美幣,-10.00,TWD,停車,False,False
+2024-10-13 00:00:00,溜扣,美幣,-10.00,USD,停車,False,False
 2024-10-13 00:00:00,溜扣,婚禮,-1341.00,TWD,Five Guys,False,False
 2024-10-13 00:00:00,溜扣,婚禮,-1691.00,TWD,韓式,False,False
 2024-10-13 00:00:00,溜扣,婚禮,-656.00,TWD,Uber,False,False
 2024-10-13 00:00:00,補給,婚禮,656.00,TWD,From Kryptonite Uber,False,False
 2024-10-13 00:00:00,溜扣,婚禮,-261.00,TWD,,False,False
 2024-10-13 00:00:00,補給,婚禮,261.00,TWD,From Kryptonite,False,False
-2024-10-14 00:00:00,溜扣,美幣,-10.00,TWD,停車費,False,False
+2024-10-14 00:00:00,溜扣,美幣,-10.00,USD,停車費,False,False
 2024-10-14 00:00:00,溜扣,婚禮,-2287.00,TWD,義大利麵,False,False
 2024-10-14 00:00:00,溜扣,婚禮,-1901.00,TWD,垃圾食物,False,False
 2024-10-14 00:00:00,溜扣,婚禮,-382.00,TWD,711,False,False
 2024-10-14 00:00:00,溜扣,婚禮,-250.00,TWD,星巴克,False,False
 2024-10-14 00:00:00,溜扣,婚禮,-261.00,TWD,咖啡,False,False
-2024-10-15 00:00:00,溜扣,美幣,-10.00,TWD,停車費,False,False
-2024-10-15 00:00:00,溜扣,美幣,-10.00,TWD,停車費,False,False
+2024-10-15 00:00:00,溜扣,美幣,-10.00,USD,停車費,False,False
+2024-10-15 00:00:00,溜扣,美幣,-10.00,USD,停車費,False,False
 2024-10-15 00:00:00,溜扣,婚禮,-291.00,TWD,50嵐,False,False
 2024-10-15 00:00:00,溜扣,婚禮,-32.00,TWD,加油,False,False
 2024-10-15 00:00:00,溜扣,婚禮,-328.00,TWD,停車費,False,False
@@ -14124,7 +14124,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-10-15 00:00:00,補給,婚禮,7410.00,TWD,From Kryptonite Westin,False,False
 2024-10-16 00:00:00,該死,One,-2114.00,TWD,哈利波特魔杖,False,False
 2024-10-16 00:00:00,寶包,One,-752.00,TWD,小小賓爆米花,False,False
-2024-10-16 00:00:00,一起,美幣,-1.75,TWD,,False,False
+2024-10-16 00:00:00,一起,美幣,-1.75,USD,,False,False
 2024-10-16 00:00:00,溜扣,婚禮,-896.00,TWD,優喜髮ㄎㄨ,False,False
 2024-10-16 00:00:00,溜扣,婚禮,-323.00,TWD,奶油啤酒,False,False
 2024-10-16 00:00:00,溜扣,婚禮,-358.00,TWD,計程車,False,False
@@ -14222,8 +14222,8 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-10-31 00:00:00,增肥,Two,-427.00,TWD,麥噹噹,False,False
 2024-10-31 00:00:00,增肥,Two,-356.00,TWD,711,False,False
 2024-10-31 00:00:00,補給,Two,4000.00,TWD,From Kryptonite 20241126,False,False
-2024-10-31 00:00:00,賭博,美股,802.00,TWD,年度調帳,False,False
-2024-10-31 00:00:00,帳單,美幣,-16.00,TWD,年度調帳,False,False
+2024-10-31 00:00:00,賭博,美股,802.00,USD,年度調帳,False,False
+2024-10-31 00:00:00,帳單,美幣,-16.00,USD,年度調帳,False,False
 2024-11-01 00:00:00,增肥,One,-35.00,TWD,711,False,False
 2024-11-01 00:00:00,增肥,One,-175.00,TWD,麥登登,False,False
 2024-11-01 00:00:00,一起,One,-25.00,TWD,,False,False
@@ -14248,7 +14248,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-11-05 00:00:00,增肥,Two,-420.00,TWD,韓式,False,False
 2024-11-05 00:00:00,補給,Two,120.00,TWD,From Kryptonite,False,False
 2024-11-06 00:00:00,增肥,One,-170.00,TWD,麥登登,False,False
-2024-11-06 00:00:00,薪資,鎂薪,2800.00,TWD,,False,False
+2024-11-06 00:00:00,薪資,鎂薪,2800.00,USD,,False,False
 2024-11-06 00:00:00,增肥,One,-120.00,TWD,Uber Eats 訂閱,False,False
 2024-11-07 00:00:00,寶包,One,-2030.00,TWD,拉拉,False,False
 2024-11-07 00:00:00,增肥,One,-75.00,TWD,50嵐,False,False
@@ -14361,8 +14361,8 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-11-30 00:00:00,增肥,One,-39.00,TWD,711,False,False
 2024-11-30 00:00:00,補給,Two,8000.00,TWD,From Kryptonite 20250124,False,False
 2024-11-30 00:00:00,賭博,台股,185.00,TWD,,False,False
-2024-11-30 00:00:00,賭博,美股,802.00,TWD,年度調帳,False,False
-2024-11-30 00:00:00,帳單,美幣,-16.00,TWD,年度調帳,False,False
+2024-11-30 00:00:00,賭博,美股,802.00,USD,年度調帳,False,False
+2024-11-30 00:00:00,帳單,美幣,-16.00,USD,年度調帳,False,False
 2024-12-01 00:00:00,增肥,One,-179.00,TWD,711,False,False
 2024-12-01 00:00:00,一起,One,-30.00,TWD,,False,False
 2024-12-01 00:00:00,一起,One,-30.00,TWD,,False,False
@@ -14381,7 +14381,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-12-04 00:00:00,該死,Two,-1350.00,TWD,瑪利歐賽車,False,False
 2024-12-05 00:00:00,增肥,Two,-165.00,TWD,麥登登,False,False
 2024-12-05 00:00:00,增肥,Two,-300.00,TWD,河粉,False,False
-2024-12-05 00:00:00,薪資,鎂薪,2888.00,TWD,,False,False
+2024-12-05 00:00:00,薪資,鎂薪,2888.00,USD,,False,False
 2024-12-06 00:00:00,增肥,One,-85.00,TWD,一沐日,False,False
 2024-12-06 00:00:00,增肥,One,-233.00,TWD,拿坡里,False,False
 2024-12-06 00:00:00,增肥,Two,-205.00,TWD,早餐,False,False
@@ -14439,25 +14439,25 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-12-15 00:00:00,霧狀,One,-150.00,TWD,,False,False
 2024-12-15 00:00:00,增肥,One,-247.00,TWD,711,False,False
 2024-12-15 00:00:00,屋伯,One,-232.00,TWD,,False,False
-2024-12-15 00:00:00,一起,日円,-190.00,TWD,,False,False
-2024-12-15 00:00:00,增肥,日円,-1500.00,TWD,鳥貴族,False,False
+2024-12-15 00:00:00,一起,日円,-190.00,JPY,,False,False
+2024-12-15 00:00:00,增肥,日円,-1500.00,JPY,鳥貴族,False,False
 2024-12-16 00:00:00,增肥,One,-70.00,TWD,711,False,False
 2024-12-16 00:00:00,增肥,One,-280.00,TWD,王將的餃子,False,False
 2024-12-16 00:00:00,五金,One,-571.00,TWD,勝立百貨,False,False
 2024-12-16 00:00:00,增肥,One,-503.00,TWD,NordVPN,False,False
-2024-12-16 00:00:00,增肥,日円,-950.00,TWD,中餐,False,False
-2024-12-16 00:00:00,增肥,日円,-5000.00,TWD,星巴克,False,False
-2024-12-16 00:00:00,補給,日円,42000.00,TWD,,False,False
+2024-12-16 00:00:00,增肥,日円,-950.00,JPY,中餐,False,False
+2024-12-16 00:00:00,增肥,日円,-5000.00,JPY,星巴克,False,False
+2024-12-16 00:00:00,補給,日円,42000.00,JPY,,False,False
 2024-12-17 00:00:00,增肥,One,-55.00,TWD,711,False,False
 2024-12-17 00:00:00,霧狀,One,-127.00,TWD,,False,False
 2024-12-17 00:00:00,霧狀,One,-115.00,TWD,,False,False
 2024-12-17 00:00:00,五金,One,-86.00,TWD,暖暖包,False,False
 2024-12-17 00:00:00,增肥,One,-78.00,TWD,711,False,False
 2024-12-17 00:00:00,屋伯,Two,-239.00,TWD,,False,False
-2024-12-17 00:00:00,增肥,日円,-950.00,TWD,中餐,False,False
-2024-12-17 00:00:00,增肥,日円,-1800.00,TWD,夜店拉麵,False,False
+2024-12-17 00:00:00,增肥,日円,-950.00,JPY,中餐,False,False
+2024-12-17 00:00:00,增肥,日円,-1800.00,JPY,夜店拉麵,False,False
 2024-12-18 00:00:00,增肥,One,-631.00,TWD,漢堡,False,False
-2024-12-18 00:00:00,增肥,日円,-1100.00,TWD,中餐,False,False
+2024-12-18 00:00:00,增肥,日円,-1100.00,JPY,中餐,False,False
 2024-12-19 00:00:00,增肥,One,-32.00,TWD,711,False,False
 2024-12-19 00:00:00,增肥,One,-334.00,TWD,中餐,False,False
 2024-12-19 00:00:00,增肥,One,-631.00,TWD,豬排,False,False
@@ -14468,36 +14468,36 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-12-20 00:00:00,增肥,One,-295.00,TWD,餃子的王將,False,False
 2024-12-20 00:00:00,睡覺,Two,-25000.00,TWD,,False,False
 2024-12-20 00:00:00,五金,Two,-412.00,TWD,Canva,False,False
-2024-12-20 00:00:00,增肥,日円,-1000.00,TWD,拉麵,False,False
+2024-12-20 00:00:00,增肥,日円,-1000.00,JPY,拉麵,False,False
 2024-12-21 00:00:00,增肥,Two,-538.00,TWD,711,False,False
-2024-12-21 00:00:00,溜扣,日円,-2700.00,TWD,計程車,False,False
+2024-12-21 00:00:00,溜扣,日円,-2700.00,JPY,計程車,False,False
 2024-12-22 00:00:00,五金,Two,-409.00,TWD,711,False,False
 2024-12-22 00:00:00,溜扣,Two,-461.00,TWD,中餐,False,False
 2024-12-22 00:00:00,溜扣,Two,-167.00,TWD,冰淇淋,False,False
 2024-12-22 00:00:00,溜扣,Two,-337.00,TWD,Lush,False,False
 2024-12-22 00:00:00,溜扣,Two,-721.00,TWD,超市,False,False
 2024-12-22 00:00:00,溜扣,Two,-1846.00,TWD,燒烤居酒屋,False,False
-2024-12-22 00:00:00,一起,日円,-190.00,TWD,,False,False
-2024-12-22 00:00:00,溜扣,日円,-1200.00,TWD,咖啡,False,False
-2024-12-22 00:00:00,溜扣,日円,-700.00,TWD,扭蛋,False,False
-2024-12-22 00:00:00,溜扣,日円,-800.00,TWD,章魚燒,False,False
-2024-12-22 00:00:00,一起,日円,-190.00,TWD,,False,False
+2024-12-22 00:00:00,一起,日円,-190.00,JPY,,False,False
+2024-12-22 00:00:00,溜扣,日円,-1200.00,JPY,咖啡,False,False
+2024-12-22 00:00:00,溜扣,日円,-700.00,JPY,扭蛋,False,False
+2024-12-22 00:00:00,溜扣,日円,-800.00,JPY,章魚燒,False,False
+2024-12-22 00:00:00,一起,日円,-190.00,JPY,,False,False
 2024-12-23 00:00:00,增肥,One,-27.00,TWD,711,False,False
 2024-12-23 00:00:00,遮羞,One,-3034.00,TWD, Uniqlo,False,False
 2024-12-23 00:00:00,溜扣,Two,-742.00,TWD,葡萄草莓,False,False
 2024-12-23 00:00:00,溜扣,Two,-91.00,TWD,711,False,False
 2024-12-23 00:00:00,溜扣,Two,-760.00,TWD,拉麵,False,False
 2024-12-23 00:00:00,溜扣,Two,-119.00,TWD,貢茶,False,False
-2024-12-23 00:00:00,增肥,日円,-950.00,TWD,中餐,False,False
-2024-12-23 00:00:00,一起,日円,-190.00,TWD,,False,False
-2024-12-23 00:00:00,一起,日円,-190.00,TWD,,False,False
+2024-12-23 00:00:00,增肥,日円,-950.00,JPY,中餐,False,False
+2024-12-23 00:00:00,一起,日円,-190.00,JPY,,False,False
+2024-12-23 00:00:00,一起,日円,-190.00,JPY,,False,False
 2024-12-24 00:00:00,增肥,One,-138.00,TWD,711,False,False
 2024-12-24 00:00:00,增肥,One,-438.00,TWD,Pizza,False,False
 2024-12-24 00:00:00,溜扣,Two,-90.00,TWD,711,False,False
-2024-12-24 00:00:00,一起,日円,-190.00,TWD,,False,False
-2024-12-24 00:00:00,增肥,日円,-1100.00,TWD,中餐,False,False
-2024-12-24 00:00:00,一起,日円,-240.00,TWD,,False,False
-2024-12-24 00:00:00,一起,日円,-240.00,TWD,,False,False
+2024-12-24 00:00:00,一起,日円,-190.00,JPY,,False,False
+2024-12-24 00:00:00,增肥,日円,-1100.00,JPY,中餐,False,False
+2024-12-24 00:00:00,一起,日円,-240.00,JPY,,False,False
+2024-12-24 00:00:00,一起,日円,-240.00,JPY,,False,False
 2024-12-25 00:00:00,增肥,One,-52.00,TWD,711,False,False
 2024-12-25 00:00:00,遮羞,One,-2898.00,TWD, Uniqlo,False,False
 2024-12-25 00:00:00,一起,One,-95.00,TWD,滑板車,False,False
@@ -14508,19 +14508,19 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-12-25 00:00:00,溜扣,Two,-1966.00,TWD,燒肉,False,False
 2024-12-25 00:00:00,五金,Two,-90.00,TWD,行動電源,False,False
 2024-12-25 00:00:00,溜扣,Two,-397.00,TWD,計程車,False,False
-2024-12-25 00:00:00,一起,日円,-190.00,TWD,,False,False
-2024-12-25 00:00:00,增肥,日円,-950.00,TWD,中餐,False,False
+2024-12-25 00:00:00,一起,日円,-190.00,JPY,,False,False
+2024-12-25 00:00:00,增肥,日円,-950.00,JPY,中餐,False,False
 2024-12-26 00:00:00,增肥,One,-29.00,TWD,711,False,False
 2024-12-26 00:00:00,一起,One,-45.00,TWD,,False,False
 2024-12-26 00:00:00,溜扣,Two,-2476.00,TWD,Beso Bar,False,False
-2024-12-26 00:00:00,增肥,日円,-3600.00,TWD,Starbucks,False,False
-2024-12-26 00:00:00,增肥,日円,-221.00,TWD,中餐,False,False
-2024-12-26 00:00:00,溜扣,日円,-4900.00,TWD,關東煮,False,False
-2024-12-26 00:00:00,溜扣,日円,-1000.00,TWD,計程車,False,False
+2024-12-26 00:00:00,增肥,日円,-3600.00,JPY,Starbucks,False,False
+2024-12-26 00:00:00,增肥,日円,-221.00,JPY,中餐,False,False
+2024-12-26 00:00:00,溜扣,日円,-4900.00,JPY,關東煮,False,False
+2024-12-26 00:00:00,溜扣,日円,-1000.00,JPY,計程車,False,False
 2024-12-27 00:00:00,增肥,One,-142.00,TWD,711,False,False
 2024-12-27 00:00:00,增肥,One,-38.00,TWD,711,False,False
-2024-12-27 00:00:00,一起,日円,-190.00,TWD,,False,False
-2024-12-27 00:00:00,增肥,日円,-3200.00,TWD,拉麵,False,False
+2024-12-27 00:00:00,一起,日円,-190.00,JPY,,False,False
+2024-12-27 00:00:00,增肥,日円,-3200.00,JPY,拉麵,False,False
 2024-12-28 00:00:00,熊仔,One,-2573.00,TWD,香氛,False,False
 2024-12-28 00:00:00,溜扣,Two,-566.00,TWD,漢堡排,False,False
 2024-12-28 00:00:00,溜扣,Two,-104.00,TWD,神社畫板,False,False
@@ -14531,11 +14531,11 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-12-28 00:00:00,補給,Two,606.00,TWD,From Kryptonite,False,False
 2024-12-28 00:00:00,溜扣,Two,-7227.00,TWD,京都住宿,False,False
 2024-12-28 00:00:00,補給,Two,7227.00,TWD,From Kryptonite,False,False
-2024-12-28 00:00:00,一起,日円,-50.00,TWD,,False,False
-2024-12-28 00:00:00,一起,日円,-220.00,TWD,,False,False
-2024-12-28 00:00:00,一起,日円,-230.00,TWD,,False,False
-2024-12-28 00:00:00,一起,日円,-230.00,TWD,,False,False
-2024-12-28 00:00:00,溜扣,日円,-2400.00,TWD,龜末廣,False,False
+2024-12-28 00:00:00,一起,日円,-50.00,JPY,,False,False
+2024-12-28 00:00:00,一起,日円,-220.00,JPY,,False,False
+2024-12-28 00:00:00,一起,日円,-230.00,JPY,,False,False
+2024-12-28 00:00:00,一起,日円,-230.00,JPY,,False,False
+2024-12-28 00:00:00,溜扣,日円,-2400.00,JPY,龜末廣,False,False
 2024-12-29 00:00:00,溜扣,Two,-124.00,TWD,計程車,False,False
 2024-12-29 00:00:00,溜扣,Two,-480.00,TWD,筷子,False,False
 2024-12-29 00:00:00,溜扣,Two,-146.00,TWD,LELABO 咖啡,False,False
@@ -14546,9 +14546,9 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-12-29 00:00:00,溜扣,Two,-239.00,TWD,計程車,False,False
 2024-12-29 00:00:00,溜扣,Two,-11027.00,TWD,租和服,False,False
 2024-12-29 00:00:00,溜扣,Two,-251.00,TWD,抹茶飲料,False,False
-2024-12-29 00:00:00,溜扣,日円,-100.00,TWD,清水寺抽籤,False,False
-2024-12-29 00:00:00,一起,日円,-240.00,TWD,,False,False
-2024-12-29 00:00:00,溜扣,日円,-1400.00,TWD,計程車,False,False
+2024-12-29 00:00:00,溜扣,日円,-100.00,JPY,清水寺抽籤,False,False
+2024-12-29 00:00:00,一起,日円,-240.00,JPY,,False,False
+2024-12-29 00:00:00,溜扣,日円,-1400.00,JPY,計程車,False,False
 2024-12-30 00:00:00,增肥,One,-123.00,TWD,711,False,False
 2024-12-30 00:00:00,五金,One,-13.00,TWD,711,False,False
 2024-12-30 00:00:00,一起,One,-51.00,TWD,,False,False
@@ -14564,11 +14564,11 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2024-12-31 00:00:00,溜扣,Two,-237.00,TWD,計程車,False,False
 2024-12-31 00:00:00,補給,Two,12000.00,TWD,From Kryptonite 20250124,False,False
 2024-12-31 00:00:00,補給,Two,9000.00,TWD,From Kryptonite 20250107,False,False
-2024-12-31 00:00:00,一起,日円,-190.00,TWD,,False,False
-2024-12-31 00:00:00,帳單,日円,-8553.00,TWD,年度調帳,False,False
-2024-12-31 00:00:00,帳單,美幣,-0.25,TWD,年度調帳,False,False
-2024-12-31 00:00:00,賭博,美股,802.00,TWD,年度調帳,False,False
-2024-12-31 00:00:00,帳單,美幣,-16.00,TWD,年度調帳,False,False
+2024-12-31 00:00:00,一起,日円,-190.00,JPY,,False,False
+2024-12-31 00:00:00,帳單,日円,-8553.00,JPY,年度調帳,False,False
+2024-12-31 00:00:00,帳單,美幣,-0.25,USD,年度調帳,False,False
+2024-12-31 00:00:00,賭博,美股,802.00,USD,年度調帳,False,False
+2024-12-31 00:00:00,帳單,美幣,-16.00,USD,年度調帳,False,False
 2025-01-01 00:00:00,該死,One,-330.00,TWD,原神,False,False
 2025-01-01 00:00:00,該死,One,-3290.00,TWD,原神,False,False
 2025-01-01 00:00:00,該死,One,-3290.00,TWD,原神,False,False
@@ -14579,16 +14579,16 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2025-01-01 00:00:00,溜扣,Two,-26.00,TWD,LUUP,False,False
 2025-01-01 00:00:00,溜扣,Two,-1363.00,TWD,韓式晚餐,False,False
 2025-01-01 00:00:00,溜扣,Two,-65.00,TWD,711,False,False
-2025-01-01 00:00:00,一起,日円,-530.00,TWD,,False,False
-2025-01-01 00:00:00,溜扣,日円,-3200.00,TWD,御守,False,False
-2025-01-01 00:00:00,一起,日円,-530.00,TWD,,False,False
+2025-01-01 00:00:00,一起,日円,-530.00,JPY,,False,False
+2025-01-01 00:00:00,溜扣,日円,-3200.00,JPY,御守,False,False
+2025-01-01 00:00:00,一起,日円,-530.00,JPY,,False,False
 2025-01-01 00:00:00,五金,One,-305.00,TWD,iCloud,False,False
 2025-01-02 00:00:00,增肥,One,-482.00,TWD,KFC,False,False
 2025-01-03 00:00:00,增肥,One,-139.00,TWD,711,False,False
 2025-01-03 00:00:00,增肥,One,-206.00,TWD,すき家,False,False
 2025-01-03 00:00:00,五金,One,-800.00,TWD,犀牛盾,False,False
 2025-01-03 00:00:00,增肥,One,-135.00,TWD,711,False,False
-2025-01-03 00:00:00,薪資,鎂薪,2950.00,TWD,,False,False
+2025-01-03 00:00:00,薪資,鎂薪,2950.00,USD,,False,False
 2025-01-04 00:00:00,增肥,One,-121.00,TWD,星巴克,False,False
 2025-01-04 00:00:00,寶包,One,-219.00,TWD,白慕蛋餅,False,False
 2025-01-04 00:00:00,一起,One,-160.00,TWD,,False,False
@@ -14718,7 +14718,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2025-01-31 00:00:00,增肥,Two,-92.00,TWD,711,False,False
 2025-01-31 00:00:00,帳單,One,-1750.00,TWD,調賬,False,False
 2025-01-31 00:00:00,帳單,借錢,-4568.50,TWD,利息,False,False
-2025-01-31 00:00:00,賭博,美股,3270.00,TWD,,False,False
+2025-01-31 00:00:00,賭博,美股,3270.00,USD,,False,False
 2025-02-01 00:00:00,補給,One,10000.00,TWD,紅包,False,False
 2025-02-01 00:00:00,借過,Two,-400.00,TWD,,False,False
 2025-02-01 00:00:00,增肥,Two,-415.00,TWD,義大利麵,False,False
@@ -14740,7 +14740,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2025-02-05 00:00:00,增肥,One,-352.00,TWD,晚餐,False,False
 2025-02-05 00:00:00,該死,One,-220.00,TWD,漫畫,False,False
 2025-02-05 00:00:00,增肥,Two,-84.00,TWD,711,False,False
-2025-02-05 00:00:00,補給,鎂薪,3100.00,TWD,,False,False
+2025-02-05 00:00:00,補給,鎂薪,3100.00,USD,,False,False
 2025-02-06 00:00:00,增肥,Two,-406.00,TWD,麥噹噹,False,False
 2025-02-06 00:00:00,增肥,One,-120.00,TWD,Uber Eats 訂閱,False,False
 2025-02-07 00:00:00,增肥,One,-100.00,TWD,麥登登,False,False
@@ -14786,16 +14786,16 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2025-02-16 00:00:00,增肥,Two,-353.00,TWD,全聯,False,False
 2025-02-17 00:00:00,增肥,One,-36.00,TWD,711,False,False
 2025-02-17 00:00:00,有益,One,-655.00,TWD,ChatGPT,False,False
-2025-02-17 00:00:00,增肥,日円,-950.00,TWD,中餐,False,False
+2025-02-17 00:00:00,增肥,日円,-950.00,JPY,中餐,False,False
 2025-02-18 00:00:00,遮羞,One,-7122.00,TWD, Uniqlo,False,False
 2025-02-18 00:00:00,五金,One,-906.00,TWD,加濕器,False,False
 2025-02-18 00:00:00,屋伯,One,-259.00,TWD,,False,False
 2025-02-18 00:00:00,增肥,One,-311.00,TWD,餃子王將,False,False
 2025-02-18 00:00:00,增肥,One,-191.00,TWD,711,False,False
-2025-02-18 00:00:00,增肥,日円,-5000.00,TWD,伙食,False,False
-2025-02-18 00:00:00,增肥,日円,-4000.00,TWD,星巴克,False,False
-2025-02-18 00:00:00,一起,日円,-190.00,TWD,,False,False
-2025-02-18 00:00:00,增肥,日円,-1100.00,TWD,中餐,False,False
+2025-02-18 00:00:00,增肥,日円,-5000.00,JPY,伙食,False,False
+2025-02-18 00:00:00,增肥,日円,-4000.00,JPY,星巴克,False,False
+2025-02-18 00:00:00,一起,日円,-190.00,JPY,,False,False
+2025-02-18 00:00:00,增肥,日円,-1100.00,JPY,中餐,False,False
 2025-02-19 00:00:00,增肥,One,-214.00,TWD,中餐,False,False
 2025-02-19 00:00:00,增肥,One,-190.00,TWD,晚餐,False,False
 2025-02-19 00:00:00,增肥,One,-74.00,TWD,711,False,False
@@ -14819,18 +14819,18 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2025-02-23 00:00:00,增肥,One,-462.00,TWD,漢堡,False,False
 2025-02-23 00:00:00,增肥,One,-75.00,TWD,711,False,False
 2025-02-23 00:00:00,增肥,One,-61.00,TWD,711,False,False
-2025-02-23 00:00:00,一起,日円,-190.00,TWD,,False,False
-2025-02-23 00:00:00,一起,日円,-190.00,TWD,,False,False
+2025-02-23 00:00:00,一起,日円,-190.00,JPY,,False,False
+2025-02-23 00:00:00,一起,日円,-190.00,JPY,,False,False
 2025-02-24 00:00:00,增肥,One,-302.00,TWD,中餐,False,False
 2025-02-24 00:00:00,增肥,One,-341.00,TWD,一人燒肉,False,False
 2025-02-25 00:00:00,增肥,One,-56.00,TWD,711,False,False
 2025-02-25 00:00:00,增肥,One,-75.00,TWD,711,False,False
-2025-02-25 00:00:00,增肥,日円,-1100.00,TWD,義大利麵,False,False
-2025-02-25 00:00:00,增肥,日円,-1500.00,TWD,夜店拉麵,False,False
+2025-02-25 00:00:00,增肥,日円,-1100.00,JPY,義大利麵,False,False
+2025-02-25 00:00:00,增肥,日円,-1500.00,JPY,夜店拉麵,False,False
 2025-02-26 00:00:00,增肥,One,-213.00,TWD,麥噹噹,False,False
 2025-02-26 00:00:00,增肥,One,-453.00,TWD,肯德基,False,False
 2025-02-26 00:00:00,增肥,One,-119.00,TWD,711,False,False
-2025-02-26 00:00:00,增肥,日円,-950.00,TWD,中餐,False,False
+2025-02-26 00:00:00,增肥,日円,-950.00,JPY,中餐,False,False
 2025-02-27 00:00:00,增肥,One,-57.00,TWD,711,False,False
 2025-02-27 00:00:00,增肥,One,-218.00,TWD,中餐,False,False
 2025-02-27 00:00:00,頭暈,One,-52.00,TWD,711,False,False
@@ -14843,7 +14843,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2025-02-28 00:00:00,帳單,One,-1750.00,TWD,調賬,False,False
 2025-02-28 00:00:00,賭博,台股,185.00,TWD,,False,False
 2025-02-28 00:00:00,帳單,借錢,-4568.50,TWD,利息,False,False
-2025-02-28 00:00:00,賭博,美股,3270.00,TWD,,False,False
+2025-02-28 00:00:00,賭博,美股,3270.00,USD,,False,False
 2025-03-01 00:00:00,寶包,One,-1456.00,TWD,小倉山莊,False,False
 2025-03-01 00:00:00,一起,One,-137.00,TWD,,False,False
 2025-03-01 00:00:00,一起,One,-28.00,TWD,,False,False
@@ -14857,9 +14857,9 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2025-03-01 00:00:00,增肥,One,-130.00,TWD,珍奶,False,False
 2025-03-01 00:00:00,增肥,One,-522.00,TWD,KFC,False,False
 2025-03-01 00:00:00,增肥,One,-116.00,TWD,711,False,False
-2025-03-01 00:00:00,一起,日円,-190.00,TWD,,False,False
-2025-03-01 00:00:00,一起,日円,-190.00,TWD,,False,False
-2025-03-01 00:00:00,薪資,日円,14852.00,TWD,餐費補助,False,False
+2025-03-01 00:00:00,一起,日円,-190.00,JPY,,False,False
+2025-03-01 00:00:00,一起,日円,-190.00,JPY,,False,False
+2025-03-01 00:00:00,薪資,日円,14852.00,JPY,餐費補助,False,False
 2025-03-01 00:00:00,五金,One,-305.00,TWD,iCloud,False,False
 2025-03-02 00:00:00,增肥,One,-375.00,TWD,中餐,False,False
 2025-03-02 00:00:00,寶包,One,-331.00,TWD,糖果,False,False
@@ -14867,12 +14867,12 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2025-03-02 00:00:00,寶包,One,-123.00,TWD,糖果,False,False
 2025-03-02 00:00:00,寶包,One,-452.00,TWD,糖果,False,False
 2025-03-02 00:00:00,增肥,One,-109.00,TWD,711,False,False
-2025-03-02 00:00:00,一起,日円,-240.00,TWD,,False,False
-2025-03-02 00:00:00,一起,日円,-190.00,TWD,,False,False
-2025-03-02 00:00:00,一起,日円,-190.00,TWD,,False,False
+2025-03-02 00:00:00,一起,日円,-240.00,JPY,,False,False
+2025-03-02 00:00:00,一起,日円,-190.00,JPY,,False,False
+2025-03-02 00:00:00,一起,日円,-190.00,JPY,,False,False
 2025-03-03 00:00:00,增肥,One,-243.00,TWD,餃子王將,False,False
-2025-03-03 00:00:00,補給,日円,22000.00,TWD,餐費,False,False
-2025-03-03 00:00:00,增肥,日円,-950.00,TWD,中餐,False,False
+2025-03-03 00:00:00,補給,日円,22000.00,JPY,餐費,False,False
+2025-03-03 00:00:00,增肥,日円,-950.00,JPY,中餐,False,False
 2025-03-04 00:00:00,增肥,One,-119.00,TWD,711,False,False
 2025-03-04 00:00:00,增肥,One,-218.00,TWD,中餐,False,False
 2025-03-04 00:00:00,講話,One,-263.00,TWD,日本esim,False,False
@@ -14885,7 +14885,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2025-03-05 00:00:00,增肥,One,-60.00,TWD,711,False,False
 2025-03-06 00:00:00,增肥,One,-215.00,TWD,咖啡廳,False,False
 2025-03-06 00:00:00,增肥,One,-200.00,TWD,711,False,False
-2025-03-06 00:00:00,薪資,鎂薪,3533.00,TWD,,False,False
+2025-03-06 00:00:00,薪資,鎂薪,3533.00,USD,,False,False
 2025-03-06 00:00:00,增肥,One,-120.00,TWD,Uber Eats 訂閱,False,False
 2025-03-07 00:00:00,增肥,One,-476.00,TWD,咖啡廳,False,False
 2025-03-07 00:00:00,屋伯,One,-107.00,TWD,,False,False
@@ -15000,7 +15000,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2025-03-31 00:00:00,補給,Two,7000.00,TWD,From Kryptonite 20250724 手動調賬,False,False
 2025-03-31 00:00:00,帳單,One,-1750.00,TWD,調賬,False,False
 2025-03-31 00:00:00,帳單,借錢,-4568.50,TWD,利息,False,False
-2025-03-31 00:00:00,賭博,美股,3270.00,TWD,,False,False
+2025-03-31 00:00:00,賭博,美股,3270.00,USD,,False,False
 2025-04-01 00:00:00,增肥,One,-257.00,TWD,711,False,False
 2025-04-01 00:00:00,寶包,One,-359.00,TWD,Subway,False,False
 2025-04-01 00:00:00,增肥,One,-95.00,TWD,大正元,False,False
@@ -15017,7 +15017,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2025-04-03 00:00:00,增肥,Two,-75.00,TWD,鶴茶樓,False,False
 2025-04-03 00:00:00,增肥,Two,-606.00,TWD,全聯,False,False
 2025-04-03 00:00:00,增肥,Two,-65.00,TWD,豆花,False,False
-2025-04-03 00:00:00,薪資,鎂薪,3438.00,TWD,,False,False
+2025-04-03 00:00:00,薪資,鎂薪,3438.00,USD,,False,False
 2025-04-04 00:00:00,一起,One,-30.00,TWD,,False,False
 2025-04-04 00:00:00,增肥,One,-160.00,TWD,星巴克,False,False
 2025-04-04 00:00:00,增肥,One,-75.00,TWD,龜記,False,False
@@ -15137,7 +15137,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2025-04-30 00:00:00,帳單,One,-1750.00,TWD,調賬,False,False
 2025-04-30 00:00:00,賭博,台股,185.00,TWD,,False,False
 2025-04-30 00:00:00,帳單,借錢,-4568.50,TWD,利息,False,False
-2025-04-30 00:00:00,賭博,美股,3270.00,TWD,,False,False
+2025-04-30 00:00:00,賭博,美股,3270.00,USD,,False,False
 2025-05-01 00:00:00,機啪,One,-20.00,TWD,,False,False
 2025-05-01 00:00:00,增肥,Two,-580.00,TWD,夢想者咖啡,False,False
 2025-05-01 00:00:00,增肥,Two,-115.00,TWD,Cama,False,False
@@ -15156,7 +15156,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2025-05-04 00:00:00,增肥,Two,-102.00,TWD,711,False,False
 2025-05-05 00:00:00,增肥,One,-117.00,TWD,八方雲集,False,False
 2025-05-05 00:00:00,增肥,One,-250.00,TWD,鹹水雞,False,False
-2025-05-05 00:00:00,薪資,鎂薪,3035.00,TWD,,False,False
+2025-05-05 00:00:00,薪資,鎂薪,3035.00,USD,,False,False
 2025-05-06 00:00:00,增肥,One,-124.00,TWD,711,False,False
 2025-05-06 00:00:00,孝親,One,-5000.00,TWD,,False,False
 2025-05-06 00:00:00,寶包,One,-15000.00,TWD,法國包包,False,False
@@ -15252,7 +15252,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2025-05-31 00:00:00,補給,Two,5000.00,TWD,From Kryptonite 20250724 手動調賬,False,False
 2025-05-31 00:00:00,帳單,One,-1750.00,TWD,調賬,False,False
 2025-05-31 00:00:00,帳單,借錢,-4568.50,TWD,利息,False,False
-2025-05-31 00:00:00,賭博,美股,3270.00,TWD,,False,False
+2025-05-31 00:00:00,賭博,美股,3270.00,USD,,False,False
 2025-06-01 00:00:00,汽啪,Two,-70.00,TWD,,False,False
 2025-06-01 00:00:00,汽啪,Two,-171.00,TWD,,False,False
 2025-06-01 00:00:00,增肥,Two,-115.00,TWD,711,False,False
@@ -15274,7 +15274,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2025-06-05 00:00:00,增肥,One,-155.00,TWD,麥登登,False,False
 2025-06-05 00:00:00,有益,One,-1400.00,TWD,Udemy,False,False
 2025-06-05 00:00:00,增肥,Two,-70.00,TWD,,False,False
-2025-06-05 00:00:00,薪資,鎂薪,3100.00,TWD,,False,False
+2025-06-05 00:00:00,薪資,鎂薪,3100.00,USD,,False,False
 2025-06-06 00:00:00,增肥,One,-160.00,TWD,星巴克,False,False
 2025-06-06 00:00:00,一起,One,-15.00,TWD,,False,False
 2025-06-06 00:00:00,一起,One,-35.00,TWD,,False,False
@@ -15346,7 +15346,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2025-06-17 00:00:00,增肥,Two,-295.00,TWD,樂天羊肉,False,False
 2025-06-18 00:00:00,增肥,One,-110.00,TWD,711,False,False
 2025-06-18 00:00:00,該死,One,-500.00,TWD,原神,False,False
-2025-06-18 00:00:00,薪資,鎂薪,2900.00,TWD,,False,False
+2025-06-18 00:00:00,薪資,鎂薪,2900.00,USD,,False,False
 2025-06-19 00:00:00,增肥,One,-45.00,TWD,711,False,False
 2025-06-19 00:00:00,增肥,One,-45.00,TWD,711,False,False
 2025-06-19 00:00:00,增肥,One,-70.00,TWD,711,False,False
@@ -15389,7 +15389,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2025-06-30 00:00:00,帳單,One,-1750.00,TWD,調賬,False,False
 2025-06-30 00:00:00,賭博,台股,185.00,TWD,,False,False
 2025-06-30 00:00:00,帳單,借錢,-4568.50,TWD,利息,False,False
-2025-06-30 00:00:00,賭博,美股,3270.00,TWD,,False,False
+2025-06-30 00:00:00,賭博,美股,3270.00,USD,,False,False
 2025-07-01 00:00:00,五金,One,-305.00,TWD,iCloud,False,False
 2025-07-02 00:00:00,寶包,One,-285.00,TWD,手機殼,False,False
 2025-07-02 00:00:00,汽暖,Two,-658.00,TWD,,False,False
@@ -15404,7 +15404,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2025-07-04 00:00:00,增肥,Two,-95.00,TWD,711,False,False
 2025-07-04 00:00:00,增肥,Two,-1685.00,TWD,麻辣鍋,False,False
 2025-07-04 00:00:00,汽暖,Two,-250.00,TWD,,False,False
-2025-07-04 00:00:00,薪資,鎂薪,7754.80,TWD,,False,False
+2025-07-04 00:00:00,薪資,鎂薪,7754.80,USD,,False,False
 2025-07-05 00:00:00,增肥,Two,-279.00,TWD,早餐,False,False
 2025-07-05 00:00:00,增肥,Two,-90.00,TWD,天仁茗茶,False,False
 2025-07-05 00:00:00,補給,Two,24000.00,TWD,From Kryptonite 房租,False,False
@@ -15480,7 +15480,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2025-07-24 00:00:00,增肥,One,-39.00,TWD,IKEA,False,False
 2025-07-24 00:00:00,五金,Two,-813.00,TWD,IKEA 收納盒,False,False
 2025-07-24 00:00:00,增肥,Two,-154.00,TWD,711,False,False
-2025-07-24 00:00:00,帳單,美幣,-23.60,TWD,出金手續費,False,False
+2025-07-24 00:00:00,帳單,美幣,-23.60,USD,出金手續費,False,False
 2025-07-25 00:00:00,增肥,One,-262.00,TWD,鹹酥雞,False,False
 2025-07-25 00:00:00,增肥,One,-222.00,TWD,珍煮丹,False,False
 2025-07-25 00:00:00,增肥,Two,-59.00,TWD,711,False,False
@@ -15507,7 +15507,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2025-07-31 00:00:00,補給,Two,20000.00,TWD,From Kryptonite,False,False
 2025-07-31 00:00:00,帳單,One,-1750.00,TWD,調賬,False,False
 2025-07-31 00:00:00,帳單,借錢,-4568.50,TWD,利息,False,False
-2025-07-31 00:00:00,賭博,美股,3270.00,TWD,,False,False
+2025-07-31 00:00:00,賭博,美股,3270.00,USD,,False,False
 2025-08-01 00:00:00,增肥,Two,-511.00,TWD,鹹酥雞,False,False
 2025-08-01 00:00:00,增肥,Two,-202.00,TWD,711,False,False
 2025-08-01 00:00:00,五金,One,-305.00,TWD,iCloud,False,False
@@ -15655,7 +15655,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2025-08-31 00:00:00,補給,Two,30000.00,TWD,From Kryptonite,False,False
 2025-08-31 00:00:00,帳單,One,-1750.00,TWD,調賬,False,False
 2025-08-31 00:00:00,帳單,借錢,-4568.50,TWD,利息,False,False
-2025-08-31 00:00:00,賭博,美股,3270.00,TWD,,False,False
+2025-08-31 00:00:00,賭博,美股,3270.00,USD,,False,False
 2025-09-01 00:00:00,增肥,One,-179.00,TWD,711,False,False
 2025-09-01 00:00:00,機啪,One,-35.00,TWD,,False,False
 2025-09-01 00:00:00,五金,One,-159.00,TWD,拖鞋,False,False
@@ -15765,15 +15765,15 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2025-09-14 00:00:00,增肥,Two,-924.00,TWD,漢堡,False,False
 2025-09-14 00:00:00,增肥,Two,-92.00,TWD,冰淇淋,False,False
 2025-09-14 00:00:00,增肥,Two,-427.00,TWD,711,False,False
-2025-09-14 00:00:00,增肥,日円,-2500.00,TWD,中餐,False,False
-2025-09-14 00:00:00,增肥,日円,-1080.00,TWD,冰淇淋 布丁,False,False
+2025-09-14 00:00:00,增肥,日円,-2500.00,JPY,中餐,False,False
+2025-09-14 00:00:00,增肥,日円,-1080.00,JPY,冰淇淋 布丁,False,False
 2025-09-15 00:00:00,增肥,One,-1060.00,TWD,超市,False,False
 2025-09-15 00:00:00,增肥,One,-64.00,TWD,飲料,False,False
 2025-09-15 00:00:00,該死,Two,-6159.00,TWD,潛水,False,False
 2025-09-15 00:00:00,增肥,Two,-55.00,TWD,咖啡,False,False
 2025-09-15 00:00:00,增肥,Two,-2123.00,TWD,BATIDA,False,False
 2025-09-15 00:00:00,屋伯,Two,-198.00,TWD,,False,False
-2025-09-15 00:00:00,增肥,日円,-1400.00,TWD,中餐,False,False
+2025-09-15 00:00:00,增肥,日円,-1400.00,JPY,中餐,False,False
 2025-09-16 00:00:00,該死,One,-790.00,TWD,紀念品店,False,False
 2025-09-16 00:00:00,屋伯,One,-921.00,TWD,,False,False
 2025-09-16 00:00:00,一起,One,-189.00,TWD,,False,False
@@ -15783,8 +15783,8 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2025-09-16 00:00:00,增肥,Two,-303.00,TWD,蛋糕,False,False
 2025-09-16 00:00:00,屋伯,Two,-186.00,TWD,,False,False
 2025-09-16 00:00:00,增肥,Two,-241.00,TWD,711,False,False
-2025-09-16 00:00:00,增肥,日円,-1350.00,TWD,點心,False,False
-2025-09-16 00:00:00,熊仔,日円,-3530.00,TWD,TSHIRT,False,False
+2025-09-16 00:00:00,增肥,日円,-1350.00,JPY,點心,False,False
+2025-09-16 00:00:00,熊仔,日円,-3530.00,JPY,TSHIRT,False,False
 2025-09-16 00:00:00,講話,Two,-1733.00,TWD,網路,False,False
 2025-09-17 00:00:00,五金,One,-248.00,TWD,宜得利,False,False
 2025-09-17 00:00:00,五金,One,-595.00,TWD,角鋼輪,False,False
@@ -15866,7 +15866,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2025-09-30 00:00:00,帳單,One,-1750.00,TWD,調賬,False,False
 2025-09-30 00:00:00,賭博,台股,185.00,TWD,,False,False
 2025-09-30 00:00:00,帳單,借錢,-4568.50,TWD,利息,False,False
-2025-09-30 00:00:00,賭博,美股,3270.00,TWD,,False,False
+2025-09-30 00:00:00,賭博,美股,3270.00,USD,,False,False
 2025-10-01 00:00:00,增肥,One,-180.00,TWD,711,False,False
 2025-10-01 00:00:00,增肥,One,-148.00,TWD,711,False,False
 2025-10-01 00:00:00,薪資,One,92086.00,TWD,,False,False
@@ -15941,7 +15941,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2025-10-13 00:00:00,汽啪,Two,-4000.00,TWD,,False,False
 2025-10-13 00:00:00,補給,Two,12000.00,TWD,From Kryptonite,False,False
 2025-10-13 00:00:00,增肥,Two,-241.00,TWD,711,False,False
-2025-10-13 00:00:00,熊仔,美幣,-50.00,TWD,,False,False
+2025-10-13 00:00:00,熊仔,美幣,-50.00,USD,,False,False
 2025-10-14 00:00:00,五金,One,-110.00,TWD,,False,False
 2025-10-14 00:00:00,汽車,Two,-11619.00,TWD,車貸,False,False
 2025-10-15 00:00:00,汽啪,Two,-180.00,TWD,,False,False
@@ -16027,7 +16027,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2025-10-31 00:00:00,汽啪,Two,-100.00,TWD,,False,False
 2025-10-31 00:00:00,帳單,One,-1750.00,TWD,調賬,False,False
 2025-10-31 00:00:00,帳單,借錢,-4568.50,TWD,利息,False,False
-2025-10-31 00:00:00,賭博,美股,3270.00,TWD,,False,False
+2025-10-31 00:00:00,賭博,美股,3270.00,USD,,False,False
 2025-11-01 00:00:00,增肥,Two,-3358.00,TWD,淘寶運費,False,False
 2025-11-01 00:00:00,汽啪,Two,-50.00,TWD,,False,False
 2025-11-01 00:00:00,五金,Two,-10337.00,TWD,掃地機器人、吸塵器,False,False
@@ -16174,7 +16174,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2025-11-30 00:00:00,帳單,One,-1750.00,TWD,調賬,False,False
 2025-11-30 00:00:00,賭博,台股,185.00,TWD,,False,False
 2025-11-30 00:00:00,帳單,借錢,-4568.50,TWD,利息,False,False
-2025-11-30 00:00:00,賭博,美股,3270.00,TWD,,False,False
+2025-11-30 00:00:00,賭博,美股,3270.00,USD,,False,False
 2025-12-01 00:00:00,增肥,Two,-122.00,TWD,路易莎,False,False
 2025-12-01 00:00:00,汽啪,Two,-170.00,TWD,,False,False
 2025-12-01 00:00:00,增肥,Two,-800.00,TWD,鼎泰豐,False,False
@@ -16363,7 +16363,7 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2025-12-31 00:00:00,增肥,Two,-1415.00,TWD,涓豆腐,False,False
 2025-12-31 00:00:00,帳單,One,-1750.00,TWD,調賬,False,False
 2025-12-31 00:00:00,帳單,借錢,-4568.50,TWD,利息,False,False
-2025-12-31 00:00:00,賭博,美股,3270.00,TWD,,False,False
+2025-12-31 00:00:00,賭博,美股,3270.00,USD,,False,False
 2026-01-01 00:00:00,該死,One,-660.00,TWD,絕區零,False,False
 2026-01-01 00:00:00,增肥,Two,-1160.00,TWD,Tamed Cafe,False,False
 2026-01-01 00:00:00,增肥,Two,-75.00,TWD,大苑子,False,False

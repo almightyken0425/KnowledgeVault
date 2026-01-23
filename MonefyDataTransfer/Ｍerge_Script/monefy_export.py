@@ -147,44 +147,57 @@ def export_transactions_from_csv(csv_path: Path, output_path: Path) -> int:
     transactions = []
     
     with open(csv_path, 'r', encoding='utf-8-sig') as f:
-        reader = csv.DictReader(f)
+        reader = csv.reader(f)
+        headers = next(reader)  # Skip header row
         # Raw CSV headers: date,account,category,amount,currency,converted amount,currency,description
+        # 注意：有兩個 "currency" 欄位，第一個是原始幣別(index 4)，第二個是轉換後幣別(index 6)
+        # 我們要讀取的是第一個 currency (原始幣別)
         
         for row in reader:
-            category = row['category']
+            if len(row) < 8:
+                continue
+                
+            date_str = row[0]
+            account = row[1]
+            category = row[2]
+            amount_str = row[3]
+            original_currency = row[4]  # 原始幣別
+            # row[5] = converted amount
+            # row[6] = converted currency (通常是 TWD)
+            description = row[7] if len(row) > 7 else ''
             
             # [Filter] Exclude Transfers (Handled by DB export)
             if category in ('ExpenseTransfer', 'IncomeTransfer'):
                 continue
                 
             # Parse Date
-            # Format: 12/31/2015
+            # Format: 12/31/2015 or 6/10/2016
             try:
-                dt_obj = datetime.strptime(row['date'], '%m/%d/%Y')
+                dt_obj = datetime.strptime(date_str, '%m/%d/%Y')
                 # CSV dates are usually just dates, so time is 00:00:00
                 datetime_str = dt_obj.strftime('%Y-%m-%d %H:%M:%S')
             except ValueError:
                 # Try handling other potential formats provided by system locale?
                 # For now stick to strict m/d/Y as seen in the file
-                print(f"Warning: Could not parse date {row['date']}, skipping.")
+                print(f"Warning: Could not parse date {date_str}, skipping.")
                 continue
 
             # Parse Amount
             try:
                 # Remove commas if any (e.g. "1,000.00")
-                amount_str = row['amount'].replace(',', '')
-                amount = float(amount_str)
+                amount_clean = amount_str.replace(',', '')
+                amount = float(amount_clean)
             except ValueError:
-                 print(f"Warning: Could not parse amount {row['amount']}, skipping.")
+                 print(f"Warning: Could not parse amount {amount_str}, skipping.")
                  continue
 
             transactions.append({
                 'datetime_str': datetime_str,
                 'category': category,
-                'account': row['account'],
+                'account': account,
                 'amount': amount,
-                'currency': row['currency'],
-                'note': row['description'],
+                'currency': original_currency,  # 使用原始幣別
+                'note': description,
                 'is_virtual': False, # Raw CSV is always realized
                 'is_ignored': False
             })
