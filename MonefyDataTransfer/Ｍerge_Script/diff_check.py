@@ -13,7 +13,7 @@ from collections import defaultdict
 
 # Paths
 SCRIPT_DIR = Path(__file__).parent
-RAW_CSV_PATH = SCRIPT_DIR / "../Original_DB_Data/monefy-2026-01-21_12-26-22.csv"
+RAW_CSV_PATH = SCRIPT_DIR / "../Original_DB_Data/monefy-2026-01-24_11-31-56.csv"
 COMPARISON_CSV_PATH = SCRIPT_DIR / "../Export_Data/monefy_raw_comparison.csv"
 
 def normalize_date(date_str, has_time=False):

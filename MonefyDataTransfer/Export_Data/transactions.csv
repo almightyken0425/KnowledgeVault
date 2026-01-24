@@ -16492,3 +16492,13 @@ transaction_datetime,category,account,amount,currency,note,is_virtual,is_ignored
 2026-01-21 00:00:00,增肥,Two,-564.00,TWD,老先覺,False,False
 2026-01-21 00:00:00,增肥,Two,-154.00,TWD,711,False,False
 2026-01-21 00:00:00,汽啪,Two,-170.00,TWD,,False,False
+2026-01-22 00:00:00,增肥,One,-285.00,TWD,珍煮丹,False,False
+2026-01-22 00:00:00,增肥,One,-140.00,TWD,中餐,False,False
+2026-01-22 00:00:00,熊仔,One,-1160.00,TWD,草莓,False,False
+2026-01-22 00:00:00,汽啪,Two,-170.00,TWD,,False,False
+2026-01-23 00:00:00,增肥,One,-138.00,TWD,711,False,False
+2026-01-23 00:00:00,增肥,One,-145.00,TWD,喬記,False,False
+2026-01-23 00:00:00,增肥,Two,-135.00,TWD,路易莎,False,False
+2026-01-23 00:00:00,增肥,Two,-130.00,TWD,約翰,False,False
+2026-01-23 00:00:00,汽啪,Two,-170.00,TWD,,False,False
+2026-01-23 00:00:00,增肥,Two,-110.00,TWD,鹹酥雞,False,False
