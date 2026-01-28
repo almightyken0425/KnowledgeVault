@@ -54,9 +54,15 @@ def lint_file(filepath):
         if stripped.startswith('* ') and not stripped.startswith('**'):
             errors.append(f"Line {line_num}: Found asterisk list: {line.strip()}")
 
-        # 3. Numbered Lists
+        # 3. Numbered Lists or Headers with numbers
         if re.match(r'^\s*\d+\.', line):
             errors.append(f"Line {line_num}: Found numbered list: {line.strip()}")
+        
+        # Header numbering check
+        if line.startswith('#'):
+            # Match patterns like "# 1. ", "## 2. ", "### 1. "
+            if re.search(r'^#+\s*\d+[\.\s]', line):
+                errors.append(f"Line {line_num}: Found numbered header: {line.strip()}")
 
         # 4. **備註:**
         if '**備註:**' in line:

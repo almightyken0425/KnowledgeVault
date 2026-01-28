@@ -227,9 +227,9 @@ graph TD
 
 #### 核心角色 Roles
 
-- **Native Thread (Main):** 負責 UI 渲染與使用者互動。
-- **JS Thread:** 負責執行業務邏輯、API 呼叫、狀態管理。
-- **Bridge / JSI:** 負責兩個 Thread 之間的序列化溝通。
+- **Native Thread 主執行緒**: 負責 UI 渲染與使用者互動。
+- **JS Thread**: 負責執行業務邏輯、API 呼叫、狀態管理。
+- **Bridge / JSI**: 負責兩個 Thread 之間的序列化溝通。
 
 #### 機制 Mechanism - 雙軌非同步 Dual Thread Async
 
@@ -309,7 +309,7 @@ Expo 將最讓開發者頭痛的本機環境建置搬到了雲端，並引入了
   - **行為:** 讀取 `eas.json` 設定，將原始碼打包上傳至雲端，並監控建置進度。
 - **Prebuild CNG:**
   - **職責:** 建築師 Continuous Native Generation。
-  - **行為:** 在雲端，根據 `app.json` 的設定，暫時性地生成出 iOS `ios/` 與 Android `android/` 的原生專案資料夾。這意味著你永遠不需要將這些龐大的原生檔案加入 git 版控。
+  - **行為:** 在雲端，根據 app.json 的設定，暫時性地生成出 iOS ios/ 與 Android android/ 的原生專案資料夾。這意味著你永遠不需要將這些龐大的原生檔案加入 git 版控。
 - **EAS Build Worker:**
   - **職責:** 工人。
   - **行為:** 在雲端的 Mac / Linux 機器上，執行標準的 Xcode / Gradle 建置指令，產出最終安裝檔。
@@ -355,7 +355,7 @@ Expo 的最終產物也是標準的 IPA / APK，但其內涵與 Expo Go 不同�
 
 - **情境:** 開發者發布了緊急 JS 修正 Bug Fix。
 - **流程:**
-  - **Check:** App 啟動時 預設行為，立刻詢問 EAS Server 是否有新版本。
+  - **Check:** App 啟動時預設行為，立刻詢問 EAS Server 是否有新版本。
   - **Download:** 若有新版，背景下載新的 JS Bundle 與資源。
   - **Swap:** 下載完成後，下次啟動時直接替換使用新的 Bundle。
   - **Launch:** 這個過程完全不需要經過 App Store / Google Play 的審核。

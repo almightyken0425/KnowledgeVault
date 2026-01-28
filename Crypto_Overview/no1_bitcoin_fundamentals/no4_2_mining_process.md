@@ -174,7 +174,7 @@ def mining_loop(header, target):
 ### 廣播 Propagation
 
 - **礦工 Miner:** 找到 Nonce 後，立刻將這顆 **候選區塊** 透過節點廣播給全網。
-- **宣告 Declare:** 向世界證明「我付出了算力，我有權記這筆帳」。
+- **宣告 Declare:** 向世界證明 我付出了算力，我有權記這筆帳。
 
 ### 驗證 Verification
 

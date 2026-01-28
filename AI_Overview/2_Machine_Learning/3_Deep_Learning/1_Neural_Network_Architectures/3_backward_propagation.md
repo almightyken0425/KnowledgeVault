@@ -27,7 +27,7 @@
     - **動作:** 接收從 **下一層 Next Layer** 傳回來的誤差訊號 $\delta_{next}$。
     - **意義:** 知道自己送出去的訊號造成了後面多大的麻煩。
 - **第二步：過濾 Derivative of Activation**
-    - **動作:** 乘上 **激活函數的導數** $f'(z)$。
+    - **動作:** 乘上 激活函數的導數 `$f'(z)$`。
     - **意義:** 確認開關狀態。如果前向傳播時 `activation(z)` 輸出為 0，那這個神經元當時根本沒參與，所以不需要負責，誤差 = 0。
 - **第三步：自我檢討 Calculate Weight Gradient**
     - **動作:** $\text{Input} \times \text{Current Error}$。

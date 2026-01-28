@@ -150,10 +150,10 @@
     - **Process:** 數據依序通過 Neural Network Model 中的每一個 Layer。
         - **矩陣運算:** 執行 `processLayer(inputs, layerWeights, layerBiases)`。
             - 每個神經元與輸入向量做 `dotProduct`，產生新特徵向量。
-        - **激活函數:** 執行 `activation(result)` (如 ReLU)。
+        - **激活函數:** 執行 `activation(result)`，例如 ReLU。
             - 引入非線性邏輯：`if (val > 0) return val else return 0`。
         - **接力傳遞:** 這一層的輸出成為下一層的輸入。
-        - **狀態緩存:** (訓練模式) 緩存輸出供反向傳播使用。
+        - **狀態緩存:** 在訓練模式時，緩存輸出供反向傳播使用。
     - **Output:** 最終預測 Final Prediction
 - **視覺化:**
     ```
@@ -259,7 +259,7 @@
     - 更新權重 Update Weights
 - **必要輸入:**
     - **數據 Data:** 訓練樣本，例如圖片。
-    - **標籤 Label:** 正確答案，例如「這是貓」。
+    - **標籤 Label:** 正確答案，例如 這是貓。
 - **資源需求:**
     - **記憶體:** 高。需要緩存每一層的輸出供反向傳播使用。
     - **運算量:** 高。需要執行完整的四個步驟。

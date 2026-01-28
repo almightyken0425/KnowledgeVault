@@ -22,6 +22,7 @@
         # 2. 導出公鑰 Elliptic Curve Multiplication
         # K = k * G，G 是橢圓曲線上的生成點
         public_key = secp256k1.multiply(GeneratorPoint_G, private_key)
+        ```
         
 ---
 

@@ -50,7 +50,7 @@
     - **概念:** 梯度 Gradient。
     - **幾何:** 一個立體曲面上的箭頭。
     - **組成:** 由所有維度的 **偏導數 Partial Derivatives** 組成的向量。
-    - **公式:** $\nabla f = [\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, ...]$
+    - **公式:** $\nabla f = \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, ...$
     - **意義:** 綜合考量 $x$ 和 $y$ 的變化，整體函數往哪個方向上升最快？
 
 ## 從登山看梯度的三大特性

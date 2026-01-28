@@ -156,7 +156,7 @@ RETURN
 | ------ | ------------ | ---------------- | -------- | --------------- |
 | 0x33   | CALLER       | msg.sender       | 2        | 交易發送者地址  |
 | 0x34   | CALLVALUE    | msg.value        | 2        | 附帶的 ETH 數量 |
-| 0x35   | CALLDATALOAD | data[i]          | 3        | 讀取輸入資料    |
+| 0x35   | CALLDATALOAD | data_i          | 3        | 讀取輸入資料    |
 | 0x3A   | GASPRICE     | tx.gasprice      | 2        | Gas 單價        |
 | 0x41   | COINBASE     | block.coinbase   | 2        | 驗證者地址      |
 | 0x42   | TIMESTAMP    | block.timestamp  | 2        | 區塊時間戳      |

@@ -8,32 +8,32 @@
 ## 核心類比 Dog Training
 
 想像你在訓練一隻小狗：
-1.  你發出指令 **坐下**。
-2.  小狗嘗試動作：牠可能轉圈圈、跳起來，或者坐下。
-3.  **回饋：**
-    - 如果牠轉圈圈，你什麼都不做 **No Reward**。
-    - 如果牠坐下，你給牠一塊餅乾 **Positive Reward**。
-4.  隨著時間過去，小狗的大腦會連結 **坐下** 與 **餅乾**，以後聽到指令就會立刻坐下。
+- 你發出指令 坐下。
+- 小狗嘗試動作：牠可能轉圈圈、跳起來，或者坐下。
+- **回饋：**
+    - 如果牠轉圈圈，你什麼都不做 No Reward。
+    - 如果牠坐下，你給牠一塊餅乾 Positive Reward。
+- 隨著時間過去，小狗的大腦會連結 坐下 與 餅乾，以後聽到指令就會立刻坐下。
 
 ## 五大關鍵要素
 
-### 1. Agent 代理人
+### Agent 代理人
 也就是 **主角**，負責做決策的 AI 模型。
 例如：超級瑪利歐遊戲中的瑪利歐，或是 AlphaGo 的下棋程式。
 
-### 2. Environment 環境
+### Environment 環境
 Agent 所在的 **世界**，它定義了規則與邊界。
 例如：遊戲關卡、圍棋棋盤、真實世界的馬路。
 
-### 3. State 狀態 $S$
+### State 狀態 $S$
 Agent 當下所處的情況。
 例如：畫面上怪物的目前位置、棋盤上黑白子的分佈。
     
-### 4. Action 行動 $A$
+### Action 行動 $A$
 Agent 在某個狀態下可以採取的動作。
 例如：往右跳、往下蹲、在天元下子。
 
-### 5. Reward 獎勵 $R$
+### Reward 獎勵 $R$
 環境給予 Agent 的即時回饋分數。
 - **正分:** 吃到金幣、贏了棋局。
 - **負分:** 被烏龜撞死、撞到牆壁。
@@ -43,11 +43,11 @@ Agent 在某個狀態下可以採取的動作。
 
 強化學習的過程就是一個無止盡的迴圈：
 
-1.  **觀察 Observation:** Agent 觀察當前的 State。
-2.  **決策 Decision:** Agent 根據 Policy 選擇一個 Action。
-3.  **行動 Action:** Agent 在 Environment 中執行該 Action。
-4.  **回饋 Feedback:** Environment 變換到新的 State 並給予 Agent 一個 Reward。
-5.  **學習 Learning:** Agent 根據 Reward 更新大腦，修正未來的決策策略。
+- **觀察 Observation:** Agent 觀察當前的 State。
+- **決策 Decision:** Agent 根據 Policy 選擇一個 Action。
+- **行動 Action:** Agent 在 Environment 中執行該 Action。
+- **回饋 Feedback:** Environment 變換到新的 State 並給予 Agent 一個 Reward。
+- **學習 Learning:** Agent 根據 Reward 更新大腦，修正未來的決策策略。
 
 ## 困難挑戰
 
