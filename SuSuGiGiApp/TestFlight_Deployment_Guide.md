@@ -65,7 +65,7 @@
    - 點擊 **TestFlight** 標籤
    - 在 **Builds** 區域
    - 新上傳的 Build 會顯示 **Processing** 狀態
-   - 等待 5-15 分鐘，直到狀態變為 **Ready to Test**
+   - 等待 5-15 分鐘，直到狀態變為 **Ready to Test**![alt text](image.png)
 
 ### 步驟四：設定 Internal Testing
 
@@ -133,8 +133,17 @@
 ### Q2: 上傳失敗，提示 Bundle ID 不符？
 **A**: 確認 Xcode 中的 Bundle ID 與 App Store Connect 中的 App 一致
 
-### Q3: Build 一直顯示 Processing？
-**A**: 正常情況，通常需要 5-15 分鐘。如果超過 1 小時，可能有問題，檢查 Email 是否有錯誤通知
+### Q3: Build 一直顯示 Processing (超過 1 小時)？
+**A**: 這通常是伺服器卡住，請直接**上傳一個新 Build** 來解決：
+1. **修改 Build Number**:
+   - 在 Xcode 左側點擊藍色專案圖示 (`SuSuGiGiApp`)
+   - 選擇 **Targets** > **SuSuGiGiApp**
+   - 點擊 **General** 分頁 > **Identity** 區塊
+   - 將 **Build** 從 `1` 改為 `2` (Version `1.0` 不動)
+2. **重新上傳**:
+   - 選單 **Product** > **Archive**
+   - 完成後點擊 **Distribute App** 再次上傳
+   - 新的 Build 2 通常會順利通過處理
 
 ### Q4: 無法載入產品列表？
 **A**: 
