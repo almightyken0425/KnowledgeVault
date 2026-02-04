@@ -64,8 +64,14 @@
 2. **檢查 Build 狀態**
    - 點擊 **TestFlight** 標籤
    - 在 **Builds** 區域
-   - 新上傳的 Build 會顯示 **Processing** 狀態
-   - 等待 5-15 分鐘，直到狀態變為 **Ready to Test**![alt text](image.png)
+   - **重要：處理 Missing Compliance**
+     - 若看到黃色驚嘆號 **Missing Compliance**
+     - 點擊該文字或旁邊的 **Manage** 按鈕
+     - 選擇 **No** (若您的 App 只使用標準 HTTPS 或無特殊加密)
+     - 或選擇 **Yes** -> **Yes** (符合免責條款)
+     - 點擊 **Start Internal Testing**
+   - 等待狀態變為 **Ready to Test**
+![alt text](image.png)
 
 ### 步驟四：設定 Internal Testing
 
