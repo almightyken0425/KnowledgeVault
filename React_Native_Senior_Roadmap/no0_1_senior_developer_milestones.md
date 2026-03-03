@@ -55,8 +55,9 @@
 - 掌握進階效能優化策略
   - **行為:**
     - [ ] 運用 useMemo 記憶費時之運算結果
-    - [ ] 運用 useCallback 記憶函式參考以避免無謂渲染
-    - [ ] 使用 React.memo 避免不必要的子元件重繪
+    - [ ] 運用 React.memo 單純阻擋基本型別屬性以避免不必要的子元件重繪
+    - [ ] 運用 useCallback 穩定函式參考以證明單兵作戰無法阻擋重繪
+    - [ ] 結合 React.memo 與 useCallback 達成完美組件防禦並解決傳遞函式時的效能地雷
 - 第三方套件整合與路由管理
   - **行為:**
     - [ ] 配置 Expo Router 或 React Navigation 建立多頁面導航
