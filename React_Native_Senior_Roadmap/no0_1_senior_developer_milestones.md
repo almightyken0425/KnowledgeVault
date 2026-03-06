@@ -60,17 +60,17 @@
     - [x] 結合 React.memo 與 useCallback 達成完美組件防禦並解決傳遞函式時的效能地雷
 - 第三方套件整合與路由管理
   - **行為:**
-    - [ ] 配置 Expo Router 或 React Navigation 建立多頁面導航
-    - [ ] 處理深層連結 Deep Linking 以支援外部喚醒特定頁面
+    - [x] 配置 Expo Router 或 React Navigation 建立多頁面導航
+    - [x] 處理深層連結 Deep Linking 以支援外部喚醒特定頁面
 ## 專屬行動裝置生態適配
 - **屬性:** 處理手機特有行為與效能瓶頸
 - 優化長列表效能
   - **行為:**
-    - [ ] 將效能不佳之渲染替換為 `FlatList`
-    - [ ] 設定唯一鍵值以協助底層比對差異
+    - [x] 將效能不佳之渲染替換為 `FlatList`
+    - [x] 設定唯一鍵值以協助底層比對差異
   - **行為:**
-    - [ ] 使用 `KeyboardAvoidingView` 確保輸入框在鍵盤彈出時維持可見
-    - [ ] 運用 `SafeAreaView` 避開系統狀態列與底部橫條
+    - [x] 使用 `KeyboardAvoidingView` 確保輸入框在鍵盤彈出時維持可見
+    - [x] 運用 `SafeAreaView` 避開系統狀態列與底部橫條
 
 ---
 
