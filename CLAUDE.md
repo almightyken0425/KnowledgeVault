@@ -13,6 +13,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **AI_Overview** — AI 發展史，從 Rule-Based、Machine Learning 到 Deep Learning 的演進脈絡
 - **Crypto_Overview** — 區塊鏈技術，涵蓋 Bitcoin 基礎、Ethereum 基礎含 EVM、Gas 與共識機制、Layer2、DeFi 等主題
 - **Git Intro** — Git 入門，從基礎概念到 GitHub Flow 的完整工作流程
+- **PM_Guide** — 產品管理知識，分兩層：`PM_Foundation`（通用 PM 決策框架）與 `Whitelabel_Knowledge`（白牌博弈平台 domain knowhow）
 - **React Basics** — React 前端開發基礎概念
 - **React_Native_Senior_Roadmap** — React Native 進階開發者學習路線圖
 - **Server Knowledge** — 伺服器與部署知識，包含 VM、Docker、Serverless、水平與垂直擴展
