@@ -1,7 +1,84 @@
 # Product Management 決策框架
 
 > 產品構想到開發藍圖的通用決策框架。
+``` mermaid chart
+flowchart TD
+    START(["想法浮出"])
 
+    subgraph L1["提案層"]
+        direction TB
+        A1["使用者心智模型:<br/><br/>為什麼要用"]
+        A2["不可取代性論證:<br/><br/>為什麼選我"]
+        A3["商業可行性論述:<br/><br/>能夠賺錢嗎"]
+        A1 --> A2 --> A3
+    end
+
+    GATE{"Go / No-Go"}
+
+    subgraph L2["需求層"]
+        direction TB
+        B1["問題根源是什麼"]
+        subgraph B2["方案評估"]
+            direction TB
+            B2a["有什麼方案"]
+            B2b["逐方案評估"]
+            B2c["有什麼具體解法"]
+            B2d["解法的效益在哪"]
+            B2e["解法的風險為何"]
+            B2a --> B2b
+            B2b --> B2c
+            B2b --> B2d
+            B2b --> B2e
+        end
+        B1 --> B2
+        BOUT["提案報告:<br/><br/>解法<br/>效益<br/>風險"]
+        B2 --> BOUT
+    end
+
+    subgraph L3["整合層"]
+        direction TB
+        C1["含金量排序:<br/><br/>提案報告相互比較"]
+        C2a["全新產品:<br/><br/>提煉產品樣貌<br/>建立 Product Map"]
+        C2b["既有產品:<br/><br/>評估衝擊<br/>更新 Product Map"]
+        C1 --> C2a
+        C1 --> C2b
+        COUT["Product Map:<br/><br/>功能維度<br/>標示優先順序與關係"]
+        C2a --> COUT
+        C2b --> COUT
+    end
+
+    subgraph L4["落地層"]
+        direction TB
+        subgraph D1["外部因素篩選"]
+            direction TB
+            D1a["公司策略方向"]
+            D1b["客戶重要程度"]
+            D1c["市場競品比較"]
+            D1d["開發資源限制"]
+
+        end
+        DLIST["優先執行清單:<br/><br/>本波次項目<br/>其餘留 Product Map"]
+        D1 --> DLIST
+        subgraph D2["範疇決策"]
+            direction TB
+            D2a["交付範疇切分<br/>商業價值可獨立交付"]
+            D2b["依存排序<br/>技術依存 + 商業依存"]
+        end
+        DLIST --> D2
+        DOUT["Development Roadmap"]
+        D2 --> DOUT
+    end
+
+    END(["規格開發"])
+
+    START --> L1
+    L1 --> GATE
+    GATE -->|"Go"| L2
+    GATE -.->|"No-Go 終止"| STOP(["不投入需求評估"])
+    L2 --> L3
+    L3 --> L4
+    L4 --> END
+```
 ---
 
 ## 提案層
