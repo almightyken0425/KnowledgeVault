@@ -1,7 +1,8 @@
 # Product Management 決策框架
 
 > 產品構想到開發藍圖的通用決策框架。
-``` mermaid chart
+
+```mermaid
 flowchart TD
     START(["想法浮出"])
 
