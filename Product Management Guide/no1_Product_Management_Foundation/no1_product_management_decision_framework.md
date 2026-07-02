@@ -21,15 +21,9 @@ flowchart TD
         B1["問題根源是什麼"]
         subgraph B2["方案評估"]
             direction TB
-            B2a["有什麼方案"]
-            B2b["逐方案評估"]
-            B2c["有什麼具體解法"]
-            B2d["解法的效益在哪"]
-            B2e["解法的風險為何"]
+            B2a["備選方案發想"]
+            B2b["方案審視<br/><br/>具體解法<br/>方案效益<br/>方案風險"]
             B2a --> B2b
-            B2b --> B2c
-            B2b --> B2d
-            B2b --> B2e
         end
         B1 --> B2
         BOUT["提案報告:<br/><br/>解法<br/>效益<br/>風險"]
@@ -38,34 +32,16 @@ flowchart TD
 
     subgraph L3["整合層"]
         direction TB
-        C1["含金量排序:<br/><br/>提案報告相互比較"]
-        C2a["全新產品:<br/><br/>提煉產品樣貌<br/>建立 Product Map"]
-        C2b["既有產品:<br/><br/>評估衝擊<br/>更新 Product Map"]
-        C1 --> C2a
-        C1 --> C2b
-        COUT["Product Map:<br/><br/>功能維度<br/>標示優先順序與關係"]
-        C2a --> COUT
-        C2b --> COUT
+        C1["理論含金量排序與整合:<br/><br/>項目內容<br/>量化效益<br/>技術可行性"]
+        COUT["Product Map:<br/><br/>項目描述<br/>優先順序<br/>前後關係"]
+        C1 --> COUT
     end
 
     subgraph L4["落地層"]
         direction TB
-        subgraph D1["外部因素篩選"]
-            direction TB
-            D1a["公司策略方向"]
-            D1b["客戶重要程度"]
-            D1c["市場競品比較"]
-            D1d["開發資源限制"]
-
-        end
-        DLIST["優先執行清單:<br/><br/>本波次項目<br/>其餘留 Product Map"]
-        D1 --> DLIST
-        subgraph D2["範疇決策"]
-            direction TB
-            D2a["交付範疇切分<br/>商業價值可獨立交付"]
-            D2b["依存排序<br/>技術依存 + 商業依存"]
-        end
-        DLIST --> D2
+        D1["實際含金量排序:<br/><br/>公司策略方向<br/>客戶重要程度<br/>市場競品比較<br/>開發資源限制"]
+        D1 --> D2
+        D2["項目範疇決策:<br/><br/>範疇拆解<br/>依存排序"]
         DOUT["Development Roadmap"]
         D2 --> DOUT
     end
@@ -75,7 +51,7 @@ flowchart TD
     START --> L1
     L1 --> GATE
     GATE -->|"Go"| L2
-    GATE -.->|"No-Go 終止"| STOP(["不投入需求評估"])
+    GATE -.->|"No-Go"| STOP(["不投入需求評估"])
     L2 --> L3
     L3 --> L4
     L4 --> END
