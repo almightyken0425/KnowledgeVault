@@ -51,7 +51,7 @@
 通則：每個 git 的 main = 真相，每張工單 = 一條 branch，merge = 回寫真相
 
 [requirement git]
-    真相：WishList 需求收單池
+    真相：WishList 需求列表，一個 table 檔（csv 或 db，格式未定）
     工單：Requirement 單 (.list)，異動 WishList
       Req A ─┐
       Req B ─┼─ N 對 1：一張 product 單可收多個 requirement
@@ -95,11 +95,13 @@
   - `.layer`：深度可自定的遞迴層級
 - 範例軌道：
   - WishList：需求收單池，單一 Wish 可以不處理
+    - 實體是 requirement git 裡的需求列表 table 檔
+    - 檔案格式未定案，csv 或 db 檔
   - Product：Product → Module → Feature，層數可自定
   - Design：Token → Component → Screen
   - DevFE、DevBE、`Dev[Project]`：開發側真相
     - 拆分由團隊決定：by service、by code 專案、by 前後端
-  - Quality：qa 有自己的 git 與母子單，層內容物未定義
+  - Quality：qa git 放測試案例文件，按功能分檔，層級劃分未定案
 
 ### ChangeRequest 異動軌
 
@@ -151,6 +153,7 @@
 ### 需求段
 
 - 任何角色在 requirement 開單，提出修改需求
+- 單的實體：對需求列表 table 檔的一次異動
 - bug 也在此階段開單，靠 requirement 的類型欄位區分 feature 與 bug
 - bug 急修走 severity 分流：
   - P0 與 P1 走快速通道：直接開 epic，錨定該功能上線時的 commit，事後補 product 單
@@ -219,11 +222,13 @@
   - 一體兩投影：拖放清單加時間軸
   - 清單：多個 epic 拖放排 priority，越上面優先級越高
   - 時間軸：同一批 epic 與 task 的排程投影
-  - 展開 epic 可見母子單與跨 epic 的 subtask 前後關係
+  - 展開 epic 可見母子單與 epic 內的 subtask 前後關係
+  - 不同 epic 的 subtask 在資料結構上不互相關聯
   - 逐 task 可開關排序檢查，異常顯示紅線，可強制系統重排
   - 疊圖維度可選 Product Layer，也可只顯示特定 Layer
   - 一次開發可牽動多個平行 Layer，如 Promotion 重構動到 Promotion、Wallet、Notice
-  - 人員檔期檢查：同一人員同時段過載即標示
+  - 人員撞期屬管理政策，不是系統硬約束
+  - 面板提供篩選：找出同一時段持有多張工單的人
   - 語意分工：清單承載意圖排序，時間軸承載推導排程，紅線呈現兩者矛盾
 - 成本計算表：
   - 以人與 Product Layer 兩個維度彙總
@@ -299,7 +304,6 @@
 
 ### 其他風險
 
-- 三個排序約束打架：epic 拖放優先序、跨 epic subtask 依賴、人員檔期，誰硬誰軟未定
 - 強制重排會覆寫人工排程，且無排程版本快照可回復
 - 縣市級颱風假無可靠 API → 需人工當日登錄
 - AI Workflow 一行的工程量超過其餘功能總和，宜標記為第二階段
@@ -354,10 +358,10 @@
 - re-anchor 已定由 PM 執行，殘留：錨點漂移要不要系統主動提示
 - branch 粒度已定為自定義欄位，殘留：TraceMap 與上線收斂要同時支援母單與子單兩種掛法
 - 六 git 的 branch 命名是否配對一致，部分開立失敗如何補償
-- requirement 與 qa git 的內容形態：一單一檔還是 issue，WishList 落在哪個 git
+- WishList table 檔案格式未定案：csv 可 diff，db 檔進 git 難 diff 與 merge
 - bug severity 分流已定，殘留：severity 判定規則、快速通道事後補單的強制機制
 - revert 反向流：決策推翻在 epic 未開、進行中、已上線三期各怎麼走
-- subtask 互掛的環偵測規則，跨 epic 依賴後需連跨 epic 的環一起偵測
+- subtask 互掛的環偵測規則
 - Timeline 現況以工期表達，工期制與日期制排程對 Gantt 設計含義不同
 
 ### 產品決策
@@ -367,6 +371,5 @@
 - build vs buy：全工件版本化是市面沒有的能力，素材增強，但論證仍未寫
 - 遷移策略：Redmine、JIRA、excel 既有資料怎麼搬，過渡期如何避免雙軌漏同步
 - design git 內容邊界：只存 token 與快照、設計真相留在 Figma，或另有取捨
-- 排序約束優先序：epic 拖放、跨 epic 依賴、人員檔期，誰硬誰軟
 - 績效制度：個人記點做不做，先與管理層對齊反模式風險
 - 權限模型：跨六個 git 的角色權限矩陣，加上績效資料可見性與 bug 仲裁
