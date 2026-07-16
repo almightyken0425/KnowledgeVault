@@ -67,7 +67,7 @@
     真相：main = 已決策的產品樣貌（Product → Module → Feature 層級）
           被改的每個實例記錄 branch + commit
          │
-         │ Epic 錨定其中一個實例的 commit，依當時內容施工
+         │ Epic 錨定實例的 commit，可多錨，依當時內容施工
          ▼
 [專案管理階段]
     Development List：多個 epic 拖放排 priority，越上面越優先
@@ -106,7 +106,7 @@
 - 動詞世界，回答正在改什麼
 - 型別：
   - `.list`：Requirement 專用，直接異動 WishList
-  - `.epic`：一個要上線的功能，錨定 base layer 實例的 commit，明定不屬於 SourceOfTruth
+  - `.epic`：一個要上線的功能，可錨定多個實例的 commit，明定不屬於 SourceOfTruth
   - `.task`：勞動單位；Spec、Design、Dev、QA 皆為 task 的具名變體
 - 補充新增的環節：Product 單
   - PM 開立，上承 requirement，本體是 product git 的一條 branch
@@ -119,6 +119,7 @@
 
 - 每類工單強制連到上一層工單
 - 血緣鏈：Requirement → Product 單 → Epic → 各域母子單 → branch 與 commit
+- epic 可錨定多個實例 → 追溯圖是分層 DAG，不是單親樹
 - 往上走：這個 bug 違反哪條原始 spec
 - 往下走：這條需求落到哪些改動
 - TraceMap 不是附加功能，是整個模型的骨架
@@ -150,6 +151,10 @@
 ### 需求段
 
 - 任何角色在 requirement 開單，提出修改需求
+- bug 也在此階段開單，靠 requirement 的類型欄位區分 feature 與 bug
+- bug 急修走 severity 分流：
+  - P0 與 P1 走快速通道：直接開 epic，錨定該功能上線時的 commit，事後補 product 單
+  - P2 以下與 feature 同流程，走完整鏈
 - PM 到 product 與 roadmap git 開單，關連對應的 requirement
 - 基數規則：
   - 一張 product 單可關連多個 requirement
@@ -168,7 +173,7 @@
 
 - 專案管理階段涵蓋 spec、design、dev、qa
 - 開 epic：一個 epic 是一個要上線的功能
-- epic 錨定某個 base layer 實例記錄的 commit
+- epic 錨定 base layer 實例記錄的 commit，可一次錨定多個實例
 - 施工依據錨定當下的 commit 內容
 - 多個 epic 組成 development list，管理 epic 之間的 priority
 - 各域開母單與子單，全部掛在 epic 底下
@@ -223,7 +228,8 @@
 - TraceMap：每類工單連上一層
 - 自定義產品層次：層級名稱與深度可配置
 - 自定義表單：
-  - 結構分 Epic、Task、Bug，欄位名稱與值類型可配置
+  - 結構分 Epic、Task，欄位名稱與值類型可配置
+  - Requirement 也可自定義欄位，如類型欄位區分 feature 與 bug
   - branch 欄位填在母單或子單，由團隊自定義
 - 使用者管理：國家、地區、聯絡方式、role
 - 工作日設定：按國家與縣市
@@ -291,14 +297,6 @@
   - 實例可能需要已決策與已上線兩個 commit 指標，補充概念尚無此設計
   - 時間差期間查 product main，會拿到還沒上線的規格
 
-### 多對多張力從上游移到 epic 層
-
-- requirement 層已裁決：一個 requirement 只連一張 product 單，違反就拆
-- product 單層已裁決：一條 branch 可改多個實例，多對多收在 branch 內
-- 張力移到 epic：epic 只錨定一個實例的 commit
-- Promotion 重構動三個實例 → 開一個 epic 其餘實例脫錨，開三個違反一 epic 一功能
-- 需要裁決：epic 多錨、拆 epic 加群組、或限制 product 單只動一個實例
-
 ### 組態複雜度
 
 - 自定義層次加自定義表單 → 全部報表要寫成泛型才能運作
@@ -357,13 +355,13 @@
 
 ### 資料模型
 
-- epic 錨定基數：一個功能動多個實例時，一 epic 多錨還是拆 epic
+- epic 多錨下的成本拆分：成本表按 Product Layer 分攤時，一個 epic 的成本怎麼拆到多個實例
 - epic 錨點過期：product main 前進後，允不允許 re-anchor 到新 commit
 - 實例雙指標：已決策與已上線 commit 要不要分開記錄，上線回寫由誰觸發
 - branch 粒度已定為自定義欄位，殘留：TraceMap 與上線收斂要同時支援母單與子單兩種掛法
 - 六 git 的 branch 命名是否配對一致，部分開立失敗如何補償
 - requirement 與 qa git 的內容形態：一單一檔還是 issue，WishList 落在哪個 git
-- Bug 型別缺席：bug 在六 git 中哪裡開單、是否也走 branch 模型
+- bug severity 分流已定，殘留：severity 判定規則、快速通道事後補單的強制機制
 - revert 反向流：決策推翻在 epic 未開、進行中、已上線三期各怎麼走
 - subtask 互掛的環偵測規則，跨 epic 依賴後需連跨 epic 的環一起偵測
 - Timeline 現況以工期表達，工期制與日期制排程對 Gantt 設計含義不同
