@@ -183,6 +183,7 @@
 - 施工依據錨定當下的 commit 內容
 - product main 後續前進時，PM 可把錨點 re-anchor 到新 commit
 - re-anchor 後施工範圍跟著新版本調整
+- 錨點漂移系統不主動提示，由 PM 自行盯 product main 動態
 - 多個 epic 組成 development list，管理 epic 之間的 priority
 - 各域開母單與子單，全部掛在 epic 底下
 - 母子單範例，epic 為 promotion 新類型：
@@ -200,6 +201,13 @@
 - 效果：查 spec main 看到線上行為，查 product main 看到決策方向
 - 追溯出貨規格不看 product main 當下狀態，看 epic 錨定的 commit
 - 錨定版本即該功能的規格依據，不需要另記已上線指標
+
+### 反向流
+
+- 決策推翻不走特殊流程，一律回需求段走新循環
+- 推翻本身是新 requirement → 新 product 單 revert 決策
+- 已上線的功能要動，再開新 epic 施工
+- 反悔也是變更，同軌留痕，TraceMap 不留洞
 
 ---
 
@@ -351,12 +359,10 @@
 ### 資料模型
 
 - epic 多錨下的成本拆分：成本表按 Product Layer 分攤時，一個 epic 的成本怎麼拆到多個實例
-- re-anchor 已定由 PM 執行，殘留：錨點漂移要不要系統主動提示
 - branch 粒度已定為自定義欄位，殘留：TraceMap 與上線收斂要同時支援母單與子單兩種掛法
 - branch 欄位漏填或填錯的偵測機制
 - WishList table 檔案格式未定案：csv 可 diff，db 檔進 git 難 diff 與 merge
 - bug severity 分流已定，殘留：severity 判定規則、快速通道事後補單的強制機制
-- revert 反向流：決策推翻在 epic 未開、進行中、已上線三期各怎麼走
 - subtask 互掛的環偵測規則
 - Timeline 現況以工期表達，工期制與日期制排程對 Gantt 設計含義不同
 
