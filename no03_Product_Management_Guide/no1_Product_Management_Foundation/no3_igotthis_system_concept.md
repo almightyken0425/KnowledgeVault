@@ -175,6 +175,8 @@
 - 開 epic：一個 epic 是一個要上線的功能
 - epic 錨定 base layer 實例記錄的 commit，可一次錨定多個實例
 - 施工依據錨定當下的 commit 內容
+- product main 後續前進時，PM 可把錨點 re-anchor 到新 commit
+- re-anchor 後施工範圍跟著新版本調整
 - 多個 epic 組成 development list，管理 epic 之間的 priority
 - 各域開母單與子單，全部掛在 epic 底下
 - 母子單範例，epic 為 promotion 新類型：
@@ -190,7 +192,8 @@
 - product git 在決策時 merge → main 是已決策的產品樣貌
 - spec、design、dev、qa 在上線時 merge → main 是線上實際狀態
 - 效果：查 spec main 看到線上行為，查 product main 看到決策方向
-- 代價：決策與上線之間有時間差，追溯時要分清楚查哪一種 main
+- 追溯出貨規格不看 product main 當下狀態，看 epic 錨定的 commit
+- 錨定版本即該功能的規格依據，不需要另記已上線指標
 
 ---
 
@@ -289,14 +292,6 @@
   - 品質指標放團隊層級，如 escaped defect rate、DORA 指標
   - 個人績效走質性評估，量化資料只當佐證
 
-### 回寫機制已定案，殘留上線側缺口
-
-- 上一版的第一關鍵缺口已解：回寫即 merge，product 單 merge 即真相寫入
-- 殘留缺口在上線側：
-  - product main 是已決策狀態，功能上線後沒人把實然狀態寫回
-  - 實例可能需要已決策與已上線兩個 commit 指標，補充概念尚無此設計
-  - 時間差期間查 product main，會拿到還沒上線的規格
-
 ### 組態複雜度
 
 - 自定義層次加自定義表單 → 全部報表要寫成泛型才能運作
@@ -356,8 +351,7 @@
 ### 資料模型
 
 - epic 多錨下的成本拆分：成本表按 Product Layer 分攤時，一個 epic 的成本怎麼拆到多個實例
-- epic 錨點過期：product main 前進後，允不允許 re-anchor 到新 commit
-- 實例雙指標：已決策與已上線 commit 要不要分開記錄，上線回寫由誰觸發
+- re-anchor 已定由 PM 執行，殘留：錨點漂移要不要系統主動提示
 - branch 粒度已定為自定義欄位，殘留：TraceMap 與上線收斂要同時支援母單與子單兩種掛法
 - 六 git 的 branch 命名是否配對一致，部分開立失敗如何補償
 - requirement 與 qa git 的內容形態：一單一檔還是 issue，WishList 落在哪個 git
