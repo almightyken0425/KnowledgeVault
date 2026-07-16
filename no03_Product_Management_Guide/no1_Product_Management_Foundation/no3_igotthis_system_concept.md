@@ -8,6 +8,7 @@
 - 落地形態：外連 GitHub 或 GitLab，是疊在 git hosting 之上的管理層
 - requirement、product 與 roadmap、spec、design、dev、qa 六域各自有 git
 - 目標：產品開發的全部工件進同一套資料模型，追溯不再靠人腦
+- 發展路徑：先內部自用驗證，跑順後商品化
 - 在 Product Management 決策框架中的位置：
   - 決策框架的流程終點停在規格開發
   - IGotThis 承載框架中上游的產出物，如 Product Map 層級與需求池
@@ -99,6 +100,8 @@
     - 檔案格式未定案，csv 或 db 檔
   - Product：Product → Module → Feature，層數可自定
   - Design：Token → Component → Screen
+    - 實體是 html、css、JS 做的 mockup code
+    - 設計工件 git 原生可 diff、可 merge，不依賴 Figma 檔
   - DevFE、DevBE、`Dev[Project]`：開發側真相
     - 拆分由團隊決定：by service、by code 專案、by 前後端
   - Quality：qa git 放測試案例文件，按功能分檔，層級劃分未定案
@@ -366,10 +369,9 @@
 
 ### 產品決策
 
-- 定位：內部自用還是商品化，決定拼裝與自建的優先序
 - hosting 選型：GitHub 還是 GitLab，付費級距與 on-prem 需求會翻轉結論
 - build vs buy：全工件版本化是市面沒有的能力，素材增強，但論證仍未寫
 - 遷移策略：Redmine、JIRA、excel 既有資料怎麼搬，過渡期如何避免雙軌漏同步
-- design git 內容邊界：只存 token 與快照、設計真相留在 Figma，或另有取捨
+- Figma 在流程中的角色：mockup 進 git 後，Figma 是上游草稿還是退場
 - 績效制度：個人記點做不做，先與管理層對齊反模式風險
 - 權限模型：跨六個 git 的角色權限矩陣，加上績效資料可見性與 bug 仲裁
