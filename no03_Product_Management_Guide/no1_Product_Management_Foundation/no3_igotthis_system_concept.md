@@ -215,9 +215,11 @@
   - branch 與 commit 對不到工單 → 工單即 branch，關聯是機制本身
 - 全解的殘留細節：
   - bug 追溯要看 spec git 哪個 commit，與 product 錨點的對齊規則待定
-- 未解：
-  - 施工時長管理績效 → 成本計算表只做彙總，無績效判定機制
-  - 灌水工時 → 全篇無工時真實性驗證機制
+- 績效類痛點的裁決：
+  - 系統不做個人記點排名，只記客觀事實
+  - severity、來源、commit 關聯、工時全留存
+  - 報表預設團隊視角，個人判斷由主管質性進行
+  - 理由：指標變目標就失真，灌水痛點即證據
 
 ### 功能清單
 
@@ -278,7 +280,7 @@
 
 - hosting 原生就有：branch 建立 API、merge webhook、protected branch、commit 比對
 - IGotThis 要自建的三層：
-  - 統一開 branch 入口，套跨 git 一致的命名
+  - branch 欄位與 hosting 實際 branch 的對應驗證，命名本身不強制
   - webhook 回寫 handler：merge 事件發生 → 反查工單 → 寫回真相
   - 上線時的跨 repo merge 協調器
 - hosting 沒有跨 repo 原子 merge，協調器是整合工程最大的一塊
@@ -290,15 +292,6 @@
 ---
 
 ## 設計風險
-
-### 績效指標的 Goodhart 效應
-
-- 痛點已列灌水時長，解法卻把時長餵進績效 → 痛點升級成制度化誘因
-- 可預期操弄：估時膨脹、切碎任務衝量、迴避高風險票
-- bug 記點同理：bug 歸屬常無法客觀判定 → QA 與 RD 對立
-- 業界替代方向：
-  - 品質指標放團隊層級，如 escaped defect rate、DORA 指標
-  - 個人績效走質性評估，量化資料只當佐證
 
 ### 組態複雜度
 
@@ -360,7 +353,7 @@
 - epic 多錨下的成本拆分：成本表按 Product Layer 分攤時，一個 epic 的成本怎麼拆到多個實例
 - re-anchor 已定由 PM 執行，殘留：錨點漂移要不要系統主動提示
 - branch 粒度已定為自定義欄位，殘留：TraceMap 與上線收斂要同時支援母單與子單兩種掛法
-- 六 git 的 branch 命名是否配對一致，部分開立失敗如何補償
+- branch 欄位漏填或填錯的偵測機制
 - WishList table 檔案格式未定案：csv 可 diff，db 檔進 git 難 diff 與 merge
 - bug severity 分流已定，殘留：severity 判定規則、快速通道事後補單的強制機制
 - revert 反向流：決策推翻在 epic 未開、進行中、已上線三期各怎麼走
@@ -373,5 +366,4 @@
 - build vs buy：全工件版本化是市面沒有的能力，素材增強，但論證仍未寫
 - 遷移策略：Redmine、JIRA、excel 既有資料怎麼搬，過渡期如何避免雙軌漏同步
 - Figma 在流程中的角色：mockup 進 git 後，Figma 是上游草稿還是退場
-- 績效制度：個人記點做不做，先與管理層對齊反模式風險
 - 權限模型：跨六個 git 的角色權限矩陣，加上績效資料可見性與 bug 仲裁
