@@ -1,0 +1,35 @@
+[
+    {
+        "productName": "susugigi",
+        "requirement": [
+            {
+                "requirementName": "",
+                "requirementDesc": "",
+                "requirementBenefit": ""
+            },
+            {
+                "requirementName": "",
+                "requirementDesc": "",
+                "requirementBenefit": ""
+            }
+        ],
+        "productMap": [
+            {
+                "moduleName": "app",
+                "featureList": [
+                    {
+                        "featureName": "setting",
+                        "subFeatureList": [
+                            {
+                                "subFeatureName": "dataManagement"
+                            },
+                            {
+                                "subFeatureName": "preference"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
