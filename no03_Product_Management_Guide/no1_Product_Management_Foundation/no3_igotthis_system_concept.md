@@ -6,8 +6,9 @@
 
 - IGotThis 是自建管理系統的構想
 - 落地形態：外連 GitHub 或 GitLab，是疊在 git hosting 之上的管理層
-- requirement、product 與 roadmap、spec、design、dev、qa 六域各自有 git
-- 六 git 是 per product，公司有幾個產品就開幾套
+- requirement、roadmap、spec、design、dev、qa 六域各自有一組 git 與 ticket
+- 六域以 Container 為單位成套，公司有幾個 Container 就開幾套
+- 容器層級與泛型模型見組織與泛型結構章節
 - 目標：產品開發的全部工件進同一套資料模型，追溯不再靠人腦
 - 發展路徑：先內部自用驗證，跑順後商品化
 - 在 Product Management 決策框架中的位置：
@@ -45,9 +46,125 @@
 
 ---
 
+## 組織與泛型結構
+
+整套系統的容器層級。泛型不是比喻，是組織骨架。
+
+```
+Company                          計費單位，依使用者數收費
+  ├ User[]                       人屬於 Company，可跨 Team 與 Container
+  └ Team[]
+      └ Container[]              不帶型別參數，固定一組配對
+          ├ Product              封閉集合，恰好兩個 Management
+          │   ├ Management<Requirement>
+          │   └ Management<Roadmap>
+          └ Project              開放集合，可擴充
+              ├ Management<Spec>
+              ├ Management<Design>
+              ├ Management<Dev>
+              ├ Management<QA>
+              └ Management<T>    未來新增領域從這裡長
+
+Management<T>                    每個領域的兩條軌
+  ├ Source                       指向 git，存工件
+  └ Issue                        ticket 系統，存流程
+
+Ticket
+  └ Field<T>[]                   每張單的欄位設定
+```
+
+### Management 的定義
+
+- 一個領域有兩條軌：git 存工件、ticket 存流程
+- `Management<T>` 把這兩條軌綁成一個單位
+- Source 對應工件歸 git 的裁決
+- Issue 對應流程歸資料庫的裁決
+- 這也是六 git 說法的精確版：六個 Management，不只是六個 git
+
+### Product 封閉、Project 開放
+
+- Product 恰好兩個 Management，型別參數寫死
+  - 對應上游兩域：表單形態、系統獨佔寫入
+- Project 可有 N 個 Management，型別參數開放
+  - 對應下游各域：code 形態、系統唯讀或雙入口
+- 新增領域只能長在 Project 側
+  - 加 `Management<Security>` 成立
+  - 加在 Product 側不成立
+- Container 內 Product 與 Project 一對一，兩者皆必要
+  - 純技術債專案也要開對應的 roadmap 單
+  - 理由：每筆施工都要溯得到需求，是整套追溯的前提
+
+### 泛型帶來什麼
+
+- 六個領域是同一個 `Management<T>` 的六次實例化
+  - 流程、branch 語意、merge 語意完全相同，差別只在 T
+- 具名 task 塌成一個型別
+  - Spec task、Design task、Dev task、QA task 是 `Task<T>` 的四次實例化
+  - 這解釋了為何四者的型別差異只剩標籤功能
+- 報表寫一次即可
+  - TraceMap、Gantt、成本表都吃 `Task<T>`，不管 T 是什麼
+- 新增領域是實例化，不是開新功能
+  - 宣告 T、標它滿足哪些約束，其餘機制免費跟上
+- 自定義從無界變有界
+  - 不能亂自定義，只能提供滿足約束的 T
+  - 這是組態迷宮與型別系統的差別
+
+### 型別約束
+
+約束取代逐領域的零散裁決。
+
+- `Diffable`：工件能不能 diff
+  - 六個領域皆滿足
+  - Figma 檔不滿足，這是設計工件改為 mockup code 的理由
+- `SystemEditable`：格式由 IGotThis 自己定義
+  - Requirement 與 Roadmap 滿足，系統提供編輯器
+  - Design 與 Dev 不滿足，系統唯讀
+  - 這是編輯器邊界的判準：格式由誰定義，誰就提供編輯器
+- `Anchorable`：epic 能不能錨定它的 commit
+  - 只有 Roadmap 滿足
+- `Layered`：工件有沒有階層結構
+  - Roadmap、Design、QA 滿足
+
+### 泛型類比的邊界
+
+- merge 時機不是型別參數
+  - Roadmap 在決策時 merge，其餘在上線時 merge
+  - 這是真實的行為差異，需以策略或關聯型別表達
+- 泛型整理結構，不減少工作
+  - 三種編輯形態仍要各寫一次
+- `Dev[Project]` 是巢狀泛型
+  - dev 被參數化兩次：領域乘專案
+  - 巢狀層數要克制
+
+### 維度與階層的區分
+
+兩個結構容易混淆，用詞必須分開。
+
+- 階層：樹狀，父子包含關係
+  - 例：Product → Module → Feature
+  - 一個 Feature 只屬於一個 Module
+  - 存在 Source 裡，是工件結構
+- 維度：獨立的分類軸，各有固定選項
+  - 例：前台與後台一軸，前端與後端另一軸
+  - 一張單同時持有兩軸的值，不是二選一
+  - 存在 Issue 裡，是工單欄位
+- 判別法：像 excel 欄位的是維度，像資料夾巢狀的是階層
+
+### 欄位與篩選
+
+- 維度不是獨立機制，它就是 `Field<T>` 的一種用法
+- 每個 Container 先設定有哪些欄位、各欄位有哪些選項
+- 開單時選填，需求列表即可依欄位篩選
+- 搭配拖放排序，取代 excel 逐列填寫的原始做法
+- 所有欄位型別皆可作為篩選條件
+  - 自由文字型別的篩選實質是搜尋，不是等值比對
+  - 此差異需在介面上分開呈現，避免誤解為精確篩選
+
+---
+
 ## 核心資料模型：雙軌設計
 
-構想中份量最重的部分，本質是把 Git 的心智模型移植到產品管理。
+以下是單一 `Management<T>` 內部的運作。本質是把 Git 的心智模型移植到產品管理。
 
 ```
 通則：每個 git 的 main = 真相，每張工單 = 一條 branch，merge = 回寫真相
@@ -115,7 +232,8 @@
 - 型別：
   - `.list`：Requirement 專用，直接異動 WishList
   - `.epic`：一個要上線的功能，可錨定多個實例的 commit，明定不屬於 SourceOfTruth
-  - `.task`：勞動單位；Spec、Design、Dev、QA 皆為 task 的具名變體
+  - `.task`：勞動單位，泛型形式是 `Task<T>`
+    - Spec、Design、Dev、QA 是同一型別的四次實例化，非四個型別
 - 補充新增的環節：Product 單
   - PM 開立，上承 requirement，本體是 product git 的一條 branch
 - 掛載規則：
@@ -253,14 +371,14 @@
   - 展開 epic 可見母子單與 epic 內的 subtask 前後關係
   - 不同 epic 的 subtask 在資料結構上不互相關聯
   - 逐 task 可開關排序檢查，異常顯示紅線，可強制系統重排
-  - 疊圖維度可選 Product Layer，也可只顯示特定 Layer
+  - 疊圖依據可選 Product 階層，也可只顯示特定階層
   - 一次開發可牽動多個平行 Layer，如 Promotion 重構動到 Promotion、Wallet、Notice
   - 人員撞期屬管理政策，不是系統硬約束
   - 面板提供篩選：找出同一時段持有多張工單的人
   - 語意分工：清單承載意圖排序，時間軸承載推導排程，紅線呈現兩者矛盾
 - 成本計算表：
-  - 以人與 Product 兩個維度彙總
-  - Product 維度是公司底下的不同產品，施工環境完全切開
+  - 以人與 Container 兩個軸彙總
+  - Container 是公司底下的不同產品，施工環境完全切開
   - 不切到模組層：共用元件被改時，成本歸屬講不清
   - 人可跨產品，工時跟著 task 走，task 屬於哪個產品就記哪個產品
   - AI 產出的 task 不計工時，成本表不涵蓋 AI 施工代價
@@ -268,14 +386,15 @@
   - 工時來源：人工填報，由執行者自行填寫每張 task 花費
   - 不採系統推算，狀態時間差含等待與阻塞，不等於工作量
 - TraceMap：每類工單連上一層
-- 自定義產品層次：層級名稱與深度可配置
+- 自定義階層：階層名稱與深度可配置，屬工件結構
 - 自定義表單：
   - 結構分 Epic、Task，欄位名稱與值類型可配置
   - Requirement 也可自定義欄位，如類型欄位區分 feature 與 bug
   - branch 欄位填在母單或子單，由團隊自定義
+  - 維度即欄位，篩選規則見組織與泛型結構章節
 - 使用者管理：
   - 國家、地區、聯絡方式、role
-  - 人不綁定單一產品，可同時支援多個產品
+  - 人隸屬 Company，可跨 Team 與 Container
 - 工作日設定：按國家與縣市
 - AI Workflow：
   - 各角色提需求 → 資料拉到 local → AI 產出結論並施工
@@ -329,8 +448,9 @@
 
 ### 組態複雜度
 
-- 自定義層次加自定義表單 → 全部報表要寫成泛型才能運作
-- 中途改層次定義時，既有工單如何遷移未定義
+- 報表寫成泛型是設計不是代價，泛型模型已把它變成必然
+- 殘留風險是自定義的邊界：約束不夠嚴，泛型退化成組態迷宮
+- 中途改階層定義或維度選項時，既有工單如何遷移未定義
 
 ### 其他風險
 
@@ -372,10 +492,13 @@
 
 ### 用語待統一
 
-- Requirement 一詞雙義：框架指問題分析單位，大綱指異動軌型別
-- Product Layer 與 Product Map 實質相同、名詞不同
-- base layer 實例、真相節點、Product Layer 三詞疑似同物，需定名
-- product 與 roadmap 合稱一個 git，與框架的 Product Map 及 Roadmap 對應待定名
+- Requirement 一詞雙義：框架指問題分析單位，本構想指異動軌型別
+- Product 一詞三義，最需優先定名：
+  - Container 裡與 Project 配對的實體
+  - Product 到 Module 到 Feature 階層樹的頂層
+  - 商業意義上的產品
+- Product 階層與框架 Product Map 實質相同、名詞不同
+- base layer 實例、真相節點、階層節點三詞疑似同物，需定名
 - Product Map 要求的優先順序屬性，大綱未說存放在哪
 - MVC 管理 Spec 的 MVC 未定義，需與規格寫作政策的分層對齊命名
 
@@ -391,6 +514,8 @@
 - severity 判定表的實際級距內容待展開
 - subtask 互掛的環偵測規則
 - Timeline 現況以工期表達，工期制與日期制排程對 Gantt 設計含義不同
+- merge 時機無法用型別參數表達，需以策略或關聯型別承載
+- 自由文字欄位的篩選實質是搜尋，介面如何與等值篩選分開呈現
 
 ### 產品決策
 
@@ -398,5 +523,7 @@
 - build vs buy：全工件版本化是市面沒有的能力，素材增強，但論證仍未寫
 - 遷移策略：Redmine、JIRA、excel 既有資料怎麼搬，過渡期如何避免雙軌漏同步
 - Figma 在流程中的角色：mockup 進 git 後，Figma 是上游草稿還是退場
-- 權限模型：角色乘六 git 乘產品數的權限矩陣，加上跨產品人員的可見範圍
-- repo 數量隨產品線性成長，命名與分組規則待定
+- 權限模型：角色乘六域乘 Container 數的矩陣，加上跨 Container 人員的可見範圍
+- repo 數量隨 Container 線性成長，命名與分組規則待定
+- Company 建立流程：是否需要 main user，權限如何轉移
+- 計費以使用者數計，跨 Container 的人如何計次
