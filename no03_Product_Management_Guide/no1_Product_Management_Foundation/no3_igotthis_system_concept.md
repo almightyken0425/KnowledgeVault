@@ -7,6 +7,7 @@
 - IGotThis 是自建管理系統的構想
 - 落地形態：外連 GitHub 或 GitLab，是疊在 git hosting 之上的管理層
 - requirement、product 與 roadmap、spec、design、dev、qa 六域各自有 git
+- 六 git 是 per product，公司有幾個產品就開幾套
 - 目標：產品開發的全部工件進同一套資料模型，追溯不再靠人腦
 - 發展路徑：先內部自用驗證，跑順後商品化
 - 在 Product Management 決策框架中的位置：
@@ -50,6 +51,7 @@
 
 ```
 通則：每個 git 的 main = 真相，每張工單 = 一條 branch，merge = 回寫真相
+下圖是單一產品的六 git。多產品時每個產品各開一套
 
 [requirement git]
     真相：WishList 需求列表，一個 table 檔（csv 或 db，格式未定）
@@ -256,6 +258,7 @@
   - 以人與 Product 兩個維度彙總
   - Product 維度是公司底下的不同產品，施工環境完全切開
   - 不切到模組層：共用元件被改時，成本歸屬講不清
+  - 人可跨產品，工時跟著 task 走，task 屬於哪個產品就記哪個產品
   - 計算 BurnDownRate，納入休假與國定假日
   - 工時來源：人工填報，由執行者自行填寫每張 task 花費
   - 不採系統推算，狀態時間差含等待與阻塞，不等於工作量
@@ -265,7 +268,9 @@
   - 結構分 Epic、Task，欄位名稱與值類型可配置
   - Requirement 也可自定義欄位，如類型欄位區分 feature 與 bug
   - branch 欄位填在母單或子單，由團隊自定義
-- 使用者管理：國家、地區、聯絡方式、role
+- 使用者管理：
+  - 國家、地區、聯絡方式、role
+  - 人不綁定單一產品，可同時支援多個產品
 - 工作日設定：按國家與縣市
 - AI Workflow：
   - 各角色提需求 → 資料拉到 local → AI 產出結論並施工
@@ -384,4 +389,5 @@
 - build vs buy：全工件版本化是市面沒有的能力，素材增強，但論證仍未寫
 - 遷移策略：Redmine、JIRA、excel 既有資料怎麼搬，過渡期如何避免雙軌漏同步
 - Figma 在流程中的角色：mockup 進 git 後，Figma 是上游草稿還是退場
-- 權限模型：跨六個 git 的角色權限矩陣，加上績效資料可見性與 bug 仲裁
+- 權限模型：角色乘六 git 乘產品數的權限矩陣，加上跨產品人員的可見範圍
+- repo 數量隨產品線性成長，命名與分組規則待定
