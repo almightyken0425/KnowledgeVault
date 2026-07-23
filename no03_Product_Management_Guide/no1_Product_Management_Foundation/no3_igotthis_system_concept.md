@@ -161,6 +161,14 @@
 - bug 急修走 severity 分流：
   - P0 與 P1 走快速通道：直接開 epic，錨定該功能上線時的 commit，事後補 product 單
   - P2 以下與 feature 同流程，走完整鏈
+- severity 判定：
+  - 依固定判定表初判，開單者自行照表選級
+  - 判定表以影響範圍分級，如全站不可用、主要功能失效、有替代路徑
+  - PM 覆核，可改判
+  - 覆核存在的理由：無覆核則急件浮報，快速通道變成繞流程的門
+- 快速通道的補單：
+  - 快速 epic 未關聯補開的 product 單即不可結案
+  - 擋的是結案不是修復，急修速度不受影響
 - PM 到 product 與 roadmap git 開單，關連對應的 requirement
 - 基數規則：
   - 一張 product 單可關連多個 requirement
@@ -362,7 +370,7 @@
 - branch 粒度已定為自定義欄位，殘留：TraceMap 與上線收斂要同時支援母單與子單兩種掛法
 - branch 欄位漏填或填錯的偵測機制
 - WishList table 檔案格式未定案：csv 可 diff，db 檔進 git 難 diff 與 merge
-- bug severity 分流已定，殘留：severity 判定規則、快速通道事後補單的強制機制
+- severity 判定表的實際級距內容待展開
 - subtask 互掛的環偵測規則
 - Timeline 現況以工期表達，工期制與日期制排程對 Gantt 設計含義不同
 
