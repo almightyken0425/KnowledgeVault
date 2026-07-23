@@ -86,6 +86,7 @@
          ▼
 [spec git｜design git｜dev[project] git｜qa git]
     epic 底下所有 task 的 branch merge 進各 git 的 main
+    各 git 由負責人自行 merge，系統只顯示進度、不協調
     下游四 git 的 main = 線上實際狀態
     對照：product git 的 main = 已決策方向，兩種 main 語意不同
 ```
@@ -203,6 +204,9 @@
 - task 與 branch 的對應靠自定義欄位承載
 - 團隊自訂 branch 欄位填在母單還是子單
 - 功能上線後，epic 底下所有 task 的 branch merge 進各 git 的 main
+- 上線 merge 不由系統協調，各 git 由負責人自行 merge
+- 系統只顯示 epic 的 merge 進度，標出哪些 branch 還沒併
+- qa task 完成與否不擋上線，狀態只顯示，上線由人決定
 
 ### 兩種 main 的語意
 
@@ -312,8 +316,8 @@
 - IGotThis 要自建的三層：
   - branch 欄位與 hosting 實際 branch 的對應驗證，命名本身不強制
   - webhook 回寫 handler：merge 事件發生 → 反查工單 → 寫回真相
-  - 上線時的跨 repo merge 協調器
-- hosting 沒有跨 repo 原子 merge，協調器是整合工程最大的一塊
+  - epic 的 merge 進度顯示，標出未併的 branch
+- hosting 沒有跨 repo 原子 merge，系統不自建協調器、只做狀態呈現
 - 選型訊號：
   - GitLab 原生 epic、依賴、group 權限繼承，對映度高，關鍵能力綁 Premium
   - GitHub 需以 Projects 與 sub-issues 拼裝，權限能力綁 Enterprise
