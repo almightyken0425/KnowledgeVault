@@ -6,7 +6,8 @@
 
 - IGotThis 是自建管理系統的構想
 - 落地形態：外連 GitHub 或 GitLab，是疊在 git hosting 之上的管理層
-- requirement、roadmap、spec、design、dev、qa 六域各自有一組 git 與 ticket
+- requirement、roadmap、spec、design、dev、qa 六域各自有一組工單系統
+- 其中五域另有一組 git 存工件，requirement 無 git
 - 六域以 Container 為單位成套，公司有幾個 Container 就開幾套
 - 容器層級與泛型模型見組織與泛型結構章節
 - 目標：產品開發的全部工件進同一套資料模型，追溯不再靠人腦
@@ -57,7 +58,7 @@ Company                          計費單位，按不重複人數收費
   └ Team[]
       └ Container[]              不帶型別參數，固定一組配對
           ├ Product              封閉集合，恰好兩個 Management
-          │   ├ Management<Requirement>
+          │   ├ Management<Requirement>   只有 Issue，無 Source
           │   └ Management<Roadmap>
           └ Project              開放集合，可擴充
               ├ Management<Spec>
@@ -68,6 +69,7 @@ Company                          計費單位，按不重複人數收費
 
 Management<T>                    每個領域的兩條軌
   ├ Source                       指向 git，存工件
+  │                              六域中五域有此軌，requirement 無
   └ Issue                        ticket 系統，存流程
 
 Ticket
@@ -115,7 +117,23 @@ Atlassian 的組織模型可直接沿用，補做時不需重查。
 - `Management<T>` 把這兩條軌綁成一個單位
 - Source 對應工件歸 git 的裁決
 - Issue 對應流程歸資料庫的裁決
-- 這也是六 git 說法的精確版：六個 Management，不只是六個 git
+- 這是六 git 說法的精確版：六個 Management，其中五個帶 git
+
+### Source 是選配，不是必備
+
+- 有獨立工件可版控的領域才有 Source
+- Requirement 沒有 Source，只有 Issue
+  - 其餘領域的真相與異動是兩個物件
+  - 如 spec 的真相是規格文件、異動是改它的 task
+  - Requirement 的真相是需求列表、異動是往列表加一列
+  - 加的那一列就是 requirement 本身，真相與異動塌成同一物件
+  - 沒有第二個物件可以版控，Source 軌沒有東西可放
+- 損失與補償：
+  - 修改歷史改由資料庫的稽核記錄承載，可做到欄位級
+  - 可攜性以匯出功能補
+  - AI 讀取不受影響，任務包本就由系統組好寫進 repo
+  - 追溯鏈不受影響，product 單引用一個 id 即可
+- 業界佐證：JIRA、Linear、Redmine 的工單皆存資料庫
 
 ### Product 封閉、Project 開放
 
@@ -145,21 +163,35 @@ Atlassian 的組織模型可直接沿用，補做時不需重查。
   - 不能亂自定義，只能提供滿足約束的 T
   - 這是組態迷宮與型別系統的差別
 
-### 型別約束
+### 領域屬性矩陣
 
-約束取代逐領域的零散裁決。
+六個領域的差異收在一張表，取代逐領域的零散裁決。
 
-- `Diffable`：工件能不能 diff
-  - 六個領域皆滿足
-  - Figma 檔不滿足，這是設計工件改為 mockup code 的理由
-- `SystemEditable`：格式由 IGotThis 自己定義
-  - Requirement 與 Roadmap 滿足，系統提供編輯器
-  - Design 與 Dev 不滿足，系統唯讀
-  - 這是編輯器邊界的判準：格式由誰定義，誰就提供編輯器
-- `Anchorable`：epic 能不能錨定它的 commit
-  - 只有 Roadmap 滿足
-- `Layered`：工件有沒有階層結構
-  - Roadmap、Design、QA 滿足
+| 領域 | 有 git | 工件是什麼 | 誰能編輯 | 可被錨定 | 階層 |
+|---|---|---|---|---|---|
+| requirement | 無 | 無獨立工件 | 系統 | 否 | 無 |
+| roadmap | 有 | 產品階層樹 | 系統 | 是 | Product → Module → Feature |
+| spec | 有 | 規格文件 | 未定 | 否 | 未定 |
+| design | 有 | mockup code | 本機 | 否 | Token → Component → Screen |
+| dev | 有 | 程式碼 | 本機 | 否 | 無 |
+| qa | 有 | 回歸測試流程 | 未定 | 否 | 未定 |
+
+各欄的判準：
+
+- 有 git：領域有沒有獨立工件可版控
+  - requirement 的真相與異動塌成同一物件，無第二個物件可版控
+  - 詳見 Source 是選配一節
+- 工件是什麼：git 裡實際存的東西
+  - 必須能 diff，這是 Figma 檔被排除的理由
+- 誰能編輯：格式由誰定義，誰就提供編輯器
+  - 格式由 IGotThis 自訂的走系統編輯器
+  - 格式由外部生態定義的留在本機，系統唯讀
+- 可被錨定：epic 能不能錨定它的 commit
+  - 只有 roadmap 為是，錨定機制只存在一處
+- 階層：工件本身有沒有樹狀結構
+  - 這是工件結構，與工單的維度欄位無關
+
+矩陣照出的缺口：spec 與 qa 的編輯權限與階層皆未裁決。
 
 ### 泛型類比的邊界
 
@@ -204,11 +236,13 @@ Atlassian 的組織模型可直接沿用，補做時不需重查。
 
 ```
 通則：每個 git 的 main = 真相，每張工單 = 一條 branch，merge = 回寫真相
-下圖是單一產品的六 git。多產品時每個產品各開一套
+下圖是單一 Container 的六個領域。多 Container 時各開一套
+requirement 無 git，其餘五域適用上述通則
 
-[requirement git]
-    真相：WishList 需求列表，一個 table 檔（csv 或 db，格式未定）
-    工單：Requirement 單 (.list)，異動 WishList
+[requirement 資料庫]
+    無 Source 軌，真相與異動塌成同一物件
+    WishList：需求列表，一列一張 Requirement 單
+    單內含 title、description、自定義欄位
       Req A ─┐
       Req B ─┼─ N 對 1：一張 product 單可收多個 requirement
       Req C ─┘          一個 requirement 只能連一張 product 單，要多連就拆單
@@ -227,7 +261,9 @@ Atlassian 的組織模型可直接沿用，補做時不需重查。
          ▼
 [專案管理階段]
     Development List：多個 epic 拖放排 priority，越上面越優先
-    Epic (.epic) = 一個要上線的功能
+    Epic (.epic) = 工作容器
+      錨點有值 → 有對應的產品決策，如一個要上線的功能
+      錨點為空 → 無對應決策，如發版回歸、例行維護
       ├─ spec   母單 ─ 子單… ──▶ spec git 的 branch
       ├─ design 母單 ─ 子單… ──▶ design git 的 branch
       ├─ dev    母單 ─ 子單… ──▶ dev[project] git 的 branch
@@ -252,22 +288,32 @@ Atlassian 的組織模型可直接沿用，補做時不需重查。
   - `.layer`：深度可自定的遞迴層級
 - 範例軌道：
   - WishList：需求收單池，單一 Wish 可以不處理
-    - 實體是 requirement git 裡的需求列表 table 檔
-    - 檔案格式未定案，csv 或 db 檔
+    - 實體是資料庫裡的需求列表，一列一張單
+    - 單內含 title、description、自定義欄位
+    - description 支援 markdown 與截圖
+    - 此軌無對應 git，見 Source 是選配一節
   - Product：Product → Module → Feature，層數可自定
   - Design：Token → Component → Screen
     - 實體是 html、css、JS 做的 mockup code
     - 設計工件 git 原生可 diff、可 merge，不依賴 Figma 檔
   - DevFE、DevBE、`Dev[Project]`：開發側真相
     - 拆分由團隊決定：by service、by code 專案、by 前後端
-  - Quality：qa git 放測試案例文件，按功能分檔，層級劃分未定案
+  - Quality：qa git 只放回歸測試流程文件
+    - 高度整理過的流程，每次 production 更新改一版
+    - 功能測試案例不進 git，寫在該 epic 的 QA 單裡
+    - 兩者不共用：功能測試的前提與步驟與回歸測試不同
 
 ### ChangeRequest 異動軌
 
 - 動詞世界，回答正在改什麼
 - 型別：
   - `.list`：Requirement 專用，直接異動 WishList
-  - `.epic`：一個要上線的功能，可錨定多個實例的 commit，明定不屬於 SourceOfTruth
+  - `.epic`：工作容器，明定不屬於 SourceOfTruth
+    - 可錨定多個實例的 commit，錨點欄位允許為空
+    - 錨點有值：有對應的產品決策，典型是一個要上線的功能
+    - 錨點為空：無對應決策，如發版回歸、例行維護
+    - 不另設型別欄位，避免與錨點狀態不同步
+    - 所有 epic 皆進 Development List 排 priority，因為都佔人力
   - `.task`：勞動單位，泛型形式是 `Task<T>`
     - Spec、Design、Dev、QA 是同一型別的四次實例化，非四個型別
 - 補充新增的環節：Product 單
@@ -282,6 +328,9 @@ Atlassian 的組織模型可直接沿用，補做時不需重查。
 - 每類工單強制連到上一層工單
 - 血緣鏈：Requirement → Product 單 → Epic → 各域母子單 → branch 與 commit
 - epic 可錨定多個實例 → 追溯圖是分層 DAG，不是單親樹
+- 錨點為空的 epic，追溯鏈在此處收束，不往上接 product 單
+  - 這是刻意的容器，不是斷鏈
+  - 它讓不屬於任何決策的工作有處可掛，孤兒工單維持禁止
 - 往上走：這個 bug 違反哪條原始 spec
 - 往下走：這條需求落到哪些改動
 - TraceMap 不是附加功能，是整個模型的骨架
@@ -289,6 +338,7 @@ Atlassian 的組織模型可直接沿用，補做時不需重查。
 ### Git 從隱喻升級為實作
 
 - 補充概念定調：Git 不是類比，是系統的實作基礎
+- 以下對照適用於有 Source 軌的五個領域，Requirement 除外
 - SourceOfTruth ↔ 各域 git 的 main
 - ChangeRequest ↔ 各域 git 的 branch
 - 回寫 ↔ merge：merge 過的內容即真相
@@ -313,7 +363,8 @@ Atlassian 的組織模型可直接沿用，補做時不需重查。
 ### 需求段
 
 - 任何角色在 requirement 開單，提出修改需求
-- 單的實體：對需求列表 table 檔的一次異動
+- 單的實體：需求列表裡的一列，存在資料庫
+- 單內含 title、description、自定義欄位，description 可寫 markdown 與貼截圖
 - bug 也在此階段開單，靠 requirement 的類型欄位區分 feature 與 bug
 - bug 急修走 severity 分流：
   - P0 與 P1 走快速通道：直接開 epic，錨定該功能上線時的 commit，事後補 product 單
@@ -343,8 +394,9 @@ Atlassian 的組織模型可直接沿用，補做時不需重查。
 ### 執行段
 
 - 專案管理階段涵蓋 spec、design、dev、qa
-- 開 epic：一個 epic 是一個要上線的功能
+- 開 epic：典型的 epic 是一個要上線的功能
 - epic 錨定 base layer 實例記錄的 commit，可一次錨定多個實例
+- 無對應決策的工作開一個錨點為空的 epic，如發版回歸、例行維護
 - 施工依據錨定當下的 commit 內容
 - product main 後續前進時，PM 可把錨點 re-anchor 到新 commit
 - re-anchor 後施工範圍跟著新版本調整
@@ -362,8 +414,28 @@ Atlassian 的組織模型可直接沿用，補做時不需重查。
 - 系統只顯示 epic 的 merge 進度，標出哪些 branch 還沒併
 - qa task 完成與否不擋上線，狀態只顯示，上線由人決定
 
+### 測試的兩種形態
+
+- 功能測試：跟著有錨點的 epic 走
+  - 案例數少、一次性，測完即結束
+  - 案例與執行結果都寫在該 epic 的 QA 單裡
+  - 單的 description 以 markdown 表格呈現步驟、預期、結果，可附截圖
+  - 測出問題就開 bug 單，關聯到該 QA 單
+- 回歸測試：跟著版本走
+  - 每次 production 更新跑一輪，案例數大
+  - 流程文件放 qa git，每次更新改一版
+  - 執行時開一個錨點為空的 epic，其下開 QA 單
+  - 結果同樣以 markdown 表格寫在單裡
+- 兩者的案例不共用
+  - 回歸測試是高度整理過的流程
+  - 功能測試的前提條件與步驟與之不同，不從回歸案例拉取
+- 執行紀錄不做結構化
+  - 系統不解析表格內容，不提供通過率與進度統計
+  - 代價已知：回歸輪次的統計與跨輪歷史查詢皆無
+
 ### 兩種 main 的語意
 
+- 本節只涉及有 Source 軌的領域
 - product git 在決策時 merge → main 是已決策的產品樣貌
 - spec、design、dev、qa 在上線時 merge → main 是線上實際狀態
 - 效果：查 spec main 看到線上行為，查 product main 看到決策方向
@@ -403,6 +475,7 @@ Atlassian 的組織模型可直接沿用，補做時不需重查。
 - Development List，與 Gantt 合併為同一面板：
   - 一體兩投影：拖放清單加時間軸
   - 清單：多個 epic 拖放排 priority，越上面優先級越高
+  - 有無錨點的 epic 同列一張清單，兩者都佔人力
   - 時間軸：同一批 epic 與 task 的排程投影
   - 展開 epic 可見母子單與 epic 內的 subtask 前後關係
   - 不同 epic 的 subtask 在資料結構上不互相關聯
@@ -510,6 +583,8 @@ Atlassian 的組織模型可直接沿用，補做時不需重查。
 - AI Workflow 的工程量已因不當執行環境而收斂，但上下文組裝仍是獨立工程
 - 不擁有執行環境 → 無法保證各人餵給 AI 的上下文與規範版本一致
 - AI task 不計工時 → AI 比重升高時，成本表與 BurnDownRate 逐漸失真
+- 錨點為空的 epic 可能被當雜物間，什麼都往裡面丟
+- 執行紀錄不結構化 → 回歸品質無數據可佐證，只能靠人讀單子
 - Problems 的 Design 與 QA 兩節空白 → 需求訪談有缺口，對應構件有過度設計風險
 
 ---
@@ -522,7 +597,8 @@ Atlassian 的組織模型可直接沿用，補做時不需重查。
 - 單一 Wish 可不處理 ↔ 落地層的保留待未來時機
 - Product 真相軌的層級 ↔ 整合層產出的 Product Map
 - TraceMap ↔ 各層產出物之間的追溯關係
-- Epic 與 Task ↔ 落地層 Roadmap 的交付單位
+- 有錨點的 Epic 與 Task ↔ 落地層 Roadmap 的交付單位
+- 錨點為空的 Epic 在框架中無對應，屬框架未覆蓋的執行層
 
 ### 未被制度化的部分
 
@@ -562,8 +638,9 @@ Atlassian 的組織模型可直接沿用，補做時不需重查。
 
 - branch 粒度已定為自定義欄位，殘留：TraceMap 與上線收斂要同時支援母單與子單兩種掛法
 - branch 欄位漏填或填錯的偵測機制
-- WishList table 檔案格式未定案：csv 可 diff，db 檔進 git 難 diff 與 merge
+- Requirement 已定為無 git 純資料庫，殘留：匯出功能的形態與時機
 - severity 判定表的實際級距內容待展開
+- 錨點為空的 epic 如何防濫用：要不要限定用途或需審核
 - subtask 互掛的環偵測規則
 - Timeline 現況以工期表達，工期制與日期制排程對 Gantt 設計含義不同
 - merge 時機無法用型別參數表達，需以策略或關聯型別承載
@@ -576,7 +653,9 @@ Atlassian 的組織模型可直接沿用，補做時不需重查。
 - 遷移策略：Redmine、JIRA、excel 既有資料怎麼搬，過渡期如何避免雙軌漏同步
 - Figma 在流程中的角色：mockup 進 git 後，Figma 是上游草稿還是退場
 - 權限模型：角色乘六域乘 Container 數的矩陣，加上跨 Container 人員的可見範圍
+  - git 側只涵蓋五域，requirement 的權限只在系統內
 - repo 數量隨 Container 線性成長，命名與分組規則待定
+- 執行紀錄若日後要統計，回歸文件需訂固定格式供系統解析
 - Company 建立流程與帳號歸屬已定為第一階段不做
   - 商品化前必須回頭處理，屬 schema 重構不是加功能
   - 補做時的參考模型見組織與泛型結構章節
