@@ -60,7 +60,7 @@ flowchart LR
 - hosting 沒有跨 repo 原子 merge，系統不自建協調器、只做狀態呈現
   - 仲裁一律由 git 承擔
 - 選型訊號：
-  - GitLab 原生 epic、依賴、group 權限繼承，對映度高，關鍵能力綁 Premium
+  - GitLab 原生 Epic、依賴、group 權限繼承，對映度高，關鍵能力綁 Premium
   - GitHub 需以 Projects 與 sub-issues 拼裝，權限能力綁 Enterprise
   - 需要 on-prem 落地時 GitLab self-managed 較成熟，此前提會翻轉選型
 
@@ -78,9 +78,12 @@ flowchart LR
 
 ## 真差異化
 
-- 完整成立的只有一條：TraceMap 級的強制追溯
+- TraceMap 的強制追溯成立兩段
+  - 一段是 `Issue<.item>` 連 roadmap task
+  - 一段是 Epic 往下到 task 與 commit
+  - roadmap 到 Epic 一段不設機制，靠 Epic 內的需求來源描述
   - 一般 PM 工具靠人工紀律，合規級 ALM 工具昂貴且體驗差
-  - 護城河在六域關聯圖，不在工件內容
+  - 護城河是兩段機制強制加統一資料模型，非全鏈機制
 - 部分成立：工單之外持有指向系統現況的強制指標
   - 市面工具只有工單，沒有指向系統現況的強制指標
   - 系統持有的是指標而非內容庫，與市面的差異因此縮小

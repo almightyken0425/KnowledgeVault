@@ -6,11 +6,13 @@
 
 - 本篇描述單一 `Management<T>` 內部的運作
 - 本質是把 Git 的心智模型移植到產品管理
-- 每張工單等於一條 branch，merge 等於回寫真相
+- 每張 `Issue<.task>` 等於一條 branch，merge 等於回寫真相
 - 檔位 A 無 branch 也無 merge，寫入即生效
 - 檔位 C 的真相是 git 的 main，系統只持有 commit 指標
 - 兩檔位的推導細節見所有權檔位篇
-- 全鏈總覽圖畫的是單一 Container 的六個領域，多 Container 時各開一套
+- 全鏈總覽圖畫的是單一 Team 的六個領域
+  - Requirement 與 Roadmap 隨 Product 各開一套
+  - 執行四域隨 Project 一套，多 Team 時整組各開
 
 ---
 
@@ -21,13 +23,13 @@
 
 ```mermaid
 flowchart TD
-    subgraph REQ["requirement 資料庫 檔位 A"]
-        RA["Requirement 甲"]
-        RB["Requirement 乙"]
-        RC["Requirement 丙"]
+    subgraph REQ["Requirement 工單系統 檔位 A"]
+        RA["Issue<.item> 甲"]
+        RB["Issue<.item> 乙"]
+        RC["Issue<.item> 丙"]
     end
     subgraph RM["roadmap repo 檔位 C"]
-        PD["Product 單對應一條 branch"]
+        PD["roadmap 的 Issue<.task> 對應一條 branch"]
         TR["main 已決策的產品樣貌"]
     end
     RA -->|"N 對 1"| PD
@@ -37,19 +39,19 @@ flowchart TD
 ```
 
 - requirement 資料庫無 repo 掛勾，真相與異動塌成同一物件
-- WishList 是需求列表，一列一張 Requirement 單
+- WishList 是需求列表，一列一張 `Issue<.item>`
 - 單內含 title、description、自定義欄位
-- 一張 Product 單可收多個 requirement
-- 一個 requirement 只能連一張 Product 單，要多連就拆單
-- Product 單的內容是修改 roadmap 文件
+- 一張 roadmap task 可收多個 .item
+- 一個 .item 只連一張 roadmap task，要多連就拆單
+- roadmap task 的內容是修改 roadmap 文件
 - merge 後系統持有新的 commit 指標
 - 執行到上線圖回答決策如何落到檔位 C 四領域的 git
 
 ```mermaid
 flowchart TD
-    RC["roadmap commit"]
+    SRC["Epic 內的需求來源描述"]
     subgraph PMO["專案管理階段"]
-        EP["Epic 跨領域工作容器"]
+        EP["Epic 跨域工單"]
         SM["spec 母單與子單"]
         DM["design 母單與子單"]
         VM["dev 母單與子單"]
@@ -61,7 +63,7 @@ flowchart TD
         VG["dev git 的 main"]
         QG["qa git 的 main"]
     end
-    RC -->|"Epic 錨定 roadmap commit 可多錨"| EP
+    SRC -->|"人工填寫 非機制"| EP
     EP --> SM
     EP --> DM
     EP --> VM
@@ -73,10 +75,10 @@ flowchart TD
 ```
 
 - Development List 收多個 Epic 拖放排 priority，排序越前越優先
-- Epic 是 scope 跨領域的工作容器，不綁單一領域
-- 錨點有值 → 有對應的產品決策，如一個要上線的功能
-- 錨點為空 → 無對應決策，如發版回歸、例行維護
-- 施工依據錨定 commit 當下的 roadmap 內容
+- Epic 是跨域工單，不綁單一領域
+- 需求來源有內容的 Epic 對應一個要上線的功能
+- 需求來源留白的 Epic 是例行工作，如發版回歸
+- 施工依據由 Epic 描述與 roadmap 內容人工對照
 - 母單與子單同型，差別只在有無父單
 - branch 是自定義欄位，團隊自訂填在母單還是子單
 - dev git 依專案拆分，泛型寫法是 `Dev[Project]`
@@ -116,28 +118,24 @@ flowchart TD
 
 ---
 
-## 工單模型
+## Issue 型別模型
 
 - 工單回答正在改什麼
-- 所有工單同一型別，差別只在兩個欄位
-  - scope：跨領域的工作容器，或綁定單一領域
-  - parent：有無父單
-- 工作容器即 Epic，scope 跨領域
-  - 可錨定 roadmap commit，錨點欄位允許為空
-  - 錨點有值：有對應的產品決策，典型是一個要上線的功能
-  - 錨點為空：無對應決策，如發版回歸、例行維護
-  - 不另設型別欄位，避免與錨點狀態不同步
+- 工單統一型別是 `Issue<T>`，種類由 `issue.type` 判別
+- T 分三種：.item、.task、.epic
+- 欄位收在四組欄位容器，名稱暫定
+  - BasicFields、TaskFields、RelationFields、EpicFields
+  - 每組內含預設欄位加自定義欄位
+  - 自定義欄位可自訂名稱與 value 型別
+- Field 是具體型別，非泛型
+  - TextField、SelectField、NumberField、DateField、UserField、RefField
+- `Issue<.task>` 可遞迴互掛，母子同構，深度不限
+- Task 持有所屬 Epic 的關聯欄位，多對一記在多的那邊
+- Epic 在 Project 層，跨四域，不屬任何單一 Management
   - 皆進 Development List 排 priority，因為都佔人力
-- 勞動單位即 Task，scope 綁單一領域
-  - 泛型形式是 `Task<T>`
-  - Spec、Design、Dev、QA 是同一型別的四次實例化，非四個型別
-  - 母單與子單同型，差別只在有無父單
 - 排序是工單上的持久欄位，不是查詢時算出來的
-- Product 單：PM 開立，上承 requirement
-  - 本體是 roadmap 側的一條 branch
 - 掛載規則
-  - Task 一定掛在工作容器底下 → 禁止孤兒工單
-  - Task 之間可互掛為 subtask
+  - Task 一定掛在 Epic 底下 → 禁止孤兒工單
   - 不同層級不可掛前後順序 → 依賴只存在同層 → 排程檢查可控
 - 排程依賴與追溯關聯是兩種邊，不可混用
   - 追溯走 ref 型別欄位，排程走同層的前後順序邊
@@ -151,8 +149,7 @@ flowchart TD
 - roadmap 在決策時 merge → main 是已決策的產品樣貌
 - 其餘四域在上線時 merge → main 是線上實際狀態
 - 效果：查 spec main 看到線上行為，查 roadmap main 看到決策方向
-- 追溯出貨規格不看 roadmap main 當下狀態，看 Epic 錨定的 commit
-- 錨定 commit 即該功能的決策依據，不需要另記已上線指標
+- 追溯出貨規格不看 roadmap main 當下狀態，看該 Epic 底下 spec task 的 commit
 - 出貨當時的規格文件本體，由該 Epic 底下 Task 的 commit 承載
 
 ---
@@ -176,19 +173,20 @@ flowchart TD
 
 ## TraceMap 追溯鏈
 
-- 每類工單強制連到上一層工單
-- 血緣鏈：Requirement → Product 單 → roadmap commit → Epic → 各域母子單 → branch 與 commit
-- Epic 可錨定多個 roadmap commit → 追溯圖是分層 DAG，不是單親樹
-- 血緣圖回答追溯 DAG 長什麼樣、錨點為空的 Epic 收在哪
+- 血緣鏈：`Issue<.item>` → roadmap 的 `Issue<.task>` → roadmap 內容 → Epic 需求來源 → `Issue<.epic>` → 各域母子單 → branch 與 commit
+- 強制段與紀律段分開明寫
+  - .item 連 roadmap task 的關聯是機制強制
+  - Epic 往下到 Task 與 commit 是機制強制
+  - roadmap 到 Epic 靠 Epic 需求來源人工描述，是紀律非機制
+- 血緣圖回答追溯鏈長什麼樣、無需求來源的 Epic 收在哪
 
 ```mermaid
 flowchart TD
-    R1["Requirement 甲"]
-    R2["Requirement 乙"]
-    PD["Product 單"]
-    RC["roadmap commit"]
-    E1["Epic 有錨點"]
-    E0["Epic 錨點為空"]
+    R1["Issue<.item> 甲"]
+    R2["Issue<.item> 乙"]
+    RT["roadmap task"]
+    E1["Epic 有需求來源"]
+    E0["Epic 無需求來源"]
     SM["spec 母單"]
     SC["spec 子單"]
     SB["spec branch 與 commit"]
@@ -196,10 +194,9 @@ flowchart TD
     VB["dev branch 與 commit"]
     QM["qa 單"]
     QB["qa branch 與 commit"]
-    R1 --> PD
-    R2 --> PD
-    PD -->|"merge 產生"| RC
-    RC -->|"錨定"| E1
+    R1 --> RT
+    R2 --> RT
+    RT -.->|"Epic 需求來源人工描述"| E1
     E1 --> SM
     SM --> SC
     SC --> SB
@@ -209,8 +206,8 @@ flowchart TD
     QM --> QB
 ```
 
-- 錨點為空的 Epic，追溯鏈在此處收束，不往上接 Product 單
-  - 這是刻意的容器，不是斷鏈
+- 無需求來源的 Epic，追溯鏈在此處收束，不往上接 roadmap task
+  - 這是刻意的設計，不是斷鏈
   - 不屬於任何決策的工作有處可掛，孤兒工單維持禁止
 - 往上走：這個 bug 違反哪條原始 spec
 - 往下走：這條需求落到哪些改動
@@ -229,6 +226,6 @@ flowchart TD
   - 現在是什麼：repo 掛勾指向的 main 回答
   - 改了什麼：工單回答
   - 為何而改、由誰而改：TraceMap 回答
-- 系統對每個帶 repo 的領域持有強制掛勾與 ref 欄位，內容本體留在 git
-  - 差異在有沒有這條強制指標，不在誰持有內容
+- 系統對帶 repo 的領域持有強制掛勾與 ref 欄位，內容本體留在 git
+  - 對 roadmap 到 Epic 一段不設機制
 - 一條需求從開單到上線的逐段旅程，見端到端流程篇

@@ -10,15 +10,15 @@
   - 沒有甘特圖 → Gantt 功能直接補上，加依賴檢查與紅線警示
   - 人工同步會漏 → 單一資料模型後，同步環節整個消失
   - Priority List 靠 excel 維護 → Development List 拖放排序承接
-  - branch 與 commit 對不到工單 → 工單即 branch，關聯是機制本身
+  - branch 與 commit 對不到工單 → `Issue<.task>` 即 branch，關聯是機制本身
     - 現階段對應靠自定義欄位人工承載，掛勾自動化屬構想，見系統邊界與市場對照篇
 - 部分解：
-  - 追原始 spec → Epic 錨定 roadmap commit，其下 Task 帶 spec 的 commit
+  - 追原始 spec → Epic 需求來源加其下 Task 帶 spec 的 commit
   - 解到 commit 級：找得到出貨當時那份文件，不必翻 code 也不必問人
   - 未解到條目級：哪一條規格被違反，仍需人打開該 commit 自行判讀
   - 這是檔位 C 的必然代價，系統不解析 git 內容
 - 部分解的殘留細節：
-  - bug 追溯要看 spec git 哪個 commit，與 Epic 錨點的對齊規則待定
+  - bug 追溯要看 spec git 哪個 commit，與 Epic 需求來源的對照靠人工
 
 ---
 
@@ -41,7 +41,7 @@
 
 - 一體兩投影：拖放清單加時間軸
 - 清單：多個 Epic 拖放排 priority，排序越前優先級越高
-- 有無錨點的 Epic 同列一張清單，兩者都佔人力
+- 有無需求來源的 Epic 同列一張清單，兩者都佔人力
 - 時間軸：同一批 Epic 與 Task 的排程投影
 - 展開 Epic 可見母子單與 Epic 內的 subtask 前後關係
 - 不同 Epic 的 subtask 在資料結構上不互相關聯
@@ -54,8 +54,7 @@
 
 ### 成本計算表
 
-- 以人與 Container 兩個軸彙總
-- Container 對應公司底下的一個商業產品，施工環境完全切開
+- 以人與商業產品兩個軸彙總
 - 不切到模組層：共用元件被改時，成本歸屬講不清
 - 人可跨商業產品，工時跟著 Task 走，Task 屬於哪個商業產品就記哪個
 - 標記為外部工具產出的 Task 不計工時，成本表不涵蓋該代價
@@ -70,16 +69,17 @@
 
 ### 自定義表單
 
+- 自定義欄位掛在四組欄位容器內，可自訂名稱與 value 型別
+- 欄位配置的範圍由 Team 承擔
 - 階層是使用者工件內的文件約定，系統不配置也不感知
-- 結構分 Epic、Task，欄位名稱與值類型可配置
-- Requirement 也可自定義欄位，如類型欄位區分 feature 與 bug
+- 類型欄位區分 feature 與 bug，是 `Issue<.item>` 的自定義欄位例子
 - branch 欄位填在母單或子單，由團隊自定義
 - 維度即欄位，篩選規則見組織與泛型結構篇的欄位與篩選章節
 
 ### 使用者管理
 
 - 國家、地區、聯絡方式、role
-- 人隸屬 Company，可跨 Team 與 Container
+- 人隸屬 Company，可跨 Team 與 Product
 
 ### 工作日設定
 

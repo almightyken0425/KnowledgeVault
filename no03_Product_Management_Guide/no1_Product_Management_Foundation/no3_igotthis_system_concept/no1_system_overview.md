@@ -9,7 +9,7 @@
 - requirement、roadmap、spec、design、dev、qa 六域各自有一組工單系統
 - 工件存放位置由所有權檔位決定，六域分屬兩種檔位
 - 工件留在使用者的 git，系統只持有 commit 指標
-- 六域以 Container 為單位成套，公司有幾個 Container 就開幾套
+- 六域以 Team 為單位成套，Team 收多個 Product 與一個 Project
 - 容器層級見組織與泛型結構篇，檔位推導見所有權檔位篇
 - 目標：產品開發的全部工件關聯進同一套資料模型，追溯不再靠人腦
 - 定性：框架產出物的索引層，加上框架下游的執行層
@@ -112,16 +112,16 @@ flowchart LR
 | 名詞 | 一句話定義 | 詳見主題 |
 |---|---|---|
 | 工件 | 被版本管理的內容本體，如規格文件、mockup code、程式碼 | 所有權檔位篇的領域屬性矩陣 |
-| 工單 | ticket，Requirement、Epic、Task 皆是工單 | 資料模型與追溯篇 |
+| 工單 | ticket，統一型別 `Issue<T>` | 資料模型與追溯篇 |
+| `Issue<T>` | 工單的統一型別，T 分 .item、.task、.epic 三種 | 資料模型與追溯篇 |
+| 欄位組 | Issue 內收欄位的容器，預設加自定義 | 資料模型與追溯篇 |
 | 所有權檔位 | 系統的第一級軸，回答工件歸誰管、由誰編輯 | 所有權檔位篇 |
-| Container | 六域成套的單位，內含 Product 集合與 Project 集合 | 組織與泛型結構篇 |
 | Management | 一個領域一套工單系統，可掛一個使用者 repo | 組織與泛型結構篇 |
-| 錨點 | ref 型別欄位的一種用法，Epic 以此錨定 roadmap commit | 組織與泛型結構篇的欄位與篩選章節 |
-| Epic | scope 跨領域的工作容器 | 資料模型與追溯篇 |
-| Task | 綁單一領域的勞動單位，母單與子單同型 | 資料模型與追溯篇 |
-| TraceMap | 每類工單強制連到上一層形成的追溯鏈 | 資料模型與追溯篇 |
+| Epic | `Issue<.epic>`，Project 層的跨域工單，上承需求來源描述 | 資料模型與追溯篇 |
+| Task | `Issue<.task>`，可遞迴互掛的執行工單 | 資料模型與追溯篇 |
+| TraceMap | 工單間的追溯鏈，兩段機制強制加一段人工紀律 | 資料模型與追溯篇 |
 | Development List | 多個 Epic 拖放排 priority 的清單 | 功能構想篇 |
-| WishList | 需求收單池，一列一張 Requirement 單 | 資料模型與追溯篇 |
+| WishList | 需求收單池，一列一張 `Issue<.item>` | 資料模型與追溯篇 |
 
 ---
 

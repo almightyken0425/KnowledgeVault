@@ -13,24 +13,23 @@
 flowchart TD
     Company["Company"] --> Users["User 清單"]
     Company --> Team["Team"]
-    Team --> Container["Container"]
-    Container --> ProductSet["Product 集合"]
-    Container --> ProjectSet["Project 集合"]
-    ProductSet --> MReq["Management Requirement 檔位 A 無工件"]
-    ProductSet --> MRoad["Management Roadmap 檔位 C 工件在使用者 git"]
-    ProjectSet --> MSpec["Management Spec 檔位 C 工件在使用者 git"]
-    ProjectSet --> MDesign["Management Design 檔位 C"]
-    ProjectSet --> MDev["Management Dev 檔位 C"]
-    ProjectSet --> MQA["Management QA 檔位 C"]
-    ProjectSet --> MT["Management T 未來新增領域從這裡長"]
+    Team --> Product["Product 多個"]
+    Team --> Project["Project 一個"]
+    Product --> MReq["Requirement 工單系統 檔位 A"]
+    Product --> MRoad["Roadmap 工單系統 檔位 C"]
+    Project --> MSpec["Spec 工單系統 檔位 C"]
+    Project --> MDesign["Design 工單系統 檔位 C"]
+    Project --> MDev["Dev 工單系統 檔位 C"]
+    Project --> MQA["QA 工單系統 檔位 C"]
+    Project --> Epics["Epic 清單"]
+    Project --> MT["Management T 可擴充新領域"]
 ```
 
 - Company 是計費單位，按不重複人數收費
-- User 屬於 Company，可跨 Team 與 Container
-- Container 不帶型別參數，固定一組配對
-- Product 集合是封閉集合，恰好兩個 Management
-- Project 集合是開放集合，可擴充
-- 未來新增領域從 `Management<T>` 這一槽長出
+- User 屬於 Company，可跨 Team 與 Product
+- Team 收多個 Product 與一個 Project
+- Product 即商業產品
+- Project 是執行場地，Epic 在此層
 
 ---
 
@@ -41,8 +40,8 @@ flowchart TD
   - 不做自助註冊、不做多 Company、不做網域驗證
 - 計費規則已定：按 Company 內不重複人數
   - 此處計費指 IGotThis 向客戶收費，與成本計算表的工時彙總無關
-  - 一人跨幾個 Container 都只算一次
-  - 跨 Container 是刻意設計，計費不懲罰跨用行為
+  - 一人跨幾個 Product 都只算一次
+  - 跨 Product 是刻意設計，計費不懲罰跨用行為
   - 實務細節可採週期內最高人數計費，期中加人按比例
   - 理由：防止在扣款日前先移除帳號
 - 延後的代價：User 對 Company 是一對一還是多對多屬 schema 決策
@@ -68,7 +67,7 @@ flowchart TD
 - 不建議沿用的部分：站台這一層
   - 站台層是網址命名空間演變來的歷史包袱
   - 多數公司只用一個站台，也是使用者公認的困惑來源
-  - Team 到 Container 的結構已足夠，不需對應層
+  - Team 收 Product 與 Project 的結構已足夠，不需對應層
 
 ---
 
@@ -76,6 +75,7 @@ flowchart TD
 
 - `Management<T>` 是一個領域的工單系統
 - 工單系統恆存在，形狀固定，一律歸資料庫
+- 工單統一型別是 `Issue<T>`，詳見資料模型與追溯篇
 - 檔位 C 的 Management 掛一個使用者 repo
   - 掛勾是 Management 的設定項，不是資料
 - 真相本體在掛勾 repo 的 main，系統不持有真相、只持有指向
@@ -87,8 +87,8 @@ flowchart TD
 flowchart TD
     M["Management T"] --> I["工單系統"]
     M --> RG["repo 掛勾 設定項"]
-    I --> F["Field T 欄位組"]
-    F --> RF["ref 型別欄位 含 commit 指標與錨點"]
+    I --> F["欄位組"]
+    F --> RF["ref 型別欄位 含 commit 指標"]
     RG --> UR["使用者 repo 的 main 即真相"]
 ```
 
@@ -96,21 +96,16 @@ flowchart TD
 
 ---
 
-## Product 集合封閉、Project 集合開放
+## Product 與 Project
 
-- 劃分是決策側與執行側
-  - Product 集合收決策側的 requirement 與 roadmap
-  - Project 集合收執行側的 spec、design、dev、qa 四域
-- 此劃分是否定案、或兩集合合併，尚待拍板
-  - 詳見風險與待決篇
-- Product 集合恰好兩個 Management，型別參數寫死
-- Project 集合可有 N 個 Management，型別參數開放
-- 新增領域只能長在 Project 集合側
+- Product 即商業產品，內含 Requirement 與 Roadmap 兩個工單系統
+- Project 收執行側四域的工單系統，可擴充新領域
+- Team 內多個 Product 配一個 Project
+- Epic 在 Project 層、跨域，不屬任何單一 Management
+- 新增領域只能長在 Project 側
   - 加 `Management<Security>` 成立
-  - 加在 Product 集合側不成立
-- Container 內 Product 集合與 Project 集合一對一，兩者皆必要
-  - 純技術債專案也要開對應的 Product 單
-  - 理由：每筆施工都要溯得到需求，是整套追溯的前提
+- 每筆施工都要溯得到需求，是整套追溯的前提
+  - 由 .item 連 roadmap task 與 Epic 需求來源承擔
 
 ---
 
@@ -119,11 +114,11 @@ flowchart TD
 - 六個領域是同一個 `Management<T>` 的六次實例化
   - 工單系統的流程與工單形狀完全相同，差別只在 T
   - repo 掛勾的有無由檔位決定
-- 具名 task 塌成一個型別
-  - Spec task、Design task、Dev task、QA task 是 `Task<T>` 的四次實例化
-  - 這解釋了為何四者的型別差異只剩標籤功能
+- 工單塌成單一 `Issue<T>`
+  - 種類由 `issue.type` 判別
+  - 六域的 task 是 `Issue<.task>` 在不同 Management 的實例
 - 報表寫一次即可
-  - TraceMap、Gantt、成本表都吃 `Task<T>`，不管 T 是什麼
+  - TraceMap、Gantt、成本表都吃 `Issue<.task>`，不管 T 是什麼
   - 只對吃工單的報表成立，要讀工件內容的報表不在此列
 - 新增領域是實例化，不是開新功能
   - 宣告 T、選檔位、標明該 T 滿足哪些約束，其餘機制免費跟上
@@ -161,15 +156,20 @@ flowchart TD
 
 ## 欄位與篩選
 
-- 每張工單帶一組 `Field<T>` 欄位設定
-- 維度不是獨立機制，維度就是 `Field<T>` 的一種用法
-- 每個 Container 先設定有哪些欄位、各欄位有哪些選項
-- 開單時選填，需求列表即可依欄位篩選
-- 搭配拖放排序，取代 excel 逐列填寫的原始做法
+- 工單統一型別是 `Issue<T>`，T 分 .item、.task、.epic 三種
+  - 種類由 `issue.type` 判別
+- 各種類的欄位組組合固定
+  - .item 只有 BasicFields
+  - .epic 是 BasicFields 加 EpicFields
+  - .task 是 BasicFields 加 TaskFields 加 RelationFields
+- 四組名稱暫定，每組內含預設欄位加自定義欄位
+- 自定義欄位可自訂名稱與 value 型別
+- Field 是具體型別，不是泛型
+  - TextField、SelectField、NumberField、DateField、UserField、RefField
+- 維度不是獨立機制，維度就是自定義欄位的一種用法
 - 所有欄位型別皆可作為篩選條件
   - 自由文字型別的篩選實質是搜尋，不是等值比對
   - 此差異需在介面上分開呈現，避免誤解為精確篩選
-- 錨點不是獨立機制
-  - 錨點的標的是 roadmap repo 的 commit
-  - 錨點與 commit 指標同為 ref 型別欄位的用法
-- commit 指標也是 ref 型別欄位，指向掛勾 repo 的 commit
+- commit 指標是 RefField 的實例，指向掛勾 repo 的 commit
+- Task 帶所屬 Epic 的關聯欄位，多對一記在多的那邊
+- 欄位窮舉與分組尚未定案，詳見風險與待決篇

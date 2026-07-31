@@ -18,7 +18,8 @@
 - 關聯資料匯出仍是獨立工程，不因產品不含 AI 成份而消失
 - 不擁有執行環境 → 無法保證各人手上的匯出版本一致
 - 外部工具產出的 Task 不計工時 → 比重升高時成本表與 BurnDownRate 失真
-- 錨點為空的 Epic 可能被當雜物間，什麼都往裡面丟
+- 無需求來源的 Epic 可能被當雜物間，什麼都往裡面丟
+- roadmap 到 Epic 的追溯不設機制 → 需求來源品質靠人工紀律、失守即斷鏈
 - 執行紀錄不結構化 → 回歸品質無數據可佐證，只能靠人讀單子
 - 原始大綱 Problems 的 Design 與 QA 兩節空白 → 需求訪談有缺口，對應構件有過度設計風險
   - 原始大綱指 PM 的 mindmap 盤點與口述補充紀錄，結構見依框架標準的自我檢核章節
@@ -36,8 +37,8 @@
 - 單一 Wish 可不處理 ↔ 落地層的保留待未來時機
 - roadmap repo 的內容 ↔ 整合層產出的 Product Map
 - TraceMap ↔ 各層產出物之間的追溯關係
-- 有錨點的 Epic 與 Task ↔ 落地層 Roadmap 的交付單位
-- 錨點為空的 Epic 在框架中無對應，屬框架未覆蓋的執行層
+- 有需求來源的 Epic 與 Task ↔ 落地層 Roadmap 的交付單位
+- 無需求來源的 Epic 在框架中無對應，屬框架未覆蓋的執行層
 
 ### 未被制度化的部分
 
@@ -61,11 +62,10 @@
 ### 用語待統一
 
 - Requirement 一詞雙義：框架指問題分析單位，本構想指工單型別
-- Product 一詞三義，最需優先定名：
-  - Container 裡與 Project 配對的實體
-  - 商業意義上的產品
-  - roadmap 側的工單型別
-- 現況：本資料夾採消歧寫法，Product 集合、商業產品、Product 單分開稱呼，正式定名仍待決
+- Product 即商業產品已定；殘餘雙義是商業產品與 roadmap 側工單，消歧靠 `issue.type`
+- 現況：本資料夾以商業產品與 roadmap task 分開稱呼
+- Project 一詞雙義：Team 下的執行容器、與 dev 拆分用的 code 專案
+  - `Dev[Project]` 的 Project 指 code 專案，非執行容器
 - Product Map 要求的優先順序屬性，原始大綱未說存放在哪
 - 原始大綱出現 MVC 管理 Spec 一詞，MVC 未定義，需與規格寫作政策的分層對齊命名
 
@@ -75,11 +75,13 @@
 
 ### 資料模型
 
+- 欄位窮舉與四組分類：BasicFields、TaskFields、RelationFields、EpicFields 為暫定名
 - branch 粒度是自定義欄位，TraceMap 與上線收斂要同時支援母單與子單兩種掛法
 - branch 欄位漏填或填錯的偵測機制
 - 檔位 A 匯出功能的形態與時機
 - severity 判定表的實際級距內容待展開
-- 錨點為空的 Epic 如何防濫用：要不要限定用途或需審核
+- 無需求來源的 Epic 如何防濫用：要不要限定用途或需審核
+- 快速通道補單擋結案的機制掛點：Epic 與補開的 roadmap task 之間無關聯可查
 - subtask 互掛的環偵測規則
 - Timeline 現況以工期表達，工期制與日期制排程對 Gantt 設計含義不同
 - Gantt 疊圖依據：roadmap 內容系統讀不到，改由工單欄位承載或放棄
@@ -98,14 +100,14 @@
 - build vs buy：真差異化只有單一條，不可取代性論證待補
 - 遷移策略：Redmine、JIRA、excel 既有資料怎麼搬，過渡期如何避免新舊兩套漏同步
 - Figma 在流程中的角色：mockup 進 git 後，Figma 是上游草稿還是退場
-- 權限模型：角色乘六域乘 Container 數的矩陣，加上跨 Container 人員的可見範圍
+- 權限模型：角色乘六域乘 Product 數的矩陣，加上跨 Product 人員的可見範圍
   - 檔位 C 可借 hosting 的 repo 權限分攤
   - 檔位 A 的權限在系統內自建
-- repo 數量隨 Container 線性成長，命名與分組規則待定
+- repo 數量隨 Product 線性成長，命名與分組規則待定
 - 執行紀錄若日後要統計，回歸文件需訂固定格式供系統解析
   - 檔位 C 下系統不解析，統計只能靠匯出後外部處理
 - Company 建立流程與帳號歸屬已定為第一階段不做
   - 商品化前必須回頭處理，屬 schema 重構不是加功能
   - 補做時的參考模型見組織與泛型結構篇
-- Product 集合與 Project 集合的劃分依據待拍板：依決策側與執行側劃分、或合併兩集合
+- 成本歸屬細則：Task 記到哪個商業產品的判定規則
 - git 掛勾自動化的深度：branch 綁定、commit 追蹤、webhook 回寫的具體作法之後再議
