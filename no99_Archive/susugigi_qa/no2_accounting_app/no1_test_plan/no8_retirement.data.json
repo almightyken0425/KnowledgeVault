@@ -1,0 +1,446 @@
+{
+ "retiredIn": "feat/qa-mechanical-fix",
+ "entries": [
+  {
+   "id": "C-BT-005",
+   "assertion": "登入畫面顯示品牌標誌",
+   "book": "no1_boot_identity.md",
+   "priority": "P2",
+   "reason": "錨檔 src/screens/Auth/LoginScreen.tsx 已隨無帳號整改刪除",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-BT-006",
+   "assertion": "Google 與 Apple 登入按鈕並排顯示",
+   "book": "no1_boot_identity.md",
+   "priority": "P1",
+   "reason": "錨檔 src/screens/Auth/LoginScreen.tsx 已隨無帳號整改刪除",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-BT-007",
+   "assertion": "登入按鈕僅含提供者圖示、無文字標籤",
+   "book": "no1_boot_identity.md",
+   "priority": "P2",
+   "reason": "錨檔 src/screens/Auth/LoginScreen.tsx 已隨無帳號整改刪除",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-BT-008",
+   "assertion": "Apple 登入按鈕僅 iOS 平台顯示",
+   "book": "no1_boot_identity.md",
+   "priority": "P1",
+   "reason": "錨檔 src/screens/Auth/LoginScreen.tsx 已隨無帳號整改刪除",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-BT-009",
+   "assertion": "登入載入中被點按鈕顯示載入狀態",
+   "book": "no1_boot_identity.md",
+   "priority": "P1",
+   "reason": "錨檔 src/screens/Auth/LoginScreen.tsx 已隨無帳號整改刪除",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-BT-010",
+   "assertion": "登入載入中兩鈕皆不可點按",
+   "book": "no1_boot_identity.md",
+   "priority": "P1",
+   "reason": "錨檔 src/screens/Auth/LoginScreen.tsx 已隨無帳號整改刪除",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-BT-011",
+   "assertion": "頁尾條款引導文字與其下兩連結相連成完整語意",
+   "book": "no1_boot_identity.md",
+   "priority": "P2",
+   "reason": "錨檔 src/screens/Auth/LoginScreen.tsx 已隨無帳號整改刪除",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-BT-012",
+   "assertion": "頁尾條款引導文字不重複條款名稱",
+   "book": "no1_boot_identity.md",
+   "priority": "P2",
+   "reason": "錨檔 src/screens/Auth/LoginScreen.tsx 已隨無帳號整改刪除",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-BT-013",
+   "assertion": "頁尾顯示使用條款與隱私政策兩連結",
+   "book": "no1_boot_identity.md",
+   "priority": "P2",
+   "reason": "錨檔 src/screens/Auth/LoginScreen.tsx 已隨無帳號整改刪除",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-BT-014",
+   "assertion": "頁尾顯示版權文字",
+   "book": "no1_boot_identity.md",
+   "priority": "P2",
+   "reason": "錨檔 src/screens/Auth/LoginScreen.tsx 已隨無帳號整改刪除",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-BT-015",
+   "assertion": "點按使用條款連結開啟外部頁面",
+   "book": "no1_boot_identity.md",
+   "priority": "P2",
+   "reason": "錨檔 src/screens/Auth/LoginScreen.tsx 已隨無帳號整改刪除",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-BT-016",
+   "assertion": "點按隱私政策連結開啟外部頁面",
+   "book": "no1_boot_identity.md",
+   "priority": "P2",
+   "reason": "錨檔 src/screens/Auth/LoginScreen.tsx 已隨無帳號整改刪除",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-BT-017",
+   "assertion": "兩登入門共用單一登入管線",
+   "book": "no1_boot_identity.md",
+   "priority": "P1",
+   "reason": "登入管線隨兩登入門一起拆除，AuthContext 已無 signIn",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-BT-018",
+   "assertion": "Google 門走 Google 程序、不碰 Apple",
+   "book": "no1_boot_identity.md",
+   "priority": "P1",
+   "reason": "登入管線隨兩登入門一起拆除，AuthContext 已無 signIn",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-BT-019",
+   "assertion": "Apple 門走 Apple 面板、不碰 Google",
+   "book": "no1_boot_identity.md",
+   "priority": "P1",
+   "reason": "登入管線隨兩登入門一起拆除，AuthContext 已無 signIn",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-BT-020",
+   "assertion": "兩門帳號各自獨立、不連結不合併",
+   "book": "no1_boot_identity.md",
+   "priority": "P0",
+   "reason": "登入管線隨兩登入門一起拆除，AuthContext 已無 signIn",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-BT-021",
+   "assertion": "認證程序遭取消時顯示登入失敗提示且不續行",
+   "book": "no1_boot_identity.md",
+   "priority": "P1",
+   "reason": "登入管線隨兩登入門一起拆除，AuthContext 已無 signIn",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-BT-025",
+   "assertion": "登入成功後依啟動模式導航至初始落點",
+   "book": "no1_boot_identity.md",
+   "priority": "P1",
+   "reason": "觸發點隨登入牆拔除而消失",
+   "supersededBy": "C-BT-103",
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-BT-026",
+   "assertion": "登入成功且付費牆攔截時導航至付費牆",
+   "book": "no1_boot_identity.md",
+   "priority": "P1",
+   "reason": "觸發點隨登入牆拔除而消失",
+   "supersededBy": "C-BT-108",
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-BT-027",
+   "assertion": "登出保留本地帳務資料、不執行清除",
+   "book": "no1_boot_identity.md",
+   "priority": "P0",
+   "reason": "觸發點隨登入牆拔除而消失",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-BT-028",
+   "assertion": "登出觸發 Firebase Auth 登出並清除本地憑證",
+   "book": "no1_boot_identity.md",
+   "priority": "P1",
+   "reason": "觸發點隨登入牆拔除而消失",
+   "supersededBy": "C-BT-084",
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-BT-030",
+   "assertion": "重新登入同帳號時上傳本機偏好至雲端",
+   "book": "no1_boot_identity.md",
+   "priority": "P1",
+   "reason": "觸發點隨登入牆拔除而消失",
+   "supersededBy": "C-BT-043",
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-BT-031",
+   "assertion": "重新登入同帳號時委派交易備份",
+   "book": "no1_boot_identity.md",
+   "priority": "P1",
+   "reason": "觸發點隨登入牆拔除而消失",
+   "supersededBy": "C-BT-114",
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-BT-032",
+   "assertion": "偵測不同帳號時明示詢問保留或清除、不自動清除",
+   "book": "no1_boot_identity.md",
+   "priority": "P0",
+   "reason": "錨成員 detectAccountSwitch 已刪除，行為不復存在",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-BT-033",
+   "assertion": "選擇清除時硬重置本機資料庫、不分 userId",
+   "book": "no1_boot_identity.md",
+   "priority": "P0",
+   "reason": "觸發點隨登入牆拔除而消失",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-BT-034",
+   "assertion": "換帳號清除採硬重置、不傳播雲端刪除標記",
+   "book": "no1_boot_identity.md",
+   "priority": "P0",
+   "reason": "觸發點隨登入牆拔除而消失",
+   "supersededBy": "C-BT-090",
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-BT-035",
+   "assertion": "選擇清除時連帶清前一帳號授權快取",
+   "book": "no1_boot_identity.md",
+   "priority": "P1",
+   "reason": "錨檔 src/services/premiumStatusCache.ts 已隨無帳號整改刪除",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-BT-036",
+   "assertion": "清除前一帳號快取時不動當前帳號快取",
+   "book": "no1_boot_identity.md",
+   "priority": "P1",
+   "reason": "錨檔 src/services/premiumStatusCache.ts 已隨無帳號整改刪除",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-BT-037",
+   "assertion": "選擇保留時前一帳號授權快取不動",
+   "book": "no1_boot_identity.md",
+   "priority": "P1",
+   "reason": "錨檔 src/services/premiumStatusCache.ts 已隨無帳號整改刪除",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-BT-038",
+   "assertion": "選擇保留時本機資料原樣續用",
+   "book": "no1_boot_identity.md",
+   "priority": "P0",
+   "reason": "觸發點隨登入牆拔除而消失",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-BT-070",
+   "assertion": "Apple 門以刷新模式喚起原生授權",
+   "book": "no1_boot_identity.md",
+   "priority": "P0",
+   "reason": "錨成員 getAppleAuthorizationCode 已刪除，行為不復存在",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-BT-083",
+   "assertion": "刪除完成後清除該帳號的本地授權快取",
+   "book": "no1_boot_identity.md",
+   "priority": "P1",
+   "reason": "錨檔 src/services/premiumStatusCache.ts 已隨無帳號整改刪除",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-DA-017",
+   "assertion": "重置資料軟刪全部具墓碑欄的資料表",
+   "book": "no12_data_sync.md",
+   "priority": "P0",
+   "reason": "錨成員 resetAllData 已刪除，行為不復存在",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-DA-018",
+   "assertion": "重置資料僅標記當前帳號紀錄、不動其他帳號",
+   "book": "no12_data_sync.md",
+   "priority": "P0",
+   "reason": "錨成員 resetAllData 已刪除，行為不復存在",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-DA-019",
+   "assertion": "重置資料採軟刪除、紀錄仍留在本機",
+   "book": "no12_data_sync.md",
+   "priority": "P1",
+   "reason": "錨成員 resetAllData 已刪除，行為不復存在",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-DA-020",
+   "assertion": "重置資料的軟刪除傳播雲端刪除標記",
+   "book": "no12_data_sync.md",
+   "priority": "P0",
+   "reason": "錨成員 resetAllData 已刪除，行為不復存在",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-DA-021",
+   "assertion": "重置資料不動使用者、設定、貨幣顯示三表",
+   "book": "no12_data_sync.md",
+   "priority": "P1",
+   "reason": "錨成員 resetAllData 已刪除，行為不復存在",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-DA-067",
+   "assertion": "離線時付費帳號依本地授權快取維持等級、不降級",
+   "book": "no12_data_sync.md",
+   "priority": "P0",
+   "reason": "錨檔 src/services/premiumStatusCache.ts 已隨無帳號整改刪除",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-SB-006",
+   "assertion": "本地授權快取以帳號為範圍、他帳號讀不到",
+   "book": "no2_subscription_quota.md",
+   "priority": "P1",
+   "reason": "錨檔 src/services/premiumStatusCache.ts 已隨無帳號整改刪除",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-SB-010",
+   "assertion": "快取等級欄非數字時整筆視為無快取",
+   "book": "no2_subscription_quota.md",
+   "priority": "P2",
+   "reason": "錨檔 src/services/premiumStatusCache.ts 已隨無帳號整改刪除",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-SB-011",
+   "assertion": "不採用無帳號範圍的舊版裝置層快取",
+   "book": "no2_subscription_quota.md",
+   "priority": "P2",
+   "reason": "錨檔 src/services/premiumStatusCache.ts 已隨無帳號整改刪除",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-SB-012",
+   "assertion": "帳號識別碼為空時快取不讀不寫",
+   "book": "no2_subscription_quota.md",
+   "priority": "P2",
+   "reason": "錨檔 src/services/premiumStatusCache.ts 已隨無帳號整改刪除",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-SB-059",
+   "assertion": "無本地授權快取時推定為 LEVEL_0",
+   "book": "no2_subscription_quota.md",
+   "priority": "P1",
+   "reason": "錨檔 src/services/premiumStatusCache.ts 已隨無帳號整改刪除",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-SB-061",
+   "assertion": "授權來自後端即時回報時直接採其等級、不自行以到期日推翻",
+   "book": "no2_subscription_quota.md",
+   "priority": "P1",
+   "reason": "錨檔 src/services/entitlementTier.ts 已隨無帳號整改刪除",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-SB-062",
+   "assertion": "後端回報降級的授權記錄時照實降為 LEVEL_0",
+   "book": "no2_subscription_quota.md",
+   "priority": "P1",
+   "reason": "錨檔 src/services/entitlementTier.ts 已隨無帳號整改刪除",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-SB-063",
+   "assertion": "授權來自離線副本且到期日早於或等於當下時降為 LEVEL_0",
+   "book": "no2_subscription_quota.md",
+   "priority": "P1",
+   "reason": "錨檔 src/services/entitlementTier.ts 已隨無帳號整改刪除",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-SB-064",
+   "assertion": "授權來自離線副本且未過期時採其等級",
+   "book": "no2_subscription_quota.md",
+   "priority": "P1",
+   "reason": "錨檔 src/services/entitlementTier.ts 已隨無帳號整改刪除",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-SB-065",
+   "assertion": "離線授權副本無到期日時視為無期限、維持付費等級",
+   "book": "no2_subscription_quota.md",
+   "priority": "P2",
+   "reason": "錨檔 src/services/entitlementTier.ts 已隨無帳號整改刪除",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  },
+  {
+   "id": "C-SB-066",
+   "assertion": "授權記錄欄位型別不符時收斂為 LEVEL_0 與無到期日",
+   "book": "no2_subscription_quota.md",
+   "priority": "P2",
+   "reason": "錨成員 subscribeEntitlement 已刪除，行為不復存在",
+   "supersededBy": null,
+   "retiredIn": "feat/qa-mechanical-fix"
+  }
+ ]
+}

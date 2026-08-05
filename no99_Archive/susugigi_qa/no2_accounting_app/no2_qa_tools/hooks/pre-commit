@@ -1,0 +1,59 @@
+#!/bin/sh
+# 檢驗點清單的提交閘門。
+#
+# 存在理由：no0_index.md 曾把四份衍生檔標成「機械生成、不手抄」，
+# 標籤擋不住任何東西，四份全變手抄物、其中一份還抄錯。
+# 宣告沒有執行者就只是註解。這支就是執行者。
+#
+# 擋的是三件零容忍的事：格式、斷言去重、生成物與來源同步。
+# 已知的清單漂移走 rules/check_baseline.json 的債務基準，在基準內放行、超過就擋。
+#
+# 安裝：sh no2_qa_tools/hooks/install.sh
+# 單次略過：git commit --no-verify（請在 commit message 說明理由）
+
+set -e
+
+REPO_ROOT=$(git rev-parse --show-toplevel)
+TOOLS="$REPO_ROOT/no2_qa_tools"
+
+# 本次提交沒碰清單或工具就不必跑，省時間。
+if ! git diff --cached --name-only | grep -qE '^(no1_test_plan/|no2_qa_tools/)'; then
+  exit 0
+fi
+
+if ! command -v node >/dev/null 2>&1; then
+  echo "✗ pre-commit：找不到 node，清單自檢跑不了。"
+  echo "  裝 Node v22.5 以上，或這次用 git commit --no-verify 並在 message 說明。"
+  exit 1
+fi
+
+echo "pre-commit：跑清單自檢…"
+
+# impl 與 spec 路徑取自 config.json；缺了對應檢查會自己標略過、不會謊報通過。
+IMPL_ARG=""
+SPEC_ARG=""
+if [ -f "$TOOLS/config.json" ]; then
+  IMPL=$(node -e "try{const c=require('$TOOLS/config.json');process.stdout.write(c.implRoot||'')}catch(e){}" 2>/dev/null || true)
+  SPEC=$(node -e "try{const c=require('$TOOLS/config.json');process.stdout.write(c.specRoot||'')}catch(e){}" 2>/dev/null || true)
+  [ -n "$IMPL" ] && IMPL_ARG="--impl-root $IMPL"
+  [ -n "$SPEC" ] && SPEC_ARG="--spec-dir $SPEC"
+fi
+
+if ! node "$TOOLS/bin/checklist.mjs" check --gate $IMPL_ARG $SPEC_ARG; then
+  echo ""
+  echo "✗ pre-commit 擋下這次提交。"
+  echo "  生成物不同步 → 跑 node no2_qa_tools/bin/checklist.mjs generate --write"
+  echo "  格式或去重不過 → 依上面列出的 ID 與行號改分冊"
+  echo "  債務超過基準 → 清單又漂移了，該修的是清單、不是基準檔"
+  exit 1
+fi
+
+# 工具自己壞了就別讓它繼續把關。
+if ! node "$TOOLS/bin/checklist.mjs" self-test >/dev/null 2>&1; then
+  echo "✗ pre-commit：清單工具自測不過，先修工具。"
+  echo "  跑 node no2_qa_tools/bin/checklist.mjs self-test --verbose 看細節。"
+  exit 1
+fi
+
+echo "pre-commit：通過。"
+exit 0
