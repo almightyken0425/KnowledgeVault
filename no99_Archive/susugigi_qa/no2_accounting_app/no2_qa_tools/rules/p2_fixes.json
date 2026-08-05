@@ -1,0 +1,358 @@
+{
+ "_why": "P2 機械修的指令檔。只收零語意判斷的改動；需改斷言者留給 P3。",
+ "_deferredToP3": [
+  "C-SB-055",
+  "C-DA-022",
+  "C-BT-022",
+  "C-BT-023"
+ ],
+ "retire": [
+  {
+   "ids": [
+    "C-BT-005",
+    "C-BT-006",
+    "C-BT-007",
+    "C-BT-008",
+    "C-BT-009",
+    "C-BT-010",
+    "C-BT-011",
+    "C-BT-012",
+    "C-BT-013",
+    "C-BT-014",
+    "C-BT-015",
+    "C-BT-016"
+   ],
+   "reason": "錨檔 src/screens/Auth/LoginScreen.tsx 已隨無帳號整改刪除",
+   "supersededBy": null
+  },
+  {
+   "ids": [
+    "C-BT-035",
+    "C-BT-036",
+    "C-BT-037",
+    "C-BT-083",
+    "C-SB-006",
+    "C-SB-010",
+    "C-SB-011",
+    "C-SB-012",
+    "C-SB-059",
+    "C-DA-067"
+   ],
+   "reason": "錨檔 src/services/premiumStatusCache.ts 已隨無帳號整改刪除",
+   "supersededBy": null
+  },
+  {
+   "ids": [
+    "C-SB-061",
+    "C-SB-062",
+    "C-SB-063",
+    "C-SB-064",
+    "C-SB-065"
+   ],
+   "reason": "錨檔 src/services/entitlementTier.ts 已隨無帳號整改刪除",
+   "supersededBy": null
+  },
+  {
+   "ids": [
+    "C-BT-017",
+    "C-BT-018",
+    "C-BT-019",
+    "C-BT-020",
+    "C-BT-021"
+   ],
+   "reason": "登入管線隨兩登入門一起拆除，AuthContext 已無 signIn",
+   "supersededBy": null
+  },
+  {
+   "ids": [
+    "C-BT-032"
+   ],
+   "reason": "錨成員 detectAccountSwitch 已刪除，行為不復存在",
+   "supersededBy": null
+  },
+  {
+   "ids": [
+    "C-BT-070"
+   ],
+   "reason": "錨成員 getAppleAuthorizationCode 已刪除，行為不復存在",
+   "supersededBy": null
+  },
+  {
+   "ids": [
+    "C-SB-066"
+   ],
+   "reason": "錨成員 subscribeEntitlement 已刪除，行為不復存在",
+   "supersededBy": null
+  },
+  {
+   "ids": [
+    "C-DA-017",
+    "C-DA-018",
+    "C-DA-019",
+    "C-DA-021"
+   ],
+   "reason": "錨成員 resetAllData 已刪除，行為不復存在",
+   "supersededBy": null
+  },
+  {
+   "ids": [
+    "C-DA-020"
+   ],
+   "reason": "錨成員 resetAllData 已刪除，行為不復存在",
+   "supersededBy": null
+  },
+  {
+   "ids": [
+    "C-BT-025"
+   ],
+   "reason": "觸發點隨登入牆拔除而消失",
+   "supersededBy": "C-BT-103"
+  },
+  {
+   "ids": [
+    "C-BT-026"
+   ],
+   "reason": "觸發點隨登入牆拔除而消失",
+   "supersededBy": "C-BT-108"
+  },
+  {
+   "ids": [
+    "C-BT-027"
+   ],
+   "reason": "觸發點隨登入牆拔除而消失",
+   "supersededBy": null
+  },
+  {
+   "ids": [
+    "C-BT-028"
+   ],
+   "reason": "觸發點隨登入牆拔除而消失",
+   "supersededBy": "C-BT-084"
+  },
+  {
+   "ids": [
+    "C-BT-030"
+   ],
+   "reason": "觸發點隨登入牆拔除而消失",
+   "supersededBy": "C-BT-043"
+  },
+  {
+   "ids": [
+    "C-BT-031"
+   ],
+   "reason": "觸發點隨登入牆拔除而消失",
+   "supersededBy": "C-BT-114"
+  },
+  {
+   "ids": [
+    "C-BT-033"
+   ],
+   "reason": "觸發點隨登入牆拔除而消失",
+   "supersededBy": null
+  },
+  {
+   "ids": [
+    "C-BT-034"
+   ],
+   "reason": "觸發點隨登入牆拔除而消失",
+   "supersededBy": "C-BT-090"
+  },
+  {
+   "ids": [
+    "C-BT-038"
+   ],
+   "reason": "觸發點隨登入牆拔除而消失",
+   "supersededBy": null
+  }
+ ],
+ "specAnchor": [
+  {
+   "ids": [
+    "C-BT-024"
+   ],
+   "to": "`no2_anonymous_bootstrap_logic`"
+  },
+  {
+   "ids": [
+    "C-BT-039"
+   ],
+   "to": "`no2_anonymous_bootstrap_logic`"
+  },
+  {
+   "ids": [
+    "C-BT-029"
+   ],
+   "to": "—"
+  }
+ ],
+ "automation": [
+  {
+   "ids": [
+    "C-BT-049"
+   ],
+   "to": "`src/contexts/AuthContext.tokenRefreshGuard.test.tsx`（cold-start double emit keeps isLoading true until post-auth resolves (no retry-screen flash)）"
+  },
+  {
+   "ids": [
+    "C-BT-050"
+   ],
+   "to": "`src/contexts/AuthContext.tokenRefreshGuard.test.tsx`（different-uid trigger (new identity) still runs full post-auth flow）"
+  },
+  {
+   "ids": [
+    "C-BT-051"
+   ],
+   "to": "`src/contexts/AuthContext.tokenRefreshGuard.test.tsx`（sign-out then same-uid re-emit is treated as a real new identity, not skipped）"
+  },
+  {
+   "ids": [
+    "C-BT-069"
+   ],
+   "to": "`src/contexts/AuthContext.deleteUserAccount.test.tsx`（成功編排：記憶體旗標 → sync → 持久旗標 → callable(零參數) → 升階 done → 硬刪 → signOut → 解旗標）"
+  },
+  {
+   "ids": [
+    "C-BT-071"
+   ],
+   "to": "—"
+  },
+  {
+   "ids": [
+    "C-BT-072"
+   ],
+   "to": "`src/services/accountDeletionService.test.ts`（零參數呼叫：payload 恆為空物件、timeout 比後端 300s 多留餘裕）"
+  },
+  {
+   "ids": [
+    "C-BT-073"
+   ],
+   "to": "—"
+  },
+  {
+   "ids": [
+    "C-BT-074"
+   ],
+   "to": "—"
+  },
+  {
+   "ids": [
+    "C-BT-075"
+   ],
+   "to": "`src/contexts/AuthContext.deleteUserAccount.test.tsx`（成功編排：記憶體旗標 → sync → 持久旗標 → callable(零參數) → 升階 done → 硬刪 → signOut → 解旗標）"
+  },
+  {
+   "ids": [
+    "C-BT-079"
+   ],
+   "to": "`src/services/accountDeletionService.test.ts`（伺服器明確業務失敗（failed-precondition）映射 auth/delete-account-failed）"
+  },
+  {
+   "ids": [
+    "C-BT-082"
+   ],
+   "to": "`src/contexts/AuthContext.deleteUserAccount.test.tsx`（本機硬刪失敗：持久旗標保留、記憶體旗標仍解除、仍 signOut 收尾）"
+  },
+  {
+   "ids": [
+    "C-BT-093"
+   ],
+   "to": "`src/contexts/AuthContext.deletionRecovery.test.tsx`（旗標相符 + 刷新 user-not-found（帳號已刪）：先升 done 再補收尾 + signOut、跳過 runPostAuth；null 事件重生）"
+  },
+  {
+   "ids": [
+    "C-BT-097"
+   ],
+   "to": "—"
+  },
+  {
+   "ids": [
+    "C-BT-113"
+   ],
+   "to": "`src/contexts/AuthContext.backupNonBlocking.test.tsx`（R-BS-004: bootstrap settles even when the delegated backup never settles）"
+  },
+  {
+   "ids": [
+    "C-BT-052"
+   ],
+   "to": "—"
+  },
+  {
+   "ids": [
+    "C-BT-053"
+   ],
+   "to": "—"
+  },
+  {
+   "ids": [
+    "C-BT-054"
+   ],
+   "to": "—"
+  },
+  {
+   "ids": [
+    "C-BT-056"
+   ],
+   "to": "—"
+  },
+  {
+   "ids": [
+    "C-BT-057"
+   ],
+   "to": "—"
+  },
+  {
+   "ids": [
+    "C-BT-058"
+   ],
+   "to": "—"
+  },
+  {
+   "ids": [
+    "C-BT-059"
+   ],
+   "to": "—"
+  },
+  {
+   "ids": [
+    "C-BT-060"
+   ],
+   "to": "—"
+  },
+  {
+   "ids": [
+    "C-BT-061"
+   ],
+   "to": "—"
+  },
+  {
+   "ids": [
+    "C-SB-056"
+   ],
+   "to": "—"
+  },
+  {
+   "ids": [
+    "C-SB-057"
+   ],
+   "to": "—"
+  },
+  {
+   "ids": [
+    "C-SB-058"
+   ],
+   "to": "—"
+  },
+  {
+   "ids": [
+    "C-SB-068"
+   ],
+   "to": "—"
+  },
+  {
+   "ids": [
+    "C-SB-069"
+   ],
+   "to": "—"
+  }
+ ]
+}
