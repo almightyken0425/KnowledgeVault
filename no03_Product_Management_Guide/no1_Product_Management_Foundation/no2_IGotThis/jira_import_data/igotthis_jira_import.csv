@@ -1,0 +1,31 @@
+Issue ID,Issue Type,Epic Name,Epic Link,Summary,Description,Status,Assignee,Priority,Parent ID
+1,Epic,工單模型,,[IGotThis] 工單模型與八層容器,實作 IGotThis 的八層容器骨架與關聯機制,In Progress,Ken,Highest,
+2,Story,,工單模型,實作八層容器骨架資料庫結構,實作 Company -> Team -> Product -> Mgmt -> IssueSet -> Issue 的階層與嚴格樹狀結構,Done,Alice,Highest,
+3,Sub-task,,,,定義 Container<T> 泛型類別與資料表 Schema,,Done,Alice,Medium,2
+4,Sub-task,,,,實作各層級的新增與查詢 API,,Done,Alice,High,2
+5,Story,,工單模型,實作主題單綁定機制 (Epic Link),實作跨 IssueSet 的獨佔主題綁定 (Container 欄位),In Progress,Bob,High,
+6,Sub-task,,,,實作 issue_relation 表中的 exclusive 約束,,In Progress,Bob,High,5
+7,Sub-task,,,,實作主題單成員清單的 API,,To Do,Bob,Medium,5
+8,Task,,工單模型,實作母子關聯 (Children 欄位),實作同一個 IssueSet 內的母子工單層級，禁止跨 IssueSet 的母子連結,Done,Charlie,High,
+9,Bug,,工單模型,關聯反查索引更新延遲,當建立大量母子關聯時，反查索引 (issue_relation) 寫入造成 DB 鎖定導致 Timeout,To Do,Dave,Highest,
+30,Story,,工單模型,支援 Before 與 RelatedTo 關聯,實作排程依賴(Before)與無方向相關連結(RelatedTo)的關聯型別,To Do,Charlie,Medium,
+10,Epic,檢視層,,[IGotThis] 檢視層與排序,實作獨立於資料骨架之外的 View<T> 檢視層與各類圖表,To Do,Ken,Medium,
+11,Story,,檢視層,實作開發順序表介面,首欄為主題單，次欄為甘特圖，支援手動拖拉排序,To Do,Alice,High,
+12,Sub-task,,,,實作未排序區與已排序區的拖拉互動,,To Do,Alice,Medium,11
+13,Sub-task,,,,實作拖拉排序後的後端 API 狀態更新,,To Do,Alice,High,11
+14,Story,,檢視層,實作看板 (Kanban) 檢視,依 Status 分欄顯示，支援拖拉變更狀態,To Do,Bob,Medium,
+15,Story,,檢視層,實作燃盡圖 (Burndown Chart),利用 ChangeLog 變更歷史與估點計算剩餘工作量趨勢,To Do,Charlie,High,
+16,Epic,權限模型,,[IGotThis] 權限模型與 Role,實作掛在 Role 上的權限模型，包含範圍清單與四種權限等級,In Progress,Ken,High,
+17,Story,,權限模型,實作 Role 與授權範圍清單,讓 Role 可以指定 Company, Team, Product 或 Mgmt 等級的範圍,Done,Dave,Highest,
+18,Story,,權限模型,實作權限等級定義表 (Level),實作觀看、回報、成員、管理等四種等級，並支援自訂等級,In Progress,Dave,High,
+19,Sub-task,,,,實作 level_def 資料表與預設系統等級,,Done,Dave,Medium,18
+20,Sub-task,,,,實作操作攔截器 (Interceptor) 驗證權限,,In Progress,Dave,Highest,18
+21,Bug,,權限模型,跨範圍的關聯工單內容未被正確隱藏,如果使用者沒有權限，關聯的工單應該只顯示編號，目前卻把標題洩漏了,To Do,Alice,High,
+22,Epic,欄位與狀態,,[IGotThis] 欄位歷史與狀態流程,實作可自訂的狀態流程以及欄位變更追蹤 (ChangeLog),To Do,Ken,Medium,
+23,Task,,欄位與狀態,實作 Status 與 Resolution 的分離,Status 代表走到哪一格，Resolution 代表結束的下場，兩者不可混用,To Do,Charlie,High,
+24,Story,,欄位與狀態,實作自動與手動彙總模式,實作起訖日與估算點數的自動彙總計算，以及手動模式偏離警示,To Do,Bob,High,
+25,Sub-task,,,,實作子單時間範圍超出母單時的偏離警示 UI,,To Do,Bob,Low,24
+26,Epic,成本與標籤,,[IGotThis] 標籤群組與成本表,實作帳號/Role的標籤系統，以及綁定職級標籤的費率成本表,To Do,Ken,Low,
+27,Story,,成本與標籤,實作職級費率與成本表,費率綁定職級標籤而非帳號，避免洩漏個人薪資，計算每張工單的成本,To Do,Dave,Medium,
+28,Sub-task,,,,實作 rate_history 資料表 (帶生效日),,To Do,Dave,Medium,27
+29,Bug,,成本與標籤,標籤群組下拉選單未去重複,當多個使用者有同一個標籤時，下拉選單會出現重複選項,Done,Alice,Low,
