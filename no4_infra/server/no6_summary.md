@@ -13,7 +13,7 @@
 
 ## 一切的起點 - 本地開發
 
-![](Assets/local_dev.jpg)
+![](assets/local_dev.jpg)
 
 這張圖是所有開發者的起點: 在自己的個人電腦 PC 上工作。
 
@@ -29,7 +29,7 @@
 
 ## 邁向雲端 - IaaS 基礎設施
 
-![](Assets/iaas_dev.jpg)
+![](assets/iaas_dev.jpg)
 
 當本地電腦不夠用時,第一步就是上雲,租用 IaaS 基礎設施即服務,代表服務是 AWS EC2。
 
@@ -44,7 +44,7 @@
 
 ## 專注本業 - PaaS 資料庫
 
-![](Assets/paas_database.jpg)
+![](assets/paas_database.jpg)
 
 管理資料庫 DB 是一件非常複雜的事,包括備份、擴展、主從同步 Master-Slave。於是,開發者決定把這件髒活外包出去,採用 PaaS 平台即服務,代表服務是 AWS RDS。
 
@@ -59,7 +59,7 @@
 
 ## 終極進化 - PaaS 應用程式
 
-![alt text](Assets/paas_app.jpg)
+![alt text](assets/paas_app.jpg)
 
 開發者連管理 EC2 IaaS 來跑 App 都覺得累了,例如要自己處理 Auto Scaling,於是決定把 App 也改成平台即服務 PaaS,代表服務就是 AWS Fargate。
 
@@ -80,7 +80,7 @@
 
 最後,這張圖試圖將所有服務組合成一個完整的、可擴展的應用程式架構。
 
-![alt text](Assets/full_architecture.jpg)
+![alt text](assets/full_architecture.jpg)
 
 ### 組件說明
 

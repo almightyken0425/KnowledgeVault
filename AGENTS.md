@@ -11,25 +11,25 @@
 
 ## 內容範圍
 
-- `no01_AI_Overview`
+- `no1_ai_overview`
   - AI 發展脈絡
   - 規則式系統
   - 機器學習
-- `no02_Crypto_Overview`
+- `no2_crypto_overview`
   - Bitcoin 基礎
   - Ethereum 基礎
   - 區塊鏈延伸主題
-- `no03_Product_Management_Guide`
+- `no3_product_management_guide`
   - 產品管理框架
   - 白牌領域知識
   - 個人化主題
-- `no04_Infra`
+- `no4_infra`
   - 資料庫知識
   - 伺服器知識
-- `no05_React_Basics`
+- `no5_react_basics`
   - React 基礎
   - React Native 路線圖
-- `no99_Archive`
+- `no99_archive`
   - 歷史內容
   - 封存資料
 
@@ -46,8 +46,17 @@
 - 保留既有術語體系。
 - 保留章節閱讀順序。
 - 新文件延續現有序列。
-- 檔名採 `no` 加序號。
-- 主題名稱接在序號後。
+
+---
+
+## 命名規則
+
+- GitHub repo 與主要 checkout 根目錄使用 `knowledge-vault`。
+- 一般內容目錄與檔案使用 `lowercase_snake_case`。
+- 有順序的內容使用 `noN_lowercase_snake_case`，序號不補零。
+- `no0_` 保留給入口或總覽，`no99_` 保留給封存內容。
+- `AGENTS.md` 與 `README.md` 保留平台約定名稱。
+- 圖片與外部來源資產保留來源名稱，除非同批建立名稱映射。
 
 ---
 
