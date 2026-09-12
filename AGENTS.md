@@ -79,7 +79,7 @@
 - 修改後執行寫作 lint。
 
 ```bash
-python3 ~/.agents/skills/universal_writing_linter/scripts/lint_spec.py "$target"
+python3 ~/.codex/scripts/lint_markdown.py "$target"
 ```
 
 - 交付前檢查指令漂移。
